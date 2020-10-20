@@ -59,9 +59,11 @@ The unit tests can be executed on Linux or MacOS using:
 ### Source Code
 
 The source files are organized as follows:
+
 * `src/AceCommon.h` - main header file
-* `src/ace_common/` - all implementation files
+* `src/ace_common/` - implementation files
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
+* `examples/` - example sketches
 
 ## Usage
 
