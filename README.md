@@ -4,6 +4,16 @@ An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
 
+All features are accessible through a single include file, using the
+`ace_common` namespace:
+```
+#include <AceCommon.h>
+using namespace ace_common;
+```
+
+The `AceCommon.h` header file includes the following sub-header files
+automatically:
+
 * `arithmetic.h`
     * `incrementMod(c, m)`
     * `incrementModOffset(c, m, offset)`
@@ -11,6 +21,8 @@ reused from other Arduino libraries in my collection.
     * `bcdToDec()`
 * `pstrings.h`
     * `strcmp_PP(a, b)`
+    * `strchr_P(a, b)` (ESP8266 and ESP32 only)
+    * `strrchr_P(a, b)` (ESP8266 and ESP32 only)
 
 **Version**: 1.0 (2020-10-19)
 
