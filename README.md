@@ -9,6 +9,8 @@ reused from other Arduino libraries in my collection.
     * `incrementModOffset(c, m, offset)`
     * `decToBcd()`
     * `bcdToDec()`
+* `pstrings.h`
+    * `strcmp_PP(a, b)`
 
 **Version**: 1.0 (2020-10-19)
 
