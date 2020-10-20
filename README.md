@@ -4,6 +4,12 @@ An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
 
+* `arithmetic.h`
+    * `incrementMod(c, m)`
+    * `incrementModOffset(c, m, offset)`
+    * `decToBcd()`
+    * `bcdToDec()`
+
 **Version**: 1.0 (2020-10-19)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
@@ -43,6 +49,9 @@ The source files are organized as follows:
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 
 ## Usage
+
+All functions and classes are available using a single header file,
+under the `ace_common` namespace:
 
 ```
 #include <AceCommon.h>
