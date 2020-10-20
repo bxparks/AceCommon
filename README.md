@@ -19,6 +19,7 @@ automatically:
     * `incrementModOffset(c, m, offset)`
     * `decToBcd()`
     * `bcdToDec()`
+    * `udiv1000()`
 * `pstrings.h`
     * `strcmp_PP(a, b)`
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
