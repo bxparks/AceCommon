@@ -65,6 +65,12 @@ The source files are organized as follows:
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
 
+### Docs
+
+Besides this README.md file, the [docs/](docs/) directory contains the Doxygen
+docs (https://bxparks.github.io/AceCommon/html/) published on GitHub Pages. It
+can help you navigate an unfamiliar code base.
+
 ## Usage
 
 All functions and classes are available using a single header file,
