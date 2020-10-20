@@ -25,7 +25,7 @@ automatically:
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
     * `strrchr_P(a, b)` (ESP8266 and ESP32 only)
 
-**Version**: 1.0 (2020-10-19)
+**Version**: 1.0 (2020-10-20)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
