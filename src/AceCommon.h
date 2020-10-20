@@ -1,3 +1,4 @@
+/*
 MIT License
 
 Copyright (c) 2020 Brian T. Park
@@ -19,3 +20,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+*/
+
+/**
+@mainpage AceCommon Library
+
+This is the Doxygen documentation for the
+<a href="https://github.com/bxparks/AceCommon">AceCommon Library</a>.
+*/
+
+#ifndef ACE_COMMON_H
+#define ACE_COMMON_H
+
+#include "ace_common/arithmetic.h"
+#include "ace_common/pstrings.h"
+
+// Version format: "xx.yy.zz" => xxyyzz (without leading 0)
+#define ACE_COMMON_VERSION 10000
+#define ACE_COMMON_VERSION_STRING "1.0.0"
+
+#endif
