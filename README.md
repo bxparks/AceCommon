@@ -32,11 +32,9 @@ automatically:
           be extracted as a normal c-string (`const char*`).
         * Alternative to the Arduino `String` class to avoid or reduce heap
           fragmentation.
-    * `class PrintStrBase;`
-    * `class PrintStr<uint16_t SIZE>;`
-        * Uses buffer on stack.
-    * `class PrintStrN(uint16_t size);`
-        * Uses buffer on heap.
+    * `class PrintStrBase`
+    * `class PrintStr<uint16_t SIZE>` (buffer on stack)
+    * `class PrintStrN(uint16_t size)` (buffer on heap)
 * `src/print_utils/printPadTo.h`
     * [src/print_utils/README.md](src/print_utils/README.md)
     * `printPad2To(Print& printer, uint16_t val, char pad = ' ')`
@@ -45,11 +43,22 @@ automatically:
     * `printPad5To(Print& printer, uint16_t val, char pad = ' ')`
 * `src/print_utils.printfTo.h`
     * [src/print_utils/README.md](src/print_utils/README.md)
+        * Provides a primitive `printf()` functionality to an instance of
+          `Print` (e.g. `Serial`) for those Arduino boards without a
+          `Print.printf()` function.
     * `printfTo(Print& printer, const char* fmt, ...)`
 * `src/timing_stats/TimingStats.h`
     * [src/timing_stats/README.md](src/timing_stats/README.md)
-    * Helper class to collect data (often durations in milliseconds) and
-      then print out various statistics such as min, max, average, and count.
+        * Helper class to collect data (often durations in milliseconds) and
+          then print out various statistics such as min, max, average, and
+          count.
+    * `class TimingStats`
+* `src/url_encoding/url_encoding.h`
+    * [src/url_encoding/README.md](src/url_encoding/README.md)
+        * Encodes and decodes strings using "form URL encoding" which converts
+        spaces `' '` into `'+'`, and non-alphnumerics into percent-hex digits.
+    * `formUrlEncode(Print& output, const char* str)`
+    * `formUrlDecode(Print& output, const char* str)`
 
 **Version**: 1.0 (2020-10-20)
 
