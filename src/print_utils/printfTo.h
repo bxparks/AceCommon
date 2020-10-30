@@ -33,12 +33,12 @@
 namespace ace_common {
 
 /** Maximum size of the internal stack buffer used by printfTo(). */
-static const int BUF_SIZE = 192;
+const int PRINTF_TO_BUF_SIZE = 192;
 
 /** Helper function for implementing the printfTo() function. */
 inline void vprintfTo(Print& printer, const char *fmt, va_list args) {
-  char buf[BUF_SIZE];
-  vsnprintf(buf, BUF_SIZE, fmt, args);
+  char buf[PRINTF_TO_BUF_SIZE];
+  vsnprintf(buf, PRINTF_TO_BUF_SIZE, fmt, args);
   printer.print(buf);
 }
 

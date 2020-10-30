@@ -37,6 +37,7 @@ This is the Doxygen documentation for the
 #include "print_str/PrintStr.h"
 #include "print_utils/printPadTo.h"
 #include "print_utils/printfTo.h"
+#include "timing_stats/TimingStats.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10000

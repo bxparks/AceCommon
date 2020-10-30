@@ -38,12 +38,18 @@ automatically:
     * `class PrintStrN(uint16_t size);`
         * Uses buffer on heap.
 * `src/print_utils/printPadTo.h`
+    * [src/print_utils/README.md](src/print_utils/README.md)
     * `printPad2To(Print& printer, uint16_t val, char pad = ' ')`
     * `printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `printPad5To(Print& printer, uint16_t val, char pad = ' ')`
 * `src/print_utils.printfTo.h`
+    * [src/print_utils/README.md](src/print_utils/README.md)
     * `printfTo(Print& printer, const char* fmt, ...)`
+* `src/timing_stats/TimingStats.h`
+    * [src/timing_stats/README.md](src/timing_stats/README.md)
+    * Helper class to collect data (often durations in milliseconds) and
+      then print out various statistics such as min, max, average, and count.
 
 **Version**: 1.0 (2020-10-20)
 
