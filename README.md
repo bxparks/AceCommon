@@ -60,7 +60,7 @@ automatically:
     * `formUrlEncode(Print& output, const char* str)`
     * `formUrlDecode(Print& output, const char* str)`
 
-**Version**: 1.0 (2020-10-20)
+**Version**: 1.1 (2020-10-29)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
