@@ -22,6 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+/**
+ * @file arithmetic.h
+ *
+ * Common functions involving arithmetics such as incrementing, addition,
+ * subtraction, division, and conversion to and from BCD (binary coded
+ * decimal).
+ */
+
 #ifndef ACE_COMMON_ARITHMETIC_H
 #define ACE_COMMON_ARITHMETIC_H
 

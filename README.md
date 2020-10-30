@@ -4,28 +4,63 @@ An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
 
-All features are accessible through a single include file, using the
-`ace_common` namespace:
-```
+All functions and classes are accessible through a single include file
+`<AceCommon.h>` and the `ace_common` namespace:
+
+```C++
 #include <AceCommon.h>
 using namespace ace_common;
 ```
 
-The `AceCommon.h` header file includes the following sub-header files
+The `src/AceCommon.h` header file includes the following sub-header files
 automatically:
 
-* `arithmetic.h`
+* `src/arithmetic/arithmetic.h`
     * `incrementMod(c, m)`
     * `incrementModOffset(c, m, offset)`
-    * `decToBcd()`
-    * `bcdToDec()`
-    * `udiv1000()`
-* `pstrings.h`
+    * `decToBcd(uint8_t)`
+    * `bcdToDec(uint8_t)`
+    * `udiv1000(unsigned long)`
+* `src/pstrings/pstrings.h`
     * `strcmp_PP(a, b)`
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
     * `strrchr_P(a, b)` (ESP8266 and ESP32 only)
+* `src/print_str/PrintStr.h`
+    * [src/print_str/README.md](src/print_str/README.md)
+        * Provides classes that implement the `Print` interface so that
+          values can be printed into in-memory buffers. The string can then
+          be extracted as a normal c-string (`const char*`).
+        * Alternative to the Arduino `String` class to avoid or reduce heap
+          fragmentation.
+    * `class PrintStrBase`
+    * `class PrintStr<uint16_t SIZE>` (buffer on stack)
+    * `class PrintStrN(uint16_t size)` (buffer on heap)
+* `src/print_utils/printPadTo.h`
+    * [src/print_utils/README.md](src/print_utils/README.md)
+    * `printPad2To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad3To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad4To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad5To(Print& printer, uint16_t val, char pad = ' ')`
+* `src/print_utils.printfTo.h`
+    * [src/print_utils/README.md](src/print_utils/README.md)
+        * Provides a primitive `printf()` functionality to an instance of
+          `Print` (e.g. `Serial`) for those Arduino boards without a
+          `Print.printf()` function.
+    * `printfTo(Print& printer, const char* fmt, ...)`
+* `src/timing_stats/TimingStats.h`
+    * [src/timing_stats/README.md](src/timing_stats/README.md)
+        * Helper class to collect data (often durations in milliseconds) and
+          then print out various statistics such as min, max, average, and
+          count.
+    * `class TimingStats`
+* `src/url_encoding/url_encoding.h`
+    * [src/url_encoding/README.md](src/url_encoding/README.md)
+        * Encodes and decodes strings using "form URL encoding" which converts
+        spaces `' '` into `'+'`, and non-alphnumerics into percent-hex digits.
+    * `formUrlEncode(Print& output, const char* str)`
+    * `formUrlDecode(Print& output, const char* str)`
 
-**Version**: 1.0 (2020-10-20)
+**Version**: 1.1 (2020-10-29)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
@@ -61,7 +96,7 @@ The unit tests can be executed on Linux or MacOS using:
 The source files are organized as follows:
 
 * `src/AceCommon.h` - main header file
-* `src/ace_common/` - implementation files
+* `src/*/` - implementation files
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
 
@@ -70,17 +105,6 @@ The source files are organized as follows:
 Besides this README.md file, the [docs/](docs/) directory contains the Doxygen
 docs (https://bxparks.github.io/AceCommon/html/) published on GitHub Pages. It
 can help you navigate an unfamiliar code base.
-
-## Usage
-
-All functions and classes are available using a single header file,
-under the `ace_common` namespace:
-
-```
-#include <AceCommon.h>
-using namespace ace_common;
-...
-```
 
 ## License
 

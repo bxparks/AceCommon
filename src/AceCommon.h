@@ -32,11 +32,16 @@ This is the Doxygen documentation for the
 #ifndef ACE_COMMON_H
 #define ACE_COMMON_H
 
-#include "ace_common/arithmetic.h"
-#include "ace_common/pstrings.h"
+#include "arithmetic/arithmetic.h"
+#include "pstrings/pstrings.h"
+#include "print_str/PrintStr.h"
+#include "print_utils/printPadTo.h"
+#include "print_utils/printfTo.h"
+#include "timing_stats/TimingStats.h"
+#include "url_encoding/url_encoding.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10000
-#define ACE_COMMON_VERSION_STRING "1.0.0"
+#define ACE_COMMON_VERSION 10100
+#define ACE_COMMON_VERSION_STRING "1.1.0"
 
 #endif
