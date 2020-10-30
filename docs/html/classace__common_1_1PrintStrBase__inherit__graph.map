@@ -1,0 +1,6 @@
+<map id="ace_common::PrintStrBase" name="ace_common::PrintStrBase">
+<area shape="rect" id="node1" title="Base class for all template instances of the PrintStr&lt;SIZE&gt; class." alt="" coords="87,80,284,107"/>
+<area shape="rect" id="node3" href="$classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in&#45;memory buffer supporting strings less than 65535 in l..." alt="" coords="5,155,171,196"/>
+<area shape="rect" id="node4" href="$classace__common_1_1PrintStrN.html" title="An alternate implementation of PrintStr that allocates the character array in the heap,..." alt="" coords="195,162,370,189"/>
+<area shape="rect" id="node2" title=" " alt="" coords="159,5,211,32"/>
+</map>
