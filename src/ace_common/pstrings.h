@@ -22,6 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+/**
+ * @file pstrings.h
+ *
+ * String functions on strings stored in flash memory through the PROGMEM
+ * attribute. These strings can be created through several ways:
+ *
+ *    * PROGMEM attribute
+ *    * F() macro
+ *    * PSTR() macro
+ */
+
 #ifndef ACE_COMMON_PSTRINGS_H
 #define ACE_COMMON_PSTRINGS_H
 
