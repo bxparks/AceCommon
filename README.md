@@ -18,9 +18,9 @@ automatically:
 * `src/ace_common/arithmetic.h`
     * `incrementMod(c, m)`
     * `incrementModOffset(c, m, offset)`
-    * `decToBcd()`
-    * `bcdToDec()`
-    * `udiv1000()`
+    * `decToBcd(uint8_t)`
+    * `bcdToDec(uint8_t)`
+    * `udiv1000(unsigned long)`
 * `src/ace_common/pstrings.h`
     * `strcmp_PP(a, b)`
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
@@ -37,6 +37,13 @@ automatically:
         * Uses buffer on stack.
     * `class PrintStrN(uint16_t size);`
         * Uses buffer on heap.
+* `src/print_utils/printPadTo.h`
+    * `printPad2To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad3To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad4To(Print& printer, uint16_t val, char pad = ' ')`
+    * `printPad5To(Print& printer, uint16_t val, char pad = ' ')`
+* `src/print_utils.printfTo.h`
+    * `printfTo(Print& printer, const char* fmt, ...)`
 
 **Version**: 1.0 (2020-10-20)
 

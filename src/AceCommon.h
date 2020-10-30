@@ -35,6 +35,8 @@ This is the Doxygen documentation for the
 #include "ace_common/arithmetic.h"
 #include "ace_common/pstrings.h"
 #include "print_str/PrintStr.h"
+#include "print_utils/printPadTo.h"
+#include "print_utils/printfTo.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10000
