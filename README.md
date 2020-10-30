@@ -15,13 +15,13 @@ using namespace ace_common;
 The `src/AceCommon.h` header file includes the following sub-header files
 automatically:
 
-* `src/ace_common/arithmetic.h`
+* `src/arithmetic/arithmetic.h`
     * `incrementMod(c, m)`
     * `incrementModOffset(c, m, offset)`
     * `decToBcd(uint8_t)`
     * `bcdToDec(uint8_t)`
     * `udiv1000(unsigned long)`
-* `src/ace_common/pstrings.h`
+* `src/pstrings/pstrings.h`
     * `strcmp_PP(a, b)`
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
     * `strrchr_P(a, b)` (ESP8266 and ESP32 only)
