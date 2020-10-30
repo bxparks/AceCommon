@@ -4,26 +4,39 @@ An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
 
-All features are accessible through a single include file, using the
-`ace_common` namespace:
-```
+All functions and classes are accessible through a single include file
+`<AceCommon.h>` and the `ace_common` namespace:
+
+```C++
 #include <AceCommon.h>
 using namespace ace_common;
 ```
 
-The `AceCommon.h` header file includes the following sub-header files
+The `src/AceCommon.h` header file includes the following sub-header files
 automatically:
 
-* `arithmetic.h`
+* `src/ace_common/arithmetic.h`
     * `incrementMod(c, m)`
     * `incrementModOffset(c, m, offset)`
     * `decToBcd()`
     * `bcdToDec()`
     * `udiv1000()`
-* `pstrings.h`
+* `src/ace_common/pstrings.h`
     * `strcmp_PP(a, b)`
     * `strchr_P(a, b)` (ESP8266 and ESP32 only)
     * `strrchr_P(a, b)` (ESP8266 and ESP32 only)
+* `src/print_str/PrintStr.h`
+    * [src/print_str/README.md](src/print_str/README.md)
+        * Provides classes that implement the `Print` interface so that
+          values can be printed into in-memory buffers. The string can then
+          be extracted as a normal c-string (`const char*`).
+        * Alternative to the Arduino `String` class to avoid or reduce heap
+          fragmentation.
+    * `class PrintStrBase;`
+    * `class PrintStr<uint16_t SIZE>;`
+        * Uses buffer on stack.
+    * `class PrintStrN(uint16_t size);`
+        * Uses buffer on heap.
 
 **Version**: 1.0 (2020-10-20)
 
@@ -61,7 +74,7 @@ The unit tests can be executed on Linux or MacOS using:
 The source files are organized as follows:
 
 * `src/AceCommon.h` - main header file
-* `src/ace_common/` - implementation files
+* `src/*/` - implementation files
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
 
@@ -70,17 +83,6 @@ The source files are organized as follows:
 Besides this README.md file, the [docs/](docs/) directory contains the Doxygen
 docs (https://bxparks.github.io/AceCommon/html/) published on GitHub Pages. It
 can help you navigate an unfamiliar code base.
-
-## Usage
-
-All functions and classes are available using a single header file,
-under the `ace_common` namespace:
-
-```
-#include <AceCommon.h>
-using namespace ace_common;
-...
-```
 
 ## License
 
