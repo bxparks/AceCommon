@@ -39,6 +39,7 @@ This is the Doxygen documentation for the
 #include "print_utils/printfTo.h"
 #include "timing_stats/TimingStats.h"
 #include "url_encoding/url_encoding.h"
+#include "fstrings/FCString.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10100
