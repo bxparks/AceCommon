@@ -40,7 +40,7 @@ test(strchr_P) {
 test(strchr_P, notfound) {
   const char* s = STRING;
   const char* p = strchr_P(s, 'e');
-  assertTrue(p == nullptr);
+  assertEqual(p, nullptr);
 }
 
 test (strrchr_P) {
@@ -52,7 +52,7 @@ test (strrchr_P) {
 test (strrchr_P, notfound) {
   const char* s = STRING;
   const char* p = strrchr_P(s, 'e');
-  assertTrue(p == nullptr);
+  assertEqual(p, nullptr);
 }
 
 #endif
