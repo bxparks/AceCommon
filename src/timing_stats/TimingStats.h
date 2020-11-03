@@ -40,8 +40,13 @@ class TimingStats {
       reset();
     }
 
-    // Use default copy-constructor and assignment operator.
+    // Use default copy-constructor and assignment operator. Doxygen docs added
+    // to keep it quiet.
+
+    /** Default copy constructor. */
     TimingStats(const TimingStats&) = default;
+
+    /** Default assignment operator. */
     TimingStats& operator=(const TimingStats&) = default;
 
     /**

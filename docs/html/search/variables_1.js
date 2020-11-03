@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['printf_5fto_5fbuf_5fsize_69',['PRINTF_TO_BUF_SIZE',['../printfTo_8h.html#aeee5840791173d6b3005363ca8a46f77',1,'ace_common']]]
+  ['kcstringtype_96',['kCStringType',['../classace__common_1_1FCString.html#a4532428b47a87556510765abaabcefd3',1,'ace_common::FCString']]],
+  ['kfstringtype_97',['kFStringType',['../classace__common_1_1FCString.html#ae9df90f7862d0a69e6e4e3f2febaf9d6',1,'ace_common::FCString']]]
 ];

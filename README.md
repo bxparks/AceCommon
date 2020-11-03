@@ -59,10 +59,16 @@ automatically:
         spaces `' '` into `'+'`, and non-alphnumerics into percent-hex digits.
     * `formUrlEncode(Print& output, const char* str)`
     * `formUrlDecode(Print& output, const char* str)`
+* `src/fstrings/FCString.h`
+    * `class FCString;`
+    * An object that can hold either a C-string (`const char*`) or an
+      F-string (`const __FlashStringHelper*`).
 
-**Version**: 1.1 (2020-10-29)
+**Version**: 1.1.1 (2020-11-02)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
+
+![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
 
 ## Installation
 
@@ -83,7 +89,7 @@ The core of this library will never depend on any external dependencies so that
 it can be easily reused by other libraries (e.g. AceTime, AceButton, AceRoutine,
 etc).
 
-The unit tests under `tests/` depends on:
+The unit tests under `tests/` depend on:
 
 * AUnit (https://github.com/bxparks/AUnit)
 

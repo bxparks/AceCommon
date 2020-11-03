@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.1</span>
+   &#160;<span id="projectnumber">1.1.1</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -84,15 +84,13 @@ $(function() {
 <li><code>void formUrlDecode(Print&amp; output, const char* str);</code></li>
 </ul>
 <p>These functions do <em>not</em> use the <code>String</code> class so that we can avoid heap fragmentation associated with numerous creation and deletion of small <code>String</code> objects. Instead, these functions print to the <code>output</code> parameter implementing the <code>Print</code> interface.</p>
-<p>The most convenient implementation of the <code>Print</code> interface is the <a href="../print_str">PrintStr</a> class provided in the <code>AceUtils</code> library, which allows the encoded or decoded string to be captured in memory. The <code>PrintStr</code> object can be converted into a normal c-string (<code>const char*</code>) using the <code>getCstr()</code> method. It's also possible to pass a <code>Serial</code> object as the <code>output</code> if that is more convenient since <code>Serial</code> also implements the <code>Print</code> interface.</p>
+<p>The most convenient implementation of the <code>Print</code> interface is one of the <a href="../print_str">Print String</a> classes provided in this library. These classes allow the encoded or decoded string to be printed to an in-memory buffer. The <code>PrintStr</code> or <code>PrintStrN</code> object can be converted into a normal c-string (<code>const char*</code>) using the <code>getCstr()</code> method.</p>
+<p>You can also pass a <code>Serial</code> object as the <code>output</code> if that is more convenient, since <code>Serial</code> also implements the <code>Print</code> interface.</p>
 <h1>Usage</h1>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">#include &lt;Arduino.h&gt;</div>
-<div class="line">#include &lt;PrintStr.h&gt;</div>
-<div class="line">#include &lt;UrlEncoding.h&gt;</div>
-<div class="line"> </div>
-<div class="line">using namespace print_str;</div>
-<div class="line">using namespace url_encoding;</div>
+<div class="line">#include &lt;AceCommon.h&gt;</div>
+<div class="line">using namespace ace_common;</div>
 <div class="line"> </div>
 <div class="line">const char MESSAGE[] = &quot;0aA %&quot;;</div>
 <div class="line"> </div>
@@ -143,7 +141,7 @@ $(function() {
 </ul>
 <h1>Avoiding the Watchdog Timer Reset</h1>
 <p>The original <code>urlencode()</code> and <code>urldecode()</code> methods from <a href="https://github.com/TwilioDevEd/twilio_esp8266_arduino_example">https://github.com/TwilioDevEd/twilio_esp8266_arduino_example</a> call the <code>yield()</code> function on every iteration of the loop. I assume that this was inserted to avoid triggering the Watchdog Timer (WDT) reset on large strings on ESP8266 processors. If a single function consumes more than 20-40 milliseconds without calling the <code>yield()</code> function on an ESP8266, the processor is automatically reset by the WDT.</p>
-<p>This code in this library uses <code>PrintStr</code> class instead of a <code>String</code> class. Performance benchmarks at <a href="../../examples/url_encoding/AutoBenchmark/">examples/url_encoding/AutoBenchmark</a> show that the new code is 5-6 times faster than the old code on an ESP8266. For example, the <code>formUrlEncode()</code> function takes about 1500 microseconds per 1000 characters, compared to 7700 microseconds per 1000 characters in the original code. The <code>formUrlDecode()</code> function takes about 910 microseconds per 1000 characters, compared to 5300 microseconds for the old code.</p>
+<p>This code in this library uses <code>PrintStr</code> class instead of a <code>String</code> class. Performance benchmarks at <a href="../examples/UrlEncodingBenchmark/">examples/UrlEncodingBenchmark</a> show that the new code is 5-6 times faster than the old code on an ESP8266. For example, the <code>formUrlEncode()</code> function takes about 1500 microseconds per 1000 characters, compared to 7700 microseconds per 1000 characters in the original code. The <code>formUrlDecode()</code> function takes about 910 microseconds per 1000 characters, compared to 5300 microseconds for the old code.</p>
 <p>With this increased performance, it is possible to encode and decode strings as large as 10000 characters long within 15 milliseconds, which is fast enough to avoid triggering the WDT reset. Therefore, I decided to remove the calls <code>yield()</code> function, because I do not see myself needing these functions for strings longer than 10,000 characters.</p>
 <p>On a dual-core ESP32, my understanding is that it is not necessary to call the <code>yield()</code> function periodically, so the functions in this library should work fine.</p>
 <p>If the <code>yield()</code> function needs to be inserted into these functions on an ESP8266 to handle very long strings, I recommend using a counter so that the <code>yield()</code> is called every 500-1000 iterations (for example) instead of calling it on every iteration. </p>
