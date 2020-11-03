@@ -46,7 +46,10 @@ namespace ace_common {
  */
 class FCString {
   public:
+    /** Identifies the object as holding a c-string. getCString() is valid. */
     static const uint8_t kCStringType = 0;
+
+    /** Identifies the object as holding an f-string. getFString() is valid. */
     static const uint8_t kFStringType = 1;
 
     /** Default constructor initializes to a nullptr of kCStringType. */

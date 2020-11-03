@@ -62,6 +62,7 @@ namespace ace_common {
  */
 class PrintStrBase: public Print {
   public:
+    /** Write a single character into the internal buffer. */
     size_t write(uint8_t c) override {
       if (index_ < size_ - 1) {
         buf_[index_] = c;
@@ -72,6 +73,7 @@ class PrintStrBase: public Print {
       }
     }
 
+    /** Write the `buf` string of `size` into the internal buffer. */
     size_t write(const uint8_t *buf, size_t size) override {
       if (buf == nullptr) return 0;
 
@@ -87,10 +89,12 @@ class PrintStrBase: public Print {
 // ESP32 version of Print class does not define a virtual flush() method so
 // we can't use the 'override' keyword.
 #ifdef ESP32
+    /** Clear the internal buffer. */
     void flush() {
       index_ = 0;
     }
 #else
+    /** Clear the internal buffer. */
     void flush() override {
       index_ = 0;
     }
@@ -112,6 +116,12 @@ class PrintStrBase: public Print {
     }
 
   protected:
+    /**
+     * Constructor.
+     * @param size the maximum size of the given `buf` buffer
+     * @param buf pointer to the character buffer created by the subclass. The
+     *        buffer will be either on the stack or on the heap.
+     */
     PrintStrBase(uint16_t size, char* buf):
         size_(size),
         buf_(buf) {}
@@ -245,9 +255,14 @@ class PrintStr: public PrintStrBase {
  */
 class PrintStrN: public PrintStrBase {
   public:
+    /** Create an instance with an internal buffer of `size` on the heap. */
     PrintStrN(uint16_t size):
       PrintStrBase(size, new char[size]) {}
 
+    /**
+     * Delete the internal buffer on the heap. This object itself should never
+     * be created on the heap, so we don't need to make the destructor virtual.
+     */
     ~PrintStrN() {
       delete[] buf_;
     }
