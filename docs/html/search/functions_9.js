@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vprintfto_67',['vprintfTo',['../printfTo_8h.html#a55806a89862d8c7652712c39e763d03c',1,'ace_common']]]
+  ['reset_88',['reset',['../classace__common_1_1TimingStats.html#ad122f309fd44c2da6c26da02c4b11887',1,'ace_common::TimingStats']]]
 ];

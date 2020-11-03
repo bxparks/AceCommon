@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timingstats_64',['TimingStats',['../classace__common_1_1TimingStats.html#a8ffb99931928b622e696addddf426b96',1,'ace_common::TimingStats']]]
+  ['operator_3d_79',['operator=',['../classace__common_1_1TimingStats.html#a1f21aa0ceb36711a7c8b7346167d7198',1,'ace_common::TimingStats']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reset_63',['reset',['../classace__common_1_1TimingStats.html#ad122f309fd44c2da6c26da02c4b11887',1,'ace_common::TimingStats']]]
+  ['length_78',['length',['../classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b',1,'ace_common::PrintStrBase']]]
 ];
