@@ -68,6 +68,8 @@ automatically:
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
+![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
+
 ## Installation
 
 The latest stable release is available in the Arduino IDE Library Manager.
@@ -87,7 +89,7 @@ The core of this library will never depend on any external dependencies so that
 it can be easily reused by other libraries (e.g. AceTime, AceButton, AceRoutine,
 etc).
 
-The unit tests under `tests/` depends on:
+The unit tests under `tests/` depend on:
 
 * AUnit (https://github.com/bxparks/AUnit)
 
