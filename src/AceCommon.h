@@ -42,7 +42,7 @@ This is the Doxygen documentation for the
 #include "fstrings/FCString.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10100
-#define ACE_COMMON_VERSION_STRING "1.1.0"
+#define ACE_COMMON_VERSION 10101
+#define ACE_COMMON_VERSION_STRING "1.1.1"
 
 #endif
