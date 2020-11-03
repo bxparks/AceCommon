@@ -22,23 +22,21 @@ fragmentation associated with numerous creation and deletion of small `String`
 objects. Instead, these functions print to the `output` parameter implementing
 the `Print` interface.
 
-The most convenient implementation of the `Print` interface
-is the [PrintStr](../print_str) class provided in the `AceUtils` library,
-which allows the encoded or decoded string to be captured in memory. The
-`PrintStr` object can be converted into a normal c-string (`const char*`)
-using the `getCstr()` method. It's also possible to pass a `Serial` object as
-the `output` if that is more convenient since `Serial` also implements the
-`Print` interface.
+The most convenient implementation of the `Print` interface is one of the [Print
+String](../print_str) classes provided in this library. These classes allow the
+encoded or decoded string to be printed to an in-memory buffer. The `PrintStr`
+or `PrintStrN` object can be converted into a normal c-string (`const char*`)
+using the `getCstr()` method.
+
+You can also pass a `Serial` object as the `output` if that is more
+convenient, since `Serial` also implements the `Print` interface.
 
 ## Usage
 
 ```C++
 #include <Arduino.h>
-#include <PrintStr.h>
-#include <UrlEncoding.h>
-
-using namespace print_str;
-using namespace url_encoding;
+#include <AceCommon.h>
+using namespace ace_common;
 
 const char MESSAGE[] = "0aA %";
 
@@ -106,7 +104,7 @@ reset by the WDT.
 
 This code in this library uses `PrintStr` class instead of a `String` class.
 Performance benchmarks at
-[examples/url_encoding/AutoBenchmark](../../examples/url_encoding/AutoBenchmark/)
+[examples/UrlEncodingBenchmark](../examples/UrlEncodingBenchmark/)
 show that the new code is 5-6 times faster than the old code on an ESP8266. For
 example, the `formUrlEncode()` function takes about 1500 microseconds per 1000
 characters, compared to 7700 microseconds per 1000 characters in the original
