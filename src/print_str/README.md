@@ -52,7 +52,7 @@ returns the string length in the current buffer, you need to use the
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namesapce print_str;
+using namespace ace_common;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
@@ -88,7 +88,7 @@ Here is the version using `PrintStrN` class:
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namesapce print_str;
+using namespace ace_common;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
