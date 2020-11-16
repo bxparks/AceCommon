@@ -27,8 +27,10 @@
 #ifndef PRINT_UTILS_PRINTF_TO_H
 #define PRINT_UTILS_PRINTF_TO_H
 
-#include <stdarg.h>
-#include <Arduino.h>
+#include <stdio.h> // vsnprintf()
+#include <stdarg.h> // va_list, va_start(), va_end()
+
+class Print;
 
 namespace ace_common {
 
