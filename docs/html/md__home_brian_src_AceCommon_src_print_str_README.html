@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.1.1</span>
+   &#160;<span id="projectnumber">1.1.2</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -152,7 +152,10 @@ $(function() {
 <div class="line">  buildMessage(message);</div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --><h1>Alternatives</h1>
+<p>After I had created this utility, I discovered the PrintString (<a href="https://github.com/RobTillaart/PrintString">https://github.com/RobTillaart/PrintString</a>) library which does something similar. The difference is that <code>PrintString</code> is a thin wrapper around a <code>String</code> object, which uses the heap as the buffer, which can cause heap fragmentation. The <code>PrintStr</code> class uses the stack to completely avoid the heap.</p>
+<p>The <code>PrintStrN</code> class uses the heap as the buffer and is closer to the <code>PrintString</code>. The difference is that the <code>PrintStrN</code> uses a fixed size allocation on the heap whereas <code>String</code> will reallocate to grow the buffer on the heap, which can lead to heap fragmentation. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
