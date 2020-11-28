@@ -1,6 +1,10 @@
 # Changelog
 
 * Unreleased
+* 1.1.2 (2020-11-28)
+    * Minor header include fix for compatility with UnixHostDuino.
+    * Fix various compilation warnings and errors on AVR compiler.
+    * No functional change in this release.
 * 1.1.1 (2020-11-02)
     * Move `src/fstrings/FCString.h` from AceRoutine to AceCommon library.
     * Fix typos and broken links in README.md files and example code.

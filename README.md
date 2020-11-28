@@ -64,7 +64,7 @@ automatically:
     * An object that can hold either a C-string (`const char*`) or an
       F-string (`const __FlashStringHelper*`).
 
-**Version**: 1.1.1 (2020-11-02)
+**Version**: 1.1.2 (2020-11-28)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
