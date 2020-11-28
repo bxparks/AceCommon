@@ -6,6 +6,29 @@
 using namespace aunit;
 using namespace ace_common;
 
+//----------------------------------------------------------------------------
+
+test(PrintfToTest, printfTo) {
+  PrintStr<10> str;
+
+  printfTo(str, "%d", 10);
+  assertEqual("10", str.getCstr());
+
+  str.flush();
+  printfTo(str, "%x", 10);
+  assertEqual("a", str.getCstr());
+
+  str.flush();
+  printfTo(str, "%03d", 10);
+  assertEqual("010", str.getCstr());
+
+  str.flush();
+  printfTo(str, "%s", "hello");
+  assertEqual("hello", str.getCstr());
+}
+
+//----------------------------------------------------------------------------
+
 test(PrintPadTest, printPad2To) {
   PrintStr<10> str;
 
