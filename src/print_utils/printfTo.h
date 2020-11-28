@@ -12,6 +12,13 @@
  * example, the original Arduino UNO or Nano. I finally got tired of writing
  * multiple lines of SERIAL_PORT_MONITOR.print() for debugging.
  *
+ * The implementation uses an fixed size char[] buffer on the stack that is
+ * defined to be of length PRINTF_TO_BUF_SIZE, which is current 192. That
+ * should be enough for most debugging uses. It would be more robust if the
+ * format string was interpreted by the method to avoid that buffer. But this
+ * function is intended only for debugging purposes. For "production"
+ * deployments, this function should be disabled through an `#if` statement.
+ *
  * NOTE: These *must* be implemented as inline function to allow the compiler
  * to remove unused functions from the binary. For some reason, on AVR, ESP8266
  * and ESP32 compilers, link-time-optimization does not seem to work well. If
@@ -19,16 +26,17 @@
  * even if they are not reference at all by anything. This causes the binary to
  * be about 700 (AVR) to 1000 (ESP32) bytes larger in flash memory.
  *
- * Being inlined here means that <Arduino.h> must be included here, which can
- * cause some problems in files that try to clobber macros defined in
- * <Arduino.h>.
+ * It looks like <stdio.h> is the header to get vsnprintf(), so we no longer
+ * need to include <Arduino.h> here.
  */
 
 #ifndef PRINT_UTILS_PRINTF_TO_H
 #define PRINT_UTILS_PRINTF_TO_H
 
-#include <stdarg.h>
-#include <Arduino.h>
+#include <stdio.h> // vsnprintf()
+#include <stdarg.h> // va_list, va_start(), va_end()
+
+class Print;
 
 namespace ace_common {
 

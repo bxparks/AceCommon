@@ -116,3 +116,16 @@ void doStuff() {
   ...
 }
 ```
+
+## Alternatives
+
+After I had created this utility, I discovered the PrintString
+(https://github.com/RobTillaart/PrintString) library which does something
+similar. The difference is that `PrintString` is a thin wrapper around a
+`String` object, which uses the heap as the buffer, which can cause heap
+fragmentation. The `PrintStr` class uses the stack to completely avoid the heap.
+
+The `PrintStrN` class uses the heap as the buffer and is closer to the
+`PrintString`. The difference is that the `PrintStrN` uses a fixed size
+allocation on the heap whereas `String` will reallocate to grow the buffer on
+the heap, which can lead to heap fragmentation.

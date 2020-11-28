@@ -14,12 +14,12 @@ test(TimingStatsTest, one) {
   TimingStats stats;
   stats.update(10);
 
-  assertEqual(1, stats.getCount());
-  assertEqual(1, stats.getCounter());
-  assertEqual(10, stats.getMin());
-  assertEqual(10, stats.getMax());
-  assertEqual(10, stats.getAvg());
-  assertEqual(10, stats.getExpDecayAvg());
+  assertEqual((uint16_t) 1, stats.getCount());
+  assertEqual((uint16_t) 1, stats.getCounter());
+  assertEqual((uint16_t) 10, stats.getMin());
+  assertEqual((uint16_t) 10, stats.getMax());
+  assertEqual((uint16_t) 10, stats.getAvg());
+  assertEqual((uint16_t) 10, stats.getExpDecayAvg());
 }
 
 test(TimingStatsTest, two) {
@@ -27,12 +27,12 @@ test(TimingStatsTest, two) {
   stats.update(10);
   stats.update(20);
 
-  assertEqual(2, stats.getCount());
-  assertEqual(2, stats.getCounter());
-  assertEqual(10, stats.getMin());
-  assertEqual(20, stats.getMax());
-  assertEqual(15, stats.getAvg());
-  assertEqual(15, stats.getExpDecayAvg());
+  assertEqual((uint16_t) 2, stats.getCount());
+  assertEqual((uint16_t) 2, stats.getCounter());
+  assertEqual((uint16_t) 10, stats.getMin());
+  assertEqual((uint16_t) 20, stats.getMax());
+  assertEqual((uint16_t) 15, stats.getAvg());
+  assertEqual((uint16_t) 15, stats.getExpDecayAvg());
 }
 
 test(TimingStatsTest, three) {
@@ -41,12 +41,12 @@ test(TimingStatsTest, three) {
   stats.update(20);
   stats.update(30);
 
-  assertEqual(3, stats.getCount());
-  assertEqual(3, stats.getCounter());
-  assertEqual(10, stats.getMin());
-  assertEqual(30, stats.getMax());
-  assertEqual(20, stats.getAvg());
-  assertEqual(22, stats.getExpDecayAvg());
+  assertEqual((uint16_t) 3, stats.getCount());
+  assertEqual((uint16_t) 3, stats.getCounter());
+  assertEqual((uint16_t) 10, stats.getMin());
+  assertEqual((uint16_t) 30, stats.getMax());
+  assertEqual((uint16_t) 20, stats.getAvg());
+  assertEqual((uint16_t) 22, stats.getExpDecayAvg());
 }
 
 test(TimingStatsTest, four) {
@@ -56,12 +56,12 @@ test(TimingStatsTest, four) {
   stats.update(30);
   stats.update(40);
 
-  assertEqual(4, stats.getCount());
-  assertEqual(4, stats.getCounter());
-  assertEqual(10, stats.getMin());
-  assertEqual(40, stats.getMax());
-  assertEqual(25, stats.getAvg());
-  assertEqual(31, stats.getExpDecayAvg());
+  assertEqual((uint16_t) 4, stats.getCount());
+  assertEqual((uint16_t) 4, stats.getCounter());
+  assertEqual((uint16_t) 10, stats.getMin());
+  assertEqual((uint16_t) 40, stats.getMax());
+  assertEqual((uint16_t) 25, stats.getAvg());
+  assertEqual((uint16_t) 31, stats.getExpDecayAvg());
 }
 
 test(TimingStatsTest, reset) {
@@ -71,12 +71,12 @@ test(TimingStatsTest, reset) {
   stats.update(30);
   stats.update(40);
 
-  assertEqual(4, stats.getCount());
-  assertEqual(4, stats.getCounter());
+  assertEqual((uint16_t) 4, stats.getCount());
+  assertEqual((uint16_t) 4, stats.getCounter());
 
   stats.reset();
-  assertEqual(0, stats.getCount());
-  assertEqual(4, stats.getCounter());
+  assertEqual((uint16_t) 0, stats.getCount());
+  assertEqual((uint16_t) 4, stats.getCounter());
 }
 
 //----------------------------------------------------------------------------

@@ -5,7 +5,8 @@ From https://github.com/TwilioDevEd/twilio_esp8266_arduino_example
 
 Modified by Brian T. Park 2020 to compare the runtime of these routines to the
 AceUtils UrlEncoding utilities which use the PrintStr utility classes instead
-of String to avoid heap fragmentation.
+of String to avoid heap fragmentation. Added some tweaks to fix compiler
+warnings about type cast problems and unused variables.
 */
 
 #include "url_coding.hpp"
@@ -30,7 +31,7 @@ String urldecode_yield(String str)
     char c;
     char code0;
     char code1;
-    for (int i =0; i < str.length(); i++){
+    for (int i =0; i < (int) str.length(); i++){
         c=str.charAt(i);
       if (c == '+'){
         encodedString+=' ';
@@ -58,8 +59,8 @@ String urlencode_yield(String str)
     char c;
     char code0;
     char code1;
-    char code2;
-    for (int i =0; i < str.length(); i++){
+    //char code2;
+    for (int i =0; i < (int) str.length(); i++){
       c=str.charAt(i);
       if (c == ' '){
         encodedString+= '+';
@@ -75,7 +76,7 @@ String urlencode_yield(String str)
         if (c > 9){
             code0=c - 10 + 'A';
         }
-        code2='\0';
+        //code2='\0';
         encodedString+='%';
         encodedString+=code0;
         encodedString+=code1;
@@ -92,7 +93,7 @@ String urldecode_no_yield(String str)
     char c;
     char code0;
     char code1;
-    for (int i =0; i < str.length(); i++){
+    for (int i =0; i < (int) str.length(); i++){
         c=str.charAt(i);
       if (c == '+'){
         encodedString+=' ';
@@ -117,8 +118,8 @@ String urlencode_no_yield(String str)
     char c;
     char code0;
     char code1;
-    char code2;
-    for (int i =0; i < str.length(); i++){
+    //char code2;
+    for (int i =0; i < (int) str.length(); i++){
       c=str.charAt(i);
       if (c == ' '){
         encodedString+= '+';
@@ -134,7 +135,7 @@ String urlencode_no_yield(String str)
         if (c > 9){
             code0=c - 10 + 'A';
         }
-        code2='\0';
+        //code2='\0';
         encodedString+='%';
         encodedString+=code0;
         encodedString+=code1;
