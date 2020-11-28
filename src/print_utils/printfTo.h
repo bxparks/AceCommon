@@ -17,7 +17,7 @@
  * should be enough for most debugging uses. It would be more robust if the
  * format string was interpreted by the method to avoid that buffer. But this
  * function is intended only for debugging purposes. For "production"
- * deployments, this function should be disabled through an #if statement.
+ * deployments, this function should be disabled through an `#if` statement.
  *
  * NOTE: These *must* be implemented as inline function to allow the compiler
  * to remove unused functions from the binary. For some reason, on AVR, ESP8266
