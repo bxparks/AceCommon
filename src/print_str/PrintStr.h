@@ -86,9 +86,9 @@ class PrintStrBase: public Print {
       return n;
     }
 
-// ESP32 version of Print class does not define a virtual flush() method so
+// Some versions of the Print class do not define a virtual flush() method so
 // we can't use the 'override' keyword.
-#ifdef ESP32
+#if defined(ESP32) || defined(ARDUINO_ARCH_STM32)
     /** Clear the internal buffer. */
     void flush() {
       index_ = 0;
