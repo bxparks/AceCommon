@@ -1,5 +1,7 @@
 # AceCommon
 
+![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
+
 An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
@@ -68,8 +70,6 @@ automatically:
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
-![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
-
 ## Installation
 
 The latest stable release is available in the Arduino IDE Library Manager.
@@ -106,11 +106,11 @@ The source files are organized as follows:
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
 
-### Docs
+### Documentation
 
-Besides this README.md file, the [docs/](docs/) directory contains the Doxygen
-docs (https://bxparks.github.io/AceCommon/html/) published on GitHub Pages. It
-can help you navigate an unfamiliar code base.
+* [README.md](README.md) - this file
+* [Doxygen docs](https://bxparks.github.io/AceCommon/html/) published on GitHub
+  Pages
 
 ## License
 
