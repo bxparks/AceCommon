@@ -65,6 +65,9 @@ automatically:
     * `class FCString`
     * An object that can hold either a C-string (`const char*`) or an
       F-string (`const __FlashStringHelper*`).
+* `src/hash/djb2.h`
+    * `uint32_t hashDjb2(const char* s);`
+    * `uint32_t hashDjb2(const __FlashStringHelper* fs);`
 
 **Version**: 1.1.2 (2020-11-28)
 

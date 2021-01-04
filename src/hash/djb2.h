@@ -23,31 +23,36 @@ SOFTWARE.
 */
 
 /**
- * @mainpage AceCommon Library
+ * @file djb2.h
  *
- * This is the Doxygen documentation for the
- * <a href="https://github.com/bxparks/AceCommon">AceCommon Library</a>.
- *
- * Click on the "Classes" menu above to see the list of classes.
- *
- * Click on the "Files" menu above to see the list of header files.
+ * Implement the djb2 hash algorithm (http://www.cse.yorku.ca/~oz/hash.html)
+ * for normal strings and flash strings.
  */
 
-#ifndef ACE_COMMON_H
-#define ACE_COMMON_H
+#ifndef ACE_COMMON_HASH_DJB2_H
+#define ACE_COMMON_HASH_DJB2_H
 
-#include "arithmetic/arithmetic.h"
-#include "pstrings/pstrings.h"
-#include "print_str/PrintStr.h"
-#include "print_utils/printPadTo.h"
-#include "print_utils/printfTo.h"
-#include "timing_stats/TimingStats.h"
-#include "url_encoding/url_encoding.h"
-#include "fstrings/FCString.h"
-#include "hash/djb2.h"
+#include <stdint.h> // uint32_t
+class __FlashStringHelper;
 
-// Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10102
-#define ACE_COMMON_VERSION_STRING "1.1.2"
+namespace ace_common {
 
-#endif
+/**
+ * Implement the djb2 hash algorithm as described in
+ * https://stackoverflow.com/questions/7666509 and
+ * http://www.cse.yorku.ca/~oz/hash.html.
+ *
+ * @param s NUL terminated string, cannot be nullptr
+ */
+uint32_t hashDjb2(const char* s);
+
+/**
+ * Same as hashDjb2(const char*) but for strings stored in Arduino Flash memory.
+ *
+ * @param fs NUL terminated string stored in Flash memory, cannot be nullptr
+ */
+uint32_t hashDjb2(const __FlashStringHelper* fs);
+
+} // ace_common
+
+#endif // ACE_COMMON_HASH_DJB2_H

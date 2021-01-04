@@ -22,32 +22,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/**
- * @mainpage AceCommon Library
- *
- * This is the Doxygen documentation for the
- * <a href="https://github.com/bxparks/AceCommon">AceCommon Library</a>.
- *
- * Click on the "Classes" menu above to see the list of classes.
- *
- * Click on the "Files" menu above to see the list of header files.
- */
+#include <Arduino.h>
+#include "djb2.h"
 
-#ifndef ACE_COMMON_H
-#define ACE_COMMON_H
+namespace ace_common {
 
-#include "arithmetic/arithmetic.h"
-#include "pstrings/pstrings.h"
-#include "print_str/PrintStr.h"
-#include "print_utils/printPadTo.h"
-#include "print_utils/printfTo.h"
-#include "timing_stats/TimingStats.h"
-#include "url_encoding/url_encoding.h"
-#include "fstrings/FCString.h"
-#include "hash/djb2.h"
+uint32_t hashDjb2(const char* s) {
+  uint32_t hash = 5381;
+  uint8_t c;
 
-// Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10102
-#define ACE_COMMON_VERSION_STRING "1.1.2"
+  while ((c = *s++)) {
+    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+  }
 
-#endif
+  return hash;
+}
+
+uint32_t hashDjb2(const __FlashStringHelper* fs) {
+  const char* s = reinterpret_cast<const char*>(fs);
+  uint32_t hash = 5381;
+  uint8_t c;
+
+  while ((c = pgm_read_byte(s++))) {
+    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+  }
+
+  return hash;
+}
+
+} // ace_common
+

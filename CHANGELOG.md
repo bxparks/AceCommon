@@ -2,6 +2,7 @@
 
 * Unreleased
     * Fix `PrintStr.h` for STM32duino by removing `override` in `flush()`.
+    * Add `hashDjb2()` hash function for normal and flash strings.
 * 1.1.2 (2020-11-28)
     * Minor header include fix for compatility with UnixHostDuino.
     * Fix various compilation warnings and errors on AVR compiler.
