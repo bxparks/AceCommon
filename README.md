@@ -71,6 +71,10 @@ automatically:
       http://www.cse.yorku.ca/~oz/hash.html.
     * `uint32_t hashDjb2(const char* s);`
     * `uint32_t hashDjb2(const __FlashStringHelper* fs);`
+* `src/kstrings/KString.h`
+    * Wrapper around a c-string or an f-string which supports compression
+      using keyword substitution from a dictionary. Up to 31 keywords supported.
+    * `class KString`
 
 **Version**: 1.2 (2021-01-04)
 

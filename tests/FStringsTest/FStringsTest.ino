@@ -8,7 +8,7 @@ using ace_common::FCString;
 
 // ---------------------------------------------------------------------------
 
-test(AceRoutineTest, FCString_compareTo) {
+test(FCStringTest, compareTo) {
   FCString n; // nullptr
   FCString a("a");
   FCString b("b");
