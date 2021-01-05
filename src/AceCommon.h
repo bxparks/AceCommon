@@ -23,11 +23,15 @@ SOFTWARE.
 */
 
 /**
-@mainpage AceCommon Library
-
-This is the Doxygen documentation for the
-<a href="https://github.com/bxparks/AceCommon">AceCommon Library</a>.
-*/
+ * @mainpage AceCommon Library
+ *
+ * This is the Doxygen documentation for the
+ * <a href="https://github.com/bxparks/AceCommon">AceCommon Library</a>.
+ *
+ * Click on the "Classes" menu above to see the list of classes.
+ *
+ * Click on the "Files" menu above to see the list of header files.
+ */
 
 #ifndef ACE_COMMON_H
 #define ACE_COMMON_H
@@ -40,9 +44,10 @@ This is the Doxygen documentation for the
 #include "timing_stats/TimingStats.h"
 #include "url_encoding/url_encoding.h"
 #include "fstrings/FCString.h"
+#include "hash/djb2.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10102
-#define ACE_COMMON_VERSION_STRING "1.1.2"
+#define ACE_COMMON_VERSION 10200
+#define ACE_COMMON_VERSION_STRING "1.2"
 
 #endif
