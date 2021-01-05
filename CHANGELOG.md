@@ -1,6 +1,8 @@
 # Changelog
 
 * Unreleased
+    * Add `KString` class that supports string compression using keyword
+      substitution.
 * 1.2 (2021-01-04)
     * Fix `PrintStr.h` for STM32duino by removing `override` in `flush()`.
     * Add `hashDjb2()` hash function for normal and flash strings.

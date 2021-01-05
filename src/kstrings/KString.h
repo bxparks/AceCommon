@@ -40,23 +40,44 @@ namespace ace_common {
  * `keywords` array.
  *
  * The number of keywords is obviously limited to 31, which happens to be
- * sufficient for my needs. Instead of using the 31 unprintable characters, we
- * could use the high bit characters (0x80 - 0xff) to get 128 keywords, but I
- * don't need that right now.
+ * sufficient for my needs. An alternative implementation is to use the high
+ * bit characters (0x80 - 0xff) which gives us 128 keywords, but I don't need
+ * that right now.
  *
- * @param s NUL terminated string, cannot be nullptr
- * @param keywords an array of keywords, with nullptr in index position 0
- * @param numKeywords number of keywords, including the nullptr in the 0th pos
+ * This class is expected to have a short lifetype. In normal usage, it is
+ * created on the stack, the compareTo() or printTo() is function called, then
+ * it is auto-destroyed at the end of its scope.
  */
 class KString {
   public:
+    /**
+     * Constructor around a simple c-string.
+     *
+     * @param s NUL terminated string, cannot be nullptr
+     * @param keywords an array of keywords, with nullptr in index position 0
+     * @param numKeywords number of keywords, including the nullptr in the 0th
+     *        position. If greater than 32, will be truncated to 32.
+     */
     explicit KString(
       const char* s,
       const char* const* keywords,
       uint8_t numKeywords
     ):
-      cstring_(s),
+      string_(s),
       keywords_(keywords),
+      type_(kTypeCstring),
+      numKeywords_(numKeywords > 0x20 ? 0x20 : numKeywords)
+    {}
+
+    /** Constructor around an Arduino Flash string. */
+    explicit KString(
+      const __FlashStringHelper* fs,
+      const char* const* keywords,
+      uint8_t numKeywords
+    ):
+      string_(fs),
+      keywords_(keywords),
+      type_(kTypeFstring),
       numKeywords_(numKeywords)
     {}
 
@@ -70,8 +91,14 @@ class KString {
     void printTo(Print& printer);
 
   private:
-    const char* const cstring_;
+    static const uint8_t kTypeCstring = 0;
+    static const uint8_t kTypeFstring = 1;
+
+    // The order of the following fields is deliberate to reduce the memory
+    // size of this class on 32-bit processors.
+    const void* const string_;
     const char* const* const keywords_;
+    uint8_t const type_;
     uint8_t const numKeywords_;
 };
 
