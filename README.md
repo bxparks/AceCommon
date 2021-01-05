@@ -66,10 +66,13 @@ automatically:
     * An object that can hold either a C-string (`const char*`) or an
       F-string (`const __FlashStringHelper*`).
 * `src/hash/djb2.h`
+    * The djb2 hash algorithm as described in
+      https://stackoverflow.com/questions/7666509 and
+      http://www.cse.yorku.ca/~oz/hash.html.
     * `uint32_t hashDjb2(const char* s);`
     * `uint32_t hashDjb2(const __FlashStringHelper* fs);`
 
-**Version**: 1.1.2 (2020-11-28)
+**Version**: 1.2 (2021-01-04)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 

@@ -47,7 +47,7 @@ SOFTWARE.
 #include "hash/djb2.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10102
-#define ACE_COMMON_VERSION_STRING "1.1.2"
+#define ACE_COMMON_VERSION 10200
+#define ACE_COMMON_VERSION_STRING "1.2"
 
 #endif
