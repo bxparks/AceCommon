@@ -78,7 +78,7 @@ class KString {
       string_(fs),
       keywords_(keywords),
       type_(kTypeFstring),
-      numKeywords_(numKeywords)
+      numKeywords_(numKeywords > 0x20 ? 0x20 : numKeywords)
     {}
 
     /**
