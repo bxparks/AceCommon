@@ -122,6 +122,49 @@ The source files are organized as follows:
 * [Doxygen docs](https://bxparks.github.io/AceCommon/html/) published on GitHub
   Pages
 
+<a name="SystemRequirements"></a>
+## System Requirements
+
+### Hardware
+
+The library has been extensively tested on the following boards:
+
+* Arduino Nano clone (16 MHz ATmega328P)
+* SparkFun Pro Micro clone (16 MHz ATmega32U4)
+* SAMD21 M0 Mini (48 MHz ARM Cortex-M0+) (compatible with Arduino Zero)
+* STM32 "Blue Pill" (STM32F103C8, 72 MHz ARM Cortex-M3)
+* NodeMCU 1.0 (ESP-12E module, 80MHz ESP8266)
+* WeMos D1 Mini (ESP-12E module, 80 MHz ESP8266)
+* ESP32 Dev Module (ESP-WROOM-32 module, 240MHz dual core Tensilica LX6)
+* Teensy 3.2 (96 MHz ARM Cortex-M4)
+
+I will occasionally test on the following boards as a sanity check:
+
+* Teensy LC (48 MHz ARM Cortex-M0+)
+* Mini Mega 2560 (Arduino Mega 2560 compatible, 16 MHz ATmega2560)
+
+### Tool Chain
+
+This library was developed and tested using:
+
+* [Arduino IDE 1.8.13](https://www.arduino.cc/en/Main/Software)
+* [Arduino CLI 0.14.0](https://arduino.github.io/arduino-cli)
+* [Arduino AVR Boards 1.8.3](https://github.com/arduino/ArduinoCore-avr)
+* [Arduino SAMD Boards 1.8.9](https://github.com/arduino/ArduinoCore-samd)
+* [SparkFun AVR Boards 1.1.13](https://github.com/sparkfun/Arduino_Boards)
+* [SparkFun SAMD Boards 1.8.1](https://github.com/sparkfun/Arduino_Boards)
+* [STM32duino 1.9.0](https://github.com/stm32duino/Arduino_Core_STM32)
+* [ESP8266 Arduino Core 2.7.4](https://github.com/esp8266/Arduino)
+* [ESP32 Arduino Core 1.0.4](https://github.com/espressif/arduino-esp32)
+* [Teensyduino 1.53](https://www.pjrc.com/teensy/td_download.html)
+
+It should work with [PlatformIO](https://platformio.org/) but I have
+not tested it.
+
+### Operating System
+
+I use Ubuntu Linux 18.04 and 20.04 for most of my development.
+
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
