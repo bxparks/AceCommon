@@ -131,7 +131,7 @@ The library has been extensively tested on the following boards:
 
 * Arduino Nano clone (16 MHz ATmega328P)
 * SparkFun Pro Micro clone (16 MHz ATmega32U4)
-* SAMD21 M0 Mini (48 MHz ARM Cortex-M0+) (compatible with Arduino Zero)
+* SAMD21 M0 Mini (48 MHz ARM Cortex-M0+)
 * STM32 "Blue Pill" (STM32F103C8, 72 MHz ARM Cortex-M3)
 * NodeMCU 1.0 (ESP-12E module, 80MHz ESP8266)
 * WeMos D1 Mini (ESP-12E module, 80 MHz ESP8266)
@@ -170,6 +170,10 @@ I use Ubuntu Linux 18.04 and 20.04 for most of my development.
 [MIT License](https://opensource.org/licenses/MIT)
 
 ## Feedback and Support
+
+If you find this library useful, consider starring this project on GitHub. The
+stars will let me prioritize the more popular libraries over the less popular
+ones.
 
 If you have any questions, comments, bug reports, or feature requests, please
 file a GitHub ticket instead of emailing me unless the content is sensitive.
