@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['udiv1000_92',['udiv1000',['../arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783',1,'ace_common']]],
-  ['update_93',['update',['../classace__common_1_1TimingStats.html#a7e2074483d3bace1f9695c573dac811e',1,'ace_common::TimingStats']]]
+  ['timingstats_94',['TimingStats',['../classace__common_1_1TimingStats.html#a8ffb99931928b622e696addddf426b96',1,'ace_common::TimingStats::TimingStats()'],['../classace__common_1_1TimingStats.html#a7dfa7d8de54f34a9d3e32a4040d7884f',1,'ace_common::TimingStats::TimingStats(const TimingStats &amp;)=default']]]
 ];

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.3</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -139,7 +139,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all template instances of the PrintStr&lt;SIZE&gt; class. </p>
 <p>A common base class reduces the code size because only one copy of the core code is included across all possible template instances. Otherwise, PrintStr&lt;10&gt; is a different class than PrintStr&lt;20&gt; and would pull in duplicate copies of the code.</p>
-<p>Usually the <code>Print</code> base class can be used to accept instances of the <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a>&lt;SIZE&gt;</code> objects. However, if you need access to the <code>lenth()</code> method, then you need to use the <code><a class="el" href="classace__common_1_1PrintStrBase.html" title="Base class for all template instances of the PrintStr&lt;SIZE&gt; class.">PrintStrBase</a></code> class instead, since the <code>Print</code> class does not have a <code><a class="el" href="classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b" title="Return the length of the internal c-string buffer.">length()</a></code> method.</p>
+<p>Usually the <code>Print</code> base class can be used to accept instances of the <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a>&lt;SIZE&gt;</code> objects. However, if you need access to the <code><a class="el" href="classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b" title="Return the length of the internal c-string buffer.">length()</a></code> method, then you need to use the <code><a class="el" href="classace__common_1_1PrintStrBase.html" title="Base class for all template instances of the PrintStr&lt;SIZE&gt; class.">PrintStrBase</a></code> class instead, since the <code>Print</code> class does not have a <code><a class="el" href="classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b" title="Return the length of the internal c-string buffer.">length()</a></code> method.</p>
 <p>Here are the actual numbers. I modified tests/CommonTest.ino program to use 2 template instances, PrintStr&lt;10&gt; and PrintStr&lt;20&gt; instead of just PrintStr&lt;10&gt;. Without this base class optimization, the sketch uses:</p>
 <ul>
 <li>10030 bytes (32%) of program storage space,</li>
