@@ -38,7 +38,7 @@ namespace ace_common {
  * duplicate copies of the code.
  *
  * Usually the `Print` base class can be used to accept instances of the
- * `PrintStr<SIZE>` objects. However, if you need access to the `lenth()`
+ * `PrintStr<SIZE>` objects. However, if you need access to the `length()`
  * method, then you need to use the `PrintStrBase` class instead, since the
  * `Print` class does not have a `length()` method.
  *

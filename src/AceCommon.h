@@ -45,9 +45,10 @@ SOFTWARE.
 #include "url_encoding/url_encoding.h"
 #include "fstrings/FCString.h"
 #include "hash/djb2.h"
+#include "kstrings/KString.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10200
-#define ACE_COMMON_VERSION_STRING "1.2"
+#define ACE_COMMON_VERSION 10300
+#define ACE_COMMON_VERSION_STRING "1.3"
 
 #endif

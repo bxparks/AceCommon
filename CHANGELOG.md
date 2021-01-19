@@ -1,6 +1,11 @@
 # Changelog
 
 * Unreleased
+* 1.3 (2021-01-19)
+    * Add `KString` class that supports string compression using keyword
+      substitution.
+    * Add support for STM32 by validating on "Blue Pill" board.
+    * Update benchmark numbers for `Udiv1000.ino`.
 * 1.2 (2021-01-04)
     * Fix `PrintStr.h` for STM32duino by removing `override` in `flush()`.
     * Add `hashDjb2()` hash function for normal and flash strings.
