@@ -18,7 +18,7 @@
  *    * ApproxUdiv1000=0.067us/iter; NativeUdiv1000=0.046us/iter
  * * Teensy 3.2
  *    * ApproxUdiv1000=0.125us/iter; NativeUdiv1000=0.093us/iter
- * * UnixHostDuino on Intel Core i7-3840QM, Ubuntu 20.04
+ * * EpoxyDuino on Intel Core i7-3840QM, Ubuntu 20.04
  *    * ApproxUdiv1000=0.005us/iter; NativeUdiv1000=0.001us/iter
  *
  * * udiv1000() is faster than native division for AVR, SAMD21, and ESP8266.
@@ -44,7 +44,7 @@ using namespace ace_common;
   #endif
 #elif defined(TEENSYDUINO)
   static const unsigned long COUNT = 10L*1000*1000;
-#elif defined(UNIX_HOST_DUINO)
+#elif defined(EPOXY_DUINO)
   static const unsigned long COUNT = 100L*1000*1000;
 #else
   #error Unknown platform
@@ -87,7 +87,7 @@ unsigned long runNativeUdiv1000(unsigned long n) {
 }
 
 void setup() {
-#if ! defined(UNIX_HOST_DUINO)
+#if ! defined(EPOXY_DUINO)
   delay(1000);
 #endif
 
@@ -100,7 +100,7 @@ void setup() {
   yield();
   printResults(elapsedApprox, elapsedNative, COUNT);
 
-#if defined(UNIX_HOST_DUINO)
+#if defined(EPOXY_DUINO)
   exit(0);
 #endif
 }

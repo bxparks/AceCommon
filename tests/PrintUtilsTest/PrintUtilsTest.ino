@@ -102,7 +102,7 @@ test(PrintPadTest, printPad5To) {
 //----------------------------------------------------------------------------
 
 void setup() {
-#ifndef UNIX_HOST_DUINO
+#ifndef EPOXY_DUINO
   delay(1000); // wait for stability on some boards to prevent garbage Serial
 #endif
   SERIAL_PORT_MONITOR.begin(115200);

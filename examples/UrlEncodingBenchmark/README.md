@@ -165,7 +165,7 @@ Num iterations: 20
 ## Linux x86-64
 
 * Ubuntu Linux 20.04
-* [UnixHostDuino 0.3](https://github.com/bxparks/UnixHostDuino)
+* [EpoxyDuino 0.3](https://github.com/bxparks/EpoxyDuino)
 * g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
 * Intel Core i7-3840QM CPU @ 2.80GHz
 
@@ -211,6 +211,6 @@ Num iterations: 20
 
 **Notes**
 
-* The `yield()` function emulated by UnixHostDuino yields control for
+* The `yield()` function emulated by EpoxyDuino yields control for
   1 whole millisecond. That produces the long execution time of the
   `urlencode_yield()` and `url_decode_yield()` functions.

@@ -35,7 +35,7 @@ void setup() {
   collectData();
   printStats();
 
-  #ifdef UNIX_HOST_DUINO
+  #ifdef EPOXY_DUINO
     exit(0);
   #endif
 }

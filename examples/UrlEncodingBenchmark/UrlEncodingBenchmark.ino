@@ -305,7 +305,7 @@ void printUrlDecodeNoYieldTime(uint16_t size) {
 //----------------------------------------------------------------------------
 
 void setup() {
-#if ! defined(UNIX_HOST_DUINO)
+#if ! defined(EPOXY_DUINO)
   delay(1000);
 #endif
 
@@ -378,7 +378,7 @@ void setup() {
   SERIAL_PORT_MONITOR.print(F("Num iterations: "));
   SERIAL_PORT_MONITOR.println(NUM_SAMPLES);
 
-#if defined(UNIX_HOST_DUINO)
+#if defined(EPOXY_DUINO)
   exit(0);
 #endif
 }
