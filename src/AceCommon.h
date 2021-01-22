@@ -48,7 +48,7 @@ SOFTWARE.
 #include "kstrings/KString.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10300
-#define ACE_COMMON_VERSION_STRING "1.3"
+#define ACE_COMMON_VERSION 10301
+#define ACE_COMMON_VERSION_STRING "1.3.1"
 
 #endif

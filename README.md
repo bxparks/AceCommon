@@ -76,7 +76,7 @@ automatically:
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
 
-**Version**: 1.3 (2021-01-19)
+**Version**: 1.3.1 (2021-01-22)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
@@ -105,7 +105,7 @@ The unit tests under `tests/` depend on:
 
 The unit tests can be executed on Linux or MacOS using:
 
-* UnixHostDuino (https://github.com/bxparks/UnixHostDuino)
+* EpoxyDuino (https://github.com/bxparks/EpoxyDuino)
 
 ### Source Code
 
@@ -131,8 +131,8 @@ The library has been extensively tested on the following boards:
 
 * Arduino Nano clone (16 MHz ATmega328P)
 * SparkFun Pro Micro clone (16 MHz ATmega32U4)
-* SAMD21 M0 Mini (48 MHz ARM Cortex-M0+) (compatible with Arduino Zero)
-* STM32 "Blue Pill" (STM32F103C8, 72 MHz ARM Cortex-M3)
+* SAMD21 M0 Mini (48 MHz ARM Cortex-M0+)
+* STM32 Blue Pill (STM32F103C8, 72 MHz ARM Cortex-M3)
 * NodeMCU 1.0 (ESP-12E module, 80MHz ESP8266)
 * WeMos D1 Mini (ESP-12E module, 80 MHz ESP8266)
 * ESP32 Dev Module (ESP-WROOM-32 module, 240MHz dual core Tensilica LX6)
@@ -140,8 +140,9 @@ The library has been extensively tested on the following boards:
 
 I will occasionally test on the following boards as a sanity check:
 
-* Teensy LC (48 MHz ARM Cortex-M0+)
+* Arduino Pro Mini clone (16 MHz ATmega328P)
 * Mini Mega 2560 (Arduino Mega 2560 compatible, 16 MHz ATmega2560)
+* Teensy LC (48 MHz ARM Cortex-M0+)
 
 ### Tool Chain
 
@@ -161,6 +162,9 @@ This library was developed and tested using:
 It should work with [PlatformIO](https://platformio.org/) but I have
 not tested it.
 
+The library works on Linux or MacOS (using both g++ and clang++ compilers) using
+the [EpoxyDuino](https://github.com/bxparks/EpoxyDuino) emulation layer.
+
 ### Operating System
 
 I use Ubuntu Linux 18.04 and 20.04 for most of my development.
@@ -170,6 +174,10 @@ I use Ubuntu Linux 18.04 and 20.04 for most of my development.
 [MIT License](https://opensource.org/licenses/MIT)
 
 ## Feedback and Support
+
+If you find this library useful, consider starring this project on GitHub. The
+stars will let me prioritize the more popular libraries over the less popular
+ones.
 
 If you have any questions, comments, bug reports, or feature requests, please
 file a GitHub ticket instead of emailing me unless the content is sensitive.

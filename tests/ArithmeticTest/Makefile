@@ -1,6 +1,6 @@
-# See https://github.com/bxparks/UnixHostDuino for documentation about this
+# See https://github.com/bxparks/EpoxyDuino for documentation about this
 # Makefile to compile and run Arduino programs natively on Linux or MacOS.
 
 APP_NAME := ArithmeticTest
 ARDUINO_LIBS := AUnit AceCommon
-include ../../../UnixHostDuino/UnixHostDuino.mk
+include ../../../EpoxyDuino/EpoxyDuino.mk
