@@ -76,7 +76,7 @@ automatically:
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
 
-**Version**: 1.3 (2021-01-19)
+**Version**: 1.3.1 (2021-01-22)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
