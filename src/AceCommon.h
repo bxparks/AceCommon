@@ -58,7 +58,7 @@ SOFTWARE.
 #include "algorithms/binarySearch.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10301
-#define ACE_COMMON_VERSION_STRING "1.3.1"
+#define ACE_COMMON_VERSION 10400
+#define ACE_COMMON_VERSION_STRING "1.4"
 
 #endif

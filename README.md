@@ -82,7 +82,7 @@ automatically:
     * `size_t binarySearch(const X list[], size_t size, const X& x)`
     * Templatized binary search of array of records or array of elements.
 
-**Version**: 1.3.1 (2021-01-22)
+**Version**: 1.4 (2021-02-09)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
