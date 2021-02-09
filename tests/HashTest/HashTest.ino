@@ -7,7 +7,7 @@
 using aunit::TestRunner;
 using ace_common::hashDjb2;
 
-test(hash_djb2, normal_string) {
+test(hashDjb2, normal_string) {
   assertEqual((uint32_t) 5381, hashDjb2(""));
   assertEqual((uint32_t) 177670, hashDjb2("a"));
   assertEqual((uint32_t) 177671, hashDjb2("b"));
