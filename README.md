@@ -76,11 +76,11 @@ automatically:
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
 * [src/algorithms/binarySearch.h](src/algorithms/binarySearch.h)
-    * `size_t binarySearchByKey(
-      const R records[], size_t size, const X& x, K&& key)`
+    * [src/algorithms/README.md](src/algorithms/README.md)
+    * `size_t binarySearchByKey(const R records[],
+      size_t size, const X& x, K&& key)`
     * `size_t binarySearch(const X list[], size_t size, const X& x)`
     * Templatized binary search of array of records or array of elements.
-);
 
 **Version**: 1.3.1 (2021-01-22)
 
