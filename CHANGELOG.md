@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+    * Add `binarySearch()` and `binarySearchByKey()` templatized functions.
 * 1.3.1 (2021-01-22)
     * Update UnixHostDuino 0.4 to EpoxyDuino 0.5.
     * No functional change in this release.

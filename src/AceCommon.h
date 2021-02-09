@@ -46,6 +46,7 @@ SOFTWARE.
 #include "fstrings/FCString.h"
 #include "hash/djb2.h"
 #include "kstrings/KString.h"
+#include "algorithms/binarySearch.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10301

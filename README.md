@@ -17,17 +17,17 @@ using namespace ace_common;
 The `src/AceCommon.h` header file includes the following sub-header files
 automatically:
 
-* `src/arithmetic/arithmetic.h`
+* [src/arithmetic/arithmetic.h](src/arithmetic/arithmetic.h)
     * `void incrementMod(T& c, T m)`
     * `void incrementModOffset(T&c, T m, T offset)`
     * `uint8_t decToBcd(uint8_t)`
     * `uint8_t bcdToDec(uint8_t)`
     * `unsigned long udiv1000(unsigned long)`
-* `src/pstrings/pstrings.h`
+* [src/pstrings/pstrings.h](src/pstrings/pstrings.h)
     * `int strcmp_PP(const char* a, const char* b)`
     * `const char* strchr_P(const char* s, char c)` (ESP8266 and ESP32 only)
     * `const char* strrchr_P(const char* s, char c)` (ESP8266 and ESP32 only)
-* `src/print_str/PrintStr.h`
+* [src/print_str/PrintStr.h](src/print_str/PrintStr.h)
     * [src/print_str/README.md](src/print_str/README.md)
         * Provides classes that implement the `Print` interface so that
           values can be printed into in-memory buffers. The string can then
@@ -37,44 +37,50 @@ automatically:
     * `class PrintStrBase`
     * `class PrintStr<uint16_t SIZE>` (buffer on stack)
     * `class PrintStrN(uint16_t size)` (buffer on heap)
-* `src/print_utils/printPadTo.h`
+* [src/print_utils/printPadTo.h](src/print_utils/printPadTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
     * `void printPad2To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
-* `src/print_utils.printfTo.h`
+* [src/print_utils.printfTo.h](src/print_utils.printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
         * Provides a primitive `printf()` functionality to an instance of
           `Print` (e.g. `Serial`) for those Arduino boards without a
           `Print.printf()` function.
     * `void printfTo(Print& printer, const char* fmt, ...)`
-* `src/timing_stats/TimingStats.h`
+* [src/timing_stats/TimingStats.h](src/timing_stats/TimingStats.h)
     * [src/timing_stats/README.md](src/timing_stats/README.md)
         * Helper class to collect data (often durations in milliseconds) and
           then print out various statistics such as min, max, average, and
           count.
     * `class TimingStats`
-* `src/url_encoding/url_encoding.h`
+* [src/url_encoding/url_encoding.h](src/url_encoding/url_encoding.h)
     * [src/url_encoding/README.md](src/url_encoding/README.md)
         * Encodes and decodes strings using "form URL encoding" which converts
           spaces `' '` into `'+'`, and non-alphnumerics into percent-hex digits.
     * `void formUrlEncode(Print& output, const char* str)`
     * `void formUrlDecode(Print& output, const char* str)`
-* `src/fstrings/FCString.h`
+* [src/fstrings/FCString.h](src/fstrings/FCString.h)
     * `class FCString`
     * An object that can hold either a C-string (`const char*`) or an
       F-string (`const __FlashStringHelper*`).
-* `src/hash/djb2.h`
+* [src/hash/djb2.h](src/hash/djb2.h)
     * The djb2 hash algorithm as described in
       https://stackoverflow.com/questions/7666509 and
       http://www.cse.yorku.ca/~oz/hash.html.
-    * `uint32_t hashDjb2(const char* s);`
-    * `uint32_t hashDjb2(const __FlashStringHelper* fs);`
-* `src/kstrings/KString.h`
+    * `uint32_t hashDjb2(const char* s)`
+    * `uint32_t hashDjb2(const __FlashStringHelper* fs)`
+* [src/kstrings/KString.h](src/kstrings/KString.h)
     * Wrapper around a c-string or an f-string which supports compression
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
+* [src/algorithms/binarySearch.h](src/algorithms/binarySearch.h)
+    * `size_t binarySearchByKey(
+      const R records[], size_t size, const X& x, K&& key)`
+    * `size_t binarySearch(const X list[], size_t size, const X& x)`
+    * Templatized binary search of array of records or array of elements.
+);
 
 **Version**: 1.3.1 (2021-01-22)
 
