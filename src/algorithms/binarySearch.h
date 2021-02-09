@@ -53,7 +53,7 @@ SOFTWARE.
 #ifndef ACE_COMMON_BINARY_SEARCH_H
 #define ACE_COMMON_BINARY_SEARCH_H
 
-#include <stdint.h>
+#include <stdint.h> // size_t, SIZE_MAX
 
 namespace ace_common {
 
@@ -61,7 +61,12 @@ namespace ace_common {
  * Perform a binary search on the 'records' array of given 'size', which is
  * sorted by the 'key', looking for element 'x' that matches the 'key'. The
  * 'key' is a function or lambda expression to retrieve the value of 'X' at
- * index 'i'. Return the index offset if found. Return SIZE_MAX if not found.
+ * index 'i'.
+ *
+ * Return the index offset if found. Return SIZE_MAX if not found. SIZE_MAX can
+ * never be a valid return value because the largest value for 'size' is
+ * SIZE_MAX, which means that largest valid index is 'SIZE_MAX - 1'. Therefore,
+ * we can use SIZE_MAX to indicate the 'not found' condition.
  *
  * @tparam R type of each element in records
  * @tparam X type of element to look for, assumed to be cheap to copy (e.g. a
