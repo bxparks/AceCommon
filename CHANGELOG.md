@@ -1,6 +1,13 @@
 # Changelog
 
 * Unreleased
+* 1.4 (2021-02-09)
+    * Add `binarySearch()` and `binarySearchByKey()` templatized functions.
+    * Explicitly blacklist megaAVR and SAMD21 using `arduino:samd>=1.8.10`
+      so that uses are given helpful error messages, instead of pages and pages
+      of compiler errors. See
+      [#8](https://github.com/bxparks/AceCommon/issues/8) and
+      [#9](https://github.com/bxparks/AceCommon/issues/9).
 * 1.3.1 (2021-01-22)
     * Update UnixHostDuino 0.4 to EpoxyDuino 0.5.
     * No functional change in this release.
