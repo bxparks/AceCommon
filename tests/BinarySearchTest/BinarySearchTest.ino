@@ -74,22 +74,20 @@ inline int key(size_t i) { return RECORDS[i].b; }
 
 // Test binary search by key using a function.
 test(binarySearchTest, records_with_function) {
-  assertEqual(SIZE_MAX, binarySearchByKey(RECORDS, NUM_RECORDS, 0, key));
-  assertEqual((size_t) 0, binarySearchByKey(RECORDS, NUM_RECORDS, 2, key));
-  assertEqual((size_t) 1, binarySearchByKey(RECORDS, NUM_RECORDS, 4, key));
-  assertEqual(SIZE_MAX, binarySearchByKey(RECORDS, NUM_RECORDS, 5, key));
-  assertEqual((size_t) 2, binarySearchByKey(RECORDS, NUM_RECORDS, 6, key));
-  assertEqual((size_t) 3, binarySearchByKey(RECORDS, NUM_RECORDS, 8, key));
+  assertEqual(SIZE_MAX, binarySearchByKey(NUM_RECORDS, 0, key));
+  assertEqual((size_t) 0, binarySearchByKey(NUM_RECORDS, 2, key));
+  assertEqual((size_t) 1, binarySearchByKey(NUM_RECORDS, 4, key));
+  assertEqual(SIZE_MAX, binarySearchByKey(NUM_RECORDS, 5, key));
+  assertEqual((size_t) 2, binarySearchByKey(NUM_RECORDS, 6, key));
+  assertEqual((size_t) 3, binarySearchByKey(NUM_RECORDS, 8, key));
 }
 
 // Test binary search by key using inlined lambda expression.
 test(binarySearchTest, records_with_lambda) {
   assertEqual(
       SIZE_MAX,
-      binarySearchByKey(
-          RECORDS, NUM_RECORDS, 10,
-          [](size_t i) { return RECORDS[i].b; } /*key*/
-      )
+      binarySearchByKey(NUM_RECORDS, 10,
+          [](size_t i) { return RECORDS[i].b; } /*key*/)
   );
 }
 

@@ -77,12 +77,11 @@ automatically:
     * `class KString`
 * [src/algorithms/binarySearch.h](src/algorithms/binarySearch.h)
     * [src/algorithms/README.md](src/algorithms/README.md)
-    * `size_t binarySearchByKey(const R records[],
-      size_t size, const X& x, K&& key)`
+    * `size_t binarySearchByKey(size_t size, const X& x, K&& key)`
     * `size_t binarySearch(const X list[], size_t size, const X& x)`
     * Templatized binary search of array of records or array of elements.
 
-**Version**: 1.4 (2021-02-09)
+**Version**: 1.4.1 (2021-02-11)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 

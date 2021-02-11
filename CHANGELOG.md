@@ -1,6 +1,14 @@
 # Changelog
 
 * Unreleased
+* 1.4.1 (2021-02-11)
+    * Simplify `binarySearchByKey()` by removing unnecessary `records`
+      parameter. The lambda expression `key` is sufficient.
+        * Technically, this is an API breaking change, technically I'm supposed
+          bump the minor version number. But the `binarySearchByKey()` feature
+          was released only 2 days ago, so let's treat this as a bug fix. In
+          other words, the function signature should have been this from the
+          beginning.
 * 1.4 (2021-02-09)
     * Add `binarySearch()` and `binarySearchByKey()` templatized functions.
     * Explicitly blacklist megaAVR and SAMD21 using `arduino:samd>=1.8.10`

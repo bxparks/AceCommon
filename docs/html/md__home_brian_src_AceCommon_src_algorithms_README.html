@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4</span>
+   &#160;<span id="projectnumber">1.4.1</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -73,14 +73,9 @@ $(function() {
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">namespace ace_common {</div>
 <div class="line"> </div>
-<div class="line">// Binary search an array of records sorted by key.</div>
-<div class="line">template&lt;typename R, typename X, typename K&gt;</div>
-<div class="line">size_t binarySearchByKey(</div>
-<div class="line">    const R records[],</div>
-<div class="line">    size_t size,</div>
-<div class="line">    const X&amp; x,</div>
-<div class="line">    K&amp;&amp; key</div>
-<div class="line">);</div>
+<div class="line">// Binary search an (abstract) array of records sorted by key.</div>
+<div class="line">template&lt;typename X, typename K&gt;</div>
+<div class="line">size_t binarySearchByKey(size_t size, const X&amp; x, K&amp;&amp; key);</div>
 <div class="line"> </div>
 <div class="line">// Binary search a list of sorted elements.</div>
 <div class="line">template&lt;typename X&gt;</div>
