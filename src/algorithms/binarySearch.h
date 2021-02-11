@@ -58,24 +58,26 @@ SOFTWARE.
 namespace ace_common {
 
 /**
- * Perform a binary search on the 'records' array of given 'size', which is
- * sorted by the 'key', looking for element 'x' that matches the 'key'. The
- * 'key' is a function or lambda expression to retrieve the value of 'X' at
- * index 'i'.
+ * Perform a binary search for element 'x' on an abstract list of records which
+ * are sorted by the 'key'. The 'key' is a function or lambda expression that
+ * retrieves the value of 'X' at index 'i' in the records.
  *
- * Return the index offset if found. Return SIZE_MAX if not found. SIZE_MAX can
- * never be a valid return value because the largest value for 'size' is
+ * Note that the list of 'records' does *not* need to be given to this
+ * function, because the required information is provided by the 'key' which
+ * maps the index 'i' to the element of type 'X'. The only extra bit of
+ * information needed is the 'size' of the list of records.
+ *
+ * Returns the index offset if found. Returns SIZE_MAX if not found. SIZE_MAX
+ * can never be a valid return value because the largest value for 'size' is
  * SIZE_MAX, which means that largest valid index is 'SIZE_MAX - 1'. Therefore,
  * we can use SIZE_MAX to indicate the 'not found' condition.
  *
- * @tparam R type of each element in records
  * @tparam X type of element to look for, assumed to be cheap to copy (e.g. a
  *    primitive type like an 'int' or 'uint32_t')
  * @tparam K lambda expression or function pointer that returns the 'X' value
  *    at index 'i'
  *
- * @param records an ordered records of R
- * @param size size of elements in records
+ * @param size number of elements in records
  * @param x the element to look for
  * @param key a function or lambda expression that returns the 'X' value
  *    at index 'i'. If the 'key' inlined, I think the compiler is smart
@@ -90,13 +92,8 @@ namespace ace_common {
  * If there are duplicate elements, the function returns the first one that it
  * finds.
  */
-template<typename R, typename X, typename K>
-size_t binarySearchByKey(
-    const R records[], // supports both 'const R[N]' and 'const R*'
-    size_t size,
-    const X& x,
-    K&& key
-) {
+template<typename X, typename K>
+size_t binarySearchByKey(size_t size, const X& x, K&& key) {
   size_t a = 0;
   size_t b = size;
   while (true) {
@@ -121,10 +118,9 @@ size_t binarySearchByKey(
  */
 template<typename X>
 size_t binarySearch(const X list[], size_t size, const X& x) {
-  return binarySearchByKey(
-      list, size, x,
-      [&list](size_t i) { return list[i]; } /*key*/
-  );
+  // Note that 'const X list[]' accepts 'const X*' as well.
+  return binarySearchByKey(size, x,
+      [&list](size_t i) { return list[i]; } /*key*/);
 }
 
 } // ace_common

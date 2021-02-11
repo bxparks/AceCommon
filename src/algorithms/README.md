@@ -12,14 +12,9 @@ records.
 ```C++
 namespace ace_common {
 
-// Binary search an array of records sorted by key.
-template<typename R, typename X, typename K>
-size_t binarySearchByKey(
-    const R records[],
-    size_t size,
-    const X& x,
-    K&& key
-);
+// Binary search an (abstract) array of records sorted by key.
+template<typename X, typename K>
+size_t binarySearchByKey(size_t size, const X& x, K&& key);
 
 // Binary search a list of sorted elements.
 template<typename X>
