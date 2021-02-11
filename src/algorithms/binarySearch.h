@@ -113,12 +113,18 @@ size_t binarySearchByKey(size_t size, const X& x, K&& key) {
 }
 
 /**
- * Simplified version of binarySearchByKey() where R and X are identical so
- * the 'key' lambda expression just returns the value of the 'list[i]'.
+ * Simplified version of binarySearchByKey() where the elements of the array
+ * and the searched element are both of type X. So the `key` lambda expression
+ * can be just `list[i]`.
+ *
+ * @tparam X type of element in list
+ * @param list sorted list of elements of type X (accepts both const array
+ *    or a pointer to the array)
+ * @param size number of elements
+ * @param x element to search for
  */
 template<typename X>
 size_t binarySearch(const X list[], size_t size, const X& x) {
-  // Note that 'const X list[]' accepts 'const X*' as well.
   return binarySearchByKey(size, x,
       [&list](size_t i) { return list[i]; } /*key*/);
 }
