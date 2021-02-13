@@ -35,8 +35,9 @@ SOFTWARE.
 namespace ace_common {
 
 /**
- * Determine if the abstract list is sorted according to its 'key'. Returns
- * true if sorted.
+ * Determine if the abstract array is sorted according to its 'key'. Returns
+ * true if sorted, false if not sorted. Returns false if the size of the array
+ * is 0.
  *
  * @tparam K lambda expression or function pointer that returns some
  *    unspecified value at index 'i'. The type of the value is inferred
@@ -52,7 +53,7 @@ namespace ace_common {
  *
  */
 template <typename K>
-static bool isSortedByKey(size_t size, K&& key) {
+bool isSortedByKey(size_t size, K&& key) {
   if (size == 0) return false;
 
   auto prev = key(0);
@@ -70,7 +71,7 @@ static bool isSortedByKey(size_t size, K&& key) {
  * lambda expression is just `list[i]`.
  *
  * @tparam X type of element in list
- * @param list sorted list of elements of type X (accepts both const array
+ * @param list sorted array of elements of type X (accepts both const array
  *    or a pointer to the array)
  * @param size number of elements
  */
