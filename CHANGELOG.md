@@ -1,6 +1,8 @@
 # Changelog
 
 * Unreleased
+    * Add `isSorted()` and `isSortedByKey()` templatized functions which
+      determine if an array is sorted or not.
 * 1.4.1 (2021-02-11)
     * Simplify `binarySearchByKey()` by removing unnecessary `records`
       parameter. The lambda expression `key` is sufficient.

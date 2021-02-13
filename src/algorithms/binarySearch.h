@@ -77,7 +77,7 @@ namespace ace_common {
  * @tparam K lambda expression or function pointer that returns the 'X' value
  *    at index 'i'
  *
- * @param size number of elements in records
+ * @param size number of elements in the array
  * @param x the element to look for
  * @param key a function or lambda expression that returns the 'X' value
  *    at index 'i'. If the 'key' inlined, I think the compiler is smart
@@ -86,8 +86,9 @@ namespace ace_common {
  * This function assumes that 'operator==()' and 'operator<()' for type 'X' are
  * defined.
  *
- * If the 'records' is not sorted, the function will probably fail to find the
- * element. I don't think it will go into an infinite loop, but I'm not sure.
+ * If the abstract array is not sorted, the function will probably fail to
+ * find the element. I don't think it will go into an infinite loop, but I'm
+ * not sure.
  *
  * If there are duplicate elements, the function returns the first one that it
  * finds.

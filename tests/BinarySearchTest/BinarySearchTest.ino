@@ -100,7 +100,7 @@ void setup() {
   delay(1000); // wait for stability on some boards to prevent garbage Serial
 #endif
   SERIAL_PORT_MONITOR.begin(115200);
-  while(!SERIAL_PORT_MONITOR); // for the Arduino Leonardo/Micro only
+  while (!SERIAL_PORT_MONITOR); // for the Arduino Leonardo/Micro only
 }
 
 void loop() {
