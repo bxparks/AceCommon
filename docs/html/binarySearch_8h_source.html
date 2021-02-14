@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.1</span>
+   &#160;<span id="projectnumber">1.4.2</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -102,39 +102,38 @@ $(function() {
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">namespace </span>ace_common {</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> K&gt;</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">   96</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">binarySearchByKey</a>(<span class="keywordtype">size_t</span> size, <span class="keyword">const</span> X&amp; x, K&amp;&amp; key) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">size_t</span> a = 0;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">size_t</span> b = size;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">size_t</span> diff = b - a;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">if</span> (diff == 0) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">size_t</span> c = a + diff / 2;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    X current = key(c);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (current == x) <span class="keywordflow">return</span> c;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (x &lt; current) {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;      b = c;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      a = c + 1;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <span class="keywordflow">return</span> SIZE_MAX;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> X&gt;</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">  120</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">binarySearch</a>(<span class="keyword">const</span> X list[], <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> X&amp; x) {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <span class="comment">// Note that &#39;const X list[]&#39; accepts &#39;const X*&#39; as well.</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">binarySearchByKey</a>(size, x,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      [&amp;list](<span class="keywordtype">size_t</span> i) { <span class="keywordflow">return</span> list[i]; } <span class="comment">/*key*/</span>);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;} <span class="comment">// ace_common</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> K&gt;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">   97</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">binarySearchByKey</a>(<span class="keywordtype">size_t</span> size, <span class="keyword">const</span> X&amp; x, K&amp;&amp; key) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">size_t</span> a = 0;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">size_t</span> b = size;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">size_t</span> diff = b - a;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">if</span> (diff == 0) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">size_t</span> c = a + diff / 2;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    X current = key(c);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (current == x) <span class="keywordflow">return</span> c;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (x &lt; current) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      b = c;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      a = c + 1;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <span class="keywordflow">return</span> SIZE_MAX;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> X&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">  128</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">binarySearch</a>(<span class="keyword">const</span> X list[], <span class="keywordtype">size_t</span> size, <span class="keyword">const</span> X&amp; x) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">binarySearchByKey</a>(size, x,</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      [&amp;list](<span class="keywordtype">size_t</span> i) { <span class="keywordflow">return</span> list[i]; } <span class="comment">/*key*/</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;} <span class="comment">// ace_common</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="abinarySearch_8h_html_abe3003dd71c6e85b71e7e7f0456c1acb"><div class="ttname"><a href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">ace_common::binarySearch</a></div><div class="ttdeci">size_t binarySearch(const X list[], size_t size, const X &amp;x)</div><div class="ttdoc">Simplified version of binarySearchByKey() where R and X are identical so the 'key' lambda expression ...</div><div class="ttdef"><b>Definition:</b> <a href="binarySearch_8h_source.html#l00120">binarySearch.h:120</a></div></div>
-<div class="ttc" id="abinarySearch_8h_html_aac7eb6c55d8decc16875445b330ec8d6"><div class="ttname"><a href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">ace_common::binarySearchByKey</a></div><div class="ttdeci">size_t binarySearchByKey(size_t size, const X &amp;x, K &amp;&amp;key)</div><div class="ttdoc">Perform a binary search for element 'x' on an abstract list of records which are sorted by the 'key'.</div><div class="ttdef"><b>Definition:</b> <a href="binarySearch_8h_source.html#l00096">binarySearch.h:96</a></div></div>
+<div class="ttc" id="abinarySearch_8h_html_abe3003dd71c6e85b71e7e7f0456c1acb"><div class="ttname"><a href="binarySearch_8h.html#abe3003dd71c6e85b71e7e7f0456c1acb">ace_common::binarySearch</a></div><div class="ttdeci">size_t binarySearch(const X list[], size_t size, const X &amp;x)</div><div class="ttdoc">Simplified version of binarySearchByKey() where the elements of the array and the searched element ar...</div><div class="ttdef"><b>Definition:</b> <a href="binarySearch_8h_source.html#l00128">binarySearch.h:128</a></div></div>
+<div class="ttc" id="abinarySearch_8h_html_aac7eb6c55d8decc16875445b330ec8d6"><div class="ttname"><a href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6">ace_common::binarySearchByKey</a></div><div class="ttdeci">size_t binarySearchByKey(size_t size, const X &amp;x, K &amp;&amp;key)</div><div class="ttdoc">Perform a binary search for element 'x' on an abstract list of records which are sorted by the 'key'.</div><div class="ttdef"><b>Definition:</b> <a href="binarySearch_8h_source.html#l00097">binarySearch.h:97</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

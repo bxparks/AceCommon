@@ -75,13 +75,17 @@ automatically:
     * Wrapper around a c-string or an f-string which supports compression
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
-* [src/algorithms/binarySearch.h](src/algorithms/binarySearch.h)
+* [src/algorithms/binarySearch.h](src/algorithms/binarySearch.h) and
+  [src/algorithms/isSorted.h](src/algorithms/isSorted.h) and
     * [src/algorithms/README.md](src/algorithms/README.md)
     * `size_t binarySearchByKey(size_t size, const X& x, K&& key)`
     * `size_t binarySearch(const X list[], size_t size, const X& x)`
-    * Templatized binary search of array of records or array of elements.
+        * Templatized binary search of array of records or array of elements.
+    * `size_t isSortedByKey(size_t size, K&& key)`
+    * `size_t isSorted(const X list[], size_t size)`
+        * Determine if array is sorted or not.
 
-**Version**: 1.4.1 (2021-02-11)
+**Version**: 1.4.2 (2021-02-13)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 

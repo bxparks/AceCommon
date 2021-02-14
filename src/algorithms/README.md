@@ -12,11 +12,12 @@ records.
 ```C++
 namespace ace_common {
 
-// Binary search an (abstract) array of records sorted by key.
+// Binary search an (abstract) array of records sorted by 'key' where 'key'
+// returns the element of type 'X' at index 'i'.
 template<typename X, typename K>
 size_t binarySearchByKey(size_t size, const X& x, K&& key);
 
-// Binary search a list of sorted elements.
+// Binary search an array of sorted elements of type 'X'.
 template<typename X>
 size_t binarySearch(const X list[], size_t size, const X& x);
 
@@ -24,3 +25,24 @@ size_t binarySearch(const X list[], size_t size, const X& x);
 ```
 
 See [tests/BinarySearchTest.ino](../../tests/BinarySearchTest/) for examples.
+
+## IsSorted
+
+Two templatized functions which determine if an array of elements or an array of
+records is sorted.
+
+```C++
+namespace ace_common {
+
+// Check if the (abstract) array of records is sorted by key.
+template<typename K>
+bool isSortedByKey(size_t size, K&& key);
+
+// Check if an array of elements of type 'X' is sorted.
+template<typename X>
+bool isSorted(const X list[], size_t size);
+
+}
+```
+
+See [tests/IsSortedTest.ino](../../tests/IsSortedTest/) for examples.
