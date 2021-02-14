@@ -85,7 +85,7 @@ automatically:
     * `size_t isSorted(const X list[], size_t size)`
         * Determine if array is sorted or not.
 
-**Version**: 1.4.1 (2021-02-11)
+**Version**: 1.4.2 (2021-02-13)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 

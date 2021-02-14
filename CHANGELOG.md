@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+* 1.4.2 (2021-02-13)
     * Add `isSorted()` and `isSortedByKey()` templatized functions which
       determine if an array is sorted or not.
 * 1.4.1 (2021-02-11)
@@ -14,7 +15,7 @@
 * 1.4 (2021-02-09)
     * Add `binarySearch()` and `binarySearchByKey()` templatized functions.
     * Explicitly blacklist megaAVR and SAMD21 using `arduino:samd>=1.8.10`
-      so that uses are given helpful error messages, instead of pages and pages
+      so that users are given helpful error messages, instead of pages and pages
       of compiler errors. See
       [#8](https://github.com/bxparks/AceCommon/issues/8) and
       [#9](https://github.com/bxparks/AceCommon/issues/9).
