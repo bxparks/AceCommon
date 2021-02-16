@@ -118,6 +118,8 @@ size_t binarySearchByKey(size_t size, const X& x, K&& key) {
  * and the searched element are both of type X. So the `key` lambda expression
  * can be just `list[i]`.
  *
+ * This function assumes that 'operator==()' for type 'X' is defined.
+ *
  * @tparam X type of element in list
  * @param list sorted list of elements of type X (accepts both const array
  *    or a pointer to the array)
