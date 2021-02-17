@@ -39,6 +39,13 @@ namespace ace_common {
  * true if sorted, false if not sorted. Returns false if the size of the array
  * is 0.
  *
+ * This function assumes that 'operator<()' for the value type of `key` is
+ * defined.
+ *
+ * Performance Note: Many compilers (all?) are not able to opimize away the
+ * function call overhead of the lambda expression. If performance is critical,
+ * you should copy and modify this code instead.
+ *
  * @tparam K lambda expression or function pointer that returns some
  *    unspecified value at index 'i'. The type of the value is inferred
  *    automatically using the 'auto' keyword.
@@ -47,10 +54,6 @@ namespace ace_common {
  * @param key a function or lambda expression that returns the value
  *    at index 'i'. If the 'key' inlined, I think the compiler is smart
  *    enough to inline the 'key' into this code, and avoid a function call.
- *
- * This function assumes that 'operator==()' and 'operator<()' for value type
- * are defined.
- *
  */
 template <typename K>
 bool isSortedByKey(size_t size, K&& key) {
@@ -59,7 +62,7 @@ bool isSortedByKey(size_t size, K&& key) {
   auto prev = key(0);
   for (size_t i = 1; i < size; ++i) {
     auto current = key(i);
-    if (prev > current) return false;
+    if (current < prev) return false;
     prev = current;
   }
   return true;
@@ -70,6 +73,8 @@ bool isSortedByKey(size_t size, K&& key) {
  * the type returned by the `key` lambda expression is the same. So the `key`
  * lambda expression is just `list[i]`.
  *
+ * This function assumes that 'operator<()' for the value type `X` is defined.
+ *
  * @tparam X type of element in list
  * @param list sorted array of elements of type X (accepts both const array
  *    or a pointer to the array)
@@ -77,8 +82,23 @@ bool isSortedByKey(size_t size, K&& key) {
  */
 template<typename X>
 bool isSorted(const X list[], size_t size) {
+  if (size == 0) return false;
+
+  auto prev = list[0];
+  for (size_t i = 1; i < size; ++i) {
+    auto current = list[i];
+    if (current < prev) return false;
+    prev = current;
+  }
+  return true;
+
+#if 0
+  // This shorter alternative runs a lot slower on many platforms because the
+  // compiler is not able to optimize away the lambda expression and so the
+  // isSortedByKey() makes a function call on each iteration.
   return isSortedByKey(size,
       [&list](size_t i) { return list[i]; } /*key*/);
+#endif
 }
 
 } // ace_common

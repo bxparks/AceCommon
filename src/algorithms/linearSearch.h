@@ -47,15 +47,21 @@ SOFTWARE.
 namespace ace_common {
 
 /**
- * Perform a liear search for element 'x' on an abstract list of records.
+ * Perform a linear search for element 'x' on an abstract list of records.
  * The 'key' is a function or lambda expression that retrieves the value of 'X'
  * at index 'i' in the records.
+ *
+ * This function assumes that 'operator==()' for the value type of `key` is
+ * defined.
+ *
+ * Performance Note: Many compilers (all?) are not able to opimize away the
+ * function call overhead of the lambda expression. If performance is critical,
+ * you should copy and modify this code instead.
  *
  * @tparam X type of element to look for, assumed to be cheap to copy (e.g. a
  *    primitive type like an 'int' or 'uint32_t')
  * @tparam K lambda expression or function pointer that returns the 'X' value
  *    at index 'i'
- *
  */
 template<typename X, typename K>
 size_t linearSearchByKey(size_t size, const X& x, K&& key) {
@@ -73,7 +79,7 @@ size_t linearSearchByKey(size_t size, const X& x, K&& key) {
  * and the searched element are both of type X. So the `key` lambda expression
  * can be just `list[i]`.
  *
- * This function assumes that 'operator==()' for type 'X' is defined.
+ * This function assumes that 'operator==()' for type `X` is defined.
  *
  * @tparam X type of element in list
  * @param list sorted list of elements of type X (accepts both const array
@@ -83,8 +89,20 @@ size_t linearSearchByKey(size_t size, const X& x, K&& key) {
  */
 template<typename X>
 size_t linearSearch(const X list[], size_t size, const X& x) {
+  for (size_t i = 0; i < size; ++i) {
+    if (x == list[i]) {
+      return i;
+    }
+  }
+  return SIZE_MAX;
+
+#if 0
+  // This shorter alternative runs a lot slower on many platforms because the
+  // compiler is not able to optimize away the lambda expression and so the
+  // linearSearchByKey() makes a function call on each iteration.
   return linearSearchByKey(size, x,
       [&list](size_t i) { return list[i]; } /*key*/);
+#endif
 }
 
 } // ace_common
