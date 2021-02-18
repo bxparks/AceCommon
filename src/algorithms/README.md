@@ -26,6 +26,28 @@ size_t binarySearch(const X list[], size_t size, const X& x);
 
 See [tests/BinarySearchTest.ino](../../tests/BinarySearchTest/) for examples.
 
+## Linear Search
+
+Two templatized linear search functions over an array of elements or an array of
+records.
+
+```C++
+namespace ace_common {
+
+// Linear search an (abstract) array of records sorted by 'key' where 'key'
+// returns the element of type 'X' at index 'i'.
+template<typename X, typename K>
+size_t linearSearchByKey(size_t size, const X& x, K&& key);
+
+// Linear search an array of sorted elements of type 'X'.
+template<typename X>
+size_t linearSearch(const X list[], size_t size, const X& x);
+
+}
+```
+
+See [tests/LinearSearchTest.ino](../../tests/LinearSearchTest/) for examples.
+
 ## IsSorted
 
 Two templatized functions which determine if an array of elements or an array of

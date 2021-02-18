@@ -1,6 +1,9 @@
 # Changelog
 
 * Unreleased
+* 1.4.3 (2021-02-18)
+    * Add `linearSearch()` and `linearSearchByKey()`. Analogs to the
+      corresponding binary search functions.
 * 1.4.2 (2021-02-13)
     * Add `isSorted()` and `isSortedByKey()` templatized functions which
       determine if an array is sorted or not.

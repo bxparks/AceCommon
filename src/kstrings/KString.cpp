@@ -22,14 +22,14 @@ int KString::compareTo(const char* s) {
   while (true) {
     uint8_t cb = *b;
 
-    // Extract the current character depending on the 'type_'. Note that this
-    // is terrible for performance, since the if-statement is executed on every
-    // iteration. However, the primary purpose of the KString class is to
-    // reduce flash memory usage, so I don't want to create a second version of
-    // this function that differs only in this statement. The assumption is
-    // that objects of this class are accessed only rarely, preferrably outside
-    // of critical loops.
     Restart:
+    // Extract the current character depending on the 'type_'. Normally doing a
+    // conditional check inside an inner loop is not good for performance.
+    // However, when I pulled this code out into a template function (using a
+    // thin-wrapper CString and FString), the AceTime/AutoBenchmark program
+    // showed that it made no perceptible difference in performance. I think
+    // this is because there is enough overhead in the rest of function to make
+    // this conditional code unimportant.
     uint8_t ca = isCstring ? *a : pgm_read_byte(a);
 
     #if ENABLE_SERIAL_DEBUG
@@ -77,8 +77,10 @@ void KString::printTo(Print& printer) {
 
   bool isCstring = (type_ == kTypeCstring);
   while (true) {
-    // Same comment as above, this is terrible for performance, but keeps the
-    // code size small.
+    // Same comment as above, doing a conditional check inside an inner loop is
+    // usually not good for performance. But the templatized version of
+    // compareTo() made no difference, and this function which outputs to a
+    // Printer is not expected to be in a performance critical section.
     char c = isCstring ? *s : pgm_read_byte(s);
 
     s++;

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.2</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -109,7 +109,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Templatized implementation of binary search function over a sorted array of things. Initially, I created a non-templatized binary search function for AceTime/src/ace_time/ZoneRegistrar. Then I found that I needed to write similar functions elsewhere, but I didn't want to keep copy and pasting this code, so it became worthwhile to write a templatized version.</p>
 <p>A binary search algorithm is conceptually simple, but this article (<a href="https://www.solipsys.co.uk/new/BinarySearchReconsidered.html">https://www.solipsys.co.uk/new/BinarySearchReconsidered.html</a>) shows that it is difficult to write a version without bugs. It took me 4 tries:</p>
-<p>Try 1) There was an infinite loop when searching for a non-existent zoneId due to the exit condition located at the wrong spot. Try 2) Could not search for x=0 because I was using unsigned integers for a and b, and the (c-1) expression underflowed to 0xffff. Try 3) An infinite loop caused by incorrect lowerbound, should be a = c + 1, instead of just a = c. Try 4) Finally got it right, I hope!</p>
+<p>1) There was an infinite loop when searching for a non-existent zoneId due to the exit condition located at the wrong spot. 2) Could not search for x=0 because I was using unsigned integers for a and b, and the (c-1) expression underflowed to 0xffff. 3) An infinite loop caused by incorrect lowerbound, should be a = c + 1, instead of just a = c. 4) Finally got it right, I hope!</p>
 <p>I'm not an expert in C++ template programming, so there may be inefficiencies in the code below. For example, I assume that the 'X' type will normally be a primative type (e.g. 'int' or 'uint32_t') and will be cheap to copy. This code is "good enough" for my purposes. </p>
 
 <p class="definition">Definition in file <a class="el" href="binarySearch_8h_source.html">binarySearch.h</a>.</p>
@@ -150,6 +150,8 @@ template&lt;typename X &gt; </div>
 
 <p>Simplified version of <a class="el" href="binarySearch_8h.html#aac7eb6c55d8decc16875445b330ec8d6" title="Perform a binary search for element &#39;x&#39; on an abstract list of records which are sorted by the &#39;key&#39;.">binarySearchByKey()</a> where the elements of the array and the searched element are both of type X. </p>
 <p>So the <code>key</code> lambda expression can be just <code>list[i]</code>.</p>
+<p>This function assumes that 'operator==()' and 'operator&lt;()' for type 'X' are defined.</p>
+<p>Performance Note: Many compilers (all?) are not able to opimize away the function call overhead of the lambda expression. Fortunately, for a binary search, the number of calls to the lambda expression is small compared to the overhead of the algorithm, so the function call overhead is small, like 10% if I recall. But if performance is critical, you should copy and modify this code instead.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">X</td><td>type of element in list </td></tr>
@@ -165,7 +167,7 @@ template&lt;typename X &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="binarySearch_8h_source.html#l00128">128</a> of file <a class="el" href="binarySearch_8h_source.html">binarySearch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="binarySearch_8h_source.html#l00145">145</a> of file <a class="el" href="binarySearch_8h_source.html">binarySearch.h</a>.</p>
 
 </div>
 </div>
@@ -207,6 +209,10 @@ template&lt;typename X , typename K &gt; </div>
 <p>The 'key' is a function or lambda expression that retrieves the value of 'X' at index 'i' in the records.</p>
 <p>Note that the list of 'records' does <em>not</em> need to be given to this function, because the required information is provided by the 'key' which maps the index 'i' to the element of type 'X'. The only extra bit of information needed is the 'size' of the list of records.</p>
 <p>Returns the index offset if found. Returns SIZE_MAX if not found. SIZE_MAX can never be a valid return value because the largest value for 'size' is SIZE_MAX, which means that largest valid index is 'SIZE_MAX - 1'. Therefore, we can use SIZE_MAX to indicate the 'not found' condition.</p>
+<p>This function assumes that 'operator==()' and 'operator&lt;()' for type 'X' are defined.</p>
+<p>If the abstract array is not sorted, the function will probably fail to find the element. I don't think it will go into an infinite loop, but I'm not sure.</p>
+<p>If there are duplicate elements, the function returns the first one that it finds.</p>
+<p>Performance Note: Many compilers (all?) are not able to opimize away the function call overhead of the lambda expression. Fortunately, for a binary search, the number of calls to <code>key</code> is small compared to the overhead of the algorithm, so the function call overhead is small, like 10% if I recall. But if performance is critical, you should copy and modify this code instead.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">X</td><td>type of element to look for, assumed to be cheap to copy (e.g. a primitive type like an 'int' or 'uint32_t') </td></tr>
@@ -218,15 +224,12 @@ template&lt;typename X , typename K &gt; </div>
   <table class="params">
     <tr><td class="paramname">size</td><td>number of elements in the array </td></tr>
     <tr><td class="paramname">x</td><td>the element to look for </td></tr>
-    <tr><td class="paramname">key</td><td>a function or lambda expression that returns the 'X' value at index 'i'. If the 'key' inlined, I think the compiler is smart enough to inline the 'key' into this code, and avoid a function call.</td></tr>
+    <tr><td class="paramname">key</td><td>a function or lambda expression that returns the 'X' value at index 'i'. If the 'key' inlined, I think the compiler is smart enough to inline the 'key' into this code, and avoid a function call. </td></tr>
   </table>
   </dd>
 </dl>
-<p>This function assumes that 'operator==()' and 'operator&lt;()' for type 'X' are defined.</p>
-<p>If the abstract array is not sorted, the function will probably fail to find the element. I don't think it will go into an infinite loop, but I'm not sure.</p>
-<p>If there are duplicate elements, the function returns the first one that it finds. </p>
 
-<p class="definition">Definition at line <a class="el" href="binarySearch_8h_source.html#l00097">97</a> of file <a class="el" href="binarySearch_8h_source.html">binarySearch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="binarySearch_8h_source.html#l00104">104</a> of file <a class="el" href="binarySearch_8h_source.html">binarySearch.h</a>.</p>
 
 </div>
 </div>

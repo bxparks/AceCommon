@@ -57,9 +57,10 @@ SOFTWARE.
 #include "kstrings/KString.h"
 #include "algorithms/binarySearch.h"
 #include "algorithms/isSorted.h"
+#include "algorithms/linearSearch.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10402
-#define ACE_COMMON_VERSION_STRING "1.4.2"
+#define ACE_COMMON_VERSION 10403
+#define ACE_COMMON_VERSION_STRING "1.4.3"
 
 #endif

@@ -35,14 +35,14 @@ SOFTWARE.
  * (https://www.solipsys.co.uk/new/BinarySearchReconsidered.html) shows that it
  * is difficult to write a version without bugs. It took me 4 tries:
  *
- * Try 1) There was an infinite loop when searching for a non-existent
- *        zoneId due to the exit condition located at the wrong spot.
- * Try 2) Could not search for x=0 because I was using unsigned
- *        integers for a and b, and the (c-1) expression underflowed to
- *        0xffff.
- * Try 3) An infinite loop caused by incorrect lowerbound, should be
- *        a = c + 1, instead of just a = c.
- * Try 4) Finally got it right, I hope!
+ * 1) There was an infinite loop when searching for a non-existent
+ *    zoneId due to the exit condition located at the wrong spot.
+ * 2) Could not search for x=0 because I was using unsigned
+ *    integers for a and b, and the (c-1) expression underflowed to
+ *    0xffff.
+ * 3) An infinite loop caused by incorrect lowerbound, should be
+ *    a = c + 1, instead of just a = c.
+ * 4) Finally got it right, I hope!
  *
  * I'm not an expert in C++ template programming, so there may be
  * inefficiencies in the code below. For example, I assume that the 'X' type
@@ -72,6 +72,23 @@ namespace ace_common {
  * SIZE_MAX, which means that largest valid index is 'SIZE_MAX - 1'. Therefore,
  * we can use SIZE_MAX to indicate the 'not found' condition.
  *
+ * This function assumes that 'operator==()' and 'operator<()' for type 'X' are
+ * defined.
+ *
+ * If the abstract array is not sorted, the function will probably fail to
+ * find the element. I don't think it will go into an infinite loop, but I'm
+ * not sure.
+ *
+ * If there are duplicate elements, the function returns the first one that it
+ * finds.
+ *
+ * Performance Note: Many compilers (all?) are not able to opimize away the
+ * function call overhead of the lambda expression. Fortunately, for a binary
+ * search, the number of calls to `key` is small compared to the overhead of
+ * the algorithm, so the function call overhead is small, like 10% if I recall.
+ * But if performance is critical, you should copy and modify this code
+ * instead.
+ *
  * @tparam X type of element to look for, assumed to be cheap to copy (e.g. a
  *    primitive type like an 'int' or 'uint32_t')
  * @tparam K lambda expression or function pointer that returns the 'X' value
@@ -82,16 +99,6 @@ namespace ace_common {
  * @param key a function or lambda expression that returns the 'X' value
  *    at index 'i'. If the 'key' inlined, I think the compiler is smart
  *    enough to inline the 'key' into this code, and avoid a function call.
- *
- * This function assumes that 'operator==()' and 'operator<()' for type 'X' are
- * defined.
- *
- * If the abstract array is not sorted, the function will probably fail to
- * find the element. I don't think it will go into an infinite loop, but I'm
- * not sure.
- *
- * If there are duplicate elements, the function returns the first one that it
- * finds.
  */
 template<typename X, typename K>
 size_t binarySearchByKey(size_t size, const X& x, K&& key) {
@@ -117,6 +124,16 @@ size_t binarySearchByKey(size_t size, const X& x, K&& key) {
  * Simplified version of binarySearchByKey() where the elements of the array
  * and the searched element are both of type X. So the `key` lambda expression
  * can be just `list[i]`.
+ *
+ * This function assumes that 'operator==()' and 'operator<()' for type 'X' are
+ * defined.
+ *
+ * Performance Note: Many compilers (all?) are not able to opimize away the
+ * function call overhead of the lambda expression. Fortunately, for a binary
+ * search, the number of calls to the lambda expression is small compared to
+ * the overhead of the algorithm, so the function call overhead is small, like
+ * 10% if I recall. But if performance is critical, you should copy and modify
+ * this code instead.
  *
  * @tparam X type of element in list
  * @param list sorted list of elements of type X (accepts both const array
