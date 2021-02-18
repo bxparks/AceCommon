@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.2</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -84,6 +84,22 @@ $(function() {
 <div class="line"> </div>
 <div class="line">}</div>
 </div><!-- fragment --><p>See <a href="../../tests/BinarySearchTest/">tests/BinarySearchTest.ino</a> for examples.</p>
+<h1>Linear Search</h1>
+<p>Two templatized linear search functions over an array of elements or an array of records.</p>
+<div class="fragment"><div class="line"> {C++}</div>
+<div class="line">namespace ace_common {</div>
+<div class="line"> </div>
+<div class="line">// Linear search an (abstract) array of records sorted by &#39;key&#39; where &#39;key&#39;</div>
+<div class="line">// returns the element of type &#39;X&#39; at index &#39;i&#39;.</div>
+<div class="line">template&lt;typename X, typename K&gt;</div>
+<div class="line">size_t linearSearchByKey(size_t size, const X&amp; x, K&amp;&amp; key);</div>
+<div class="line"> </div>
+<div class="line">// Linear search an array of sorted elements of type &#39;X&#39;.</div>
+<div class="line">template&lt;typename X&gt;</div>
+<div class="line">size_t linearSearch(const X list[], size_t size, const X&amp; x);</div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --><p>See <a href="../../tests/LinearSearchTest/">tests/LinearSearchTest.ino</a> for examples.</p>
 <h1>IsSorted</h1>
 <p>Two templatized functions which determine if an array of elements or an array of records is sorted.</p>
 <div class="fragment"><div class="line"> {C++}</div>
