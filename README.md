@@ -43,7 +43,7 @@ automatically:
     * `void printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
-* [src/print_utils.printfTo.h](src/print_utils.printfTo.h)
+* [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
         * Provides a primitive `printf()` functionality to an instance of
           `Print` (e.g. `Serial`) for those Arduino boards without a
