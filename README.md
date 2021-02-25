@@ -159,6 +159,11 @@ I will occasionally test on the following boards as a sanity check:
 * Mini Mega 2560 (Arduino Mega 2560 compatible, 16 MHz ATmega2560)
 * Teensy LC (48 MHz ARM Cortex-M0+)
 
+The following boards are *not* supported:
+
+* megaAVR (e.g. Nano Every)
+* SAMD21 boards w/ `arduino:samd` version >= 1.8.10 (e.g. MKRZero)
+
 ### Tool Chain
 
 This library was developed and tested using:
