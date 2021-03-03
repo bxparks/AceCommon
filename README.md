@@ -1,6 +1,6 @@
 # AceCommon
 
-![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
+[![AUnit Tests](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml/badge.svg)](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml)
 
 An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
