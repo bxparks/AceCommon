@@ -90,6 +90,13 @@ automatically:
     * `size_t isSortedByKey(size_t size, K&& key)`
     * `size_t isSorted(const X list[], size_t size)`
         * Determine if array is sorted or not.
+* [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
+    * Replace a character with another character or string and copy result to
+      destination.
+    * `void copyReplaceChar(char* dst, size_t dstSize, const char* src,
+      char oldChar, char newChar)`
+    * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
+      char oldChar, const char* newString)`
 
 **Version**: 1.4.3 (2021-02-18)
 

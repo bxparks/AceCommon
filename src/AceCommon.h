@@ -58,6 +58,7 @@ SOFTWARE.
 #include "algorithms/binarySearch.h"
 #include "algorithms/isSorted.h"
 #include "algorithms/linearSearch.h"
+#include "cstrings/copyReplace.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10403
