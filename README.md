@@ -102,8 +102,14 @@ automatically:
       string.
     * `void printReplaceCharTo(
       Print& printer, const char* src, char oldChar, char newChar)`
+    * `void printReplaceCharTo(
+      Print& printer, const __FlashStringHelper* src, char oldChar,
+      char newChar)`
     * `void printReplaceStringTo(
       Print& printer, const char* src, char oldChar, const char* newString)`
+    * `void printReplaceStringTo(
+      Print& printer, const __FlashStringHelper* src, char oldChar,
+      const char* newString)`
 
 **Version**: 1.4.3 (2021-02-18)
 

@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <Print.h>  // Print
+#include <Arduino.h> // Print, pgm_read_byte(), __FlashStringHelper
 #include "printReplaceTo.h"
 
 namespace ace_common {
@@ -39,14 +39,40 @@ void printReplaceCharTo(
   }
 }
 
+void printReplaceCharTo(
+    Print& printer, const __FlashStringHelper* src, char oldChar,
+    char newChar) {
+  const uint8_t* s = (const uint8_t*) src;
+  char c;
+  while ((c = pgm_read_byte(s++)) != '\0') {
+    if (c == oldChar) {
+      if (newChar == '\0') continue;
+      c = newChar;
+    }
+    printer.write(c);
+  }
+}
+
 void printReplaceStringTo(
     Print& printer, const char* src, char oldChar, const char* newString) {
   char c;
   while ((c = *src++) != '\0') {
     if (c == oldChar) {
-      while (*newString != '\0') {
-        printer.write(*newString++);
-      }
+      printer.print(newString);
+    } else {
+      printer.write(c);
+    }
+  }
+}
+
+void printReplaceStringTo(
+    Print& printer, const __FlashStringHelper* src, char oldChar,
+    const char* newString) {
+  const uint8_t* s = (const uint8_t*) src;
+  char c;
+  while ((c = pgm_read_byte(s++)) != '\0') {
+    if (c == oldChar) {
+      printer.print(newString);
     } else {
       printer.write(c);
     }

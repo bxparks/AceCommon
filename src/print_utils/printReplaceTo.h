@@ -25,7 +25,7 @@ SOFTWARE.
 /**
  * @file printReplaceTo.h
  *
- * Functions that print strings from `dst` to the given `Print` object while
+ * Functions that print strings from `src` to the given `Print` object while
  * replacing a given character with another character or another string.
  */
 
@@ -35,6 +35,7 @@ SOFTWARE.
 #include <stddef.h> // size_t
 
 class Print;
+class __FlashStringHelper;
 
 namespace ace_common {
 
@@ -46,11 +47,26 @@ void printReplaceCharTo(
     Print& printer, const char* src, char oldChar, char newChar);
 
 /**
+  * Print the src to printer while replacing all occurrences of oldChar with
+  * newChar. If newChar is '\0', then replace with nothing.
+  */
+void printReplaceCharTo(
+    Print& printer, const __FlashStringHelper* src, char oldChar, char newChar);
+
+/**
   * Print the src to print while replacing all occurrence of oldChar with
   * newString. If newString is "", then replace with nothing.
   */
 void printReplaceStringTo(
     Print& printer, const char* src, char oldChar, const char* newString);
+
+/**
+  * Print the src to print while replacing all occurrence of oldChar with
+  * newString. If newString is "", then replace with nothing.
+  */
+void printReplaceStringTo(
+    Print& printer, const __FlashStringHelper* src, char oldChar,
+    const char* newString);
 
 } // ace_common
 
