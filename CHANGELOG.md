@@ -3,6 +3,7 @@
 * Unreleased
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
+    * Add `printReplaceCharTo()` and `printReplaceStringTo()` functions.
 * 1.4.3 (2021-02-18)
     * Add `linearSearch()` and `linearSearchByKey()`. Analogs to the
       corresponding binary search functions.

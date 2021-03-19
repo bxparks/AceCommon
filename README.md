@@ -97,6 +97,13 @@ automatically:
       char oldChar, char newChar)`
     * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
       char oldChar, const char* newString)`
+* [src/print_utils/printReplaceTo.h](src/print_utils/printReplaceTo.h)
+    * Print a string while replace a character with another character or another
+      string.
+    * `void printReplaceCharTo(
+      Print& printer, const char* src, char oldChar, char newChar)`
+    * `void printReplaceStringTo(
+      Print& printer, const char* src, char oldChar, const char* newString)`
 
 **Version**: 1.4.3 (2021-02-18)
 

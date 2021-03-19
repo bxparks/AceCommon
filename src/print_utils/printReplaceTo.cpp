@@ -22,36 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/**
- * @file copyReplace.h
- *
- * Functions that copy c-strings from `src` to `dst` while replacing a
- * given character with another character or another string.
- */
-
-#ifndef ACE_COMMON_COPY_REPLACE_H
-#define ACE_COMMON_COPY_REPLACE_H
-
-#include <stddef.h> // size_t
+#include <Print.h>  // Print
+#include "printReplaceTo.h"
 
 namespace ace_common {
 
-/**
-  * Copy at most dstSize characters from src to dst, while replacing all
-  * occurrences of oldChar with newChar. If newChar is '\0', then replace with
-  * nothing. The resulting dst string is always NUL terminated.
-  */
-void copyReplaceChar(char* dst, size_t dstSize, const char* src,
-    char oldChar, char newChar);
+void printReplaceCharTo(
+    Print& printer, const char* src, char oldChar, char newChar) {
+  char c;
+  while ((c = *src++) != '\0') {
+    if (c == oldChar) {
+      if (newChar == '\0') continue;
+      c = newChar;
+    }
+    printer.write(c);
+  }
+}
 
-/**
-  * Copy at most dstSize characters from src to dst, while replacing all
-  * occurrence of oldChar with newString. If newString is "", then replace
-  * with nothing. The resulting dst string is always NUL terminated.
-  */
-void copyReplaceString(char* dst, size_t dstSize, const char* src,
-    char oldChar, const char* newString);
+void printReplaceStringTo(
+    Print& printer, const char* src, char oldChar, const char* newString) {
+  char c;
+  while ((c = *src++) != '\0') {
+    if (c == oldChar) {
+      while (*newString != '\0') {
+        printer.write(*newString++);
+      }
+    } else {
+      printer.write(c);
+    }
+  }
+}
 
 } // ace_common
-
-#endif
