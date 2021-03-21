@@ -110,6 +110,13 @@ automatically:
     * `void printReplaceStringTo(
       Print& printer, const __FlashStringHelper* src, char oldChar,
       const char* newString)`
+* [src/fstrings/FlashString.h](src/fstrings/FlashString.h)
+    * [src/fstrings/README.md](src/fstrings/EADDME.md)
+    * `class FlashString`
+    * Wraps a `const __FlashStringHelper*` into an object that looks and acts
+      like a normal c-string pointer `const char*`.
+    * Allows template functions to be written once, then reused for a flash
+      string pointer `const __FlashStringHelper*`.
 
 **Version**: 1.4.3 (2021-02-18)
 
