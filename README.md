@@ -150,6 +150,11 @@ The source files are organized as follows:
 * `src/*/` - implementation files
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
+* `examples/MemoryBenchmark`
+    * to gather the flash and static memory consumption of various functions
+      and classes
+    * to validate my intuition of memory consumption of these routines
+    * to detect unexpected changes in memory consumption
 
 ### Documentation
 
