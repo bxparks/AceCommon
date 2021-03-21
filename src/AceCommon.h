@@ -60,6 +60,7 @@ SOFTWARE.
 #include "algorithms/linearSearch.h"
 #include "cstrings/copyReplace.h"
 #include "print_utils/printReplaceTo.h"
+#include "fstrings/FlashString.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10403
