@@ -63,8 +63,9 @@ void printReplaceCharTo(Print& printer, T src, char oldChar, char newChar) {
  * Version of printReplaceCharTo() that works for a (const __FlashStringHelper*)
  * by wrapping a FlashString around it.
  */
+// 'inline' required, see https://stackoverflow.com/questions/4445654
 template<>
-void printReplaceCharTo<const __FlashStringHelper*>(
+inline void printReplaceCharTo<const __FlashStringHelper*>(
     Print& printer, const __FlashStringHelper* src,
     char oldChar, char newChar) {
   printReplaceCharTo<FlashString>(printer, FlashString(src), oldChar, newChar);
@@ -93,8 +94,9 @@ void printReplaceStringTo(
  * Version of printReplaceCharTo() that works for a (const __FlashStringHelper*)
  * by wrapping a FlashString around it.
  */
+// 'inline' required, see https://stackoverflow.com/questions/4445654
 template<>
-void printReplaceStringTo<const __FlashStringHelper*>(
+inline void printReplaceStringTo<const __FlashStringHelper*>(
     Print& printer, const __FlashStringHelper* src,
     char oldChar, const char* newString) {
   printReplaceStringTo<FlashString>(
