@@ -33,8 +33,8 @@ SOFTWARE.
  *    * PSTR() macro
  */
 
-#ifndef PSTRINGS_PSTRINGS_H
-#define PSTRINGS_PSTRINGS_H
+#ifndef ACE_COMMON_PSTRINGS_H
+#define ACE_COMMON_PSTRINGS_H
 
 namespace ace_common {
 

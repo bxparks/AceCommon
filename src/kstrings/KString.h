@@ -104,4 +104,4 @@ class KString {
 
 } // ace_common
 
-#endif // ACE_COMMON_HASH_DJB2_H
+#endif

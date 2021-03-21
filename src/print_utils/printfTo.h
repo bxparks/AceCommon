@@ -30,8 +30,8 @@
  * need to include <Arduino.h> here.
  */
 
-#ifndef PRINT_UTILS_PRINTF_TO_H
-#define PRINT_UTILS_PRINTF_TO_H
+#ifndef ACE_COMMON_PRINTF_TO_H
+#define ACE_COMMON_PRINTF_TO_H
 
 #include <stdio.h> // vsnprintf()
 #include <stdarg.h> // va_list, va_start(), va_end()

@@ -30,8 +30,8 @@ SOFTWARE.
  * decimal).
  */
 
-#ifndef ARITHMETIC_ARITHMETIC_H
-#define ARITHMETIC_ARITHMETIC_H
+#ifndef ACE_COMMON_ARITHMETIC_H
+#define ACE_COMMON_ARITHMETIC_H
 
 #include <stdint.h>
 

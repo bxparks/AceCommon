@@ -11,8 +11,8 @@
  * '0')` will print "007" on the Serial monitor.
  */
 
-#ifndef PRINT_UTILS_PRINT_PAD_TO_H
-#define PRINT_UTILS_PRINT_PAD_TO_H
+#ifndef ACE_COMMON_PRINT_PAD_TO_H
+#define ACE_COMMON_PRINT_PAD_TO_H
 
 #include <stdint.h>
 #include <Print.h>

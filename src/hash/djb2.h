@@ -55,4 +55,4 @@ uint32_t hashDjb2(const __FlashStringHelper* fs);
 
 } // ace_common
 
-#endif // ACE_COMMON_HASH_DJB2_H
+#endif

@@ -30,8 +30,8 @@ SOFTWARE.
  * converted into %{hex}.
  */
 
-#ifndef URL_ENCODING_URL_ENCODING_H
-#define URL_ENCODING_URL_ENCODING_H
+#ifndef ACE_COMMON_URL_ENCODING_H
+#define ACE_COMMON_URL_ENCODING_H
 
 namespace ace_common {
 
