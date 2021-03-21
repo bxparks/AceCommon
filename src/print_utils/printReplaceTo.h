@@ -33,6 +33,8 @@ SOFTWARE.
 #define ACE_COMMON_PRINT_REPLACE_TO_H
 
 #include <stddef.h> // size_t
+#include <Print.h> // Print
+#include "../fstrings/FlashString.h"
 
 class Print;
 class __FlashStringHelper;
@@ -40,33 +42,64 @@ class __FlashStringHelper;
 namespace ace_common {
 
 /**
-  * Print the src to printer while replacing all occurrences of oldChar with
-  * newChar. If newChar is '\0', then replace with nothing.
-  */
-void printReplaceCharTo(
-    Print& printer, const char* src, char oldChar, char newChar);
+ * Print the src to printer while replacing all occurrences of oldChar with
+ * newChar. If newChar is '\0', then replace with nothing.
+ *
+ * @tparam T type that acts like a (const char*)
+ */
+template <typename T>
+void printReplaceCharTo(Print& printer, T src, char oldChar, char newChar) {
+  char c;
+  while ((c = *src++) != '\0') {
+    if (c == oldChar) {
+      if (newChar == '\0') continue;
+      c = newChar;
+    }
+    printer.write(c);
+  }
+}
 
 /**
-  * Print the src to printer while replacing all occurrences of oldChar with
-  * newChar. If newChar is '\0', then replace with nothing.
-  */
-void printReplaceCharTo(
-    Print& printer, const __FlashStringHelper* src, char oldChar, char newChar);
+ * Version of printReplaceCharTo() that works for a (const __FlashStringHelper*)
+ * by wrapping a FlashString around it.
+ */
+template<>
+void printReplaceCharTo<const __FlashStringHelper*>(
+    Print& printer, const __FlashStringHelper* src,
+    char oldChar, char newChar) {
+  printReplaceCharTo<FlashString>(printer, FlashString(src), oldChar, newChar);
+}
 
 /**
-  * Print the src to print while replacing all occurrence of oldChar with
-  * newString. If newString is "", then replace with nothing.
-  */
+ * Print the src to print while replacing all occurrence of oldChar with
+ * newString. If newString is "", then replace with nothing.
+ *
+ * @tparam T cstring-like type, a (const char*) or a FlashString
+ */
+template <typename T>
 void printReplaceStringTo(
-    Print& printer, const char* src, char oldChar, const char* newString);
+    Print& printer, T src, char oldChar, const char* newString) {
+  char c;
+  while ((c = *src++) != '\0') {
+    if (c == oldChar) {
+      printer.print(newString);
+    } else {
+      printer.write(c);
+    }
+  }
+}
 
 /**
-  * Print the src to print while replacing all occurrence of oldChar with
-  * newString. If newString is "", then replace with nothing.
-  */
-void printReplaceStringTo(
-    Print& printer, const __FlashStringHelper* src, char oldChar,
-    const char* newString);
+ * Version of printReplaceCharTo() that works for a (const __FlashStringHelper*)
+ * by wrapping a FlashString around it.
+ */
+template<>
+void printReplaceStringTo<const __FlashStringHelper*>(
+    Print& printer, const __FlashStringHelper* src,
+    char oldChar, const char* newString) {
+  printReplaceStringTo<FlashString>(
+      printer, FlashString(src), oldChar, newString);
+}
 
 } // ace_common
 
