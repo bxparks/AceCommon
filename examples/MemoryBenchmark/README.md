@@ -92,9 +92,9 @@ ASCII table.
 | PrintStrN(16)                          |  10416/    0 |   192/    0 |
 | printPad2()                            |  10416/    0 |   192/    0 |
 | printPad5()                            |  10440/    0 |   216/    0 |
-| printReplaceCharTo(char*)              |  10280/    0 |    56/    0 |
+| printReplaceCharTo(char*)              |  10256/    0 |    32/    0 |
 | printReplaceCharTo(F())                |  10280/    0 |    56/    0 |
-| printReplaceStringTo(char*)            |  10320/    0 |    96/    0 |
+| printReplaceStringTo(char*)            |  10296/    0 |    72/    0 |
 | printReplaceStringTo(F())              |  10320/    0 |    96/    0 |
 +---------------------------------------------------------------------+
 
@@ -117,9 +117,9 @@ ASCII table.
 | PrintStrN(16)                          |  19280/ 3788 |    20/    0 |
 | printPad2()                            |  19456/ 3788 |   196/    0 |
 | printPad5()                            |  19480/ 3788 |   220/    0 |
-| printReplaceCharTo(char*)              |  19308/ 3788 |    48/    0 |
+| printReplaceCharTo(char*)              |  19284/ 3788 |    24/    0 |
 | printReplaceCharTo(F())                |  19308/ 3788 |    48/    0 |
-| printReplaceStringTo(char*)            |  19376/ 3788 |   116/    0 |
+| printReplaceStringTo(char*)            |  19356/ 3788 |    96/    0 |
 | printReplaceStringTo(F())              |  19376/ 3788 |   116/    0 |
 +---------------------------------------------------------------------+
 
@@ -143,9 +143,9 @@ microcontroller and the compiler did not generate the desired information.
 | PrintStrN(16)                          | 256956/26776 |    48/    0 |
 | printPad2()                            | 257244/26776 |   336/    0 |
 | printPad5()                            | 257260/26776 |   352/    0 |
-| printReplaceCharTo(char*)              | 257008/26772 |   100/   -4 |
+| printReplaceCharTo(char*)              | 256960/26772 |    52/   -4 |
 | printReplaceCharTo(F())                | 257024/26776 |   116/    0 |
-| printReplaceStringTo(char*)            | 257092/26776 |   184/    0 |
+| printReplaceStringTo(char*)            | 257044/26776 |   136/    0 |
 | printReplaceStringTo(F())              | 257108/26772 |   200/   -4 |
 +---------------------------------------------------------------------+
 
@@ -161,15 +161,15 @@ microcontroller and the compiler did not generate the desired information.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                | 207063/14596 |     0/    0 |
+| Baseline (PrintStr<16>)                | 206967/14588 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          | 207083/14596 |    20/    0 |
-| printPad2()                            | 207183/14596 |   120/    0 |
-| printPad5()                            | 207203/14596 |   140/    0 |
-| printReplaceCharTo(char*)              | 207143/14596 |    80/    0 |
-| printReplaceCharTo(F())                | 207143/14596 |    80/    0 |
-| printReplaceStringTo(char*)            | 207175/14596 |   112/    0 |
-| printReplaceStringTo(F())              | 207175/14596 |   112/    0 |
+| PrintStrN(16)                          | 206987/14588 |    20/    0 |
+| printPad2()                            | 207087/14588 |   120/    0 |
+| printPad5()                            | 207107/14588 |   140/    0 |
+| printReplaceCharTo(char*)              | 207003/14588 |    36/    0 |
+| printReplaceCharTo(F())                | 207047/14588 |    80/    0 |
+| printReplaceStringTo(char*)            | 207063/14588 |    96/    0 |
+| printReplaceStringTo(F())              | 207079/14588 |   112/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -193,9 +193,9 @@ usage by objects.
 | PrintStrN(16)                          |  10840/ 4148 |    44/    0 |
 | printPad2()                            |  11164/ 4148 |   368/    0 |
 | printPad5()                            |  11176/ 4148 |   380/    0 |
-| printReplaceCharTo(char*)              |  11072/ 4148 |   276/    0 |
-| printReplaceCharTo(F())                |  11072/ 4148 |   276/    0 |
-| printReplaceStringTo(char*)            |  11376/ 4148 |   580/    0 |
+| printReplaceCharTo(char*)              |  11056/ 4148 |   260/    0 |
+| printReplaceCharTo(F())                |  11056/ 4148 |   260/    0 |
+| printReplaceStringTo(char*)            |  11072/ 4148 |   276/    0 |
 | printReplaceStringTo(F())              |  11376/ 4148 |   580/    0 |
 +---------------------------------------------------------------------+
 
