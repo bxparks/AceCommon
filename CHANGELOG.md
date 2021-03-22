@@ -6,6 +6,17 @@
     * Add `printReplaceCharTo()` and `printReplaceStringTo()` functions.
     * Add [examples/MemoryBenchmark](examples/MemoryBenchmark) to track the
       flash sizes of various components within this library.
+    * Add `FlashString` class which is a very thin-wrapper around a
+      `const __FlashStringHelper*` pointer, to make it look and act like a
+      normal `const char*` pointer.
+        * Solves code duplication problem when writing functions that need to
+          support both c-strings and f-strings.
+        * First write the function against a generic `T` type that is
+          assumed to be a type that acts like a `const char*`. Use this for a
+          c-string.
+        * Second write a template specialization that takes a `const
+          __FlashStringHelper*`, wraps the pointer into a `FlashString`,
+          and then forwards the call to the generic template function.
 * 1.4.3 (2021-02-18)
     * Add `linearSearch()` and `linearSearchByKey()`. Analogs to the
       corresponding binary search functions.
