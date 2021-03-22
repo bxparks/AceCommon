@@ -12,10 +12,12 @@ using namespace ace_common;
 #define FEATURE_PRINT_STR_N 1
 #define FEATURE_PRINT_PAD_2_TO 2
 #define FEATURE_PRINT_PAD_5_TO 3
-#define FEATURE_PRINT_REPLACE_CHAR_TO 4
-#define FEATURE_PRINT_REPLACE_CHAR_FLASH_TO 5
-#define FEATURE_PRINT_REPLACE_STRING_TO 6
-#define FEATURE_PRINT_REPLACE_STRING_FLASH_TO 7
+#define FEATURE_PRINT_REPLACE_CHAR_TO_CSTRING 4
+#define FEATURE_PRINT_REPLACE_CHAR_TO_FSTRING 5
+#define FEATURE_PRINT_REPLACE_STRING_TO_CSTRING 6
+#define FEATURE_PRINT_REPLACE_STRING_TO_FSTRING 7
+#define FEATURE_HASH_DJB2_CSTRING 8
+#define FEATURE_HASH_DJB2_FSTRING 9
 
 // Select one of the FEATURE_* parameter and compile. Then look at the flash
 // and RAM usage, compared to FEATURE_BASELINE usage to determine how much
@@ -45,22 +47,32 @@ void setup() {
   PrintStr<16> printStr;
   printPad5To(printStr, 1);
   guard = printStr.getCstr()[0];
-#elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_TO
+#elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_TO_CSTRING
   PrintStr<16> printStr;
   printReplaceCharTo(printStr, "E%T", '%', 'S');
   guard = printStr.getCstr()[2];
-#elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_FLASH_TO
+#elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_TO_FSTRING
   PrintStr<16> printStr;
   printReplaceCharTo(printStr, F("E%T"), '%', 'S');
   guard = printStr.getCstr()[2];
-#elif FEATURE == FEATURE_PRINT_REPLACE_STRING_TO
+#elif FEATURE == FEATURE_PRINT_REPLACE_STRING_TO_CSTRING
   PrintStr<16> printStr;
   printReplaceStringTo(printStr, "E%T", '%', "S");
   guard = printStr.getCstr()[2];
-#elif FEATURE == FEATURE_PRINT_REPLACE_STRING_FLASH_TO
+#elif FEATURE == FEATURE_PRINT_REPLACE_STRING_TO_FSTRING
   PrintStr<16> printStr;
   printReplaceStringTo(printStr, F("E%T"), '%', "S");
   guard = printStr.getCstr()[2];
+#elif FEATURE == FEATURE_HASH_DJB2_CSTRING
+  PrintStr<16> printStr;
+  uint32_t hash = hashDjb2("1234");
+  printStr.write(hash & 0xff);
+  guard = printStr.getCstr()[0];
+#elif FEATURE == FEATURE_HASH_DJB2_FSTRING
+  PrintStr<16> printStr;
+  uint32_t hash = hashDjb2(F("1234"));
+  printStr.write(hash & 0xff);
+  guard = printStr.getCstr()[0];
 #else
   #error Unknown FEATURE
 #endif
