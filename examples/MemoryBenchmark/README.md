@@ -50,6 +50,8 @@ ASCII table.
 | printReplaceCharTo(F())                |    760/   22 |    26/    0 |
 | printReplaceStringTo(char*)            |    778/   28 |    44/    6 |
 | printReplaceStringTo(F())              |    780/   24 |    46/    2 |
+| hashDjb2(char*)                        |    792/   28 |    58/    6 |
+| hashDjb2(F())                          |    794/   22 |    60/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -73,6 +75,8 @@ ASCII table.
 | printReplaceCharTo(F())                |   3754/  162 |    26/    0 |
 | printReplaceStringTo(char*)            |   3772/  168 |    44/    6 |
 | printReplaceStringTo(F())              |   3774/  164 |    46/    2 |
+| hashDjb2(char*)                        |   3784/  166 |    56/    4 |
+| hashDjb2(F())                          |   3788/  162 |    60/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -93,9 +97,11 @@ ASCII table.
 | printPad2()                            |  10416/    0 |   192/    0 |
 | printPad5()                            |  10440/    0 |   216/    0 |
 | printReplaceCharTo(char*)              |  10256/    0 |    32/    0 |
-| printReplaceCharTo(F())                |  10280/    0 |    56/    0 |
+| printReplaceCharTo(F())                |  10256/    0 |    32/    0 |
 | printReplaceStringTo(char*)            |  10296/    0 |    72/    0 |
-| printReplaceStringTo(F())              |  10320/    0 |    96/    0 |
+| printReplaceStringTo(F())              |  10296/    0 |    72/    0 |
+| hashDjb2(char*)                        |  10264/    0 |    40/    0 |
+| hashDjb2(F())                          |  10264/    0 |    40/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -118,9 +124,11 @@ ASCII table.
 | printPad2()                            |  19456/ 3788 |   196/    0 |
 | printPad5()                            |  19480/ 3788 |   220/    0 |
 | printReplaceCharTo(char*)              |  19284/ 3788 |    24/    0 |
-| printReplaceCharTo(F())                |  19308/ 3788 |    48/    0 |
+| printReplaceCharTo(F())                |  19284/ 3788 |    24/    0 |
 | printReplaceStringTo(char*)            |  19356/ 3788 |    96/    0 |
-| printReplaceStringTo(F())              |  19376/ 3788 |   116/    0 |
+| printReplaceStringTo(F())              |  19356/ 3788 |    96/    0 |
+| hashDjb2(char*)                        |  19292/ 3788 |    32/    0 |
+| hashDjb2(F())                          |  19292/ 3788 |    32/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -143,10 +151,12 @@ microcontroller and the compiler did not generate the desired information.
 | PrintStrN(16)                          | 256956/26776 |    48/    0 |
 | printPad2()                            | 257244/26776 |   336/    0 |
 | printPad5()                            | 257260/26776 |   352/    0 |
-| printReplaceCharTo(char*)              | 256960/26772 |    52/   -4 |
-| printReplaceCharTo(F())                | 257024/26776 |   116/    0 |
-| printReplaceStringTo(char*)            | 257044/26776 |   136/    0 |
-| printReplaceStringTo(F())              | 257108/26772 |   200/   -4 |
+| printReplaceCharTo(char*)              | 256944/26772 |    36/   -4 |
+| printReplaceCharTo(F())                | 256960/26776 |    52/    0 |
+| printReplaceStringTo(char*)            | 257028/26776 |   120/    0 |
+| printReplaceStringTo(F())              | 257044/26772 |   136/   -4 |
+| hashDjb2(char*)                        | 256948/26776 |    40/    0 |
+| hashDjb2(F())                          | 256964/26776 |    56/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -161,15 +171,17 @@ microcontroller and the compiler did not generate the desired information.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                | 206967/14588 |     0/    0 |
+| Baseline (PrintStr<16>)                | 206887/14580 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          | 206987/14588 |    20/    0 |
-| printPad2()                            | 207087/14588 |   120/    0 |
-| printPad5()                            | 207107/14588 |   140/    0 |
-| printReplaceCharTo(char*)              | 207003/14588 |    36/    0 |
-| printReplaceCharTo(F())                | 207047/14588 |    80/    0 |
-| printReplaceStringTo(char*)            | 207063/14588 |    96/    0 |
-| printReplaceStringTo(F())              | 207079/14588 |   112/    0 |
+| PrintStrN(16)                          | 206907/14580 |    20/    0 |
+| printPad2()                            | 207007/14580 |   120/    0 |
+| printPad5()                            | 207027/14580 |   140/    0 |
+| printReplaceCharTo(char*)              | 206923/14580 |    36/    0 |
+| printReplaceCharTo(F())                | 206923/14580 |    36/    0 |
+| printReplaceStringTo(char*)            | 206983/14580 |    96/    0 |
+| printReplaceStringTo(F())              | 206983/14580 |    96/    0 |
+| hashDjb2(char*)                        | 206931/14580 |    44/    0 |
+| hashDjb2(F())                          | 206931/14580 |    44/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -196,7 +208,9 @@ usage by objects.
 | printReplaceCharTo(char*)              |  11056/ 4148 |   260/    0 |
 | printReplaceCharTo(F())                |  11056/ 4148 |   260/    0 |
 | printReplaceStringTo(char*)            |  11072/ 4148 |   276/    0 |
-| printReplaceStringTo(F())              |  11376/ 4148 |   580/    0 |
+| printReplaceStringTo(F())              |  11072/ 4148 |   276/    0 |
+| hashDjb2(char*)                        |  10832/ 4148 |    36/    0 |
+| hashDjb2(F())                          |  10832/ 4148 |    36/    0 |
 +---------------------------------------------------------------------+
 
 ```

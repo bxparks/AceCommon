@@ -33,6 +33,7 @@ SOFTWARE.
 #define ACE_COMMON_HASH_DJB2_H
 
 #include <stdint.h> // uint32_t
+#include "../fstrings/FlashString.h"
 class __FlashStringHelper;
 
 namespace ace_common {
@@ -42,16 +43,33 @@ namespace ace_common {
  * https://stackoverflow.com/questions/7666509 and
  * http://www.cse.yorku.ca/~oz/hash.html.
  *
+ * @tparam T pointer type of the string, either (const char*) or (const
+ * __FlashStringHelper*)
+ *
  * @param s NUL terminated string, cannot be nullptr
  */
-uint32_t hashDjb2(const char* s);
+template <typename T>
+uint32_t hashDjb2(T s) {
+  uint32_t hash = 5381;
+  uint8_t c;
+
+  while ((c = *s++)) {
+    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+  }
+
+  return hash;
+}
 
 /**
- * Same as hashDjb2(const char*) but for strings stored in Arduino Flash memory.
+ * Specialization of hashDjb2(T s) for flash strings (const
+ * __FlashStringHelper*).
  *
  * @param fs NUL terminated string stored in Flash memory, cannot be nullptr
  */
-uint32_t hashDjb2(const __FlashStringHelper* fs);
+template <>
+inline uint32_t hashDjb2(const __FlashStringHelper* fs) {
+  return hashDjb2<FlashString>(FlashString(fs));
+}
 
 } // ace_common
 

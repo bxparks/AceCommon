@@ -6,7 +6,7 @@
 # table that can be inserted into the README.md.
 
 BEGIN {
-  NUM_FEATURES = 7 # excluding Baseline
+  NUM_FEATURES = 9 # excluding Baseline
   labels[0] = "Baseline (PrintStr<16>)"
   labels[1] = "PrintStrN(16)"
   labels[2] = "printPad2()"
@@ -15,6 +15,8 @@ BEGIN {
   labels[5] = "printReplaceCharTo(F())"
   labels[6] = "printReplaceStringTo(char*)"
   labels[7] = "printReplaceStringTo(F())"
+  labels[8] = "hashDjb2(char*)"
+  labels[9] = "hashDjb2(F())"
   record_index = 0
 }
 {
