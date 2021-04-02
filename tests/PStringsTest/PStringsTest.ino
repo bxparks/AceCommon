@@ -1,5 +1,6 @@
 #line 2 "PStringsTest.ino"
 
+#include <Arduino.h>
 #include <AUnit.h>
 #include <AceCommon.h>
 
@@ -17,10 +18,10 @@ test(strcmp_PP, nullptr) {
 }
 
 test(strcmp_PP, not_null) {
-  assertEqual(strcmp_PP("", ""), 0);
-  assertEqual(strcmp_PP("a", "a"), 0);
-  assertMore(strcmp_PP("ab", "a"), 0);
-  assertLess(strcmp_PP("a", "ab"), 0);
+  assertEqual(strcmp_PP(PSTR(""), PSTR("")), 0);
+  assertEqual(strcmp_PP(PSTR("a"), PSTR("a")), 0);
+  assertMore(strcmp_PP(PSTR("ab"), PSTR("a")), 0);
+  assertLess(strcmp_PP(PSTR("a"), PSTR("ab")), 0);
 }
 
 // --------------------------------------------------------------------------
@@ -40,7 +41,7 @@ test(strchr_P) {
 test(strchr_P, notfound) {
   const char* s = STRING;
   const char* p = strchr_P(s, 'e');
-  assertEqual(p, nullptr);
+  assertEqual(p, (const char*) nullptr);
 }
 
 test (strrchr_P) {
@@ -52,7 +53,7 @@ test (strrchr_P) {
 test (strrchr_P, notfound) {
   const char* s = STRING;
   const char* p = strrchr_P(s, 'e');
-  assertEqual(p, nullptr);
+  assertEqual(p, (const char*) nullptr);
 }
 
 #endif
