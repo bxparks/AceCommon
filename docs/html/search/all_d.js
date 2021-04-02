@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['url_20encoding_55',['Url Encoding',['../md__home_brian_src_AceCommon_src_url_encoding_README.html',1,'']]],
-  ['udiv1000_56',['udiv1000',['../arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783',1,'ace_common']]],
-  ['update_57',['update',['../classace__common_1_1TimingStats.html#a7e2074483d3bace1f9695c573dac811e',1,'ace_common::TimingStats']]],
-  ['url_5fencoding_2eh_58',['url_encoding.h',['../url__encoding_8h.html',1,'']]]
+  ['timing_20stats_68',['Timing Stats',['../md__home_brian_src_AceCommon_src_timing_stats_README.html',1,'']]],
+  ['timingstats_69',['TimingStats',['../classace__common_1_1TimingStats.html',1,'ace_common::TimingStats'],['../classace__common_1_1TimingStats.html#a8ffb99931928b622e696addddf426b96',1,'ace_common::TimingStats::TimingStats()'],['../classace__common_1_1TimingStats.html#a7dfa7d8de54f34a9d3e32a4040d7884f',1,'ace_common::TimingStats::TimingStats(const TimingStats &amp;)=default']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['print_20string_125',['Print String',['../md__home_brian_src_AceCommon_src_print_str_README.html',1,'']]],
-  ['print_20utils_126',['Print Utils',['../md__home_brian_src_AceCommon_src_print_utils_README.html',1,'']]]
+  ['flash_20strings_155',['Flash Strings',['../md__home_brian_src_AceCommon_src_fstrings_README.html',1,'']]]
 ];

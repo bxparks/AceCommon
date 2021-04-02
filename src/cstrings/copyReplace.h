@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Brian T. Park
+Copyright (c) 2021 Brian T. Park
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <Arduino.h>
-#include "djb2.h"
+/**
+ * @file copyReplace.h
+ *
+ * Functions that copy c-strings from `src` to `dst` while replacing a
+ * given character with another character or another string.
+ */
+
+#ifndef ACE_COMMON_COPY_REPLACE_H
+#define ACE_COMMON_COPY_REPLACE_H
+
+#include <stddef.h> // size_t
 
 namespace ace_common {
 
-uint32_t hashDjb2(const char* s) {
-  uint32_t hash = 5381;
-  uint8_t c;
+/**
+  * Copy at most dstSize characters from src to dst, while replacing all
+  * occurrences of oldChar with newChar. If newChar is '\0', then replace with
+  * nothing. The resulting dst string is always NUL terminated.
+  */
+void copyReplaceChar(char* dst, size_t dstSize, const char* src,
+    char oldChar, char newChar);
 
-  while ((c = *s++)) {
-    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-  }
-
-  return hash;
-}
-
-uint32_t hashDjb2(const __FlashStringHelper* fs) {
-  const char* s = reinterpret_cast<const char*>(fs);
-  uint32_t hash = 5381;
-  uint8_t c;
-
-  while ((c = pgm_read_byte(s++))) {
-    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-  }
-
-  return hash;
-}
+/**
+  * Copy at most dstSize characters from src to dst, while replacing all
+  * occurrence of oldChar with newString. If newString is "", then replace
+  * with nothing. The resulting dst string is always NUL terminated.
+  */
+void copyReplaceString(char* dst, size_t dstSize, const char* src,
+    char oldChar, const char* newString);
 
 } // ace_common
 
+#endif

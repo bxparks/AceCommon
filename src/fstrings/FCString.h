@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef FSTRINGS_FCSTRING_H
-#define FSTRINGS_FCSTRING_H
+#ifndef ACE_COMMON_FCSTRING_H
+#define ACE_COMMON_FCSTRING_H
 
 // Much of this copied from AUnit/src/aunit/FCString.h and Compare.h.
 

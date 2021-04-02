@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['kcstringtype_29',['kCStringType',['../classace__common_1_1FCString.html#a4532428b47a87556510765abaabcefd3',1,'ace_common::FCString']]],
-  ['kfstringtype_30',['kFStringType',['../classace__common_1_1FCString.html#ae9df90f7862d0a69e6e4e3f2febaf9d6',1,'ace_common::FCString']]],
-  ['kstring_31',['KString',['../classace__common_1_1KString.html',1,'ace_common::KString'],['../classace__common_1_1KString.html#a1ac7be10f8d055edde05aaa1e1067bc4',1,'ace_common::KString::KString(const char *s, const char *const *keywords, uint8_t numKeywords)'],['../classace__common_1_1KString.html#a60615a796754fa50206fefa0c328fdb9',1,'ace_common::KString::KString(const __FlashStringHelper *fs, const char *const *keywords, uint8_t numKeywords)']]]
+  ['incrementmod_27',['incrementMod',['../arithmetic_8h.html#a0eefb1f15b20e28182334fb15ab361e0',1,'ace_common']]],
+  ['incrementmodoffset_28',['incrementModOffset',['../arithmetic_8h.html#a7340464d30e60b50d608cbc22ca4bea7',1,'ace_common']]],
+  ['isnull_29',['isNull',['../classace__common_1_1FCString.html#a08cbc30fffe6c62228c3985465a15db3',1,'ace_common::FCString']]],
+  ['issorted_30',['isSorted',['../isSorted_8h.html#a8563eb5d0660b39f07cda5a03ee81363',1,'ace_common']]],
+  ['issorted_2eh_31',['isSorted.h',['../isSorted_8h.html',1,'']]],
+  ['issortedbykey_32',['isSortedByKey',['../isSorted_8h.html#af33b9732411d0fe1340f27cc9ba07507',1,'ace_common']]]
 ];

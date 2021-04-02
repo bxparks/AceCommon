@@ -1,6 +1,6 @@
 # AceCommon
 
-![AUnit Tests](https://github.com/bxparks/AceCommon/workflows/AUnit%20Tests/badge.svg)
+[![AUnit Tests](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml/badge.svg)](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml)
 
 An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
@@ -43,7 +43,7 @@ automatically:
     * `void printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
-* [src/print_utils.printfTo.h](src/print_utils.printfTo.h)
+* [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
         * Provides a primitive `printf()` functionality to an instance of
           `Print` (e.g. `Serial`) for those Arduino boards without a
@@ -90,8 +90,35 @@ automatically:
     * `size_t isSortedByKey(size_t size, K&& key)`
     * `size_t isSorted(const X list[], size_t size)`
         * Determine if array is sorted or not.
+* [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
+    * Replace a character with another character or string and copy result to
+      destination.
+    * `void copyReplaceChar(char* dst, size_t dstSize, const char* src,
+      char oldChar, char newChar)`
+    * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
+      char oldChar, const char* newString)`
+* [src/print_utils/printReplaceTo.h](src/print_utils/printReplaceTo.h)
+    * Print a string while replace a character with another character or another
+      string.
+    * `void printReplaceCharTo(
+      Print& printer, const char* src, char oldChar, char newChar)`
+    * `void printReplaceCharTo(
+      Print& printer, const __FlashStringHelper* src, char oldChar,
+      char newChar)`
+    * `void printReplaceStringTo(
+      Print& printer, const char* src, char oldChar, const char* newString)`
+    * `void printReplaceStringTo(
+      Print& printer, const __FlashStringHelper* src, char oldChar,
+      const char* newString)`
+* [src/fstrings/FlashString.h](src/fstrings/FlashString.h)
+    * [src/fstrings/README.md](src/fstrings/EADDME.md)
+    * `class FlashString`
+    * Wraps a `const __FlashStringHelper*` into an object that looks and acts
+      like a normal c-string pointer `const char*`.
+    * Allows template functions to be written once, then reused for a flash
+      string pointer `const __FlashStringHelper*`.
 
-**Version**: 1.4.3 (2021-02-18)
+**Version**: 1.4.4 (2021-04-02)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
@@ -130,6 +157,11 @@ The source files are organized as follows:
 * `src/*/` - implementation files
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
+* `examples/MemoryBenchmark`
+    * to gather the flash and static memory consumption of various functions
+      and classes
+    * to validate my intuition of memory consumption of these routines
+    * to detect unexpected changes in memory consumption
 
 ### Documentation
 
@@ -158,6 +190,11 @@ I will occasionally test on the following boards as a sanity check:
 * Arduino Pro Mini clone (16 MHz ATmega328P)
 * Mini Mega 2560 (Arduino Mega 2560 compatible, 16 MHz ATmega2560)
 * Teensy LC (48 MHz ARM Cortex-M0+)
+
+The following boards are *not* supported:
+
+* megaAVR (e.g. Nano Every)
+* SAMD21 boards w/ `arduino:samd` version >= 1.8.10 (e.g. MKRZero)
 
 ### Tool Chain
 
