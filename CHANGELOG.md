@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+* 1.4.4
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
     * Add `printReplaceCharTo()` and `printReplaceStringTo()` functions.
