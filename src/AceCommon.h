@@ -37,12 +37,15 @@ SOFTWARE.
 #define ACE_COMMON_H
 
 // Blacklist boards using new Arduino API due to incompatibilities. This
-// currently includes all megaAVR boards and SAMD21 boards using arduino::samd
-// >= 1.8.10. Boards using arduino:samd <= 1.8.9 or SparkFun:samd are fine.
+// currently includes all megaAVR boards, and SAMD21 boards using arduino:samd
+// versions in [1.8.10, 1.8.11]. Boards using arduino:samd <= 1.8.9, >= 1.8.12,
+// or SparkFun:samd are fine.
 #if defined(ARDUINO_ARCH_MEGAAVR)
 #error MegaAVR not supported, https://github.com/bxparks/AceCommon/issues/8
-#elif defined(ARDUINO_ARCH_SAMD) && defined(ARDUINO_API_VERSION)
-#error SAMD21 with arduino:samd >= 1.8.10 not supported, https://github.com/bxparks/AceCommon/issues/9
+#elif defined(ARDUINO_ARCH_SAMD) \
+  && defined(ARDUINO_API_VERSION) \
+  && ARDUINO_API_VERSION <= 10200
+#error SAMD21 with arduino:samd versions [1.8.10, 1.8.11] not supported, https://github.com/bxparks/AceCommon/issues/9
 #endif
 
 #include "arithmetic/arithmetic.h"
