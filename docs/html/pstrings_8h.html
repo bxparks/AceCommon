@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -129,7 +129,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compare 2 strings which are both stored in PROGMEM. </p>
-<p>This is similar to the <code>strcmp_P(a, p)</code> except that both strings are in PROGMEM instead of just the second string. Either <code>a</code> or <code>b</code> can be a <code>nullptr</code>. Two <code>nullptr</code> are compared to be equal to each other. Any string is assumed to be "less than" a <code>nullptr</code>. </p>
+<p>This is similar to the <code>strcmp_P(a, p)</code> except that both strings are in PROGMEM instead of just the second string. Either <code>a</code> or <code>b</code> can be a <code>nullptr</code>. Two <code>nullptr</code> are compared to be equal to each other. Any non-null string will be considered to be greater than a <code>nullptr</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="pstrings_8cpp_source.html#l00031">31</a> of file <a class="el" href="pstrings_8cpp_source.html">pstrings.cpp</a>.</p>
 

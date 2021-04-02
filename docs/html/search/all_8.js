@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['length_32',['length',['../classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b',1,'ace_common::PrintStrBase']]],
-  ['linearsearch_33',['linearSearch',['../linearSearch_8h.html#a0d119646d3b914a8d5f59b0e19795caa',1,'ace_common']]],
-  ['linearsearch_2eh_34',['linearSearch.h',['../linearSearch_8h.html',1,'']]],
-  ['linearsearchbykey_35',['linearSearchByKey',['../linearSearch_8h.html#acc98401b0bb5a53abbb64e529d8b80b9',1,'ace_common']]]
+  ['kcstringtype_33',['kCStringType',['../classace__common_1_1FCString.html#a4532428b47a87556510765abaabcefd3',1,'ace_common::FCString']]],
+  ['kfstringtype_34',['kFStringType',['../classace__common_1_1FCString.html#ae9df90f7862d0a69e6e4e3f2febaf9d6',1,'ace_common::FCString']]],
+  ['kstring_35',['KString',['../classace__common_1_1KString.html',1,'ace_common::KString'],['../classace__common_1_1KString.html#a1ac7be10f8d055edde05aaa1e1067bc4',1,'ace_common::KString::KString(const char *s, const char *const *keywords, uint8_t numKeywords)'],['../classace__common_1_1KString.html#a60615a796754fa50206fefa0c328fdb9',1,'ace_common::KString::KString(const __FlashStringHelper *fs, const char *const *keywords, uint8_t numKeywords)']]]
 ];
