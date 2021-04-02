@@ -64,8 +64,32 @@ class FlashString {
     /** Array dereference operator. */
     char operator[](size_t i) const { return *(fsp + i); }
 
-    /** Cast operator. */
-    operator const __FlashStringHelper*() const {
+    /**
+     * Implicit cast to `const void*` to support operator==() and operator!=().
+     *
+     * I tried using an implicit `operator const __FlashStringHelper*() const`
+     * here. But when I try use `operator[]` on the object, some of the C++
+     * compilers (not AVR) produce a warning that says: "ISO C++ says that these
+     * are ambiguous, even though the worst conversion for the first is better
+     * than the worst conversion for the second". (Other compilers don't produce
+     * this error.) As far as I can tell, the compiler thinks that instead of
+     * just calling the `operator[]` that I provide above, it can do an implicit
+     * conversion to `const __FlashStringHelper*`, then call the built-in
+     * `operator[]` on *that* pointer, and it thinks that the 2 paths are
+     * equally valid. This is above my understanding of C++ implicit conversion
+     * rules.
+     *
+     * My workaround is to create this implicit cast operator to `const void*`,
+     * so that I can get `operator==()` and `operator!=()` to work as expected.
+     * Then create an explicit `operator const __FlashStringHelper*()` so that I
+     * can convert a FlashString back to its original pointer when I need to.
+     */
+    operator const void*() const {
+      return (const void*) fsp;
+    }
+
+    /** Retrieve the original pointer with an explicit cast. */
+    explicit operator const __FlashStringHelper*() const {
       return (const __FlashStringHelper*) fsp;
     }
 
@@ -90,9 +114,9 @@ class FlashString {
     }
 
   private:
+
     const char* fsp;
 };
-
 
 } // ace_common
 

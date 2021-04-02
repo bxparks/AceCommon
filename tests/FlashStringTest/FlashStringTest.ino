@@ -23,6 +23,7 @@ test(FlashString, assignmentAndCopyConstructor) {
 
 test(FlashString, dereference) {
   FlashString fs = F("the string");
+  assertEqual('t', *fs);
   assertEqual('t', fs[0]);
   assertEqual('h', fs[1]);
   assertEqual('e', fs[2]);
@@ -52,8 +53,8 @@ test(FlashString, comparisons_work_by_casting) {
   const __FlashStringHelper* FSTRING = F("the string");
   FlashString fs = FSTRING;
 
-  // Test auto casting to (const __FlashStringHelper*).
-  const __FlashStringHelper* fstring = fs;
+  // Test explicit casting to (const __FlashStringHelper*).
+  const __FlashStringHelper* fstring = (const __FlashStringHelper*) fs;
   assertEqual(FSTRING, fstring);
 
   // Test comparision with nullptr.
