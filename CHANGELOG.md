@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+    * Create `examples/AutoBenchmark`, replacement for `examples/Udiv1000`.
 * 1.4.4
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
