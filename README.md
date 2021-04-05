@@ -2,6 +2,11 @@
 
 [![AUnit Tests](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml/badge.svg)](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml)
 
+**New**: [GitHub Discussions](https://github.com/bxparks/AceCommon/discussions)
+for this project is now active! Let's use that for general support questions,
+and reserve the [GitHub Issues](https://github.com/bxparks/AceCommon/issues)
+section for bugs and feature requests.
+
 An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
@@ -158,10 +163,13 @@ The source files are organized as follows:
 * `tests/` - unit tests which require [AUnit](https://github.com/bxparks/AUnit)
 * `examples/` - example sketches
 * `examples/MemoryBenchmark`
-    * to gather the flash and static memory consumption of various functions
+    * gathers the flash and static memory consumption of various functions
       and classes
-    * to validate my intuition of memory consumption of these routines
-    * to detect unexpected changes in memory consumption
+    * validates my intuition of memory consumption of these routines
+    * detects unexpected changes in memory consumption
+* `examples/AutoBenchmark`
+    * determines the CPU time consumed by various AceCommon features or
+      functions
 
 ### Documentation
 
@@ -231,12 +239,18 @@ If you find this library useful, consider starring this project on GitHub. The
 stars will let me prioritize the more popular libraries over the less popular
 ones.
 
-If you have any questions, comments, bug reports, or feature requests, please
-file a GitHub ticket instead of emailing me unless the content is sensitive.
-(The problem with email is that I cannot reference the email conversation when
-other people ask similar questions later.) I'd love to hear about how this
-software and its documentation can be improved. I can't promise that I will
-incorporate everything, but I will give your ideas serious consideration.
+If you have any questions, comments and other support questions about how to
+use this library, please use the
+[GitHub Discussions](https://github.com/bxparks/AceCommon/discussions)
+for this project. If you have bug reports or feature requests, please file a
+ticket in [GitHub Issues](https://github.com/bxparks/AceCommon/issues).
+I'd love to hear about how this software and its documentation can be improved.
+I can't promise that I will incorporate everything, but I will give your ideas
+serious consideration.
+
+Please refrain from emailing me directly unless the content is sensitive. The
+problem with email is that I cannot reference the email conversation when other
+people ask similar questions later.
 
 ## Author
 
