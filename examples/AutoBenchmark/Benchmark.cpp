@@ -17,7 +17,7 @@ using namespace ace_common;
 // Benchmark configs
 //-----------------------------------------------------------------------------
 
-static const uint8_t SAMPLE_SIZE = 3;
+static const uint8_t SAMPLE_SIZE = 5;
 
 #if defined(ARDUINO_ARCH_AVR)
   static const uint32_t LOOP_COUNT = 1UL*1000;
@@ -135,7 +135,7 @@ static uint32_t runLambda(Lambda lambda) {
 static void runUdiv1000Native() {
   timingStats.reset();
 
-  for (uint8_t s = 0; s < SAMPLE_SIZE; s++) {
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
 
     // We must count by 1100 because the compiler is too smart and optimizes
     // away the loop if it knows that LOOP_COUNT is < 1000.
@@ -161,7 +161,7 @@ static void runUdiv1000Native() {
 static void runUdiv1000() {
   timingStats.reset();
 
-  for (uint8_t s = 0; s < SAMPLE_SIZE; s++) {
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
 
     // We must count by 1100 because the compiler is too smart and optimizes
     // away the loop if it knows that LOOP_COUNT is < 1000.
@@ -184,7 +184,115 @@ static void runUdiv1000() {
   printStats(F("udiv1000()"), timingStats, LOOP_COUNT, SAMPLE_SIZE);
 }
 
+static void runDecToBcdDivOnly() {
+  timingStats.reset();
+
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
+
+    // We must count by 1100 because the compiler is too smart and optimizes
+    // away the loop if it knows that LOOP_COUNT is < 1000.
+    uint32_t rawMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = decToBcdDivOnly(i & 0xFF);
+      }
+    });
+
+    uint32_t emptyMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = i & 0xFF;
+      }
+    });
+
+    uint32_t benchmarkMicros = rawMicros - emptyMicros;
+    timingStats.update(benchmarkMicros);
+  }
+
+  printStats(F("decToBcdDivOnly()"), timingStats, LOOP_COUNT, SAMPLE_SIZE);
+}
+
+static void runDecToBcdDivMod() {
+  timingStats.reset();
+
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
+
+    // We must count by 1100 because the compiler is too smart and optimizes
+    // away the loop if it knows that LOOP_COUNT is < 1000.
+    uint32_t rawMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = decToBcdDivMod(i & 0xFF);
+      }
+    });
+
+    uint32_t emptyMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = i & 0xFF;
+      }
+    });
+
+    uint32_t benchmarkMicros = rawMicros - emptyMicros;
+    timingStats.update(benchmarkMicros);
+  }
+
+  printStats(F("decToBcdDivMod()"), timingStats, LOOP_COUNT, SAMPLE_SIZE);
+}
+
+static void runDecToBcd() {
+  timingStats.reset();
+
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
+
+    // We must count by 1100 because the compiler is too smart and optimizes
+    // away the loop if it knows that LOOP_COUNT is < 1000.
+    uint32_t rawMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = decToBcd(i & 0xFF);
+      }
+    });
+
+    uint32_t emptyMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = i & 0xFF;
+      }
+    });
+
+    uint32_t benchmarkMicros = rawMicros - emptyMicros;
+    timingStats.update(benchmarkMicros);
+  }
+
+  printStats(F("decToBcd()"), timingStats, LOOP_COUNT, SAMPLE_SIZE);
+}
+
+static void runBcdToDec() {
+  timingStats.reset();
+
+  for (uint8_t k = 0; k < SAMPLE_SIZE; k++) {
+
+    // We must count by 1100 because the compiler is too smart and optimizes
+    // away the loop if it knows that LOOP_COUNT is < 1000.
+    uint32_t rawMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = bcdToDec(i & 0xFF);
+      }
+    });
+
+    uint32_t emptyMicros = runLambda([]() {
+      for (uint32_t i = 0; i < LOOP_COUNT; i++) {
+        disableCompilerOptimization = i & 0xFF;
+      }
+    });
+
+    uint32_t benchmarkMicros = rawMicros - emptyMicros;
+    timingStats.update(benchmarkMicros);
+  }
+
+  printStats(F("bcdToDec()"), timingStats, LOOP_COUNT, SAMPLE_SIZE);
+}
+
 void runBenchmarks() {
   runUdiv1000Native();
   runUdiv1000();
+  runDecToBcdDivOnly();
+  runDecToBcdDivMod();
+  runDecToBcd();
+  runBcdToDec();
 }
