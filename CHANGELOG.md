@@ -1,8 +1,11 @@
 # Changelog
 
 * Unreleased
-    * Create `examples/AutoBenchmark`, replacement for `examples/Udiv1000`.
-* 1.4.4
+    * Create more generic `examples/AutoBenchmark` program which replaces
+      `examples/Udiv1000`.
+    * Activate
+      [GitHub Discussions](https://github.com/bxparks/AceCommon/discussions).
+* 1.4.4 (2021-04-02)
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
     * Add `printReplaceCharTo()` and `printReplaceStringTo()` functions.
