@@ -44,7 +44,7 @@ normal `Print` object such as the usual `Serial` object.
 
 However, if you need access to the `PrintStrBase.length()` method, which
 returns the string length in the current buffer, you need to use the
-`PrintStrBase` (or PrintStrBase&` reference), instead of using the
+`PrintStrBase` (or `PrintStrBase&` reference), instead of using the
 `Print`, because the `Print` class does not implement that `length()` method.
 
 ### `PrintStr<SiZE>` Example
