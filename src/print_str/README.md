@@ -3,8 +3,8 @@
 An implementation of `Print` that writes to an in-memory buffer supporting
 strings less than 65535 in length. It is intended to be an alternative to the
 `String` class to help avoid heap fragmentation due to repeated creation and
-deletion of small String objects. The 'PrintStr' object inherit the methods
-from the 'Print' interface which can be used to build an internal string
+deletion of small String objects. The `PrintStr` object inherit the methods
+from the `Print` interface which can be used to build an internal string
 representation of various objects. Instead of using the `operator+=()` or the
 `concat()` method, use the `print()`, `println()` (or sometimes the `printf()`
 method) of the `Print` class. After the internal string is built, the
@@ -14,7 +14,7 @@ NUL-terminated c-string representation can be retrieved using `getCstr()`.
 
 There are 2 implementations of `PrintStr`:
 
-* `PrintStr<uint16_t SiZE>` is a templatized class where the character array
+* `PrintStr<uint16_t SIZE>` is a templatized class where the character array
   buffer is created on the stack.
     * The `SiZE` parameter is a compile-time constant and given as a template
       parameter.
@@ -52,7 +52,8 @@ returns the string length in the current buffer, you need to use the
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namespace ace_common;
+using ace_common::PrintStrBase;
+using ace_common::PrintStr;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
@@ -88,7 +89,8 @@ Here is the version using `PrintStrN` class:
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namespace ace_common;
+using ace_common::PrintStrBase;
+using ace_common::PrintStrN;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
