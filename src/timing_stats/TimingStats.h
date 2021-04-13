@@ -96,7 +96,14 @@ class TimingStats {
         mMax = duration;
       }
 
-      mExpDecayAvg = (mCount > 0) ? (mExpDecayAvg + duration) / 2 : duration;
+      if (mCount == 0) {
+        mExpDecayAvg = duration;
+      } else {
+        // Use a slightly convoluted averaging algorithm to prevent uint16_t
+        // overflow and to preserve accuracy in the least significant bit.
+        mExpDecayAvg = (mExpDecayAvg/2) + (duration/2)
+          + ((mExpDecayAvg & 0x1) & (duration & 0x1));
+      }
 
       mCount++;
       mCounter++;

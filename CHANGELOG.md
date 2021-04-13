@@ -11,6 +11,7 @@
       32-bit processors, `decToHexDivOnly()` is 2X faster on those without
       hardware divide (e.g. SAMD21, ESP8266), and 10-20% faster on processors
       with hardware divide (e.g. STM32, ESP32, Teensy 3.2).
+    * Prevent overflow of `uint16_t` when calculating exponential decay average.
 * 1.4.4 (2021-04-02)
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.

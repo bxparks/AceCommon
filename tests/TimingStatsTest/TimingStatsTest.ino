@@ -64,6 +64,18 @@ test(TimingStatsTest, four) {
   assertEqual((uint16_t) 31, stats.getExpDecayAvg());
 }
 
+test(TimingStatsTest, expDecayAvg_doesNotOverflow) {
+  TimingStats stats;
+  stats.update(60000);
+  stats.update(60001);
+  assertEqual((uint16_t) 60000, stats.getExpDecayAvg());
+
+  stats.reset();
+  stats.update(60000);
+  stats.update(60002);
+  assertEqual((uint16_t) 60001, stats.getExpDecayAvg());
+}
+
 test(TimingStatsTest, reset) {
   TimingStats stats;
   stats.update(10);
