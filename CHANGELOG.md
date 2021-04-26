@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+* 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.
     * Activate
@@ -14,6 +15,8 @@
     * Prevent overflow of `uint16_t` when calculating exponential decay average.
     * Add `PrintStrBase::cstr()` as a shorter, more convenient version of
       `PrintStrBase::getCstr()`. Retain `getCstr()` for backwards compatibility.
+    * Upgrade to ESP32 Core v1.0.6 and regenerate MemoryBenchmark and
+      AutoBenchmark.
 * 1.4.4 (2021-04-02)
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
