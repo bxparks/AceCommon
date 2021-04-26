@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -144,24 +144,31 @@ $(function() {
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        mMax = duration;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      mExpDecayAvg = (mCount &gt; 0) ? (mExpDecayAvg + duration) / 2 : duration;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      mCount++;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      mCounter++;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    uint16_t mExpDecayAvg;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    uint16_t mMin;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    uint16_t mMax;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    uint32_t mSum;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    uint16_t mCount;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    uint16_t mCounter;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;};</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <span class="keywordflow">if</span> (mCount == 0) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        mExpDecayAvg = duration;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">// Use a slightly convoluted averaging algorithm to prevent uint16_t</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">// overflow and to preserve accuracy in the least significant bit.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        mExpDecayAvg = (mExpDecayAvg/2) + (duration/2)</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;          + ((mExpDecayAvg &amp; 0x1) &amp; (duration &amp; 0x1));</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;      }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      mCount++;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      mCounter++;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    uint16_t mExpDecayAvg;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    uint16_t mMin;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    uint16_t mMax;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    uint32_t mSum;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    uint16_t mCount;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    uint16_t mCounter;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassace__common_1_1TimingStats_html_afed565d761cb1543a34419c2078b3f77"><div class="ttname"><a href="classace__common_1_1TimingStats.html#afed565d761cb1543a34419c2078b3f77">ace_common::TimingStats::getExpDecayAvg</a></div><div class="ttdeci">uint16_t getExpDecayAvg() const</div><div class="ttdoc">An exponential decay average since the last reset().</div><div class="ttdef"><b>Definition:</b> <a href="TimingStats_8h_source.html#l00077">TimingStats.h:77</a></div></div>
 <div class="ttc" id="aclassace__common_1_1TimingStats_html_aacbd8e5404b7c6572da19348021269d2"><div class="ttname"><a href="classace__common_1_1TimingStats.html#aacbd8e5404b7c6572da19348021269d2">ace_common::TimingStats::getCounter</a></div><div class="ttdeci">uint16_t getCounter() const</div><div class="ttdoc">Number of times update() was called from the beginning of time.</div><div class="ttdef"><b>Definition:</b> <a href="TimingStats_8h_source.html#l00087">TimingStats.h:87</a></div></div>

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -67,11 +67,11 @@ $(function() {
 <div class="title">Print String </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>An implementation of <code>Print</code> that writes to an in-memory buffer supporting strings less than 65535 in length. It is intended to be an alternative to the <code>String</code> class to help avoid heap fragmentation due to repeated creation and deletion of small String objects. The 'PrintStr' object inherit the methods from the 'Print' interface which can be used to build an internal string representation of various objects. Instead of using the <code>operator+=()</code> or the <code>concat()</code> method, use the <code>print()</code>, <code>println()</code> (or sometimes the <code>printf()</code> method) of the <code>Print</code> class. After the internal string is built, the NUL-terminated c-string representation can be retrieved using <code>getCstr()</code>.</p>
+<div class="textblock"><p>An implementation of <code>Print</code> that writes to an in-memory buffer supporting strings less than 65535 in length. It is intended to be an alternative to the <code>String</code> class to help avoid heap fragmentation due to repeated creation and deletion of small String objects. The <code>PrintStr</code> object inherit the methods from the <code>Print</code> interface which can be used to build an internal string representation of various objects. Instead of using the <code>operator+=()</code> or the <code>concat()</code> method, use the <code>print()</code>, <code>println()</code> (or sometimes the <code>printf()</code> method) of the <code>Print</code> class. After the internal string is built, the NUL-terminated c-string representation can be retrieved using the <code>cstr()</code> method (previously known as <code>getCstr()</code> which is retained for backwards compatibility).</p>
 <h1>Usage</h1>
 <p>There are 2 implementations of <code>PrintStr</code>:</p>
 <ul>
-<li><code>PrintStr&lt;uint16_t SiZE&gt;</code> is a templatized class where the character array buffer is created on the stack.<ul>
+<li><code>PrintStr&lt;uint16_t SIZE&gt;</code> is a templatized class where the character array buffer is created on the stack.<ul>
 <li>The <code>SiZE</code> parameter is a compile-time constant and given as a template parameter.</li>
 <li>The largest <code>SIZE</code> is limited by the amount of stack space available, which can be much smaller than the total amount of static RAM. For example, on the ESP8266, the maximum stack size is about 4kB, even though the total static RAM is 80kB.</li>
 <li>In practice, <code>SIZE</code> should probably be less than about 400-500.</li>
@@ -88,12 +88,13 @@ $(function() {
 <h2><code>PrintStrBase</code></h2>
 <p>All <code>PrintStr</code> subclasses inherit from the <code>PrintStrBase</code> class, which also inherits from the Arduino <code>Print</code> class.</p>
 <p>Since all subclasses of <code>PrintStr</code> also implement the <code>Print</code> interface, you can write functions that accept a bare <code>Print</code> (or a <code>Print&amp;</code> reference), and write the implementation code inside the function as if you were writing to a normal <code>Print</code> object such as the usual <code>Serial</code> object.</p>
-<p>However, if you need access to the <code>PrintStrBase.length()</code> method, which returns the string length in the current buffer, you need to use the <code>PrintStrBase</code> (or PrintStrBase&amp;<code>reference), instead of using the </code>Print<code>, because the</code>Print<code>class does not implement that</code>length()` method.</p>
+<p>However, if you need access to the <code>PrintStrBase.length()</code> method, which returns the string length in the current buffer, you need to use the <code>PrintStrBase</code> (or <code>PrintStrBase&amp;</code> reference), instead of using the <code>Print</code>, because the <code>Print</code> class does not implement that <code>length()</code> method.</p>
 <h2><code>PrintStr&lt;SiZE&gt;</code> Example</h2>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">#include &lt;Arduino.h&gt;</div>
 <div class="line">#include &lt;AceCommon.h&gt;</div>
-<div class="line">using namespace ace_common;</div>
+<div class="line">using ace_common::PrintStrBase;</div>
+<div class="line">using ace_common::PrintStr;</div>
 <div class="line"> </div>
 <div class="line">void buildMessage(PrintStrBase&amp; message) {</div>
 <div class="line">  if (message.length() &gt; 0) {</div>
@@ -113,7 +114,7 @@ $(function() {
 <div class="line">  PrintStr&lt;30&gt; message;  // &lt;----------- ONLY DiFFERENCE</div>
 <div class="line">  buildMessage(message);</div>
 <div class="line"> </div>
-<div class="line">  const char* cstr = message.getCstr();</div>
+<div class="line">  const char* cstr = message.cstr();</div>
 <div class="line">  doSomething(cstr);</div>
 <div class="line"> </div>
 <div class="line">  message.flush();</div>
@@ -125,7 +126,8 @@ $(function() {
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">#include &lt;Arduino.h&gt;</div>
 <div class="line">#include &lt;AceCommon.h&gt;</div>
-<div class="line">using namespace ace_common;</div>
+<div class="line">using ace_common::PrintStrBase;</div>
+<div class="line">using ace_common::PrintStrN;</div>
 <div class="line"> </div>
 <div class="line">void buildMessage(PrintStrBase&amp; message) {</div>
 <div class="line">  if (message.length() &gt; 0) {</div>
@@ -145,7 +147,7 @@ $(function() {
 <div class="line">  PrintStrN message(30); // &lt;----------- ONLY DiFFERENCE</div>
 <div class="line">  buildMessage(message);</div>
 <div class="line"> </div>
-<div class="line">  const char* cstr = message.getCstr();</div>
+<div class="line">  const char* cstr = message.cstr();</div>
 <div class="line">  doSomething(cstr);</div>
 <div class="line"> </div>
 <div class="line">  message.flush();</div>

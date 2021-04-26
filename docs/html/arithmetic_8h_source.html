@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -116,30 +116,46 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  d += offset;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">   65</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">decToBcd</a>(uint8_t val) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">return</span> (val / 10 * 16) + (val % 10);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">   70</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">bcdToDec</a>(uint8_t val) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">return</span> (val / 16 * 10) + (val % 16);</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">   68</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">decToBcdDivOnly</a>(uint8_t val) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  uint8_t tens = val / 10;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  uint8_t ones = val - tens * 10;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">return</span> (tens * 16) + ones;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">   96</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">udiv1000</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> x = (n &gt;&gt; 8);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> y = (x &gt;&gt; 8);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> z = (y &gt;&gt; 8);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">return</span> (x &gt;&gt; 2) + 3 * (y &gt;&gt; 1) + 9 * z;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">   83</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">decToBcdDivMod</a>(uint8_t val) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keywordflow">return</span> (val / 10 * 16) + (val % 10);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">   96</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">decToBcd</a>(uint8_t val) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#if defined(ARDUINO_ARCH_AVR)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">decToBcdDivMod</a>(val);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">decToBcdDivOnly</a>(val);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">  110</a></span>&#160;<span class="keyword">inline</span> uint8_t <a class="code" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">bcdToDec</a>(uint8_t val) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keywordflow">return</span> (val / 16 * 10) + (val % 16);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">  136</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">udiv1000</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n) {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> x = (n &gt;&gt; 8);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> y = (x &gt;&gt; 8);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> z = (y &gt;&gt; 8);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keywordflow">return</span> (x &gt;&gt; 2) + 3 * (y &gt;&gt; 1) + 9 * z;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aarithmetic_8h_html_a8547966ab0e711d97251ab6cb074e181"><div class="ttname"><a href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">ace_common::bcdToDec</a></div><div class="ttdeci">uint8_t bcdToDec(uint8_t val)</div><div class="ttdoc">Convert binary coded decimal to normal decimal numbers.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00070">arithmetic.h:70</a></div></div>
+<div class="ttc" id="aarithmetic_8h_html_a8547966ab0e711d97251ab6cb074e181"><div class="ttname"><a href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">ace_common::bcdToDec</a></div><div class="ttdeci">uint8_t bcdToDec(uint8_t val)</div><div class="ttdoc">Convert binary coded decimal to normal decimal numbers.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00110">arithmetic.h:110</a></div></div>
 <div class="ttc" id="aarithmetic_8h_html_a7340464d30e60b50d608cbc22ca4bea7"><div class="ttname"><a href="arithmetic_8h.html#a7340464d30e60b50d608cbc22ca4bea7">ace_common::incrementModOffset</a></div><div class="ttdeci">void incrementModOffset(T &amp;d, T m, T offset)</div><div class="ttdoc">Increment 'd' mod 'm', with an offset, avoiding '' operator which is expensive for 8-bit processors.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00057">arithmetic.h:57</a></div></div>
+<div class="ttc" id="aarithmetic_8h_html_a164a2e526bb3abdbca25d29bf354deab"><div class="ttname"><a href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">ace_common::decToBcdDivMod</a></div><div class="ttdeci">uint8_t decToBcdDivMod(uint8_t val)</div><div class="ttdoc">A version of decToBcd() that uses a division and a modulus operation.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00083">arithmetic.h:83</a></div></div>
 <div class="ttc" id="aarithmetic_8h_html_a0eefb1f15b20e28182334fb15ab361e0"><div class="ttname"><a href="arithmetic_8h.html#a0eefb1f15b20e28182334fb15ab361e0">ace_common::incrementMod</a></div><div class="ttdeci">void incrementMod(T &amp;d, T m)</div><div class="ttdoc">Increment 'd' mod 'm', avoiding '' operator which is expensive for 8-bit processors.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00046">arithmetic.h:46</a></div></div>
-<div class="ttc" id="aarithmetic_8h_html_a239844f52c0a01e7fcd0075739035783"><div class="ttname"><a href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">ace_common::udiv1000</a></div><div class="ttdeci">unsigned long udiv1000(unsigned long n)</div><div class="ttdoc">Approximate division by 1000 without using integer division to avoid inefficient integer division ope...</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00096">arithmetic.h:96</a></div></div>
-<div class="ttc" id="aarithmetic_8h_html_a3c833892a295cb0a698b974c18c8cdd8"><div class="ttname"><a href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">ace_common::decToBcd</a></div><div class="ttdeci">uint8_t decToBcd(uint8_t val)</div><div class="ttdoc">Convert normal decimal numbers to binary coded decimal.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00065">arithmetic.h:65</a></div></div>
+<div class="ttc" id="aarithmetic_8h_html_a0e469186f6354161d01f79ecf47bdde4"><div class="ttname"><a href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">ace_common::decToBcdDivOnly</a></div><div class="ttdeci">uint8_t decToBcdDivOnly(uint8_t val)</div><div class="ttdoc">A version of decToBcd() that uses only a single division operation.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00068">arithmetic.h:68</a></div></div>
+<div class="ttc" id="aarithmetic_8h_html_a239844f52c0a01e7fcd0075739035783"><div class="ttname"><a href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">ace_common::udiv1000</a></div><div class="ttdeci">unsigned long udiv1000(unsigned long n)</div><div class="ttdoc">Approximate division by 1000 without using integer division to avoid inefficient integer division ope...</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00136">arithmetic.h:136</a></div></div>
+<div class="ttc" id="aarithmetic_8h_html_a3c833892a295cb0a698b974c18c8cdd8"><div class="ttname"><a href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">ace_common::decToBcd</a></div><div class="ttdeci">uint8_t decToBcd(uint8_t val)</div><div class="ttdoc">Convert normal decimal numbers to binary coded decimal.</div><div class="ttdef"><b>Definition:</b> <a href="arithmetic_8h_source.html#l00096">arithmetic.h:96</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

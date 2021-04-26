@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -116,8 +116,11 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1PrintStrBase.html#abbe2ab012496d155dd174d0161e11875">flush</a> () override</td></tr>
 <tr class="memdesc:abbe2ab012496d155dd174d0161e11875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the internal buffer. <br /></td></tr>
 <tr class="separator:abbe2ab012496d155dd174d0161e11875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e67c86555f9ec6c1bfe12c245554f10"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10">cstr</a> () const</td></tr>
+<tr class="memdesc:a1e67c86555f9ec6c1bfe12c245554f10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the NUL terminated c-string buffer.  <a href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10">More...</a><br /></td></tr>
+<tr class="separator:a1e67c86555f9ec6c1bfe12c245554f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a734e18deab0e6be6657fd387a0890e56"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1PrintStrBase.html#a734e18deab0e6be6657fd387a0890e56">getCstr</a> () const</td></tr>
-<tr class="memdesc:a734e18deab0e6be6657fd387a0890e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the NUL terminated c-string buffer.  <a href="classace__common_1_1PrintStrBase.html#a734e18deab0e6be6657fd387a0890e56">More...</a><br /></td></tr>
+<tr class="memdesc:a734e18deab0e6be6657fd387a0890e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backwards compatible version of <a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a>.  <a href="classace__common_1_1PrintStrBase.html#a734e18deab0e6be6657fd387a0890e56">More...</a><br /></td></tr>
 <tr class="separator:a734e18deab0e6be6657fd387a0890e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acead53999e77d553879fb0e1f402982b"><td class="memItemLeft" align="right" valign="top"><a id="acead53999e77d553879fb0e1f402982b"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1PrintStrBase.html#acead53999e77d553879fb0e1f402982b">length</a> () const</td></tr>
@@ -197,11 +200,41 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00125">125</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00126">126</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1e67c86555f9ec6c1bfe12c245554f10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e67c86555f9ec6c1bfe12c245554f10">&#9670;&nbsp;</a></span>cstr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* ace_common::PrintStrBase::cstr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the NUL terminated c-string buffer. </p>
+<p>After the buffer is no longer needed, the <a class="el" href="classace__common_1_1PrintStrBase.html#abbe2ab012496d155dd174d0161e11875" title="Clear the internal buffer.">flush()</a> method should be called to reset the internal buffer index to 0. </p>
+
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00108">108</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+
+</div>
+</div>
 <a id="a734e18deab0e6be6657fd387a0890e56"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a734e18deab0e6be6657fd387a0890e56">&#9670;&nbsp;</a></span>getCstr()</h2>
 
@@ -225,10 +258,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return the NUL terminated c-string buffer. </p>
-<p>After the buffer is no longer needed, the <a class="el" href="classace__common_1_1PrintStrBase.html#abbe2ab012496d155dd174d0161e11875" title="Clear the internal buffer.">flush()</a> method should be called to reset the internal buffer index to 0. </p>
+<p>Backwards compatible version of <a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a>. </p>
+<p>New code should use <a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00108">108</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00114">114</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +291,7 @@ Protected Attributes</h2></td></tr>
 <p>In the case of <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a></code>, there might be a way to remove this member variable by calculating the pointer to the stack buffer, by extending the pointer from the last element of this object (i.e. &amp;index_), and thereby saving some memory.</p>
 <p>But I am not convinced that I have the knowledge do that properly without triggering UB (undefined behavior) in the C++ language. Do I define buf_[0] here and will it point exactly where actualBuf_[] is allocated? Or do I use [&amp;<a class="el" href="classace__common_1_1PrintStrBase.html" title="Base class for all template instances of the PrintStr&lt;SIZE&gt; class.">PrintStrBase</a> + sizeof(PrintStrBase)] to calculate the pointer to actualBuf_. I just don't know what's actually allowed in the language spec versus something that works by pure luck on a particular microcontroller and compiler. So I'll pay the cost of the 2 extra bytes (8-bit) or 4 extra bytes (32-bit processors) of RAM and store the pointer to actualBuf_ explicitly here in the base class. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00161">161</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00162">162</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
