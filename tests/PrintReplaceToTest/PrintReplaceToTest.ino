@@ -17,15 +17,15 @@ test(printReplaceCharTo, normal) {
 
   printStr.flush();
   printReplaceCharTo(printStr, "NOREPLACE", '%', 's');
-  assertEqual("NOREPLACE", printStr.getCstr());
+  assertEqual("NOREPLACE", printStr.cstr());
 
   printStr.flush();
   printReplaceCharTo(printStr, "E%T%Z", '%', 's');
-  assertEqual("EsTsZ", printStr.getCstr());
+  assertEqual("EsTsZ", printStr.cstr());
 
   printStr.flush();
   printReplaceCharTo(printStr, "E%T%Z", '%', '\0');
-  assertEqual("ETZ", printStr.getCstr());
+  assertEqual("ETZ", printStr.cstr());
 }
 
 test(printReplaceCharTo, outOfBounds) {
@@ -33,7 +33,7 @@ test(printReplaceCharTo, outOfBounds) {
 
   printStr.flush();
   printReplaceCharTo(printStr, "E%T", '%', 's');
-  assertEqual("Es", printStr.getCstr());
+  assertEqual("Es", printStr.cstr());
 }
 
 //----------------------------------------------------------------------------
@@ -45,15 +45,15 @@ test(printReplaceCharTo_Flash, normal) {
 
   printStr.flush();
   printReplaceCharTo(printStr, F("NOREPLACE"), '%', 's');
-  assertEqual("NOREPLACE", printStr.getCstr());
+  assertEqual("NOREPLACE", printStr.cstr());
 
   printStr.flush();
   printReplaceCharTo(printStr, F("E%T%Z"), '%', 's');
-  assertEqual("EsTsZ", printStr.getCstr());
+  assertEqual("EsTsZ", printStr.cstr());
 
   printStr.flush();
   printReplaceCharTo(printStr, F("E%T%Z"), '%', '\0');
-  assertEqual("ETZ", printStr.getCstr());
+  assertEqual("ETZ", printStr.cstr());
 }
 
 test(printReplaceCharTo_Flash, outOfBounds) {
@@ -61,7 +61,7 @@ test(printReplaceCharTo_Flash, outOfBounds) {
 
   printStr.flush();
   printReplaceCharTo(printStr, F("E%T"), '%', 's');
-  assertEqual("Es", printStr.getCstr());
+  assertEqual("Es", printStr.cstr());
 }
 
 //---------------------------------------------------------------------------
@@ -73,15 +73,15 @@ test(printReplaceStringTo, normal) {
 
   printStr.flush();
   printReplaceStringTo(printStr, "NOREPLACE", '%', "suv");
-  assertEqual("NOREPLACE", printStr.getCstr());
+  assertEqual("NOREPLACE", printStr.cstr());
 
   printStr.flush();
   printReplaceStringTo(printStr, "E%T%Z", '%', "suv");
-  assertEqual("EsuvTsuvZ", printStr.getCstr());
+  assertEqual("EsuvTsuvZ", printStr.cstr());
 
   printStr.flush();
   printReplaceStringTo(printStr, "E%T%Z", '%', "");
-  assertEqual("ETZ", printStr.getCstr());
+  assertEqual("ETZ", printStr.cstr());
 }
 
 test(printReplaceStringTo, outOfBounds) {
@@ -89,7 +89,7 @@ test(printReplaceStringTo, outOfBounds) {
 
   printStr.flush();
   printReplaceStringTo(printStr, "E%T", '%', "suv");
-  assertEqual("Es", printStr.getCstr());
+  assertEqual("Es", printStr.cstr());
 }
 
 //---------------------------------------------------------------------------
@@ -101,15 +101,15 @@ test(printReplaceStringTo_Flash, normal) {
 
   printStr.flush();
   printReplaceStringTo(printStr, F("NOREPLACE"), '%', "suv");
-  assertEqual("NOREPLACE", printStr.getCstr());
+  assertEqual("NOREPLACE", printStr.cstr());
 
   printStr.flush();
   printReplaceStringTo(printStr, F("E%T%Z"), '%', "suv");
-  assertEqual("EsuvTsuvZ", printStr.getCstr());
+  assertEqual("EsuvTsuvZ", printStr.cstr());
 
   printStr.flush();
   printReplaceStringTo(printStr, F("E%T%Z"), '%', "");
-  assertEqual("ETZ", printStr.getCstr());
+  assertEqual("ETZ", printStr.cstr());
 }
 
 test(printReplaceStringTo_Flash, outOfBounds) {
@@ -117,7 +117,7 @@ test(printReplaceStringTo_Flash, outOfBounds) {
 
   printStr.flush();
   printReplaceStringTo(printStr, F("E%T"), '%', "suv");
-  assertEqual("Es", printStr.getCstr());
+  assertEqual("Es", printStr.cstr());
 }
 
 // ---------------------------------------------------------------------------

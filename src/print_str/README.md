@@ -8,7 +8,9 @@ from the `Print` interface which can be used to build an internal string
 representation of various objects. Instead of using the `operator+=()` or the
 `concat()` method, use the `print()`, `println()` (or sometimes the `printf()`
 method) of the `Print` class. After the internal string is built, the
-NUL-terminated c-string representation can be retrieved using `getCstr()`.
+NUL-terminated c-string representation can be retrieved using the `cstr()`
+method (previously known as `getCstr()` which is retained for backwards
+compatibility).
 
 ## Usage
 
@@ -73,7 +75,7 @@ void doStuff() {
   PrintStr<30> message;  // <----------- ONLY DiFFERENCE
   buildMessage(message);
 
-  const char* cstr = message.getCstr();
+  const char* cstr = message.cstr();
   doSomething(cstr);
 
   message.flush();
@@ -110,7 +112,7 @@ void doStuff() {
   PrintStrN message(30); // <----------- ONLY DiFFERENCE
   buildMessage(message);
 
-  const char* cstr = message.getCstr();
+  const char* cstr = message.cstr();
   doSomething(cstr);
 
   message.flush();

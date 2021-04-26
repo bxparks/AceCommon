@@ -105,15 +105,16 @@ class PrintStrBase: public Print {
      * needed, the flush() method should be called to reset the internal buffer
      * index to 0.
      */
-    const char* getCstr() const {
+    const char* cstr() const {
       buf_[index_] = '\0';
       return buf_;
     }
 
+    /** Backwards compatible version of cstr(). New code should use cstr(). */
+    const char* getCstr() const { return cstr(); }
+
     /** Return the length of the internal c-string buffer. */
-    size_t length() const {
-      return index_;
-    }
+    size_t length() const { return index_; }
 
   protected:
     /**

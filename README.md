@@ -36,7 +36,8 @@ automatically:
     * [src/print_str/README.md](src/print_str/README.md)
         * Provides classes that implement the `Print` interface so that
           values can be printed into in-memory buffers. The string can then
-          be extracted as a normal c-string (`const char*`).
+          be extracted as a normal c-string using `const char*
+          PrintStr::cstr()`.
         * Alternative to the Arduino `String` class to avoid or reduce heap
           fragmentation.
     * `class PrintStrBase`

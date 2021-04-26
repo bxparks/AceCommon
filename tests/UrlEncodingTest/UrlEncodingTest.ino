@@ -13,14 +13,14 @@ using namespace ace_common;
 test(formUrlEncode, normal) {
   PrintStr<10> printStr;
   formUrlEncode(printStr, "0aA %");
-  assertEqual("0aA+%25", printStr.getCstr());
+  assertEqual("0aA+%25", printStr.cstr());
 }
 
 test(formUrlEncode, tooLong) {
   PrintStr<10> printStr;
   // truncated to 9 characters because PrintStr is only 10-characters big
   formUrlEncode(printStr, "0aA %0123456");
-  assertEqual("0aA+%2501", printStr.getCstr());
+  assertEqual("0aA+%2501", printStr.cstr());
 }
 
 //----------------------------------------------------------------------------
@@ -30,28 +30,28 @@ test(formUrlEncode, tooLong) {
 test(formUrlDecode, normal) {
   PrintStr<10> printStr;
   formUrlDecode(printStr, "0aA+%25");
-  assertEqual("0aA %", printStr.getCstr());
+  assertEqual("0aA %", printStr.cstr());
 }
 
 test(formUrlDecode, truncated1) {
   PrintStr<10> printStr;
   // Missing 2-digit of hex after %, which is ignored.
   formUrlDecode(printStr, "0aA+%2");
-  assertEqual("0aA ", printStr.getCstr());
+  assertEqual("0aA ", printStr.cstr());
 }
 
 test(formUrlDecode, truncated2) {
   PrintStr<10> printStr;
   // Missing 2-digit of hex after %, which is ignored.
   formUrlDecode(printStr, "0aA+%");
-  assertEqual("0aA ", printStr.getCstr());
+  assertEqual("0aA ", printStr.cstr());
 }
 
 test(formUrlDecode, invalidHex) {
   PrintStr<10> printStr;
   // Missing 2-digit of hex after %, which is ignored.
   formUrlDecode(printStr, "0aA+%0Z");
-  assertEqual("0aA ", printStr.getCstr());
+  assertEqual("0aA ", printStr.cstr());
 }
 
 //----------------------------------------------------------------------------

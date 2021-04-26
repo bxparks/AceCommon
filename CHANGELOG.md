@@ -12,6 +12,8 @@
       hardware divide (e.g. SAMD21, ESP8266), and 10-20% faster on processors
       with hardware divide (e.g. STM32, ESP32, Teensy 3.2).
     * Prevent overflow of `uint16_t` when calculating exponential decay average.
+    * Add `PrintStrBase::cstr()` as a shorter, more convenient version of
+      `PrintStrBase::getCstr()`. Retain `getCstr()` for backwards compatibility.
 * 1.4.4 (2021-04-02)
     * Add `copyReplaceChar()` and `copyReplaceString()` functions. Extracted
       from AceTime library.
