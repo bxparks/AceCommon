@@ -27,7 +27,7 @@ print(f"""\
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.4
+**Version**: AceCommon v1.4.5
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -83,6 +83,7 @@ number of `TimingStats::update()` calls that were made.
   optimizations. That program found that that `udiv1000()` took about 5-6
   microseconds on the AVR. The AutoBenchmark program finds that it actually
   takes 16-16 microseconds.
+* 1.4.5: Upgrade to ESP32 Core v1.0.6. No significant change.
 
 ## Results
 
