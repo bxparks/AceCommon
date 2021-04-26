@@ -12,19 +12,19 @@ test(PrintfToTest, printfTo) {
   PrintStr<10> str;
 
   printfTo(str, "%d", 10);
-  assertEqual("10", str.getCstr());
+  assertEqual("10", str.cstr());
 
   str.flush();
   printfTo(str, "%x", 10);
-  assertEqual("a", str.getCstr());
+  assertEqual("a", str.cstr());
 
   str.flush();
   printfTo(str, "%03d", 10);
-  assertEqual("010", str.getCstr());
+  assertEqual("010", str.cstr());
 
   str.flush();
   printfTo(str, "%s", "hello");
-  assertEqual("hello", str.getCstr());
+  assertEqual("hello", str.cstr());
 }
 
 //----------------------------------------------------------------------------
@@ -33,68 +33,68 @@ test(PrintPadTest, printPad2To) {
   PrintStr<10> str;
 
   printPad2To(str, 2, '0');
-  assertEqual("02", str.getCstr());
+  assertEqual("02", str.cstr());
 
   str.flush();
   printPad2To(str, 22, '0');
-  assertEqual("22", str.getCstr());
+  assertEqual("22", str.cstr());
 }
 
 test(PrintPadTest, printPad3To) {
   PrintStr<10> str;
 
   printPad3To(str, 2, '0');
-  assertEqual("002", str.getCstr());
+  assertEqual("002", str.cstr());
 
   str.flush();
   printPad3To(str, 22, '0');
-  assertEqual("022", str.getCstr());
+  assertEqual("022", str.cstr());
 
   str.flush();
   printPad3To(str, 222, '0');
-  assertEqual("222", str.getCstr());
+  assertEqual("222", str.cstr());
 }
 
 test(PrintPadTest, printPad4To) {
   PrintStr<10> str;
 
   printPad4To(str, 2, '0');
-  assertEqual("0002", str.getCstr());
+  assertEqual("0002", str.cstr());
 
   str.flush();
   printPad4To(str, 22, '0');
-  assertEqual("0022", str.getCstr());
+  assertEqual("0022", str.cstr());
 
   str.flush();
   printPad4To(str, 222, '0');
-  assertEqual("0222", str.getCstr());
+  assertEqual("0222", str.cstr());
 
   str.flush();
   printPad4To(str, 2222, '0');
-  assertEqual("2222", str.getCstr());
+  assertEqual("2222", str.cstr());
 }
 
 test(PrintPadTest, printPad5To) {
   PrintStr<10> str;
 
   printPad5To(str, 2, '0');
-  assertEqual("00002", str.getCstr());
+  assertEqual("00002", str.cstr());
 
   str.flush();
   printPad5To(str, 22, '0');
-  assertEqual("00022", str.getCstr());
+  assertEqual("00022", str.cstr());
 
   str.flush();
   printPad5To(str, 222, '0');
-  assertEqual("00222", str.getCstr());
+  assertEqual("00222", str.cstr());
 
   str.flush();
   printPad5To(str, 2222, '0');
-  assertEqual("02222", str.getCstr());
+  assertEqual("02222", str.cstr());
 
   str.flush();
   printPad5To(str, 22222, '0');
-  assertEqual("22222", str.getCstr());
+  assertEqual("22222", str.cstr());
 }
 
 //----------------------------------------------------------------------------

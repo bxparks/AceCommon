@@ -39,7 +39,7 @@ test(PrintStrTest, flush) {
   assertEqual((size_t) 1, printStr.length());
 
   printStr.flush();
-  assertEqual("", printStr.getCstr());
+  assertEqual("", printStr.cstr());
 }
 
 test(PrintStrTest, print_underSized) {
@@ -50,7 +50,7 @@ test(PrintStrTest, print_underSized) {
   // Verify that the entire STRING got copied
   assertEqual((size_t) BUF_SIZE - 1, n);
   assertEqual((size_t) BUF_SIZE - 1, printStr.length());
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 test(PrintStrTest, print_overSized) {
@@ -62,7 +62,7 @@ test(PrintStrTest, print_overSized) {
   assertEqual((size_t) 269, n);
   assertEqual((size_t) 269, printStr.length());
   truncateString(269);
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 test(PrintStrTest, write_overSized) {
@@ -73,7 +73,7 @@ test(PrintStrTest, write_overSized) {
   assertEqual((size_t) 269, n);
   assertEqual((size_t) 269, printStr.length());
   truncateString(269);
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 //----------------------------------------------------------------------------
@@ -87,7 +87,7 @@ test(PrintStrNTest, flush) {
   assertEqual((size_t) 1, printStr.length());
 
   printStr.flush();
-  assertEqual("", printStr.getCstr());
+  assertEqual("", printStr.cstr());
 }
 
 test(PrintStrNTest, print_underSized) {
@@ -98,7 +98,7 @@ test(PrintStrNTest, print_underSized) {
   // Verify that the entire STRING got copied
   assertEqual((size_t) BUF_SIZE - 1, n);
   assertEqual((size_t) BUF_SIZE - 1, printStr.length());
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 test(PrintStrNTest, print_overSized) {
@@ -110,7 +110,7 @@ test(PrintStrNTest, print_overSized) {
   assertEqual((size_t) 269, n);
   assertEqual((size_t) 269, printStr.length());
   truncateString(269);
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 test(PrintStrNTest, write_overSized) {
@@ -121,7 +121,7 @@ test(PrintStrNTest, write_overSized) {
   assertEqual((size_t) 269, n);
   assertEqual((size_t) 269, printStr.length());
   truncateString(269);
-  assertEqual(STRING, printStr.getCstr());
+  assertEqual(STRING, printStr.cstr());
 }
 
 //----------------------------------------------------------------------------

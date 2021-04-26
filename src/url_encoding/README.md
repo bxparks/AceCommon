@@ -26,7 +26,7 @@ The most convenient implementation of the `Print` interface is one of the [Print
 String](../print_str) classes provided in this library. These classes allow the
 encoded or decoded string to be printed to an in-memory buffer. The `PrintStr`
 or `PrintStrN` object can be converted into a normal c-string (`const char*`)
-using the `getCstr()` method.
+using the `cstr()` method.
 
 You can also pass a `Serial` object as the `output` if that is more
 convenient, since `Serial` also implements the `Print` interface.
@@ -50,7 +50,7 @@ void encodeToSerial() {
 void encodeToMemory() {
   PrintStr<20> printString;
   formUrlEncode(printString, MESSAGE);
-  Serial.println(printString.getCstr());
+  Serial.println(printString.cstr());
 }
 
 void decodeToSerial() {
@@ -61,7 +61,7 @@ void decodeToSerial() {
 void decodeToMemory() {
   PrintStr<20> printString;
   formUrlDecode(printString, ENCODED_MESSAGE);
-  Serial.println(printString.getCstr());
+  Serial.println(printString.cstr());
 }
 
 void setup() {

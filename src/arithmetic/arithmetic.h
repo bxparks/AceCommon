@@ -61,12 +61,52 @@ void incrementModOffset(T& d, T m, T offset) {
   d += offset;
 }
 
-/** Convert normal decimal numbers to binary coded decimal. */
-inline uint8_t decToBcd(uint8_t val) {
+/**
+ * A version of decToBcd() that uses only a single division operation. For most
+ * 32-bit processors, this version is twice as fast as decToBcdDivMod().
+ */
+inline uint8_t decToBcdDivOnly(uint8_t val) {
+  uint8_t tens = val / 10;
+  uint8_t ones = val - tens * 10;
+  return (tens * 16) + ones;
+}
+
+/**
+ * A version of decToBcd() that uses a division and a modulus operation.
+ *
+ * Some compilers (e.g. AVR) seem to recognize this pattern of
+ * division-and-modulus operations, and generate code that is actually faster
+ * for this than decToBcdDivOnly(). AutoBenchmark says this version takes 4.996
+ * micros, versus 5.128 micros for decToBcdDivOnly() on a AVR. That appears to
+ * be the difference of 2 clock cycles for a 16MHz clock.
+ */
+inline uint8_t decToBcdDivMod(uint8_t val) {
   return (val / 10 * 16) + (val % 10);
 }
 
-/** Convert binary coded decimal to normal decimal numbers. */
+/**
+ * Convert normal decimal numbers to binary coded decimal.
+ *
+ * Uses either decToBcdDivOnly() or decToBcdDivMod() depending on which was
+ * determined to be faster on a particular platform.
+ *
+ * If the input `val` is greater than 99, the result is unspecified, but is
+ * probably not what you want.
+ */
+inline uint8_t decToBcd(uint8_t val) {
+#if defined(ARDUINO_ARCH_AVR)
+  return decToBcdDivMod(val);
+#else
+  return decToBcdDivOnly(val);
+#endif
+}
+
+/**
+ * Convert binary coded decimal to normal decimal numbers.
+ *
+ * If the input `val` is a valid decimal number (0x00 to 0x99, using only
+ * decimal digits), the result is unspecified but probably not what you want.
+ */
 inline uint8_t bcdToDec(uint8_t val) {
   return (val / 16 * 10) + (val % 16);
 }

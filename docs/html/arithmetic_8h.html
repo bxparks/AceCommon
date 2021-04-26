@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -105,13 +105,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a7340464d30e60b50d608cbc22ca4bea7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a7340464d30e60b50d608cbc22ca4bea7">ace_common::incrementModOffset</a> (T &amp;d, T m, T offset)</td></tr>
 <tr class="memdesc:a7340464d30e60b50d608cbc22ca4bea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment 'd' mod 'm', with an offset, avoiding '' operator which is expensive for 8-bit processors.  <a href="arithmetic_8h.html#a7340464d30e60b50d608cbc22ca4bea7">More...</a><br /></td></tr>
 <tr class="separator:a7340464d30e60b50d608cbc22ca4bea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c833892a295cb0a698b974c18c8cdd8"><td class="memItemLeft" align="right" valign="top"><a id="a3c833892a295cb0a698b974c18c8cdd8"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">ace_common::decToBcd</a> (uint8_t val)</td></tr>
-<tr class="memdesc:a3c833892a295cb0a698b974c18c8cdd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert normal decimal numbers to binary coded decimal. <br /></td></tr>
+<tr class="memitem:a0e469186f6354161d01f79ecf47bdde4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">ace_common::decToBcdDivOnly</a> (uint8_t val)</td></tr>
+<tr class="memdesc:a0e469186f6354161d01f79ecf47bdde4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A version of <a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8" title="Convert normal decimal numbers to binary coded decimal.">decToBcd()</a> that uses only a single division operation.  <a href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4">More...</a><br /></td></tr>
+<tr class="separator:a0e469186f6354161d01f79ecf47bdde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164a2e526bb3abdbca25d29bf354deab"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">ace_common::decToBcdDivMod</a> (uint8_t val)</td></tr>
+<tr class="memdesc:a164a2e526bb3abdbca25d29bf354deab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A version of <a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8" title="Convert normal decimal numbers to binary coded decimal.">decToBcd()</a> that uses a division and a modulus operation.  <a href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab">More...</a><br /></td></tr>
+<tr class="separator:a164a2e526bb3abdbca25d29bf354deab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c833892a295cb0a698b974c18c8cdd8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">ace_common::decToBcd</a> (uint8_t val)</td></tr>
+<tr class="memdesc:a3c833892a295cb0a698b974c18c8cdd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert normal decimal numbers to binary coded decimal.  <a href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8">More...</a><br /></td></tr>
 <tr class="separator:a3c833892a295cb0a698b974c18c8cdd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8547966ab0e711d97251ab6cb074e181"><td class="memItemLeft" align="right" valign="top"><a id="a8547966ab0e711d97251ab6cb074e181"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">ace_common::bcdToDec</a> (uint8_t val)</td></tr>
-<tr class="memdesc:a8547966ab0e711d97251ab6cb074e181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert binary coded decimal to normal decimal numbers. <br /></td></tr>
+<tr class="memitem:a8547966ab0e711d97251ab6cb074e181"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">ace_common::bcdToDec</a> (uint8_t val)</td></tr>
+<tr class="memdesc:a8547966ab0e711d97251ab6cb074e181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert binary coded decimal to normal decimal numbers.  <a href="arithmetic_8h.html#a8547966ab0e711d97251ab6cb074e181">More...</a><br /></td></tr>
 <tr class="separator:a8547966ab0e711d97251ab6cb074e181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a239844f52c0a01e7fcd0075739035783"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">ace_common::udiv1000</a> (unsigned long n)</td></tr>
 <tr class="memdesc:a239844f52c0a01e7fcd0075739035783"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approximate division by 1000 without using integer division to avoid inefficient integer division operations on 8-bit processors.  <a href="arithmetic_8h.html#a239844f52c0a01e7fcd0075739035783">More...</a><br /></td></tr>
@@ -122,6 +126,131 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a
 
 <p class="definition">Definition in file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8547966ab0e711d97251ab6cb074e181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8547966ab0e711d97251ab6cb074e181">&#9670;&nbsp;</a></span>bcdToDec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ace_common::bcdToDec </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert binary coded decimal to normal decimal numbers. </p>
+<p>If the input <code>val</code> is a valid decimal number (0x00 to 0x99, using only decimal digits), the result is unspecified but probably not what you want. </p>
+
+<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00110">110</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
+
+</div>
+</div>
+<a id="a3c833892a295cb0a698b974c18c8cdd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c833892a295cb0a698b974c18c8cdd8">&#9670;&nbsp;</a></span>decToBcd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ace_common::decToBcd </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert normal decimal numbers to binary coded decimal. </p>
+<p>Uses either <a class="el" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4" title="A version of decToBcd() that uses only a single division operation.">decToBcdDivOnly()</a> or <a class="el" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab" title="A version of decToBcd() that uses a division and a modulus operation.">decToBcdDivMod()</a> depending on which was determined to be faster on a particular platform.</p>
+<p>If the input <code>val</code> is greater than 99, the result is unspecified, but is probably not what you want. </p>
+
+<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00096">96</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
+
+</div>
+</div>
+<a id="a164a2e526bb3abdbca25d29bf354deab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a164a2e526bb3abdbca25d29bf354deab">&#9670;&nbsp;</a></span>decToBcdDivMod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ace_common::decToBcdDivMod </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A version of <a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8" title="Convert normal decimal numbers to binary coded decimal.">decToBcd()</a> that uses a division and a modulus operation. </p>
+<p>Some compilers (e.g. AVR) seem to recognize this pattern of division-and-modulus operations, and generate code that is actually faster for this than <a class="el" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4" title="A version of decToBcd() that uses only a single division operation.">decToBcdDivOnly()</a>. AutoBenchmark says this version takes 4.996 micros, versus 5.128 micros for <a class="el" href="arithmetic_8h.html#a0e469186f6354161d01f79ecf47bdde4" title="A version of decToBcd() that uses only a single division operation.">decToBcdDivOnly()</a> on a AVR. That appears to be the difference of 2 clock cycles for a 16MHz clock. </p>
+
+<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00083">83</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
+
+</div>
+</div>
+<a id="a0e469186f6354161d01f79ecf47bdde4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e469186f6354161d01f79ecf47bdde4">&#9670;&nbsp;</a></span>decToBcdDivOnly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ace_common::decToBcdDivOnly </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A version of <a class="el" href="arithmetic_8h.html#a3c833892a295cb0a698b974c18c8cdd8" title="Convert normal decimal numbers to binary coded decimal.">decToBcd()</a> that uses only a single division operation. </p>
+<p>For most 32-bit processors, this version is twice as fast as <a class="el" href="arithmetic_8h.html#a164a2e526bb3abdbca25d29bf354deab" title="A version of decToBcd() that uses a division and a modulus operation.">decToBcdDivMod()</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00068">68</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
+
+</div>
+</div>
 <a id="a0eefb1f15b20e28182334fb15ab361e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0eefb1f15b20e28182334fb15ab361e0">&#9670;&nbsp;</a></span>incrementMod()</h2>
 
@@ -232,7 +361,7 @@ template&lt;typename T &gt; </div>
 </div><!-- fragment --><p>The truncation of this series means that this function returns approximations which are always slightly smaller than the fully accurate answer. See the unit tests for concrete examples. This approximation was good enough for me in the situations where exact accuracy was not required.</p>
 <p>More accurate algorithms exist (see for example <a href="http://www.hackersdelight.org/divcMore.pdf">http://www.hackersdelight.org/divcMore.pdf</a>). </p>
 
-<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00096">96</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="arithmetic_8h_source.html#l00136">136</a> of file <a class="el" href="arithmetic_8h_source.html">arithmetic.h</a>.</p>
 
 </div>
 </div>

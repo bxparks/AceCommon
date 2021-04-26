@@ -3,18 +3,20 @@
 An implementation of `Print` that writes to an in-memory buffer supporting
 strings less than 65535 in length. It is intended to be an alternative to the
 `String` class to help avoid heap fragmentation due to repeated creation and
-deletion of small String objects. The 'PrintStr' object inherit the methods
-from the 'Print' interface which can be used to build an internal string
+deletion of small String objects. The `PrintStr` object inherit the methods
+from the `Print` interface which can be used to build an internal string
 representation of various objects. Instead of using the `operator+=()` or the
 `concat()` method, use the `print()`, `println()` (or sometimes the `printf()`
 method) of the `Print` class. After the internal string is built, the
-NUL-terminated c-string representation can be retrieved using `getCstr()`.
+NUL-terminated c-string representation can be retrieved using the `cstr()`
+method (previously known as `getCstr()` which is retained for backwards
+compatibility).
 
 ## Usage
 
 There are 2 implementations of `PrintStr`:
 
-* `PrintStr<uint16_t SiZE>` is a templatized class where the character array
+* `PrintStr<uint16_t SIZE>` is a templatized class where the character array
   buffer is created on the stack.
     * The `SiZE` parameter is a compile-time constant and given as a template
       parameter.
@@ -44,7 +46,7 @@ normal `Print` object such as the usual `Serial` object.
 
 However, if you need access to the `PrintStrBase.length()` method, which
 returns the string length in the current buffer, you need to use the
-`PrintStrBase` (or PrintStrBase&` reference), instead of using the
+`PrintStrBase` (or `PrintStrBase&` reference), instead of using the
 `Print`, because the `Print` class does not implement that `length()` method.
 
 ### `PrintStr<SiZE>` Example
@@ -52,7 +54,8 @@ returns the string length in the current buffer, you need to use the
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namespace ace_common;
+using ace_common::PrintStrBase;
+using ace_common::PrintStr;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
@@ -72,7 +75,7 @@ void doStuff() {
   PrintStr<30> message;  // <----------- ONLY DiFFERENCE
   buildMessage(message);
 
-  const char* cstr = message.getCstr();
+  const char* cstr = message.cstr();
   doSomething(cstr);
 
   message.flush();
@@ -88,7 +91,8 @@ Here is the version using `PrintStrN` class:
 ```C++
 #include <Arduino.h>
 #include <AceCommon.h>
-using namespace ace_common;
+using ace_common::PrintStrBase;
+using ace_common::PrintStrN;
 
 void buildMessage(PrintStrBase& message) {
   if (message.length() > 0) {
@@ -108,7 +112,7 @@ void doStuff() {
   PrintStrN message(30); // <----------- ONLY DiFFERENCE
   buildMessage(message);
 
-  const char* cstr = message.getCstr();
+  const char* cstr = message.cstr();
   doSomething(cstr);
 
   message.flush();

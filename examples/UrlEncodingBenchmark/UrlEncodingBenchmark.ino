@@ -70,7 +70,7 @@ void printFormUrlEncodeTime(uint16_t size) {
   PrintStrN message(size);
   createMessage(message, size);
   TimingStats stats;
-  benchmarkFormUrlEncode(stats, message.getCstr());
+  benchmarkFormUrlEncode(stats, message.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP32) || defined(ESP8266)
@@ -113,10 +113,10 @@ void printFormUrlDecodeTime(uint16_t size) {
   // encode it
   PrintStrN encoded(2 * size);
   yield();
-  formUrlEncode(encoded, message.getCstr());
+  formUrlEncode(encoded, message.cstr());
 
   TimingStats stats;
-  benchmarkFormUrlDecode(stats, encoded.getCstr());
+  benchmarkFormUrlDecode(stats, encoded.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP32) || defined(ESP8266)
@@ -154,7 +154,7 @@ void printUrlEncodeYieldTime(uint16_t size) {
   PrintStrN message(size);
   createMessage(message, size);
   TimingStats stats;
-  benchmarkUrlEncodeYield(stats, message.getCstr());
+  benchmarkUrlEncodeYield(stats, message.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP8266) || defined(ESP32)
@@ -198,10 +198,10 @@ void printUrlDecodeYieldTime(uint16_t size) {
   // encode it
   PrintStrN encoded(2 * size);
   yield();
-  formUrlEncode(encoded, message.getCstr());
+  formUrlEncode(encoded, message.cstr());
 
   TimingStats stats;
-  benchmarkUrlDecodeYield(stats, encoded.getCstr());
+  benchmarkUrlDecodeYield(stats, encoded.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP32) || defined(ESP8266)
@@ -239,7 +239,7 @@ void printUrlEncodeNoYieldTime(uint16_t size) {
   PrintStrN message(size);
   createMessage(message, size);
   TimingStats stats;
-  benchmarkUrlEncodeNoYield(stats, message.getCstr());
+  benchmarkUrlEncodeNoYield(stats, message.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP32) || defined(ESP8266)
@@ -283,10 +283,10 @@ void printUrlDecodeNoYieldTime(uint16_t size) {
   // encode it
   PrintStrN encoded(2 * size);
   yield();
-  formUrlEncode(encoded, message.getCstr());
+  formUrlEncode(encoded, message.cstr());
 
   TimingStats stats;
-  benchmarkUrlDecodeNoYield(stats, encoded.getCstr());
+  benchmarkUrlDecodeNoYield(stats, encoded.cstr());
   uint16_t perMil = (stats.getAvg() * 1000L) / size;
 
 #if defined(ESP32) || defined(ESP8266)

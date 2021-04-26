@@ -160,11 +160,11 @@ test(KStringTest, printTo_prefix_suffix) {
 
   printStr.flush();
   k1.printTo(printStr);
-  assertEqual(printStr.getCstr(), "America/Africa");
+  assertEqual(printStr.cstr(), "America/Africa");
 
   printStr.flush();
   k2.printTo(printStr);
-  assertEqual(printStr.getCstr(), "America/Africa");
+  assertEqual(printStr.cstr(), "America/Africa");
 }
 
 // ---------------------------------------------------------------------------
