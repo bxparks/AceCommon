@@ -117,7 +117,7 @@ automatically:
       Print& printer, const __FlashStringHelper* src, char oldChar,
       const char* newString)`
 * [src/fstrings/FlashString.h](src/fstrings/FlashString.h)
-    * [src/fstrings/README.md](src/fstrings/EADDME.md)
+    * [src/fstrings/README.md](src/fstrings/README.md)
     * `class FlashString`
     * Wraps a `const __FlashStringHelper*` into an object that looks and acts
       like a normal c-string pointer `const char*`.
