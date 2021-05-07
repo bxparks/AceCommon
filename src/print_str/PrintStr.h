@@ -88,7 +88,9 @@ class PrintStrBase: public Print {
 
 // Some versions of the Print class do not define a virtual flush() method so
 // we can't use the 'override' keyword.
-#if defined(ESP32) || defined(ARDUINO_ARCH_STM32)
+#if defined(ESP32) \
+    || defined(ARDUINO_ARCH_STM32) \
+    || defined(ARDUINO_AVR_ATTINYX5)
     /** Clear the internal buffer. */
     void flush() {
       index_ = 0;
