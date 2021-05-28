@@ -62,6 +62,9 @@ ASCII table.
   operators bring in more complex code. But the overall ESP32 flash usage goes
   down by 7.5 kB compared to v1.0.4, so this is probably not something to worry
   about.
+* Added benchmarks for `udiv1000()` and native `/1000`. The `udiv1000()`
+  function consumes about 180 bytes on 8-bit AVR processors, more than the
+  native division by `/1000` which takes about 130 bytes.
 
 ## Arduino Nano
 

@@ -6,7 +6,6 @@
 # table that can be inserted into the README.md.
 
 BEGIN {
-  NUM_FEATURES = 9 # excluding Baseline
   labels[0] = "Baseline (PrintStr<16>)"
   labels[1] = "PrintStrN(16)"
   labels[2] = "printPad2()"
@@ -17,6 +16,8 @@ BEGIN {
   labels[7] = "printReplaceStringTo(F())"
   labels[8] = "hashDjb2(char*)"
   labels[9] = "hashDjb2(F())"
+  labels[10] = "udiv1000()"
+  labels[11] = "/1000"
   record_index = 0
 }
 {
@@ -25,9 +26,11 @@ BEGIN {
   record_index++
 }
 END {
+  NUM_ENTRIES = record_index
+
   base_flash = u[0]["flash"]
   base_ram = u[0]["ram"]
-  for (i = 0; i <= NUM_FEATURES; i++) {
+  for (i = 0; i < NUM_ENTRIES; i++) {
     if (u[i]["flash"] == -1) {
       u[i]["d_flash"] = -1
       u[i]["d_ram"] = -1
@@ -41,14 +44,17 @@ END {
     "+---------------------------------------------------------------------+\n")
   printf(\
     "| Functionality                          |  flash/  ram |       delta |\n")
-  printf(\
-    "|----------------------------------------+--------------+-------------|\n")
-  printf(\
-    "| %-38s | %6d/%5d | %5d/%5d |\n",
-    labels[0], u[0]["flash"], u[0]["ram"], u[0]["d_flash"], u[0]["d_ram"])
-  printf(\
-    "|----------------------------------------+--------------+-------------|\n")
-  for (i = 1; i <= NUM_FEATURES; i++) {
+  for (i = 0; i < NUM_ENTRIES; i++) {
+    if (labels[i] ~ /Baseline/ \
+        || labels[i] ~ /PrintStrN/ \
+        || labels[i] ~ /printPad2\(\)/ \
+        || labels[i] ~ /hashDjb2\(char\*\)/ \
+        || labels[i] ~ /printReplaceCharTo\(char\*\)/ \
+        || labels[i] ~ /udiv1000/ \
+    ) {
+      printf(\
+        "|----------------------------------------+--------------+-------------|\n")
+    }
     printf("| %-38s | %6d/%5d | %5d/%5d |\n",
         labels[i], u[i]["flash"], u[i]["ram"], u[i]["d_flash"], u[i]["d_ram"])
   }

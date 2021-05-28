@@ -18,6 +18,8 @@ using namespace ace_common;
 #define FEATURE_PRINT_REPLACE_STRING_TO_FSTRING 7
 #define FEATURE_HASH_DJB2_CSTRING 8
 #define FEATURE_HASH_DJB2_FSTRING 9
+#define FEATURE_UDIV_1000 10
+#define FEATURE_NATIVE_DIV_1000 11
 
 // Select one of the FEATURE_* parameter and compile. Then look at the flash
 // and RAM usage, compared to FEATURE_BASELINE usage to determine how much
@@ -72,6 +74,24 @@ void setup() {
   PrintStr<16> printStr;
   uint32_t hash = hashDjb2(F("1234"));
   printStr.write(hash & 0xff);
+  guard = printStr.cstr()[0];
+#elif FEATURE == FEATURE_UDIV_1000
+  PrintStr<16> printStr;
+  uint32_t value = (uint32_t) guard << 24
+      | ((uint32_t) guard << 16)
+      | (guard << 8)
+      | guard;
+  value = udiv1000(value);
+  printStr.write(value & 0xff);
+  guard = printStr.cstr()[0];
+#elif FEATURE == FEATURE_NATIVE_DIV_1000
+  PrintStr<16> printStr;
+  uint32_t value = (uint32_t) guard << 24
+      | ((uint32_t) guard << 16)
+      | (guard << 8)
+      | guard;
+  value = value / 1000;
+  printStr.write(value & 0xff);
   guard = printStr.cstr()[0];
 #else
   #error Unknown FEATURE
