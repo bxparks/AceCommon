@@ -76,14 +76,25 @@ number of `TimingStats::update()` calls that were made.
 
 ## CPU Time Changes
 
-* 1.4.4: Created the AutoBenchmark, replacing the `examples/Udiv1000` program
-  that measured only the `udiv1000()` function. It seems like
-  `examples/Udiv1000` underestimated the duration of the `udiv1000()` function
-  for AVR processors, probably because it did not sufficiently disable compiler
-  optimizations. That program found that that `udiv1000()` took about 5-6
-  microseconds on the AVR. The AutoBenchmark program finds that it actually
-  takes 16-16 microseconds.
-* 1.4.5: Upgrade to ESP32 Core v1.0.6. No significant change.
+**v1.4.4**
+
+* Created the AutoBenchmark, replacing the `examples/Udiv1000` program that
+    measured only the `udiv1000()` function. It seems like `examples/Udiv1000`
+    underestimated the duration of the `udiv1000()` function for AVR
+    processors, probably because it did not sufficiently disable compiler
+    optimizations. That program found that that `udiv1000()` took about 5-6
+    microseconds on the AVR. The AutoBenchmark program finds that it actually
+    takes 16-16 microseconds.
+
+**v1.4.5**
+
+* Upgrade to ESP32 Core v1.0.6. No significant change.
+
+**v1.4.5+**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+* No significant change in CPU times.
 
 ## Results
 
@@ -103,7 +114,7 @@ should be pretty close to the time taken by the function if they were isolated.
 {nano_results}
 ```
 
-### Sparkfun Pro Micro
+### SparkFun Pro Micro
 
 * 16 MHz ATmega32U4
 * Arduino IDE 1.8.13
@@ -118,7 +129,7 @@ should be pretty close to the time taken by the function if they were isolated.
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Core 1.8.1
+* SparkFun SAMD Core 1.8.3
 
 ```
 {samd_results}
@@ -128,7 +139,7 @@ should be pretty close to the time taken by the function if they were isolated.
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 {stm32_results}
@@ -148,7 +159,7 @@ should be pretty close to the time taken by the function if they were isolated.
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 {esp32_results}

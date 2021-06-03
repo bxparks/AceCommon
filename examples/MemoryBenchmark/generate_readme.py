@@ -66,6 +66,15 @@ ASCII table.
   function consumes about 180 bytes on 8-bit AVR processors, more than the
   native division by `/1000` which takes about 130 bytes.
 
+**v1.4.5+**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+    * Flash memory increases by 2.3kB across the board.
+    * Static memory decreases by 250 bytes across the board.
+    * AceCommon code unchanged.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+    * No changes to flash or static memory.
+
 ## Arduino Nano
 
 * 16MHz ATmega328P
@@ -90,7 +99,7 @@ ASCII table.
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Boards 1.8.1
+* Sparkfun SAMD Boards 1.8.3
 
 ```
 {samd_results}
@@ -102,7 +111,7 @@ ASCII table.
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 {stm32_results}
@@ -125,7 +134,7 @@ microcontroller and the compiler did not generate the desired information.
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 {esp32_results}

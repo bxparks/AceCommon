@@ -42,6 +42,15 @@ ASCII table.
   function consumes about 180 bytes on 8-bit AVR processors, more than the
   native division by `/1000` which takes about 130 bytes.
 
+**v1.4.5+**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+    * Flash memory increases by 2.3kB across the board.
+    * Static memory decreases by 250 bytes across the board.
+    * AceCommon code unchanged.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+    * No changes to flash or static memory.
+
 ## Arduino Nano
 
 * 16MHz ATmega328P
@@ -108,7 +117,7 @@ ASCII table.
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Boards 1.8.1
+* Sparkfun SAMD Boards 1.8.3
 
 ```
 +---------------------------------------------------------------------+
@@ -141,29 +150,29 @@ ASCII table.
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |  19260/ 3788 |     0/    0 |
+| Baseline (PrintStr<16>)                |  21564/ 3536 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |  19280/ 3788 |    20/    0 |
+| PrintStrN(16)                          |  21584/ 3536 |    20/    0 |
 |----------------------------------------+--------------+-------------|
-| printPad2()                            |  19456/ 3788 |   196/    0 |
-| printPad5()                            |  19480/ 3788 |   220/    0 |
+| printPad2()                            |  21756/ 3536 |   192/    0 |
+| printPad5()                            |  21780/ 3536 |   216/    0 |
 |----------------------------------------+--------------+-------------|
-| printReplaceCharTo(char*)              |  19284/ 3788 |    24/    0 |
-| printReplaceCharTo(F())                |  19284/ 3788 |    24/    0 |
-| printReplaceStringTo(char*)            |  19356/ 3788 |    96/    0 |
-| printReplaceStringTo(F())              |  19356/ 3788 |    96/    0 |
+| printReplaceCharTo(char*)              |  21588/ 3536 |    24/    0 |
+| printReplaceCharTo(F())                |  21588/ 3536 |    24/    0 |
+| printReplaceStringTo(char*)            |  21660/ 3536 |    96/    0 |
+| printReplaceStringTo(F())              |  21660/ 3536 |    96/    0 |
 |----------------------------------------+--------------+-------------|
-| hashDjb2(char*)                        |  19292/ 3788 |    32/    0 |
-| hashDjb2(F())                          |  19292/ 3788 |    32/    0 |
+| hashDjb2(char*)                        |  21596/ 3536 |    32/    0 |
+| hashDjb2(F())                          |  21596/ 3536 |    32/    0 |
 |----------------------------------------+--------------+-------------|
-| udiv1000()                             |  19300/ 3788 |    40/    0 |
-| /1000                                  |  19288/ 3788 |    28/    0 |
+| udiv1000()                             |  21604/ 3536 |    40/    0 |
+| /1000                                  |  21592/ 3536 |    28/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -206,7 +215,7 @@ microcontroller and the compiler did not generate the desired information.
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 +---------------------------------------------------------------------+

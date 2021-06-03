@@ -1,6 +1,13 @@
 # Changelog
 
 * Unreleased
+    * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+        * MemoryBenchmark: Flash usage increases by 2.3kB across the board, but
+          static RAM goes down by 250 bytes. Very little change to AceCommon
+          code itself.
+        * AutoBenchmark: No change.
+    * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+        * No change observed in MemoryBenchmark or AutoBenchmark.
 * 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.
@@ -67,7 +74,7 @@
     * Fix `PrintStr.h` for STM32duino by removing `override` in `flush()`.
     * Add `hashDjb2()` hash function for normal and flash strings.
 * 1.1.2 (2020-11-28)
-    * Minor header include fix for compatility with UnixHostDuino.
+    * Minor header include fix for compatibility with UnixHostDuino.
     * Fix various compilation warnings and errors on AVR compiler.
     * No functional change in this release.
 * 1.1.1 (2020-11-02)
