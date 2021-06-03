@@ -41,8 +41,13 @@ SOFTWARE.
 // >= 1.8.10. Boards using arduino:samd <= 1.8.9 or SparkFun:samd are fine.
 #if defined(ARDUINO_ARCH_MEGAAVR)
 #error MegaAVR not supported, https://github.com/bxparks/AceCommon/issues/8
+
 #elif defined(ARDUINO_ARCH_SAMD) && defined(ARDUINO_API_VERSION)
 #error SAMD21 with arduino:samd >= 1.8.10 not supported, https://github.com/bxparks/AceCommon/issues/9
+
+#elif defined(ARDUINO_API_VERSION)
+#error Platforms using ArduinoCore-API not supported
+
 #endif
 
 #include "arithmetic/arithmetic.h"
