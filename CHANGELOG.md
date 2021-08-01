@@ -8,6 +8,12 @@
         * AutoBenchmark: No change.
     * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
         * No change observed in MemoryBenchmark or AutoBenchmark.
+    * Add `print_utils/PrintIntAsFloat.h` with `printUint16AsFloat3To()` and
+      `printUint32AsFloat3To()`.
+        * Divides the provided value by 1000, then prints the result as a
+          floating point number to 3 decimal places.
+        * Does not use floating point operations to be friendly on 8-bit
+          processors.
 * 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.

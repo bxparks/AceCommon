@@ -49,6 +49,15 @@ automatically:
     * `void printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
+* [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
+    * `void printUint16AsFloat3To(Print& printer, uint16_t val)`
+        * Divide `val` by 1000 and print the result as a floating point number
+          to 3 decimal places.
+        * Does not use floating point operations.
+    * `void printUint32AsFloat3To(Print& printer, uint16_t val)`
+        * Divide `val` by 1000 and print the result as a floating point number
+          to 3 decimal places.
+        * Does not use floating point operations.
 * [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
         * Provides a primitive `printf()` functionality to an instance of
@@ -235,10 +244,6 @@ I use Ubuntu Linux 18.04 and 20.04 for most of my development.
 [MIT License](https://opensource.org/licenses/MIT)
 
 ## Feedback and Support
-
-If you find this library useful, consider starring this project on GitHub. The
-stars will let me prioritize the more popular libraries over the less popular
-ones.
 
 If you have any questions, comments and other support questions about how to
 use this library, please use the
