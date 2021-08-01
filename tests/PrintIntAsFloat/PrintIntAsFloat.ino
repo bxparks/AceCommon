@@ -12,7 +12,7 @@ using namespace ace_common;
 #endif
 
 test(PrintUint16AsFloat3) {
-  PrintStr<10> printStr;
+  PrintStr<16> printStr;
 
   printStr.flush();
   printUint16AsFloat3To(printStr, 0U);
@@ -40,7 +40,7 @@ test(PrintUint16AsFloat3) {
 }
 
 test(PrintUint32AsFloat3) {
-  PrintStr<10> printStr;
+  PrintStr<16> printStr;
 
   printStr.flush();
   printUint32AsFloat3To(printStr, 0UL);
@@ -73,6 +73,14 @@ test(PrintUint32AsFloat3) {
   printStr.flush();
   printUint32AsFloat3To(printStr, 1234567UL);
   assertEqual("1234.567", printStr.cstr());
+
+  printStr.flush();
+  printUint32AsFloat3To(printStr, 12345678UL);
+  assertEqual("12345.678", printStr.cstr());
+
+  printStr.flush();
+  printUint32AsFloat3To(printStr, 123456789UL);
+  assertEqual("123456.789", printStr.cstr());
 }
 
 //----------------------------------------------------------------------------

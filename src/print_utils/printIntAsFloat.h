@@ -40,11 +40,10 @@ namespace ace_common {
 
   /**
    * Print a uint32 (e.g. 123456UL) as a float after dividing by 1000 (i.e.
-   * "123.456"). The input value must be smaller than (UINT16_MAX * 1000 + 999),
-   * or 65535999.
+   * "123.456").
    */
   inline void printUint32AsFloat3To(Print& printer, uint32_t value) {
-    uint16_t whole = value / 1000;
+    uint32_t whole = value / 1000;
     uint16_t frac = value % 1000;
     printer.print(whole);
     printer.print('.');
