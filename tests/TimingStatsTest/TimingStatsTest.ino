@@ -3,8 +3,8 @@
 #include <AUnit.h>
 #include <AceCommon.h>
 
-using namespace aunit;
-using namespace ace_common;
+using aunit::TestRunner;
+using ace_common::TimingStats;
 
 //----------------------------------------------------------------------------
 // Test TimingStats

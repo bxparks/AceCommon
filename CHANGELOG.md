@@ -14,6 +14,7 @@
           floating point number to 3 decimal places.
         * Does not use floating point operations to be friendly on 8-bit
           processors.
+    * Add `GenericStats<T>`, a templatized version of `TimingStats`.
 * 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.

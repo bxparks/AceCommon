@@ -56,6 +56,7 @@ SOFTWARE.
 #include "print_utils/printPadTo.h"
 #include "print_utils/printfTo.h"
 #include "timing_stats/TimingStats.h"
+#include "timing_stats/GenericStats.h"
 #include "url_encoding/url_encoding.h"
 #include "fstrings/FCString.h"
 #include "hash/djb2.h"

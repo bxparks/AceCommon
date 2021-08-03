@@ -70,6 +70,9 @@ automatically:
           then print out various statistics such as min, max, average, and
           count.
     * `class TimingStats`
+* [src/timing_stats/GenericStats.h](src/timing_stats/GenericStats.h)
+    * Same as `TimingStats` but templatized to support generic type `T`
+    * `class GenericStats<T>`
 * [src/url_encoding/url_encoding.h](src/url_encoding/url_encoding.h)
     * [src/url_encoding/README.md](src/url_encoding/README.md)
         * Encodes and decodes strings using "form URL encoding" which converts
