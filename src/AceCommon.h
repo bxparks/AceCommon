@@ -68,6 +68,7 @@ SOFTWARE.
 #include "print_utils/printReplaceTo.h"
 #include "fstrings/FlashString.h"
 #include "print_utils/printIntAsFloat.h"
+#include "algorithms/reverse.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
 #define ACE_COMMON_VERSION 10405

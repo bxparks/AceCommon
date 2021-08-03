@@ -68,3 +68,18 @@ bool isSorted(const X list[], size_t size);
 ```
 
 See [tests/IsSortedTest.ino](../../tests/IsSortedTest/) for examples.
+
+## Reverse
+
+Reverse the elements of an array in-place.
+
+```C++
+namespace ace_common {
+
+template<typename T>
+void reverse(T data[], size_t size);
+
+}
+```
+
+See [tests/ReverseTest.ino](../../tests/ReverseTest/) for examples.

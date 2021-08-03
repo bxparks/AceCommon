@@ -108,6 +108,9 @@ automatically:
     * `size_t isSortedByKey(size_t size, K&& key)`
     * `size_t isSorted(const X list[], size_t size)`
         * Determine if array is sorted or not.
+* [src/algorithms/reverse.h](src/algorithms/reverse.h)
+    * [src/algorithms/README.md](src/algorithms/README.md)
+    * `void reverse(T data[], size_t size)`
 * [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
     * Replace a character with another character or string and copy result to
       destination.
