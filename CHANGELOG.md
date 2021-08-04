@@ -15,13 +15,15 @@
         * Does not use floating point operations to be friendly on 8-bit
           processors.
     * Add `GenericStats<T>`, a templatized version of `TimingStats`.
-    * `MemoryBenchmark`
+    * Update `MemoryBenchmark`
         * Add memory usage for `String`, to provide a better comparison for
           `PrintStr<N>` and `PrintStrN`.
         * `String` consumes about 1000 more flash bytes compared to `PrintStr`.
         * `PrintStrN` consumes about 600 more flash bytes compared to `PrintStr`
           because it pulls in `malloc()` and `free().`
         * Add memory usage for `isSorted()`.
+    * Add `isReverseSorted()` and `isReversedSortedByKey()`. Analogous to
+      `isSorted()` and `isSortedByKey()`.
 * 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.
