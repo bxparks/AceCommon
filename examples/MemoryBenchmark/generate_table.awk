@@ -6,18 +6,21 @@
 # table that can be inserted into the README.md.
 
 BEGIN {
-  labels[0] = "Baseline (PrintStr<16>)"
-  labels[1] = "PrintStrN(16)"
-  labels[2] = "printPad2()"
-  labels[3] = "printPad5()"
-  labels[4] = "printReplaceCharTo(char*)"
-  labels[5] = "printReplaceCharTo(F())"
-  labels[6] = "printReplaceStringTo(char*)"
-  labels[7] = "printReplaceStringTo(F())"
-  labels[8] = "hashDjb2(char*)"
-  labels[9] = "hashDjb2(F())"
-  labels[10] = "udiv1000()"
-  labels[11] = "/1000"
+  labels[0] = "Baseline"
+  labels[1] = "String"
+  labels[2] = "PrintStr<16>"
+  labels[3] = "PrintStrN(16)"
+  labels[4] = "printPad2()"
+  labels[5] = "printPad5()"
+  labels[6] = "printReplaceCharTo(char*)"
+  labels[7] = "printReplaceCharTo(F())"
+  labels[8] = "printReplaceStringTo(char*)"
+  labels[9] = "printReplaceStringTo(F())"
+  labels[10] = "hashDjb2(char*)"
+  labels[11] = "hashDjb2(F())"
+  labels[12] = "udiv1000()"
+  labels[13] = "/1000"
+  labels[14] = "isSorted()"
   record_index = 0
 }
 {
@@ -45,12 +48,13 @@ END {
   printf(\
     "| Functionality                          |  flash/  ram |       delta |\n")
   for (i = 0; i < NUM_ENTRIES; i++) {
-    if (labels[i] ~ /Baseline/ \
-        || labels[i] ~ /PrintStrN/ \
-        || labels[i] ~ /printPad2\(\)/ \
-        || labels[i] ~ /hashDjb2\(char\*\)/ \
-        || labels[i] ~ /printReplaceCharTo\(char\*\)/ \
-        || labels[i] ~ /udiv1000/ \
+    if (labels[i] ~ /^Baseline/ \
+        || labels[i] ~ /^String/ \
+        || labels[i] ~ /^printPad2\(\)/ \
+        || labels[i] ~ /^hashDjb2\(char\*\)/ \
+        || labels[i] ~ /^printReplaceCharTo\(char\*\)/ \
+        || labels[i] ~ /^udiv1000/ \
+        || labels[i] ~ /^isSorted\(\)/ \
     ) {
       printf(\
         "|----------------------------------------+--------------+-------------|\n")

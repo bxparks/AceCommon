@@ -74,6 +74,11 @@ ASCII table.
     * AceCommon code unchanged.
 * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
     * No changes to flash or static memory.
+* Add benchmark for `String` so to compare with `PrintStr<N>` and `PrintStrN`.
+    * Pull in `Serial` into the Baseline to compensate for pulling in the
+      `Print` class, the parent class of `PrintStr` and `PrintStrN`.
+* Add benchmark for `isSorted()`.
+    * Add `array[100]` into Baseline to compensate for its use in `isSorted()`.
 
 ## Arduino Nano
 
