@@ -21,6 +21,7 @@ BEGIN {
   labels[12] = "udiv1000()"
   labels[13] = "/1000"
   labels[14] = "isSorted()"
+  labels[15] = "reverse()"
   record_index = 0
 }
 {

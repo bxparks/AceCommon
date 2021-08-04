@@ -23,6 +23,7 @@ using namespace ace_common;
 #define FEATURE_UDIV_1000 12
 #define FEATURE_NATIVE_DIV_1000 13
 #define FEATURE_IS_SORTED 14
+#define FEATURE_REVERSE 15
 
 // Select one of the FEATURE_* parameter and compile. Then look at the flash
 // and RAM usage, compared to FEATURE_BASELINE usage to determine how much
@@ -41,9 +42,9 @@ using namespace ace_common;
 volatile uint8_t guard;
 
 const uint8_t ARRAY_SIZE = 100;
-uint8_t array[ARRAY_SIZE];
+uint16_t array[ARRAY_SIZE];
 
-static void fillArray(uint8_t array[], uint16_t n) {
+static void fillArray(uint16_t array[], uint16_t n) {
   for (uint16_t i = 0; i < n; ++i) {
     array[i] = random(65536);
   }
@@ -66,15 +67,15 @@ void setup() {
 #elif FEATURE == FEATURE_STRING
   String s;
   s.concat(guard);
-  SERIAL_PORT_MONITOR.print(s);
+  guard = s.c_str()[0];
 #elif FEATURE == FEATURE_PRINT_STR
   PrintStr<16> printStr;
   printStr.print(guard);
-  SERIAL_PORT_MONITOR.print(printStr.cstr());
+  guard = printStr.cstr()[0];
 #elif FEATURE == FEATURE_PRINT_STR_N
   PrintStrN printStr(16);
   printStr.print(guard);
-  SERIAL_PORT_MONITOR.print(printStr.cstr());
+  guard = printStr.cstr()[0];
 #elif FEATURE == FEATURE_PRINT_PAD_2_TO
   printPad2To(SERIAL_PORT_MONITOR, 1);
 #elif FEATURE == FEATURE_PRINT_PAD_5_TO
@@ -111,6 +112,11 @@ void setup() {
 #elif FEATURE == FEATURE_IS_SORTED
   bool sorted = isSorted(array, ARRAY_SIZE);
   guard = sorted;
+
+#elif FEATURE == FEATURE_REVERSE
+  reverse(array, ARRAY_SIZE);
+  guard = array[0];
+
 #else
   #error Unknown FEATURE
 #endif
