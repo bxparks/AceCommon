@@ -1,4 +1,4 @@
-#line 2 "IsSortedSearchTest.ino"
+#line 2 "IsSortedTest.ino"
 
 #include <Arduino.h>
 #include <AUnit.h>
@@ -7,6 +7,7 @@
 using aunit::TestRunner;
 using ace_common::isSorted;
 using ace_common::isSortedByKey;
+using ace_common::isReverseSorted;
 
 //-----------------------------------------------------------------------------
 
@@ -21,8 +22,41 @@ static const int SORTED_LIST[] = {
 static const size_t SORTED_LIST_SIZE =
     sizeof(SORTED_LIST) / sizeof(SORTED_LIST[0]);
 
+test(isSortedTest, empty_list) {
+  assertTrue(isSorted(SORTED_LIST, 0));
+}
+
+test(isSortedTest, single_list) {
+  assertTrue(isSorted(SORTED_LIST, 1));
+}
+
 test(isSortedTest, sorted_list) {
   assertTrue(isSorted(SORTED_LIST, SORTED_LIST_SIZE));
+}
+
+//-----------------------------------------------------------------------------
+
+static const int REVERSE_SORTED_LIST[] = {
+  400,
+  100,
+  30,
+  3,
+  -2,
+};
+
+static const size_t REVERSE_SORTED_LIST_SIZE =
+    sizeof(REVERSE_SORTED_LIST) / sizeof(REVERSE_SORTED_LIST[0]);
+
+test(isReversedSortedTest, empty_reversed) {
+  assertTrue(isReverseSorted(REVERSE_SORTED_LIST, 0));
+}
+
+test(isReversedSortedTest, single_reversed) {
+  assertTrue(isReverseSorted(REVERSE_SORTED_LIST, 1));
+}
+
+test(isReversedSortedTest, reversed_list) {
+  assertTrue(isReverseSorted(REVERSE_SORTED_LIST, REVERSE_SORTED_LIST_SIZE));
 }
 
 //-----------------------------------------------------------------------------
@@ -39,6 +73,10 @@ static const size_t UNSORTED_LIST_SIZE =
 
 test(isSortedTest, unsorted_list) {
   assertFalse(isSorted(UNSORTED_LIST, UNSORTED_LIST_SIZE));
+}
+
+test(isReverseSortedTest, unsorted_list) {
+  assertFalse(isReverseSorted(UNSORTED_LIST, UNSORTED_LIST_SIZE));
 }
 
 //-----------------------------------------------------------------------------
@@ -62,12 +100,22 @@ static const size_t NUM_SORTED_RECORDS =
 inline int key(size_t i) { return SORTED_RECORDS[i].b; }
 
 // Test isSortedByKey() using a function.
-test(isSortedTest, sorted_records_with_function) {
+test(isSortedByKeyTest, sorted_records_with_function) {
   assertTrue(isSortedByKey(NUM_SORTED_RECORDS, key));
 }
 
+// Test isSortedByKey() using a function, with N=0.
+test(isSortedByKeyTest, zero_element) {
+  assertTrue(isSortedByKey(0, key));
+}
+
+// Test isSortedByKey() using a function, with N=1.
+test(isSortedByKeyTest, one_element) {
+  assertTrue(isSortedByKey(1, key));
+}
+
 // Test isSortedByKey() using inlined lambda expression.
-test(isSortedTest, sorted_records_with_lambda) {
+test(isSortedByKeyTest, sorted_records_with_lambda) {
   assertTrue(isSortedByKey(NUM_SORTED_RECORDS,
       [](size_t i) { return SORTED_RECORDS[i].b; } /*key*/)
   );

@@ -25,14 +25,48 @@ SOFTWARE.
 /**
  * @file isSorted.h
  *
- * Templatized function that determines of an array of things is sorted
- * according to the given key.
+ * Templatized functions that determine if an array of things is sorted.
  */
 
 #ifndef ACE_COMMON_IS_SORTED_H
 #define ACE_COMMON_IS_SORTED_H
 
 namespace ace_common {
+
+/**
+ * Determine if the elements of the array is sorted This function assumes that
+ * 'operator<()' for the value type `X` is defined.
+ *
+ * @tparam X type of element in list
+ * @param list sorted array of elements of type X (accepts both const array
+ *    or a pointer to the array)
+ * @param size number of elements
+ */
+template<typename X>
+bool isSorted(const X list[], size_t size) {
+  if (size == 0) return true;
+
+  // Using prev and current temp variables saves about a few bytes of flash
+  // compared to using list[i] < list[i - 1].
+  X prev = list[0];
+  for (size_t i = 1; i < size; ++i) {
+    X current = list[i];
+    if (current < prev) return false;
+    prev = current;
+  }
+  return true;
+}
+
+#if 0
+// This shorter alternative runs a lot slower on many platforms because the
+// compiler is not able to optimize away the lambda expression and so the
+// isSortedByKey() makes a function call on each iteration.
+template<typename X>
+bool isSorted(const X list[], size_t size) {
+  return isSortedByKey(size,
+      [&list](size_t i) { return list[i]; } /*key*/);
+}
+#endif
 
 /**
  * Determine if the abstract array is sorted according to its 'key'. Returns
@@ -57,7 +91,7 @@ namespace ace_common {
  */
 template <typename K>
 bool isSortedByKey(size_t size, K&& key) {
-  if (size == 0) return false;
+  if (size == 0) return true;
 
   auto prev = key(0);
   for (size_t i = 1; i < size; ++i) {
@@ -69,11 +103,7 @@ bool isSortedByKey(size_t size, K&& key) {
 }
 
 /**
- * Simplified version of isSortedByKey() where the elements of the array and
- * the type returned by the `key` lambda expression is the same. So the `key`
- * lambda expression is just `list[i]`.
- *
- * This function assumes that 'operator<()' for the value type `X` is defined.
+ * Same as isSorted() but checks for reverse sorting.
  *
  * @tparam X type of element in list
  * @param list sorted array of elements of type X (accepts both const array
@@ -81,24 +111,43 @@ bool isSortedByKey(size_t size, K&& key) {
  * @param size number of elements
  */
 template<typename X>
-bool isSorted(const X list[], size_t size) {
-  if (size == 0) return false;
+bool isReverseSorted(const X list[], size_t size) {
+  if (size == 0) return true;
 
-  auto prev = list[0];
+  // Using prev and current temp variables saves about a few bytes of flash
+  // compared to using list[i] < list[i - 1].
+  X prev = list[0];
   for (size_t i = 1; i < size; ++i) {
-    auto current = list[i];
-    if (current < prev) return false;
+    X current = list[i];
+    if (current > prev) return false;
     prev = current;
   }
   return true;
+}
 
-#if 0
-  // This shorter alternative runs a lot slower on many platforms because the
-  // compiler is not able to optimize away the lambda expression and so the
-  // isSortedByKey() makes a function call on each iteration.
-  return isSortedByKey(size,
-      [&list](size_t i) { return list[i]; } /*key*/);
-#endif
+/**
+ * Same as isSortedByKey() but checks for reverse sorting.
+ *
+ * @tparam K lambda expression or function pointer that returns some
+ *    unspecified value at index 'i'. The type of the value is inferred
+ *    automatically using the 'auto' keyword.
+ *
+ * @param size number of elements in the array
+ * @param key a function or lambda expression that returns the value
+ *    at index 'i'. If the 'key' inlined, I think the compiler is smart
+ *    enough to inline the 'key' into this code, and avoid a function call.
+ */
+template <typename K>
+bool isReverseSortedByKey(size_t size, K&& key) {
+  if (size == 0) return true;
+
+  auto prev = key(0);
+  for (size_t i = 1; i < size; ++i) {
+    auto current = key(i);
+    if (current > prev) return false;
+    prev = current;
+  }
+  return true;
 }
 
 } // ace_common

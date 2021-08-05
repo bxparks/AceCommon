@@ -5,7 +5,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.4.5
+**Version**: AceCommon v1.4.6
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -38,6 +38,24 @@ ASCII table.
   operators bring in more complex code. But the overall ESP32 flash usage goes
   down by 7.5 kB compared to v1.0.4, so this is probably not something to worry
   about.
+* Added benchmarks for `udiv1000()` and native `/1000`. The `udiv1000()`
+  function consumes about 180 bytes on 8-bit AVR processors, more than the
+  native division by `/1000` which takes about 130 bytes.
+
+**v1.4.6**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+    * Flash memory increases by 2.3kB across the board.
+    * Static memory decreases by 250 bytes across the board.
+    * AceCommon code unchanged.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+    * No changes to flash or static memory.
+* Add benchmark for `String` so to compare with `PrintStr<N>` and `PrintStrN`.
+    * Pull in `Serial` into the Baseline to compensate for pulling in the
+      `Print` class, the parent class of `PrintStr` and `PrintStrN`.
+* Add benchmark for `isSorted()`.
+    * Add `array[100]` into Baseline to compensate for its use in `isSorted()`.
+* Add benchmark for `printUint16AsFloat3To()` and `printUint32AsFloat3To()`.
 
 ## Arduino Nano
 
@@ -49,17 +67,30 @@ ASCII table.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |    734/   22 |     0/    0 |
+| Baseline                               |   2136/  389 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |   1344/   32 |   610/   10 |
-| printPad2()                            |    770/   22 |    36/    0 |
-| printPad5()                            |    798/   22 |    64/    0 |
-| printReplaceCharTo(char*)              |    758/   26 |    24/    4 |
-| printReplaceCharTo(F())                |    760/   22 |    26/    0 |
-| printReplaceStringTo(char*)            |    778/   28 |    44/    6 |
-| printReplaceStringTo(F())              |    780/   24 |    46/    2 |
-| hashDjb2(char*)                        |    792/   28 |    58/    6 |
-| hashDjb2(F())                          |    794/   22 |    60/    0 |
+| String                                 |   3610/  401 |  1474/   12 |
+| PrintStr<16>                           |   2510/  401 |   374/   12 |
+| PrintStrN(16)                          |   3114/  411 |   978/   22 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |   2220/  389 |    84/    0 |
+| printPad5()                            |   2238/  389 |   102/    0 |
+| printUint16AsFloat3To()                |   2232/  389 |    96/    0 |
+| printUint32AsFloat3To()                |   2234/  389 |    98/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |   2176/  393 |    40/    4 |
+| printReplaceCharTo(F())                |   2172/  389 |    36/    0 |
+| printReplaceStringTo(char*)            |   2194/  395 |    58/    6 |
+| printReplaceStringTo(F())              |   2190/  391 |    54/    2 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |   2204/  389 |    68/    0 |
+| hashDjb2(F())                          |   2202/  389 |    66/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |   2272/  389 |   136/    0 |
+| /1000                                  |   2206/  389 |    70/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |   2178/  389 |    42/    0 |
+| reverse()                              |   2178/  389 |    42/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -74,17 +105,30 @@ ASCII table.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |   3728/  162 |     0/    0 |
+| Baseline                               |   4258/  354 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |   4338/  172 |   610/   10 |
-| printPad2()                            |   3764/  162 |    36/    0 |
-| printPad5()                            |   3792/  162 |    64/    0 |
-| printReplaceCharTo(char*)              |   3752/  166 |    24/    4 |
-| printReplaceCharTo(F())                |   3754/  162 |    26/    0 |
-| printReplaceStringTo(char*)            |   3772/  168 |    44/    6 |
-| printReplaceStringTo(F())              |   3774/  164 |    46/    2 |
-| hashDjb2(char*)                        |   3784/  166 |    56/    4 |
-| hashDjb2(F())                          |   3788/  162 |    60/    0 |
+| String                                 |   5732/  364 |  1474/   10 |
+| PrintStr<16>                           |   4626/  366 |   368/   12 |
+| PrintStrN(16)                          |   5236/  376 |   978/   22 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |   4342/  354 |    84/    0 |
+| printPad5()                            |   4358/  354 |   100/    0 |
+| printUint16AsFloat3To()                |   4354/  354 |    96/    0 |
+| printUint32AsFloat3To()                |   4356/  354 |    98/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |   4298/  358 |    40/    4 |
+| printReplaceCharTo(F())                |   4294/  354 |    36/    0 |
+| printReplaceStringTo(char*)            |   4316/  360 |    58/    6 |
+| printReplaceStringTo(F())              |   4312/  356 |    54/    2 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |   4326/  354 |    68/    0 |
+| hashDjb2(F())                          |   4324/  354 |    66/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |   4394/  354 |   136/    0 |
+| /1000                                  |   4328/  354 |    70/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |   4300/  354 |    42/    0 |
+| reverse()                              |   4300/  354 |    42/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -93,23 +137,36 @@ ASCII table.
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Boards 1.8.1
+* Sparkfun SAMD Boards 1.8.3
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |  10224/    0 |     0/    0 |
+| Baseline                               |  10892/    0 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |  10416/    0 |   192/    0 |
-| printPad2()                            |  10416/    0 |   192/    0 |
-| printPad5()                            |  10440/    0 |   216/    0 |
-| printReplaceCharTo(char*)              |  10256/    0 |    32/    0 |
-| printReplaceCharTo(F())                |  10256/    0 |    32/    0 |
-| printReplaceStringTo(char*)            |  10296/    0 |    72/    0 |
-| printReplaceStringTo(F())              |  10296/    0 |    72/    0 |
-| hashDjb2(char*)                        |  10264/    0 |    40/    0 |
-| hashDjb2(F())                          |  10264/    0 |    40/    0 |
+| String                                 |  11612/    0 |   720/    0 |
+| PrintStr<16>                           |  11052/    0 |   160/    0 |
+| PrintStrN(16)                          |  11248/    0 |   356/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |  10992/    0 |   100/    0 |
+| printPad5()                            |  11016/    0 |   124/    0 |
+| printUint16AsFloat3To()                |  11000/    0 |   108/    0 |
+| printUint32AsFloat3To()                |  11004/    0 |   112/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |  10928/    0 |    36/    0 |
+| printReplaceCharTo(F())                |  10928/    0 |    36/    0 |
+| printReplaceStringTo(char*)            |  10952/    0 |    60/    0 |
+| printReplaceStringTo(F())              |  10952/    0 |    60/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |  10920/    0 |    28/    0 |
+| hashDjb2(F())                          |  10936/    0 |    44/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |  10936/    0 |    44/    0 |
+| /1000                                  |  10924/    0 |    32/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |  10920/    0 |    28/    0 |
+| reverse()                              |  10916/    0 |    24/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -120,29 +177,39 @@ ASCII table.
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |  19260/ 3788 |     0/    0 |
+| Baseline                               |  27008/ 3844 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |  19280/ 3788 |    20/    0 |
-| printPad2()                            |  19456/ 3788 |   196/    0 |
-| printPad5()                            |  19480/ 3788 |   220/    0 |
-| printReplaceCharTo(char*)              |  19284/ 3788 |    24/    0 |
-| printReplaceCharTo(F())                |  19284/ 3788 |    24/    0 |
-| printReplaceStringTo(char*)            |  19356/ 3788 |    96/    0 |
-| printReplaceStringTo(F())              |  19356/ 3788 |    96/    0 |
-| hashDjb2(char*)                        |  19292/ 3788 |    32/    0 |
-| hashDjb2(F())                          |  19292/ 3788 |    32/    0 |
+| String                                 |  27548/ 3844 |   540/    0 |
+| PrintStr<16>                           |  27156/ 3844 |   148/    0 |
+| PrintStrN(16)                          |  27172/ 3844 |   164/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |  27104/ 3844 |    96/    0 |
+| printPad5()                            |  27128/ 3844 |   120/    0 |
+| printUint16AsFloat3To()                |  27112/ 3844 |   104/    0 |
+| printUint32AsFloat3To()                |  27116/ 3844 |   108/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |  27040/ 3844 |    32/    0 |
+| printReplaceCharTo(F())                |  27040/ 3844 |    32/    0 |
+| printReplaceStringTo(char*)            |  27060/ 3844 |    52/    0 |
+| printReplaceStringTo(F())              |  27060/ 3844 |    52/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |  27032/ 3844 |    24/    0 |
+| hashDjb2(F())                          |  27040/ 3844 |    32/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |  27048/ 3844 |    40/    0 |
+| /1000                                  |  27040/ 3844 |    32/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |  27048/ 3844 |    40/    0 |
+| reverse()                              |  27044/ 3844 |    36/    0 |
 +---------------------------------------------------------------------+
 
 ```
-
-An entry of `-1` indicates that the memory usage exceeded the maximum of the
-microcontroller and the compiler did not generate the desired information.
 
 ## ESP8266
 
@@ -154,17 +221,30 @@ microcontroller and the compiler did not generate the desired information.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                | 256908/26776 |     0/    0 |
+| Baseline                               | 262256/27096 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          | 256956/26776 |    48/    0 |
-| printPad2()                            | 257244/26776 |   336/    0 |
-| printPad5()                            | 257260/26776 |   352/    0 |
-| printReplaceCharTo(char*)              | 256944/26772 |    36/   -4 |
-| printReplaceCharTo(F())                | 256960/26776 |    52/    0 |
-| printReplaceStringTo(char*)            | 257028/26776 |   120/    0 |
-| printReplaceStringTo(F())              | 257044/26772 |   136/   -4 |
-| hashDjb2(char*)                        | 256948/26776 |    40/    0 |
-| hashDjb2(F())                          | 256964/26776 |    56/    0 |
+| String                                 | 262372/27092 |   116/   -4 |
+| PrintStr<16>                           | 262464/27096 |   208/    0 |
+| PrintStrN(16)                          | 262496/27096 |   240/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            | 262416/27096 |   160/    0 |
+| printPad5()                            | 262448/27096 |   192/    0 |
+| printUint16AsFloat3To()                | 262432/27096 |   176/    0 |
+| printUint32AsFloat3To()                | 262432/27096 |   176/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              | 262292/27092 |    36/   -4 |
+| printReplaceCharTo(F())                | 262308/27096 |    52/    0 |
+| printReplaceStringTo(char*)            | 262328/27096 |    72/    0 |
+| printReplaceStringTo(F())              | 262344/27092 |    88/   -4 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        | 262288/27096 |    32/    0 |
+| hashDjb2(F())                          | 262328/27096 |    72/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             | 262320/27096 |    64/    0 |
+| /1000                                  | 262304/27096 |    48/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             | 262288/27096 |    32/    0 |
+| reverse()                              | 262288/27096 |    32/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -173,23 +253,36 @@ microcontroller and the compiler did not generate the desired information.
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                | 198216/13100 |     0/    0 |
+| Baseline                               | 204790/13632 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          | 199524/13100 |  1308/    0 |
-| printPad2()                            | 198308/13100 |    92/    0 |
-| printPad5()                            | 198328/13100 |   112/    0 |
-| printReplaceCharTo(char*)              | 198248/13100 |    32/    0 |
-| printReplaceCharTo(F())                | 198248/13100 |    32/    0 |
-| printReplaceStringTo(char*)            | 198304/13100 |    88/    0 |
-| printReplaceStringTo(F())              | 198304/13100 |    88/    0 |
-| hashDjb2(char*)                        | 198252/13100 |    36/    0 |
-| hashDjb2(F())                          | 198252/13100 |    36/    0 |
+| String                                 | 205158/13632 |   368/    0 |
+| PrintStr<16>                           | 205046/13632 |   256/    0 |
+| PrintStrN(16)                          | 206374/13632 |  1584/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            | 204862/13632 |    72/    0 |
+| printPad5()                            | 204886/13632 |    96/    0 |
+| printUint16AsFloat3To()                | 204874/13632 |    84/    0 |
+| printUint32AsFloat3To()                | 204874/13632 |    84/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              | 204834/13632 |    44/    0 |
+| printReplaceCharTo(F())                | 204834/13632 |    44/    0 |
+| printReplaceStringTo(char*)            | 204874/13632 |    84/    0 |
+| printReplaceStringTo(F())              | 204874/13632 |    84/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        | 204822/13632 |    32/    0 |
+| hashDjb2(F())                          | 204846/13632 |    56/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             | 204870/13632 |    80/    0 |
+| /1000                                  | 204854/13632 |    64/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             | 204822/13632 |    32/    0 |
+| reverse()                              | 204826/13632 |    36/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -208,17 +301,30 @@ usage by objects.
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline (PrintStr<16>)                |  10796/ 4148 |     0/    0 |
+| Baseline                               |  11972/ 4376 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| PrintStrN(16)                          |  10840/ 4148 |    44/    0 |
-| printPad2()                            |  11164/ 4148 |   368/    0 |
-| printPad5()                            |  11176/ 4148 |   380/    0 |
-| printReplaceCharTo(char*)              |  11056/ 4148 |   260/    0 |
-| printReplaceCharTo(F())                |  11056/ 4148 |   260/    0 |
-| printReplaceStringTo(char*)            |  11072/ 4148 |   276/    0 |
-| printReplaceStringTo(F())              |  11072/ 4148 |   276/    0 |
-| hashDjb2(char*)                        |  10832/ 4148 |    36/    0 |
-| hashDjb2(F())                          |  10832/ 4148 |    36/    0 |
+| String                                 |  14344/ 4376 |  2372/    0 |
+| PrintStr<16>                           |  12192/ 4376 |   220/    0 |
+| PrintStrN(16)                          |  12228/ 4376 |   256/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |  12004/ 4376 |    32/    0 |
+| printPad5()                            |  12020/ 4376 |    48/    0 |
+| printUint16AsFloat3To()                |  12012/ 4376 |    40/    0 |
+| printUint32AsFloat3To()                |  12012/ 4376 |    40/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |  12004/ 4376 |    32/    0 |
+| printReplaceCharTo(F())                |  12004/ 4376 |    32/    0 |
+| printReplaceStringTo(char*)            |  12024/ 4376 |    52/    0 |
+| printReplaceStringTo(F())              |  12024/ 4376 |    52/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |  12000/ 4376 |    28/    0 |
+| hashDjb2(F())                          |  12008/ 4376 |    36/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |  12012/ 4376 |    40/    0 |
+| /1000                                  |  12008/ 4376 |    36/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |  11996/ 4376 |    24/    0 |
+| reverse()                              |  12000/ 4376 |    28/    0 |
 +---------------------------------------------------------------------+
 
 ```

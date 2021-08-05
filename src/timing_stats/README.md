@@ -1,6 +1,6 @@
 # Timing Stats
 
-A helper class that can collect a stream of data (often duration in
+This directory provides 2 classes to collect a stream of data (often duration in
 milliseconds), then calculate a number of statistical quantities, such as:
 
 * min
@@ -9,6 +9,11 @@ milliseconds), then calculate a number of statistical quantities, such as:
 * [exponential decay average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average)
 * count
 
+The classes are:
+
+* `TimingStats`: the original stats class specialized to `uint16_t`
+* `GenericStats`: a template class to support type `T` (e.g. `float`)
+
 ## Usage
 
 Use the `update()` function to collect the data. After data collection,
@@ -16,6 +21,8 @@ call the various `getMin()`, `getMax()`, `getAvg()`, `getCount()`, and
 `getExpDecayAvg()` functions.
 
 Call the `reset()` method to reset the counters.
+
+### TimingStats
 
 ```C++
 #include <Arduino.h>
@@ -66,4 +73,24 @@ Max: 30
 Avg: 20
 Exp Decay Avg: 21
 Count: 3
+```
+
+### GenericStats
+
+Very similar to `TimingStats`:
+
+```C++
+#include <Arduino.h>
+#include <AceCommon.h>
+using namespace ace_common;
+
+GenericStats<float> stats;
+
+void collectData() {
+  stats.update(1.0);
+  stats.update(2.0);
+  stats.update(3.0);
+}
+
+[...same as above...]
 ```

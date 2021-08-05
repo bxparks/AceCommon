@@ -1,6 +1,30 @@
 # Changelog
 
 * Unreleased
+* 1.4.6 (2021-08-05)
+    * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+        * MemoryBenchmark: Flash usage increases by 2.3kB across the board, but
+          static RAM goes down by 250 bytes. Very little change to AceCommon
+          code itself.
+        * AutoBenchmark: No change.
+    * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+        * No change observed in MemoryBenchmark or AutoBenchmark.
+    * Add `print_utils/PrintIntAsFloat.h` with `printUint16AsFloat3To()` and
+      `printUint32AsFloat3To()`.
+        * Divides the provided value by 1000, then prints the result as a
+          floating point number to 3 decimal places.
+        * Does not use floating point operations to be friendly on 8-bit
+          processors.
+    * Add `GenericStats<T>`, a templatized version of `TimingStats`.
+    * Update `MemoryBenchmark`
+        * Add memory usage for `String`, to provide a better comparison for
+          `PrintStr<N>` and `PrintStrN`.
+        * `String` consumes about 1000 more flash bytes compared to `PrintStr`.
+        * `PrintStrN` consumes about 600 more flash bytes compared to `PrintStr`
+          because it pulls in `malloc()` and `free().`
+        * Add memory usage for `isSorted()`.
+    * Add `isReverseSorted()` and `isReversedSortedByKey()`. Analogous to
+      `isSorted()` and `isSortedByKey()`.
 * 1.4.5 (2021-04-26)
     * Create more generic `examples/AutoBenchmark` program which replaces
       `examples/Udiv1000`.
@@ -67,7 +91,7 @@
     * Fix `PrintStr.h` for STM32duino by removing `override` in `flush()`.
     * Add `hashDjb2()` hash function for normal and flash strings.
 * 1.1.2 (2020-11-28)
-    * Minor header include fix for compatility with UnixHostDuino.
+    * Minor header include fix for compatibility with UnixHostDuino.
     * Fix various compilation warnings and errors on AVR compiler.
     * No functional change in this release.
 * 1.1.1 (2020-11-02)

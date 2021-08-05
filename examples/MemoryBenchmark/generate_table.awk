@@ -6,17 +6,24 @@
 # table that can be inserted into the README.md.
 
 BEGIN {
-  NUM_FEATURES = 9 # excluding Baseline
-  labels[0] = "Baseline (PrintStr<16>)"
-  labels[1] = "PrintStrN(16)"
-  labels[2] = "printPad2()"
-  labels[3] = "printPad5()"
-  labels[4] = "printReplaceCharTo(char*)"
-  labels[5] = "printReplaceCharTo(F())"
-  labels[6] = "printReplaceStringTo(char*)"
-  labels[7] = "printReplaceStringTo(F())"
-  labels[8] = "hashDjb2(char*)"
-  labels[9] = "hashDjb2(F())"
+  labels[0] = "Baseline"
+  labels[1] = "String"
+  labels[2] = "PrintStr<16>"
+  labels[3] = "PrintStrN(16)"
+  labels[4] = "printPad2()"
+  labels[5] = "printPad5()"
+  labels[6] = "printUint16AsFloat3To()"
+  labels[7] = "printUint32AsFloat3To()"
+  labels[8] = "printReplaceCharTo(char*)"
+  labels[9] = "printReplaceCharTo(F())"
+  labels[10] = "printReplaceStringTo(char*)"
+  labels[11] = "printReplaceStringTo(F())"
+  labels[12] = "hashDjb2(char*)"
+  labels[13] = "hashDjb2(F())"
+  labels[14] = "udiv1000()"
+  labels[15] = "/1000"
+  labels[16] = "isSorted()"
+  labels[17] = "reverse()"
   record_index = 0
 }
 {
@@ -25,9 +32,11 @@ BEGIN {
   record_index++
 }
 END {
+  NUM_ENTRIES = record_index
+
   base_flash = u[0]["flash"]
   base_ram = u[0]["ram"]
-  for (i = 0; i <= NUM_FEATURES; i++) {
+  for (i = 0; i < NUM_ENTRIES; i++) {
     if (u[i]["flash"] == -1) {
       u[i]["d_flash"] = -1
       u[i]["d_ram"] = -1
@@ -41,14 +50,18 @@ END {
     "+---------------------------------------------------------------------+\n")
   printf(\
     "| Functionality                          |  flash/  ram |       delta |\n")
-  printf(\
-    "|----------------------------------------+--------------+-------------|\n")
-  printf(\
-    "| %-38s | %6d/%5d | %5d/%5d |\n",
-    labels[0], u[0]["flash"], u[0]["ram"], u[0]["d_flash"], u[0]["d_ram"])
-  printf(\
-    "|----------------------------------------+--------------+-------------|\n")
-  for (i = 1; i <= NUM_FEATURES; i++) {
+  for (i = 0; i < NUM_ENTRIES; i++) {
+    if (labels[i] ~ /^Baseline/ \
+        || labels[i] ~ /^String/ \
+        || labels[i] ~ /^printPad2\(\)/ \
+        || labels[i] ~ /^hashDjb2\(char\*\)/ \
+        || labels[i] ~ /^printReplaceCharTo\(char\*\)/ \
+        || labels[i] ~ /^udiv1000/ \
+        || labels[i] ~ /^isSorted\(\)/ \
+    ) {
+      printf(\
+        "|----------------------------------------+--------------+-------------|\n")
+    }
     printf("| %-38s | %6d/%5d | %5d/%5d |\n",
         labels[i], u[i]["flash"], u[i]["ram"], u[i]["d_flash"], u[i]["d_ram"])
   }

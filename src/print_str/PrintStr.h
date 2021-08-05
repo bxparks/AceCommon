@@ -86,19 +86,26 @@ class PrintStrBase: public Print {
       return n;
     }
 
-// Some versions of the Print class do not define a virtual flush() method so
-// we can't use the 'override' keyword.
-#if defined(ESP32) || defined(ARDUINO_ARCH_STM32)
-    /** Clear the internal buffer. */
-    void flush() {
+    /**
+     * Clear the internal buffer.
+     *
+     * On most platforms, the Print::flush() method is virtual, so this would
+     * normally be tagged with the 'override' keyword. But on other platforms
+     * (e.g. ESP32, ARDUINO_ARCH_STM32 using
+     * https://github.com/stm32duino/Arduino_Core_STM32, ARDUINO_AVR_ATTINYX5
+     * using https://github.com/SpenceKonde/ATTinyCore, and potentially others),
+     * the Print::flush() is not virtual. It is too much work to maintain an
+     * updated list of plaforms where this difference exists. Let's just use the
+     * lowest-common denominator and not use the 'override' keyword. If the
+     * parent class defines as virtual, this will still override the parent due
+     * to the traditional behavior of C++. We just have to make sure that on all
+     * platforms, we always call PrintStr::flush() directly, (i.e.
+     * non-polymorphically), instead of through one of its base classes (either
+     * Print or PrintStrBase).
+     */
+    void flush() /*override*/ {
       index_ = 0;
     }
-#else
-    /** Clear the internal buffer. */
-    void flush() override {
-      index_ = 0;
-    }
-#endif
 
     /**
      * Return the NUL terminated c-string buffer. After the buffer is no longer

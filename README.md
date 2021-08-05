@@ -49,6 +49,15 @@ automatically:
     * `void printPad3To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad4To(Print& printer, uint16_t val, char pad = ' ')`
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
+* [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
+    * `void printUint16AsFloat3To(Print& printer, uint16_t val)`
+        * Divide `val` by 1000 and print the result as a floating point number
+          to 3 decimal places.
+        * Does not use floating point operations.
+    * `void printUint32AsFloat3To(Print& printer, uint16_t val)`
+        * Divide `val` by 1000 and print the result as a floating point number
+          to 3 decimal places.
+        * Does not use floating point operations.
 * [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
         * Provides a primitive `printf()` functionality to an instance of
@@ -61,6 +70,9 @@ automatically:
           then print out various statistics such as min, max, average, and
           count.
     * `class TimingStats`
+* [src/timing_stats/GenericStats.h](src/timing_stats/GenericStats.h)
+    * Same as `TimingStats` but templatized to support generic type `T`
+    * `class GenericStats<T>`
 * [src/url_encoding/url_encoding.h](src/url_encoding/url_encoding.h)
     * [src/url_encoding/README.md](src/url_encoding/README.md)
         * Encodes and decodes strings using "form URL encoding" which converts
@@ -96,6 +108,9 @@ automatically:
     * `size_t isSortedByKey(size_t size, K&& key)`
     * `size_t isSorted(const X list[], size_t size)`
         * Determine if array is sorted or not.
+* [src/algorithms/reverse.h](src/algorithms/reverse.h)
+    * [src/algorithms/README.md](src/algorithms/README.md)
+    * `void reverse(T data[], size_t size)`
 * [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
     * Replace a character with another character or string and copy result to
       destination.
@@ -117,14 +132,14 @@ automatically:
       Print& printer, const __FlashStringHelper* src, char oldChar,
       const char* newString)`
 * [src/fstrings/FlashString.h](src/fstrings/FlashString.h)
-    * [src/fstrings/README.md](src/fstrings/EADDME.md)
+    * [src/fstrings/README.md](src/fstrings/README.md)
     * `class FlashString`
     * Wraps a `const __FlashStringHelper*` into an object that looks and acts
       like a normal c-string pointer `const char*`.
     * Allows template functions to be written once, then reused for a flash
       string pointer `const __FlashStringHelper*`.
 
-**Version**: 1.4.5 (2021-04-26)
+**Version**: 1.4.6 (2021-08-05)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
@@ -214,10 +229,10 @@ This library was developed and tested using:
 * [Arduino AVR Boards 1.8.3](https://github.com/arduino/ArduinoCore-avr)
 * [Arduino SAMD Boards 1.8.9](https://github.com/arduino/ArduinoCore-samd)
 * [SparkFun AVR Boards 1.1.13](https://github.com/sparkfun/Arduino_Boards)
-* [SparkFun SAMD Boards 1.8.1](https://github.com/sparkfun/Arduino_Boards)
-* [STM32duino 1.9.0](https://github.com/stm32duino/Arduino_Core_STM32)
+* [SparkFun SAMD Boards 1.8.3](https://github.com/sparkfun/Arduino_Boards)
+* [STM32duino 2.0.0](https://github.com/stm32duino/Arduino_Core_STM32)
 * [ESP8266 Arduino Core 2.7.4](https://github.com/esp8266/Arduino)
-* [ESP32 Arduino Core 1.0.4](https://github.com/espressif/arduino-esp32)
+* [ESP32 Arduino Core 1.0.6](https://github.com/espressif/arduino-esp32)
 * [Teensyduino 1.53](https://www.pjrc.com/teensy/td_download.html)
 
 It should work with [PlatformIO](https://platformio.org/) but I have
@@ -235,10 +250,6 @@ I use Ubuntu Linux 18.04 and 20.04 for most of my development.
 [MIT License](https://opensource.org/licenses/MIT)
 
 ## Feedback and Support
-
-If you find this library useful, consider starring this project on GitHub. The
-stars will let me prioritize the more popular libraries over the less popular
-ones.
 
 If you have any questions, comments and other support questions about how to
 use this library, please use the

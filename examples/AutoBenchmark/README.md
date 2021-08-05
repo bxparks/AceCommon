@@ -2,7 +2,7 @@
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.5
+**Version**: AceCommon v1.4.6
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -51,14 +51,25 @@ number of `TimingStats::update()` calls that were made.
 
 ## CPU Time Changes
 
-* 1.4.4: Created the AutoBenchmark, replacing the `examples/Udiv1000` program
-  that measured only the `udiv1000()` function. It seems like
-  `examples/Udiv1000` underestimated the duration of the `udiv1000()` function
-  for AVR processors, probably because it did not sufficiently disable compiler
-  optimizations. That program found that that `udiv1000()` took about 5-6
-  microseconds on the AVR. The AutoBenchmark program finds that it actually
-  takes 16-16 microseconds.
-* 1.4.5: Upgrade to ESP32 Core v1.0.6. No significant change.
+**v1.4.4**
+
+* Created the AutoBenchmark, replacing the `examples/Udiv1000` program that
+    measured only the `udiv1000()` function. It seems like `examples/Udiv1000`
+    underestimated the duration of the `udiv1000()` function for AVR
+    processors, probably because it did not sufficiently disable compiler
+    optimizations. That program found that that `udiv1000()` took about 5-6
+    microseconds on the AVR. The AutoBenchmark program finds that it actually
+    takes 16-16 microseconds.
+
+**v1.4.5**
+
+* Upgrade to ESP32 Core v1.0.6. No significant change.
+
+**v1.4.6**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+* No significant change in CPU times.
 
 ## Results
 
@@ -92,7 +103,7 @@ CPU:
 
 ```
 
-### Sparkfun Pro Micro
+### SparkFun Pro Micro
 
 * 16 MHz ATmega32U4
 * Arduino IDE 1.8.13
@@ -121,7 +132,7 @@ CPU:
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Core 1.8.1
+* SparkFun SAMD Core 1.8.3
 
 ```
 Sizes of Objects:
@@ -131,12 +142,12 @@ CPU:
 +---------------------------+-------------------------+---------+
 | AceCommon function        |     min/    avg/    max | loopCnt |
 |---------------------------+-------------------------+---------|
-| /1000                     |   3.854/  3.855/  3.856 |    5000 |
-| udiv1000()                |   0.105/  0.105/  0.105 |    5000 |
-| decToBcdDivOnly()         |   2.447/  2.448/  2.449 |    5000 |
-| decToBcdDivMod()          |   5.124/  5.125/  5.126 |    5000 |
+| /1000                     |   3.855/  3.855/  3.856 |    5000 |
+| udiv1000()                |   0.103/  0.104/  0.105 |    5000 |
+| decToBcdDivOnly()         |   2.448/  2.448/  2.449 |    5000 |
+| decToBcdDivMod()          |   5.125/  5.125/  5.126 |    5000 |
 | decToBcd()                |   2.490/  2.491/  2.491 |    5000 |
-| bcdToDec()                |   0.146/  0.147/  0.147 |    5000 |
+| bcdToDec()                |   0.145/  0.146/  0.147 |    5000 |
 +---------------------------+-------------------------+---------+
 
 ```
@@ -145,7 +156,7 @@ CPU:
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 Sizes of Objects:
@@ -156,8 +167,8 @@ CPU:
 | AceCommon function        |     min/    avg/    max | loopCnt |
 |---------------------------+-------------------------+---------|
 | /1000                     |   0.080/  0.081/  0.083 |   10000 |
-| udiv1000()                |   0.055/  0.056/  0.057 |   10000 |
-| decToBcdDivOnly()         |   0.131/  0.132/  0.133 |   10000 |
+| udiv1000()                |   0.055/  0.055/  0.058 |   10000 |
+| decToBcdDivOnly()         |   0.131/  0.132/  0.134 |   10000 |
 | decToBcdDivMod()          |   0.145/  0.146/  0.148 |   10000 |
 | decToBcd()                |   0.131/  0.132/  0.134 |   10000 |
 | bcdToDec()                |   0.097/  0.098/  0.099 |   10000 |
@@ -193,7 +204,7 @@ CPU:
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 Sizes of Objects:

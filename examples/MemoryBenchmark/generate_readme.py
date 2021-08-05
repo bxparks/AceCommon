@@ -29,7 +29,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.4.5
+**Version**: AceCommon v1.4.6
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -62,6 +62,24 @@ ASCII table.
   operators bring in more complex code. But the overall ESP32 flash usage goes
   down by 7.5 kB compared to v1.0.4, so this is probably not something to worry
   about.
+* Added benchmarks for `udiv1000()` and native `/1000`. The `udiv1000()`
+  function consumes about 180 bytes on 8-bit AVR processors, more than the
+  native division by `/1000` which takes about 130 bytes.
+
+**v1.4.6**
+
+* Upgrade STM32duino Core from 1.9.0 to 2.0.0.
+    * Flash memory increases by 2.3kB across the board.
+    * Static memory decreases by 250 bytes across the board.
+    * AceCommon code unchanged.
+* Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+    * No changes to flash or static memory.
+* Add benchmark for `String` so to compare with `PrintStr<N>` and `PrintStrN`.
+    * Pull in `Serial` into the Baseline to compensate for pulling in the
+      `Print` class, the parent class of `PrintStr` and `PrintStrN`.
+* Add benchmark for `isSorted()`.
+    * Add `array[100]` into Baseline to compensate for its use in `isSorted()`.
+* Add benchmark for `printUint16AsFloat3To()` and `printUint32AsFloat3To()`.
 
 ## Arduino Nano
 
@@ -87,7 +105,7 @@ ASCII table.
 
 * 48 MHz ARM Cortex-M0+
 * Arduino IDE 1.8.13
-* Sparkfun SAMD Boards 1.8.1
+* Sparkfun SAMD Boards 1.8.3
 
 ```
 {samd_results}
@@ -99,14 +117,11 @@ ASCII table.
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
 * Arduino IDE 1.8.13
-* STM32duino 1.9.0
+* STM32duino 2.0.0
 
 ```
 {stm32_results}
 ```
-
-An entry of `-1` indicates that the memory usage exceeded the maximum of the
-microcontroller and the compiler did not generate the desired information.
 
 ## ESP8266
 
@@ -122,7 +137,7 @@ microcontroller and the compiler did not generate the desired information.
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
 * Arduino IDE 1.8.13
-* ESP32 Boards 1.0.4
+* ESP32 Boards 1.0.6
 
 ```
 {esp32_results}

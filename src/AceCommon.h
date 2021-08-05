@@ -41,8 +41,13 @@ SOFTWARE.
 // >= 1.8.10. Boards using arduino:samd <= 1.8.9 or SparkFun:samd are fine.
 #if defined(ARDUINO_ARCH_MEGAAVR)
 #error MegaAVR not supported, https://github.com/bxparks/AceCommon/issues/8
+
 #elif defined(ARDUINO_ARCH_SAMD) && defined(ARDUINO_API_VERSION)
 #error SAMD21 with arduino:samd >= 1.8.10 not supported, https://github.com/bxparks/AceCommon/issues/9
+
+#elif defined(ARDUINO_API_VERSION)
+#error Platforms using ArduinoCore-API not supported
+
 #endif
 
 #include "arithmetic/arithmetic.h"
@@ -51,6 +56,7 @@ SOFTWARE.
 #include "print_utils/printPadTo.h"
 #include "print_utils/printfTo.h"
 #include "timing_stats/TimingStats.h"
+#include "timing_stats/GenericStats.h"
 #include "url_encoding/url_encoding.h"
 #include "fstrings/FCString.h"
 #include "hash/djb2.h"
@@ -61,9 +67,11 @@ SOFTWARE.
 #include "cstrings/copyReplace.h"
 #include "print_utils/printReplaceTo.h"
 #include "fstrings/FlashString.h"
+#include "print_utils/printIntAsFloat.h"
+#include "algorithms/reverse.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10405
-#define ACE_COMMON_VERSION_STRING "1.4.5"
+#define ACE_COMMON_VERSION 10406
+#define ACE_COMMON_VERSION_STRING "1.4.6"
 
 #endif

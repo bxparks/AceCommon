@@ -43,19 +43,11 @@ static const uint8_t SAMPLE_SIZE = 5;
 
 /**
  * Print micros per count as a floating point number with 3 decimal places.
- * This function does not use floating point operations to avoid increasing the
- * flash memory consumption on most AVR processors with only limited flash
- * memory.
- * 
  * For example, if `us=13032` and `count=2000`, this prints "6.516".
  */
 void printMicros(uint32_t us, uint32_t count) {
   uint32_t nanos = us * 1000 / count;
-  uint16_t micros = nanos / 1000;
-  uint16_t frac = nanos % 1000;
-  SERIAL_PORT_MONITOR.print(micros);
-  SERIAL_PORT_MONITOR.print('.');
-  printPad3To(SERIAL_PORT_MONITOR, frac, '0');
+  printUint32AsFloat3To(SERIAL_PORT_MONITOR, nanos);
 }
 
 /**
