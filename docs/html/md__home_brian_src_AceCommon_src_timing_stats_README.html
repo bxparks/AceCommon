@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.5</span>
+   &#160;<span id="projectnumber">1.4.6</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -67,7 +67,7 @@ $(function() {
 <div class="title">Timing Stats </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>A helper class that can collect a stream of data (often duration in milliseconds), then calculate a number of statistical quantities, such as:</p>
+<div class="textblock"><p>This directory provides 2 classes to collect a stream of data (often duration in milliseconds), then calculate a number of statistical quantities, such as:</p>
 <ul>
 <li>min</li>
 <li>max</li>
@@ -75,9 +75,15 @@ $(function() {
 <li><a href="https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average">exponential decay average</a></li>
 <li>count</li>
 </ul>
+<p>The classes are:</p>
+<ul>
+<li><code>TimingStats</code>: the original stats class specialized to <code>uint16_t</code></li>
+<li><code>GenericStats</code>: a template class to support type <code>T</code> (e.g. <code>float</code>)</li>
+</ul>
 <h1>Usage</h1>
 <p>Use the <code>update()</code> function to collect the data. After data collection, call the various <code>getMin()</code>, <code>getMax()</code>, <code>getAvg()</code>, <code>getCount()</code>, and <code>getExpDecayAvg()</code> functions.</p>
 <p>Call the <code>reset()</code> method to reset the counters.</p>
+<h2>TimingStats</h2>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">#include &lt;Arduino.h&gt;</div>
 <div class="line">#include &lt;AceCommon.h&gt;</div>
@@ -123,6 +129,22 @@ $(function() {
 <div class="line">Avg: 20</div>
 <div class="line">Exp Decay Avg: 21</div>
 <div class="line">Count: 3</div>
+</div><!-- fragment --><h2>GenericStats</h2>
+<p>Very similar to <code>TimingStats</code>:</p>
+<div class="fragment"><div class="line"> {C++}</div>
+<div class="line">#include &lt;Arduino.h&gt;</div>
+<div class="line">#include &lt;AceCommon.h&gt;</div>
+<div class="line">using namespace ace_common;</div>
+<div class="line"> </div>
+<div class="line">GenericStats&lt;float&gt; stats;</div>
+<div class="line"> </div>
+<div class="line">void collectData() {</div>
+<div class="line">  stats.update(1.0);</div>
+<div class="line">  stats.update(2.0);</div>
+<div class="line">  stats.update(3.0);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">[...same as above...]</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

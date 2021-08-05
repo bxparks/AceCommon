@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.5</span>
+   &#160;<span id="projectnumber">1.4.6</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -114,7 +114,17 @@ $(function() {
 <div class="line">bool isSorted(const X list[], size_t size);</div>
 <div class="line"> </div>
 <div class="line">}</div>
-</div><!-- fragment --><p>See <a href="../../tests/IsSortedTest/">tests/IsSortedTest.ino</a> for examples. </p>
+</div><!-- fragment --><p>See <a href="../../tests/IsSortedTest/">tests/IsSortedTest.ino</a> for examples.</p>
+<h1>Reverse</h1>
+<p>Reverse the elements of an array in-place.</p>
+<div class="fragment"><div class="line"> {C++}</div>
+<div class="line">namespace ace_common {</div>
+<div class="line"> </div>
+<div class="line">template&lt;typename T&gt;</div>
+<div class="line">void reverse(T data[], size_t size);</div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --><p>See <a href="../../tests/ReverseTest/">tests/ReverseTest.ino</a> for examples. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
