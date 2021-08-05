@@ -128,10 +128,14 @@ bool isReverseSorted(const X list[], size_t size) {
 /**
  * Same as isSortedByKey() but checks for reverse sorting.
  *
- * @tparam X type of element in list
- * @param list sorted array of elements of type X (accepts both const array
- *    or a pointer to the array)
- * @param size number of elements
+ * @tparam K lambda expression or function pointer that returns some
+ *    unspecified value at index 'i'. The type of the value is inferred
+ *    automatically using the 'auto' keyword.
+ *
+ * @param size number of elements in the array
+ * @param key a function or lambda expression that returns the value
+ *    at index 'i'. If the 'key' inlined, I think the compiler is smart
+ *    enough to inline the 'key' into this code, and avoid a function call.
  */
 template <typename K>
 bool isReverseSortedByKey(size_t size, K&& key) {
