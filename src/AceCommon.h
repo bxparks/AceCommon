@@ -71,7 +71,7 @@ SOFTWARE.
 #include "algorithms/reverse.h"
 
 // Version format: "xx.yy.zz" => xxyyzz (without leading 0)
-#define ACE_COMMON_VERSION 10405
-#define ACE_COMMON_VERSION_STRING "1.4.5"
+#define ACE_COMMON_VERSION 10406
+#define ACE_COMMON_VERSION_STRING "1.4.6"
 
 #endif

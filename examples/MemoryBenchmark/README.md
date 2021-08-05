@@ -5,7 +5,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.4.5
+**Version**: AceCommon v1.4.6
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -42,7 +42,7 @@ ASCII table.
   function consumes about 180 bytes on 8-bit AVR processors, more than the
   native division by `/1000` which takes about 130 bytes.
 
-**v1.4.5+**
+**v1.4.6**
 
 * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
     * Flash memory increases by 2.3kB across the board.
@@ -55,6 +55,7 @@ ASCII table.
       `Print` class, the parent class of `PrintStr` and `PrintStrN`.
 * Add benchmark for `isSorted()`.
     * Add `array[100]` into Baseline to compensate for its use in `isSorted()`.
+* Add benchmark for `printUint16AsFloat3To()` and `printUint32AsFloat3To()`.
 
 ## Arduino Nano
 
@@ -209,9 +210,6 @@ ASCII table.
 +---------------------------------------------------------------------+
 
 ```
-
-An entry of `-1` indicates that the memory usage exceeded the maximum of the
-microcontroller and the compiler did not generate the desired information.
 
 ## ESP8266
 

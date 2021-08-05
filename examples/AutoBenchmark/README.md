@@ -2,7 +2,7 @@
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.5
+**Version**: AceCommon v1.4.6
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -65,7 +65,7 @@ number of `TimingStats::update()` calls that were made.
 
 * Upgrade to ESP32 Core v1.0.6. No significant change.
 
-**v1.4.5+**
+**v1.4.6**
 
 * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
 * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
