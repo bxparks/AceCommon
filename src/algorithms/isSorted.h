@@ -52,7 +52,7 @@ bool isSorted(const X list[], size_t size) {
   for (size_t i = 1; i < size; ++i) {
     X current = list[i];
     if (current < prev) return false;
-    current = prev;
+    prev = current;
   }
   return true;
 }
@@ -120,7 +120,7 @@ bool isReverseSorted(const X list[], size_t size) {
   for (size_t i = 1; i < size; ++i) {
     X current = list[i];
     if (current > prev) return false;
-    current = prev;
+    prev = current;
   }
   return true;
 }
