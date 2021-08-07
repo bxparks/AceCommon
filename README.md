@@ -51,12 +51,12 @@ automatically:
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
 * [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
     * `void printUint16AsFloat3To(Print& printer, uint16_t val)`
-        * Divide `val` by 1000 and print the result as a floating point number
-          to 3 decimal places.
+        * Divide 16-bit integer `val` by 1000 and print the result as a floating
+          point number to 3 decimal places.
         * Does not use floating point operations.
-    * `void printUint32AsFloat3To(Print& printer, uint16_t val)`
-        * Divide `val` by 1000 and print the result as a floating point number
-          to 3 decimal places.
+    * `void printUint32AsFloat3To(Print& printer, uint32_t val)`
+        * Divide 32-bit integer `val` by 1000 and print the result as a floating
+          point number to 3 decimal places.
         * Does not use floating point operations.
 * [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
@@ -105,9 +105,11 @@ automatically:
         * Templatized linear search of array of records or array of elements.
 * [src/algorithms/isSorted.h](src/algorithms/isSorted.h)
     * [src/algorithms/README.md](src/algorithms/README.md)
-    * `size_t isSortedByKey(size_t size, K&& key)`
+    * Determine if array is sorted or not.
     * `size_t isSorted(const X list[], size_t size)`
-        * Determine if array is sorted or not.
+    * `size_t isSortedByKey(size_t size, K&& key)`
+    * `size_t isReverseSorted(const X list[], size_t size)`
+    * `size_t isReverseSortedByKey(size_t size, K&& key)`
 * [src/algorithms/reverse.h](src/algorithms/reverse.h)
     * [src/algorithms/README.md](src/algorithms/README.md)
     * `void reverse(T data[], size_t size)`
@@ -119,8 +121,8 @@ automatically:
     * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
       char oldChar, const char* newString)`
 * [src/print_utils/printReplaceTo.h](src/print_utils/printReplaceTo.h)
-    * Print a string while replace a character with another character or another
-      string.
+    * Print a string while replacing a character with another character or
+      another string.
     * `void printReplaceCharTo(
       Print& printer, const char* src, char oldChar, char newChar)`
     * `void printReplaceCharTo(
