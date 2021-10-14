@@ -1,6 +1,9 @@
 # Changelog
 
 * Unreleased
+    * Add `KString::compareTo(KString&)` using a `KStringIterator` that supports
+      a single level of fragment nesting (i.e. a compression fragment cannot
+      contain another fragment).
 * 1.4.6 (2021-08-05)
     * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
         * MemoryBenchmark: Flash usage increases by 2.3kB across the board, but

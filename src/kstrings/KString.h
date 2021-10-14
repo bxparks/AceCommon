@@ -31,6 +31,8 @@ class Print;
 
 namespace ace_common {
 
+class KStringIterator;
+
 /**
  * A wrapper class around a normal c-string or Arduino f-string which is
  * encoded and compressed using keyword substitution. The keywords are encoded
@@ -49,12 +51,15 @@ namespace ace_common {
  * it is auto-destroyed at the end of its scope.
  */
 class KString {
+  friend class KStringIterator;
+
   public:
     /**
      * Constructor around a simple c-string.
      *
-     * @param s NUL terminated string, cannot be nullptr
-     * @param keywords an array of keywords, with nullptr in index position 0
+     * @param s NUL terminated string or nullptr
+     * @param keywords an array of keywords, up to 32 slots. The first slot at
+     *        index 0 should be `nullptr` since it cannot be used.
      * @param numKeywords number of keywords, including the nullptr in the 0th
      *        position. If greater than 32, will be truncated to 32.
      */
@@ -65,7 +70,7 @@ class KString {
     ):
       string_(s),
       keywords_(keywords),
-      type_(kTypeCstring),
+      type_(KString::kTypeCstring),
       numKeywords_(numKeywords > 0x20 ? 0x20 : numKeywords)
     {}
 
@@ -82,10 +87,19 @@ class KString {
     {}
 
     /**
-     * Compare this string against s and return `<0`, `0` or `>0` if this
-     * string is less than, equal to, or greater than the target string `s`.
+     * Compare this string against a c-string `s` and return `<0`, `0` or `>0`
+     * if this string is `<`, `==`, or `>` compared to the target string `s`. A
+     * nullptr is considered to be smaller than any non-null string, including
+     * the empty string.
      */
     int compareTo(const char* s);
+
+    /**
+     * Compare this string against another KString s and return `<0`, `0` or
+     * `>0` if this string is `<`, `==`, or `>` compared to the target string
+     * `s`.
+     */
+    int compareTo(const KString& s);
 
     /** Expand and print the current string to the given printer. */
     void printTo(Print& printer);
@@ -100,6 +114,74 @@ class KString {
     const char* const* const keywords_;
     uint8_t const type_;
     uint8_t const numKeywords_;
+};
+
+/**
+ * An interator that points to a character inside a KString. This is essentially
+ * a stack of 2 pointers. The first pointer points to the current string (either
+ * the original string, or inside a fragment string. The second pointer is the
+ * previous pointer, usually pointing to the original string. Each component
+ * pointer can be either a c-string or an f-string, so there is a type
+ * descriminator for each of the component pointer.
+ */
+class KStringIterator {
+  public:
+    KStringIterator(const KString& ks) :
+        ks_(ks),
+        firstType_(ks.type_),
+        secondType_(KString::kTypeCstring),
+        firstPtr_((const char*) ks.string_),
+        secondPtr_(nullptr)
+    {}
+
+    /**
+     * Return the current character referenced by the iterator. If the iterator
+     * points to a compression token (i.e. c < 0x20), then the iterator moves
+     * into the fragment string, and continues to return each character of the
+     * fragment. When iterator hits the end of the fragment string (hits the NUL
+     * character), the iterator returns to the original string, and continues
+     * just after the compression token. At the end of the entire string, this
+     * method returns a NUL to indicate the end of string.
+     */
+    char get() {
+      char c = getInternal(firstType_, firstPtr_);
+      if (c == '\0') {
+        if (secondPtr_ != nullptr) {
+          // pop the stack
+          firstType_ = secondType_;
+          firstPtr_ = secondPtr_;
+          secondPtr_ = nullptr;
+
+          // advance one character
+          firstPtr_++;
+          c = getInternal(firstType_, firstPtr_);
+        }
+      } else if (c < 0x20) { // fragment keyword string
+        // push the stack
+        secondType_ = firstType_;
+        secondPtr_ = firstPtr_;
+        firstType_ = KString::kTypeCstring;
+        firstPtr_ = ks_.keywords_[(uint8_t) c];
+        c = getInternal(firstType_, firstPtr_);
+      }
+      return c;
+    }
+
+    /** Advance the iterator one character, */
+    void next() { firstPtr_++; }
+
+  private:
+    static char getInternal(uint8_t type, const char* p) {
+      return (type == KString::kTypeCstring) ? *p : pgm_read_byte(p);
+    }
+
+  private:
+    // ordering of fields optimized to reduce gaps on 32-bit processors
+    const KString& ks_;
+    uint8_t firstType_;
+    uint8_t secondType_;
+    const char* firstPtr_;
+    const char* secondPtr_;
 };
 
 } // ace_common

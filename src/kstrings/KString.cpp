@@ -10,7 +10,7 @@ namespace ace_common {
 
 int KString::compareTo(const char* s) {
   #if ENABLE_SERIAL_DEBUG
-    Serial.println("compareTo()");
+    Serial.println("compareTo(const char*)");
   #endif
   if (string_ == s) { return 0; }
   if (string_ == nullptr) { return -1; }
@@ -68,6 +68,37 @@ int KString::compareTo(const char* s) {
     if (ca == '\0') return 0;
     a++;
     b++;
+  }
+}
+
+int KString::compareTo(const KString& s) {
+  #if ENABLE_SERIAL_DEBUG
+    Serial.println("compareTo(const KString&)");
+  #endif
+  if (this == &s) { return 0; }
+  if (string_ == s.string_) { return 0; }
+  if (string_ == nullptr) { return -1; }
+  if (s.string_ == nullptr) { return 1; }
+
+  KStringIterator aiter(*this);
+  KStringIterator biter(s);
+  while (true) {
+    #if ENABLE_SERIAL_DEBUG
+      printfTo(Serial, "outer: a=%c b=%c", ca, cb);
+      Serial.println();
+    #endif
+
+    char ca = aiter.get();
+    char cb = biter.get();
+    if (ca == cb) {
+      if (ca == '\0') {
+        return 0;
+      }
+    } else {
+      return ca - cb;
+    }
+    aiter.next();
+    biter.next();
   }
 }
 

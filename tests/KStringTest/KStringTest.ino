@@ -5,16 +5,19 @@
 
 using namespace aunit;
 using ace_common::KString;
+using ace_common::KStringIterator;
 using ace_common::PrintStr;
 
 const int NUM_KEYWORDS = 4;
 const char* const KEYWORDS[NUM_KEYWORDS] = {
   nullptr,
-  "Africa",
-  "America",
-  "Europe",
+  "Africa", // \x01
+  "America", // \x02
+  "Europe", // \x03
 };
 
+// ---------------------------------------------------------------------------
+// compareTo(const char*)
 // ---------------------------------------------------------------------------
 
 test(KStringTest, compareTo_nullptr) {
@@ -138,6 +141,78 @@ test(KStringTest, compareTo_prefix_and_suffix) {
 }
 
 // ---------------------------------------------------------------------------
+// compareTo(const KString&)
+// ---------------------------------------------------------------------------
+
+test(KStringTest, compareTo_KString_nullptr) {
+  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
+  KString k3("", KEYWORDS, NUM_KEYWORDS);
+
+  assertMore(k1.compareTo((const char*) nullptr), 0);
+  assertMore(k2.compareTo((const char*) nullptr), 0);
+  assertMore(k3.compareTo((const char*) nullptr), 0);
+
+  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
+  KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
+
+  assertMore(k1f.compareTo((const char*) nullptr), 0);
+  assertMore(k2f.compareTo((const char*) nullptr), 0);
+  assertMore(k3f.compareTo((const char*) nullptr), 0);
+}
+
+test(KStringTest, compareTo_KString_nullKString) {
+  KString knull((const char*) nullptr, KEYWORDS, NUM_KEYWORDS);
+
+  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
+  KString k3("", KEYWORDS, NUM_KEYWORDS);
+
+  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
+  KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
+
+  assertMore(k1.compareTo(knull), 0);
+  assertMore(k2.compareTo(knull), 0);
+  assertMore(k3.compareTo(knull), 0);
+
+  assertMore(k1f.compareTo(knull), 0);
+  assertMore(k2f.compareTo(knull), 0);
+  assertMore(k3f.compareTo(knull), 0);
+}
+
+test(KStringTest, compareTo_KString_KString) {
+  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
+
+  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
+
+  assertEqual(k1.compareTo(k1), 0);
+  assertEqual(k1.compareTo(k2), 0);
+  assertEqual(k1.compareTo(k1f), 0);
+  assertEqual(k1.compareTo(k2f), 0);
+
+  assertEqual(k2.compareTo(k1), 0);
+  assertEqual(k2.compareTo(k2), 0);
+  assertEqual(k2.compareTo(k1f), 0);
+  assertEqual(k2.compareTo(k2f), 0);
+
+  assertEqual(k1f.compareTo(k1), 0);
+  assertEqual(k1f.compareTo(k2), 0);
+  assertEqual(k1f.compareTo(k1f), 0);
+  assertEqual(k1f.compareTo(k2f), 0);
+
+  assertEqual(k2f.compareTo(k1), 0);
+  assertEqual(k2f.compareTo(k2), 0);
+  assertEqual(k2f.compareTo(k1f), 0);
+  assertEqual(k2f.compareTo(k2f), 0);
+}
+
+// ---------------------------------------------------------------------------
+// printTo()
+// ---------------------------------------------------------------------------
 
 test(KStringTest, printTo_nullptr_empty) {
   PrintStr<20> printStr;
@@ -165,6 +240,100 @@ test(KStringTest, printTo_prefix_suffix) {
   printStr.flush();
   k2.printTo(printStr);
   assertEqual(printStr.cstr(), "America/Africa");
+}
+
+// ---------------------------------------------------------------------------
+// KStringIterator
+// ---------------------------------------------------------------------------
+
+test(KStringIteratorTest, oneLevelCString) {
+  KString k("Africa", KEYWORDS, NUM_KEYWORDS);
+  KStringIterator iter(k);
+
+  assertEqual(iter.get(), 'A');
+  iter.next();
+  assertEqual(iter.get(), 'f');
+  iter.next();
+  assertEqual(iter.get(), 'r');
+  iter.next();
+  assertEqual(iter.get(), 'i');
+}
+
+test(KStringIteratorTest, oneLevelFString) {
+  KString k(F("Africa"), KEYWORDS, NUM_KEYWORDS);
+  KStringIterator iter(k);
+
+  assertEqual(iter.get(), 'A');
+  iter.next();
+  assertEqual(iter.get(), 'f');
+  iter.next();
+  assertEqual(iter.get(), 'r');
+  iter.next();
+  assertEqual(iter.get(), 'i');
+}
+
+test(KStringIteratorTest, twoLevelCString) {
+  // Africa/Lagos
+  KString k("\x01/Lagos", KEYWORDS, NUM_KEYWORDS);
+  KStringIterator iter(k);
+
+  assertEqual(iter.get(), 'A');
+  iter.next();
+  assertEqual(iter.get(), 'f');
+  iter.next();
+  assertEqual(iter.get(), 'r');
+  iter.next();
+  assertEqual(iter.get(), 'i');
+  iter.next();
+  assertEqual(iter.get(), 'c');
+  iter.next();
+  assertEqual(iter.get(), 'a');
+  iter.next();
+  assertEqual(iter.get(), '/');
+  iter.next();
+  assertEqual(iter.get(), 'L');
+  iter.next();
+  assertEqual(iter.get(), 'a');
+  iter.next();
+  assertEqual(iter.get(), 'g');
+  iter.next();
+  assertEqual(iter.get(), 'o');
+  iter.next();
+  assertEqual(iter.get(), 's');
+  iter.next();
+  assertEqual(iter.get(), '\0');
+}
+
+test(KStringIteratorTest, twoLevelFString) {
+  // Africa/Lagos
+  KString kf(F("\x01/Lagos"), KEYWORDS, NUM_KEYWORDS);
+  KStringIterator iter(kf);
+
+  assertEqual(iter.get(), 'A');
+  iter.next();
+  assertEqual(iter.get(), 'f');
+  iter.next();
+  assertEqual(iter.get(), 'r');
+  iter.next();
+  assertEqual(iter.get(), 'i');
+  iter.next();
+  assertEqual(iter.get(), 'c');
+  iter.next();
+  assertEqual(iter.get(), 'a');
+  iter.next();
+  assertEqual(iter.get(), '/');
+  iter.next();
+  assertEqual(iter.get(), 'L');
+  iter.next();
+  assertEqual(iter.get(), 'a');
+  iter.next();
+  assertEqual(iter.get(), 'g');
+  iter.next();
+  assertEqual(iter.get(), 'o');
+  iter.next();
+  assertEqual(iter.get(), 's');
+  iter.next();
+  assertEqual(iter.get(), '\0');
 }
 
 // ---------------------------------------------------------------------------
