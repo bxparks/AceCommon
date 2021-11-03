@@ -11,9 +11,9 @@ using ace_common::PrintStr;
 const int NUM_KEYWORDS = 4;
 const char* const KEYWORDS[NUM_KEYWORDS] = {
   nullptr,
-  "Africa", // \x01
-  "America", // \x02
-  "Europe", // \x03
+  "Africa/", // \x01
+  "America/", // \x02
+  "Europe/", // \x03
 };
 
 // ---------------------------------------------------------------------------
@@ -21,11 +21,11 @@ const char* const KEYWORDS[NUM_KEYWORDS] = {
 // ---------------------------------------------------------------------------
 
 test(KStringTest, compareTo_nullptr) {
-  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
   KString k3("", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
   KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
   KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
 
@@ -70,38 +70,38 @@ test(KStringTest, compareTo_outOfBoundsReference) {
   KString k("\x01\x1f", KEYWORDS, NUM_KEYWORDS);
   KString kf(F("\x01\x1f"), KEYWORDS, NUM_KEYWORDS);
 
-  assertEqual(k.compareTo("Africa\x1f"), 0);
-  assertEqual(kf.compareTo("Africa\x1f"), 0);
+  assertEqual(k.compareTo("Africa/\x1f"), 0);
+  assertEqual(kf.compareTo("Africa/\x1f"), 0);
 }
 
 test(KStringTest, compareTo_isolated) {
-  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
   KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("AmericaA"), 0);
   assertLess(k2.compareTo("AmericaA"), 0);
-  assertEqual(k1.compareTo("America"), 0);
-  assertEqual(k2.compareTo("America"), 0);
+  assertEqual(k1.compareTo("America/"), 0);
+  assertEqual(k2.compareTo("America/"), 0);
   assertMore(k1.compareTo("Americ"), 0);
   assertMore(k2.compareTo("Americ"), 0);
 
   assertLess(k1f.compareTo("AmericaA"), 0);
   assertLess(k2f.compareTo("AmericaA"), 0);
-  assertEqual(k1f.compareTo("America"), 0);
-  assertEqual(k2f.compareTo("America"), 0);
+  assertEqual(k1f.compareTo("America/"), 0);
+  assertEqual(k2f.compareTo("America/"), 0);
   assertMore(k1f.compareTo("Americ"), 0);
   assertMore(k2f.compareTo("Americ"), 0);
 }
 
 test(KStringTest, compareTo_prefix) {
   KString k1("America/Los_Angeles", KEYWORDS, NUM_KEYWORDS);
-  KString k2("\x02/Los_Angeles", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02Los_Angeles", KEYWORDS, NUM_KEYWORDS);
 
   KString k1f(F("America/Los_Angeles"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02/Los_Angeles"), KEYWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02Los_Angeles"), KEYWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("America~"), 0);
   assertLess(k2.compareTo("America~"), 0);
@@ -119,23 +119,23 @@ test(KStringTest, compareTo_prefix) {
 }
 
 test(KStringTest, compareTo_prefix_and_suffix) {
-  KString k1("America/Africa", KEYWORDS, NUM_KEYWORDS);
-  KString k2("\x02/\x01", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/Africa/", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02\x01", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/Africa"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02/\x01"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/Africa/"), KEYWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02\x01"), KEYWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("America~"), 0);
   assertLess(k2.compareTo("America~"), 0);
-  assertEqual(k1.compareTo("America/Africa"), 0);
-  assertEqual(k2.compareTo("America/Africa"), 0);
+  assertEqual(k1.compareTo("America/Africa/"), 0);
+  assertEqual(k2.compareTo("America/Africa/"), 0);
   assertMore(k1.compareTo("America"), 0);
   assertMore(k2.compareTo("America"), 0);
 
   assertLess(k1f.compareTo("America~"), 0);
   assertLess(k2f.compareTo("America~"), 0);
-  assertEqual(k1f.compareTo("America/Africa"), 0);
-  assertEqual(k2f.compareTo("America/Africa"), 0);
+  assertEqual(k1f.compareTo("America/Africa/"), 0);
+  assertEqual(k2f.compareTo("America/Africa/"), 0);
   assertMore(k1f.compareTo("America"), 0);
   assertMore(k2f.compareTo("America"), 0);
 }
@@ -145,7 +145,7 @@ test(KStringTest, compareTo_prefix_and_suffix) {
 // ---------------------------------------------------------------------------
 
 test(KStringTest, compareTo_KString_nullptr) {
-  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
   KString k3("", KEYWORDS, NUM_KEYWORDS);
 
@@ -153,7 +153,7 @@ test(KStringTest, compareTo_KString_nullptr) {
   assertMore(k2.compareTo((const char*) nullptr), 0);
   assertMore(k3.compareTo((const char*) nullptr), 0);
 
-  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
   KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
   KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
 
@@ -165,11 +165,11 @@ test(KStringTest, compareTo_KString_nullptr) {
 test(KStringTest, compareTo_KString_nullKString) {
   KString knull((const char*) nullptr, KEYWORDS, NUM_KEYWORDS);
 
-  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
   KString k3("", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
   KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
   KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
 
@@ -183,10 +183,10 @@ test(KStringTest, compareTo_KString_nullKString) {
 }
 
 test(KStringTest, compareTo_KString_KString) {
-  KString k1("America", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
   KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
 
   assertEqual(k1.compareTo(k1), 0);
@@ -230,16 +230,16 @@ test(KStringTest, printTo_nullptr_empty) {
 test(KStringTest, printTo_prefix_suffix) {
   PrintStr<20> printStr;
 
-  KString k1("America/Africa", KEYWORDS, NUM_KEYWORDS);
-  KString k2("\x02/\x01", KEYWORDS, NUM_KEYWORDS);
+  KString k1("America/Africa/", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02\x01", KEYWORDS, NUM_KEYWORDS);
 
   printStr.flush();
   k1.printTo(printStr);
-  assertEqual(printStr.cstr(), "America/Africa");
+  assertEqual(printStr.cstr(), "America/Africa/");
 
   printStr.flush();
   k2.printTo(printStr);
-  assertEqual(printStr.cstr(), "America/Africa");
+  assertEqual(printStr.cstr(), "America/Africa/");
 }
 
 // ---------------------------------------------------------------------------
@@ -274,7 +274,7 @@ test(KStringIteratorTest, oneLevelFString) {
 
 test(KStringIteratorTest, twoLevelCString) {
   // Africa/Lagos
-  KString k("\x01/Lagos", KEYWORDS, NUM_KEYWORDS);
+  KString k("\x01Lagos", KEYWORDS, NUM_KEYWORDS);
   KStringIterator iter(k);
 
   assertEqual(iter.get(), 'A');
@@ -306,7 +306,7 @@ test(KStringIteratorTest, twoLevelCString) {
 
 test(KStringIteratorTest, twoLevelFString) {
   // Africa/Lagos
-  KString kf(F("\x01/Lagos"), KEYWORDS, NUM_KEYWORDS);
+  KString kf(F("\x01Lagos"), KEYWORDS, NUM_KEYWORDS);
   KStringIterator iter(kf);
 
   assertEqual(iter.get(), 'A');
