@@ -8,12 +8,13 @@ using ace_common::KString;
 using ace_common::KStringIterator;
 using ace_common::PrintStr;
 
-const int NUM_KEYWORDS = 4;
+const int NUM_KEYWORDS = 5;
 const char* const KEYWORDS[NUM_KEYWORDS] = {
   nullptr,
   "Africa/", // \x01
   "America/", // \x02
   "Europe/", // \x03
+  "Indiana/", // \x04
 };
 
 // ---------------------------------------------------------------------------
@@ -208,6 +209,20 @@ test(KStringTest, compareTo_KString_KString) {
   assertEqual(k2f.compareTo(k2), 0);
   assertEqual(k2f.compareTo(k1f), 0);
   assertEqual(k2f.compareTo(k2f), 0);
+}
+
+test(KStringTest, compareTo_KString_KString_two_consecutive_fragments) {
+  KString k1("America/Indiana/Knox", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x02\x04Knox", KEYWORDS, NUM_KEYWORDS);
+  assertEqual(k1.compareTo(k2), 0);
+
+  KString k3("America/Bahia_Banderas", KEYWORDS, NUM_KEYWORDS);
+  assertMore(k1.compareTo(k3), 0);
+  assertMore(k2.compareTo(k3), 0);
+
+  KString k4("\x02" "Bahia_Banderas", KEYWORDS, NUM_KEYWORDS);
+  assertMore(k1.compareTo(k4), 0);
+  assertMore(k2.compareTo(k4), 0);
 }
 
 // ---------------------------------------------------------------------------

@@ -144,6 +144,8 @@ class KStringIterator {
      * method returns a NUL to indicate the end of string.
      */
     char get() {
+      // We don't support recursive compression fragments (i.e. compress tokens
+      // within fragments) so this does NOT need to be a loop.
       char c = getInternal(firstType_, firstPtr_);
       if (c == '\0') {
         if (secondPtr_ != nullptr) {
@@ -156,7 +158,9 @@ class KStringIterator {
           firstPtr_++;
           c = getInternal(firstType_, firstPtr_);
         }
-      } else if (c < 0x20) { // fragment keyword string
+      }
+
+      if (c != '\0' && c < 0x20) { // fragment keyword string
         // push the stack
         secondType_ = firstType_;
         secondPtr_ = firstPtr_;
