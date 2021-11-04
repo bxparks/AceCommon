@@ -27,7 +27,7 @@ print(f"""\
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.6
+**Version**: AceCommon v1.4.7
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -94,6 +94,15 @@ number of `TimingStats::update()` calls that were made.
 
 * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
 * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
+* No significant change in CPU times.
+
+**v1.4.7**
+
+* Upgrade Arduino IDE from 1.8.13 to 1.8.16.
+* Upgrade Arduino CLI from 0.14.0 to 0.19.2
+* Upgrade SparkFun SAMD Core from 1.8.3 to 1.8.5.
+* Upgrade ESP8266 Core from 2.7.4 to 3.0.2.
+* Upgrade Teensyduino from 1.53 to 1.55.
 * No significant change in CPU times.
 
 ## Results

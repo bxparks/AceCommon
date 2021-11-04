@@ -1,9 +1,11 @@
 # Changelog
 
 * Unreleased
-    * Add `KString::compareTo(KString&)` using a `KStringIterator` that supports
-      a single level of fragment nesting (i.e. a compression fragment cannot
-      contain another fragment).
+* 1.4.7 (2021-11-04)
+    * Add `KString::compareTo(KString&)` using a `KStringIterator`
+        * Supports a single level of fragment nesting (i.e. a compression
+          fragment cannot contain another fragment).
+        * Needed to implement `ZoneSorter` classes in AceTime.
     * Upgrade tool chain:
         * Upgrade Arduino IDE from 1.8.13 to 1.8.16.
         * Upgrade Arduino CLI from 0.14.0 to 0.19.2

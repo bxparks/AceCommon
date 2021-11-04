@@ -136,7 +136,7 @@ automatically:
     * Allows template functions to be written once, then reused for a flash
       string pointer `const __FlashStringHelper*`.
 
-**Version**: 1.4.6 (2021-08-05)
+**Version**: 1.4.7 (2021-11-04)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
