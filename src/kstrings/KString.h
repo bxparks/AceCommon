@@ -126,6 +126,7 @@ class KString {
  */
 class KStringIterator {
   public:
+    /** Constructor. */
     KStringIterator(const KString& ks) :
         ks_(ks),
         firstType_(ks.type_),
