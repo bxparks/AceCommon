@@ -4,6 +4,12 @@
     * Add `KString::compareTo(KString&)` using a `KStringIterator` that supports
       a single level of fragment nesting (i.e. a compression fragment cannot
       contain another fragment).
+    * Upgrade tool chain:
+        * Upgrade Arduino IDE from 1.8.13 to 1.8.16.
+        * Upgrade Arduino CLI from 0.14.0 to 0.19.2
+        * Upgrade SparkFun SAMD Core from 1.8.3 to 1.8.5.
+        * Upgrade ESP8266 Core from 2.7.4 to 3.0.2.
+        * Upgrade Teensyduino from 1.53 to 1.55.
 * 1.4.6 (2021-08-05)
     * Upgrade STM32duino Core from 1.9.0 to 2.0.0.
         * MemoryBenchmark: Flash usage increases by 2.3kB across the board, but
