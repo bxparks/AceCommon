@@ -24,6 +24,8 @@ BEGIN {
   labels[15] = "/1000"
   labels[16] = "isSorted()"
   labels[17] = "reverse()"
+  labels[18] = "KString::compareTo(char*)"
+  labels[19] = "KString::compareTo(KString&)"
   record_index = 0
 }
 {
@@ -58,6 +60,7 @@ END {
         || labels[i] ~ /^printReplaceCharTo\(char\*\)/ \
         || labels[i] ~ /^udiv1000/ \
         || labels[i] ~ /^isSorted\(\)/ \
+        || labels[i] ~ /^KString::compareTo\(char\*\)/ \
     ) {
       printf(\
         "|----------------------------------------+--------------+-------------|\n")

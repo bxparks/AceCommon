@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.6</span>
+   &#160;<span id="projectnumber">1.4.7</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classace__common_1_1KString-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ace_common::KString Class Reference</div>  </div>
@@ -89,22 +90,31 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a60615a796754fa50206fefa0c328fdb9">KString</a> (const __FlashStringHelper *fs, const char *const *keywords, uint8_t numKeywords)</td></tr>
 <tr class="memdesc:a60615a796754fa50206fefa0c328fdb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around an Arduino Flash string. <br /></td></tr>
 <tr class="separator:a60615a796754fa50206fefa0c328fdb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1838535fa2cb7d9310d4094fc9b0d752"><td class="memItemLeft" align="right" valign="top"><a id="a1838535fa2cb7d9310d4094fc9b0d752"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752">compareTo</a> (const char *s)</td></tr>
-<tr class="memdesc:a1838535fa2cb7d9310d4094fc9b0d752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare this string against s and return <code>&lt;0</code>, <code>0</code> or <code>&gt;0</code> if this string is less than, equal to, or greater than the target string <code>s</code>. <br /></td></tr>
+<tr class="memitem:a1838535fa2cb7d9310d4094fc9b0d752"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752">compareTo</a> (const char *s)</td></tr>
+<tr class="memdesc:a1838535fa2cb7d9310d4094fc9b0d752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare this string against a c-string <code>s</code> and return <code>&lt;0</code>, <code>0</code> or <code>&gt;0</code> if this string is <code>&lt;</code>, <code>==</code>, or <code>&gt;</code> compared to the target string <code>s</code>.  <a href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752">More...</a><br /></td></tr>
 <tr class="separator:a1838535fa2cb7d9310d4094fc9b0d752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0392d4be09ef710a7778d92d6791ffcf"><td class="memItemLeft" align="right" valign="top"><a id="a0392d4be09ef710a7778d92d6791ffcf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a0392d4be09ef710a7778d92d6791ffcf">compareTo</a> (const <a class="el" href="classace__common_1_1KString.html">KString</a> &amp;s)</td></tr>
+<tr class="memdesc:a0392d4be09ef710a7778d92d6791ffcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare this string against another <a class="el" href="classace__common_1_1KString.html" title="A wrapper class around a normal c-string or Arduino f-string which is encoded and compressed using ke...">KString</a> s and return <code>&lt;0</code>, <code>0</code> or <code>&gt;0</code> if this string is <code>&lt;</code>, <code>==</code>, or <code>&gt;</code> compared to the target string <code>s</code>. <br /></td></tr>
+<tr class="separator:a0392d4be09ef710a7778d92d6791ffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0026a60f3864fe379239c924160902f9"><td class="memItemLeft" align="right" valign="top"><a id="a0026a60f3864fe379239c924160902f9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a0026a60f3864fe379239c924160902f9">printTo</a> (Print &amp;printer)</td></tr>
 <tr class="memdesc:a0026a60f3864fe379239c924160902f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand and print the current string to the given printer. <br /></td></tr>
 <tr class="separator:a0026a60f3864fe379239c924160902f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a66cbbb24672bd5ff24664739e64bf949"><td class="memItemLeft" align="right" valign="top"><a id="a66cbbb24672bd5ff24664739e64bf949"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringIterator</b></td></tr>
+<tr class="separator:a66cbbb24672bd5ff24664739e64bf949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper class around a normal c-string or Arduino f-string which is encoded and compressed using keyword substitution. </p>
 <p>The keywords are encoded as non-printable ASCII characters between 0x01 and 0x1f (all below the space character 0x20). The 0x00 character cannot be used since it is the NUL character that terminates the string. The list of keywords are given in the <code>keywords</code> array.</p>
 <p>The number of keywords is obviously limited to 31, which happens to be sufficient for my needs. An alternative implementation is to use the high bit characters (0x80 - 0xff) which gives us 128 keywords, but I don't need that right now.</p>
-<p>This class is expected to have a short lifetype. In normal usage, it is created on the stack, the <a class="el" href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752" title="Compare this string against s and return &lt;0, 0 or &gt;0 if this string is less than, equal to,...">compareTo()</a> or <a class="el" href="classace__common_1_1KString.html#a0026a60f3864fe379239c924160902f9" title="Expand and print the current string to the given printer.">printTo()</a> is function called, then it is auto-destroyed at the end of its scope. </p>
+<p>This class is expected to have a short lifetype. In normal usage, it is created on the stack, the <a class="el" href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752" title="Compare this string against a c-string s and return &lt;0, 0 or &gt;0 if this string is &lt;,...">compareTo()</a> or <a class="el" href="classace__common_1_1KString.html#a0026a60f3864fe379239c924160902f9" title="Expand and print the current string to the given printer.">printTo()</a> is function called, then it is auto-destroyed at the end of its scope. </p>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00051">51</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00053">53</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1ac7be10f8d055edde05aaa1e1067bc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ac7be10f8d055edde05aaa1e1067bc4">&#9670;&nbsp;</a></span>KString()</h2>
@@ -149,14 +159,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Constructor around a simple c-string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>NUL terminated string, cannot be nullptr </td></tr>
-    <tr><td class="paramname">keywords</td><td>an array of keywords, with nullptr in index position 0 </td></tr>
+    <tr><td class="paramname">s</td><td>NUL terminated string or nullptr </td></tr>
+    <tr><td class="paramname">keywords</td><td>an array of keywords, up to 32 slots. The first slot at index 0 should be <code>nullptr</code> since it cannot be used. </td></tr>
     <tr><td class="paramname">numKeywords</td><td>number of keywords, including the nullptr in the 0th position. If greater than 32, will be truncated to 32. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00061">61</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00066">66</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1838535fa2cb7d9310d4094fc9b0d752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1838535fa2cb7d9310d4094fc9b0d752">&#9670;&nbsp;</a></span>compareTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ace_common::KString::compareTo </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare this string against a c-string <code>s</code> and return <code>&lt;0</code>, <code>0</code> or <code>&gt;0</code> if this string is <code>&lt;</code>, <code>==</code>, or <code>&gt;</code> compared to the target string <code>s</code>. </p>
+<p>A nullptr is considered to be smaller than any non-null string, including the empty string. </p>
+
+<p class="definition">Definition at line <a class="el" href="KString_8cpp_source.html#l00011">11</a> of file <a class="el" href="KString_8cpp_source.html">KString.cpp</a>.</p>
 
 </div>
 </div>

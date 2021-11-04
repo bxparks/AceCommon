@@ -26,6 +26,8 @@ using namespace ace_common;
 #define FEATURE_NATIVE_DIV_1000 15
 #define FEATURE_IS_SORTED 16
 #define FEATURE_REVERSE 17
+#define FEATURE_KSTRING_COMPARE_TO_CSTRING 18
+#define FEATURE_KSTRING_COMPARE_TO_KSTRING 19
 
 // Select one of the FEATURE_* parameter and compile. Then look at the flash
 // and RAM usage, compared to FEATURE_BASELINE usage to determine how much
@@ -85,7 +87,7 @@ void setup() {
 #elif FEATURE == FEATURE_PRINT_UINT16_AS_FLOAT3_TO
   printUint16AsFloat3To(SERIAL_PORT_MONITOR, (uint16_t) 123);
 #elif FEATURE == FEATURE_PRINT_UINT32_AS_FLOAT3_TO
-  printUint16AsFloat3To(SERIAL_PORT_MONITOR, (uint32_t) 123456);
+  printUint32AsFloat3To(SERIAL_PORT_MONITOR, (uint32_t) 123456UL);
 #elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_TO_CSTRING
   printReplaceCharTo(SERIAL_PORT_MONITOR, "E%T", '%', 'S');
 #elif FEATURE == FEATURE_PRINT_REPLACE_CHAR_TO_FSTRING
@@ -122,6 +124,27 @@ void setup() {
 #elif FEATURE == FEATURE_REVERSE
   reverse(array, ARRAY_SIZE);
   guard = array[0];
+
+#elif FEATURE == FEATURE_KSTRING_COMPARE_TO_CSTRING
+  const int NUM_KEYWORDS = 2;
+  const char* const KEYWORDS[NUM_KEYWORDS] = {
+    nullptr,
+    "Africa/", // \x01
+  };
+  KString k1("\x01" "Cairo", KEYWORDS, NUM_KEYWORDS);
+  int cmp = k1.compareTo("Africa/Ceuta");
+  guard = cmp;
+
+#elif FEATURE == FEATURE_KSTRING_COMPARE_TO_KSTRING
+  const int NUM_KEYWORDS = 2;
+  const char* const KEYWORDS[NUM_KEYWORDS] = {
+    nullptr,
+    "Africa/", // \x01
+  };
+  KString k1("\x01" "Cairo", KEYWORDS, NUM_KEYWORDS);
+  KString k2("\x01" "Ceuta", KEYWORDS, NUM_KEYWORDS);
+  int cmp = k1.compareTo(k2);
+  guard = cmp;
 
 #else
   #error Unknown FEATURE

@@ -27,7 +27,7 @@ print(f"""\
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.6
+**Version**: AceCommon v1.4.7
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -96,6 +96,15 @@ number of `TimingStats::update()` calls that were made.
 * Upgrade SparkFun SAMD Core from 1.8.1 to 1.8.3.
 * No significant change in CPU times.
 
+**v1.4.7**
+
+* Upgrade Arduino IDE from 1.8.13 to 1.8.16.
+* Upgrade Arduino CLI from 0.14.0 to 0.19.2
+* Upgrade SparkFun SAMD Core from 1.8.3 to 1.8.5.
+* Upgrade ESP8266 Core from 2.7.4 to 3.0.2.
+* Upgrade Teensyduino from 1.53 to 1.55.
+* No significant change in CPU times.
+
 ## Results
 
 The following results are given in unit of microseconds for the single function
@@ -106,7 +115,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### Arduino Nano
 
 * 16MHz ATmega328P
-* Arduino IDE 1.8.13
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
 * Arduino AVR Boards 1.8.3
 * `micros()` has a resolution of 4 microseconds
 
@@ -117,7 +126,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### SparkFun Pro Micro
 
 * 16 MHz ATmega32U4
-* Arduino IDE 1.8.13
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
 * SparkFun AVR Boards 1.1.13
 * `micros()` has a resolution of 4 microseconds
 
@@ -128,8 +137,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### SAMD21 M0 Mini
 
 * 48 MHz ARM Cortex-M0+
-* Arduino IDE 1.8.13
-* SparkFun SAMD Core 1.8.3
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* SparkFun SAMD Core 1.8.5
 
 ```
 {samd_results}
@@ -138,7 +147,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### STM32
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
-* Arduino IDE 1.8.13
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
 * STM32duino 2.0.0
 
 ```
@@ -148,8 +157,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### ESP8266
 
 * NodeMCU 1.0 clone, 80MHz ESP8266
-* Arduino IDE 1.8.13
-* ESP8266 Boards 2.7.4
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* ESP8266 Boards 3.0.2
 
 ```
 {esp8266_results}
@@ -158,7 +167,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### ESP32
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
-* Arduino IDE 1.8.13
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
 * ESP32 Boards 1.0.6
 
 ```
@@ -168,8 +177,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### Teensy 3.2
 
 * 96 MHz ARM Cortex-M4
-* Arduino IDE 1.8.13
-* Teensyduino 1.53
+* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* Teensyduino 1.55
 * Compiler options: "Faster"
 
 ```

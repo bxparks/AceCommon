@@ -2,11 +2,6 @@
 
 [![AUnit Tests](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml/badge.svg)](https://github.com/bxparks/AceCommon/actions/workflows/aunit_tests.yml)
 
-**New**: [GitHub Discussions](https://github.com/bxparks/AceCommon/discussions)
-for this project is now active! Let's use that for general support questions,
-and reserve the [GitHub Issues](https://github.com/bxparks/AceCommon/issues)
-section for bugs and feature requests.
-
 An Arduino library containing small, low-level functions and routines which have
 no dependencies to any other external libraries so that they can be easily
 reused from other Arduino libraries in my collection.
@@ -51,12 +46,12 @@ automatically:
     * `void printPad5To(Print& printer, uint16_t val, char pad = ' ')`
 * [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
     * `void printUint16AsFloat3To(Print& printer, uint16_t val)`
-        * Divide `val` by 1000 and print the result as a floating point number
-          to 3 decimal places.
+        * Divide 16-bit integer `val` by 1000 and print the result as a floating
+          point number to 3 decimal places.
         * Does not use floating point operations.
-    * `void printUint32AsFloat3To(Print& printer, uint16_t val)`
-        * Divide `val` by 1000 and print the result as a floating point number
-          to 3 decimal places.
+    * `void printUint32AsFloat3To(Print& printer, uint32_t val)`
+        * Divide 32-bit integer `val` by 1000 and print the result as a floating
+          point number to 3 decimal places.
         * Does not use floating point operations.
 * [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
@@ -105,9 +100,11 @@ automatically:
         * Templatized linear search of array of records or array of elements.
 * [src/algorithms/isSorted.h](src/algorithms/isSorted.h)
     * [src/algorithms/README.md](src/algorithms/README.md)
-    * `size_t isSortedByKey(size_t size, K&& key)`
+    * Determine if array is sorted or not.
     * `size_t isSorted(const X list[], size_t size)`
-        * Determine if array is sorted or not.
+    * `size_t isSortedByKey(size_t size, K&& key)`
+    * `size_t isReverseSorted(const X list[], size_t size)`
+    * `size_t isReverseSortedByKey(size_t size, K&& key)`
 * [src/algorithms/reverse.h](src/algorithms/reverse.h)
     * [src/algorithms/README.md](src/algorithms/README.md)
     * `void reverse(T data[], size_t size)`
@@ -119,8 +116,8 @@ automatically:
     * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
       char oldChar, const char* newString)`
 * [src/print_utils/printReplaceTo.h](src/print_utils/printReplaceTo.h)
-    * Print a string while replace a character with another character or another
-      string.
+    * Print a string while replacing a character with another character or
+      another string.
     * `void printReplaceCharTo(
       Print& printer, const char* src, char oldChar, char newChar)`
     * `void printReplaceCharTo(
@@ -139,7 +136,7 @@ automatically:
     * Allows template functions to be written once, then reused for a flash
       string pointer `const __FlashStringHelper*`.
 
-**Version**: 1.4.6 (2021-08-05)
+**Version**: 1.4.7 (2021-11-04)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
@@ -224,16 +221,16 @@ The following boards are *not* supported:
 
 This library was developed and tested using:
 
-* [Arduino IDE 1.8.13](https://www.arduino.cc/en/Main/Software)
-* [Arduino CLI 0.14.0](https://arduino.github.io/arduino-cli)
+* [Arduino IDE 1.8.16](https://www.arduino.cc/en/Main/Software)
+* [Arduino CLI 0.19.2](https://arduino.github.io/arduino-cli)
 * [Arduino AVR Boards 1.8.3](https://github.com/arduino/ArduinoCore-avr)
 * [Arduino SAMD Boards 1.8.9](https://github.com/arduino/ArduinoCore-samd)
 * [SparkFun AVR Boards 1.1.13](https://github.com/sparkfun/Arduino_Boards)
-* [SparkFun SAMD Boards 1.8.3](https://github.com/sparkfun/Arduino_Boards)
+* [SparkFun SAMD Boards 1.8.5](https://github.com/sparkfun/Arduino_Boards)
 * [STM32duino 2.0.0](https://github.com/stm32duino/Arduino_Core_STM32)
-* [ESP8266 Arduino Core 2.7.4](https://github.com/esp8266/Arduino)
+* [ESP8266 Arduino Core 3.0.2](https://github.com/esp8266/Arduino)
 * [ESP32 Arduino Core 1.0.6](https://github.com/espressif/arduino-esp32)
-* [Teensyduino 1.53](https://www.pjrc.com/teensy/td_download.html)
+* [Teensyduino 1.55](https://www.pjrc.com/teensy/td_download.html)
 
 It should work with [PlatformIO](https://platformio.org/) but I have
 not tested it.
@@ -251,14 +248,14 @@ I use Ubuntu Linux 18.04 and 20.04 for most of my development.
 
 ## Feedback and Support
 
-If you have any questions, comments and other support questions about how to
-use this library, please use the
-[GitHub Discussions](https://github.com/bxparks/AceCommon/discussions)
-for this project. If you have bug reports or feature requests, please file a
-ticket in [GitHub Issues](https://github.com/bxparks/AceCommon/issues).
-I'd love to hear about how this software and its documentation can be improved.
-I can't promise that I will incorporate everything, but I will give your ideas
-serious consideration.
+If you have any questions, comments, or feature requests for this library,
+please use the [GitHub
+Discussions](https://github.com/bxparks/AceCommon/discussions) for this project.
+If you have bug reports, please file a ticket in [GitHub
+Issues](https://github.com/bxparks/AceCommon/issues). Feature requests should go
+into Discussions first because they often have alternative solutions which are
+useful to remain visible, instead of disappearing from the default view of the
+Issue tracker after the ticket is closed.
 
 Please refrain from emailing me directly unless the content is sensitive. The
 problem with email is that I cannot reference the email conversation when other
