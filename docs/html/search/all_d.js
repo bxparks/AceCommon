@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['timing_20stats_79',['Timing Stats',['../md__home_brian_src_AceCommon_src_timing_stats_README.html',1,'']]],
-  ['timingstats_80',['TimingStats',['../classace__common_1_1TimingStats.html',1,'ace_common::TimingStats'],['../classace__common_1_1TimingStats.html#a8ffb99931928b622e696addddf426b96',1,'ace_common::TimingStats::TimingStats()'],['../classace__common_1_1TimingStats.html#a7dfa7d8de54f34a9d3e32a4040d7884f',1,'ace_common::TimingStats::TimingStats(const TimingStats &amp;)=default']]]
+  ['reset_79',['reset',['../classace__common_1_1GenericStats.html#a5784992dd9f6708b5daaa384b4a9d2ca',1,'ace_common::GenericStats::reset()'],['../classace__common_1_1TimingStats.html#ad122f309fd44c2da6c26da02c4b11887',1,'ace_common::TimingStats::reset()']]],
+  ['reverse_80',['reverse',['../reverse_8h.html#a850c1d59fd883b5db4585b0cfc90bf35',1,'ace_common']]],
+  ['reverse_2eh_81',['reverse.h',['../reverse_8h.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write_86',['write',['../classace__common_1_1PrintStrBase.html#a21d9667e7407a4818e94ab3232e35fb3',1,'ace_common::PrintStrBase::write(uint8_t c) override'],['../classace__common_1_1PrintStrBase.html#a9c49abf25f6a4d4a1ca3d7bd35140d10',1,'ace_common::PrintStrBase::write(const uint8_t *buf, size_t size) override']]]
+  ['vprintfto_88',['vprintfTo',['../printfTo_8h.html#a55806a89862d8c7652712c39e763d03c',1,'ace_common']]]
 ];
