@@ -27,7 +27,8 @@ SOFTWARE.
 
 // Much of this copied from AUnit/src/aunit/FCString.h and Compare.h.
 
-#include <stdint.h>
+#include <stddef.h> // size_t
+#include <stdint.h> // uint8_t
 
 class Print;
 class __FlashStringHelper;

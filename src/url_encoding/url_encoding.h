@@ -35,6 +35,8 @@ SOFTWARE.
 
 #include <stdint.h> // uint8_t
 
+class Print;
+
 namespace ace_common {
 
 /**
