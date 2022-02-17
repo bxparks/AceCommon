@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.7</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -73,14 +73,25 @@ $(function() {
 <div class="title">url_encoding.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for url_encoding.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="url__encoding_8h__incl.png" border="0" usemap="#_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8h" alt=""/></div>
+<map name="_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8h" id="_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8h">
+<area shape="rect" title=" " alt="" coords="5,5,236,47"/>
+<area shape="rect" title=" " alt="" coords="85,95,156,121"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="url__encoding_8h__dep__incl.png" border="0" usemap="#_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8hdep" alt=""/></div>
 <map name="_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8hdep" id="_2home_2brian_2src_2AceCommon_2src_2url__encoding_2url__encoding_8hdep">
-<area shape="rect" title=" " alt="" coords="121,5,351,47"/>
-<area shape="rect" href="AceCommon_8h_source.html" title=" " alt="" coords="5,95,216,136"/>
-<area shape="rect" href="url__encoding_8cpp_source.html" title=" " alt="" coords="239,95,486,136"/>
+<area shape="rect" title=" " alt="" coords="230,5,461,47"/>
+<area shape="rect" href="AceCommon_8h_source.html" title=" " alt="" coords="5,102,216,143"/>
+<area shape="rect" href="backslash__x__encoding_8cpp_source.html" title=" " alt="" coords="240,95,451,151"/>
+<area shape="rect" href="url__encoding_8cpp_source.html" title=" " alt="" coords="474,102,721,143"/>
 </map>
 </div>
 </div>
@@ -95,12 +106,73 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::formUrlDecode</b> (Print &amp;output, const char *str)</td></tr>
 <tr class="memdesc:a399f49fe917ffc6547a667b0efcb11a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the str that was encoded using form_url_encode(). <br /></td></tr>
 <tr class="separator:a399f49fe917ffc6547a667b0efcb11a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe6f9d0aa25ea3110e17206b958ab6b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::byteToHexChar</b> (uint8_t c, char *high, char *low, char baseChar='A')</td></tr>
+<tr class="memdesc:afe6f9d0aa25ea3110e17206b958ab6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a byte into 2-digit, uppercase, hex.  <a href="url__encoding_8cpp.html#afe6f9d0aa25ea3110e17206b958ab6b6">More...</a><br /></td></tr>
+<tr class="separator:afe6f9d0aa25ea3110e17206b958ab6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92ef2624847ded5249c17f94ffe19446"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::hexCharToByte</b> (char c)</td></tr>
+<tr class="memdesc:a92ef2624847ded5249c17f94ffe19446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a hex character [0-9a-fA-F] into its integer value.  <a href="url__encoding_8cpp.html#a92ef2624847ded5249c17f94ffe19446">More...</a><br /></td></tr>
+<tr class="separator:a92ef2624847ded5249c17f94ffe19446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides 2 functions to perform URL form encoding and decoding. A space &lsquo;&rsquo; '<code>is converted into a</code>'+'`, and all other non-alphabetical characters are converted into %{hex}. </p>
 
 <p class="definition">Definition in file <a class="el" href="url__encoding_8h_source.html">url_encoding.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="afe6f9d0aa25ea3110e17206b958ab6b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe6f9d0aa25ea3110e17206b958ab6b6">&#9670;&nbsp;</a></span>byteToHexChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ace_common::byteToHexChar </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>high</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>low</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>baseChar</em> = <code>'A'</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a byte into 2-digit, uppercase, hex. </p>
+<p>For example, 0x9A returns the '9' and 'A' characters.</p>
+<p>I tried returning the (high, low) pair as a uint16_t type, then breaking apart the 2 bytes in the calling routine. But that alternative was slower than using a reference to code0 and code1. I suspect that the compiler is able to optimize away the reference and possibly inline the entire function into the calling code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>the 8-bit unsigned value to be converted into hexadecimal </td></tr>
+    <tr><td class="paramname">high</td><td>output parameter of the high character </td></tr>
+    <tr><td class="paramname">low</td><td>output parameter of the low character </td></tr>
+    <tr><td class="paramname">baseChar</td><td>the base character of the hexadecimal range, default 'A' which returns hexadecimal characters using uppercase. Set this to 'a' to get lowercase characters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="url__encoding_8cpp_source.html#l00076">76</a> of file <a class="el" href="url__encoding_8cpp_source.html">url_encoding.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a4a06d056dd8649a694765b292265cae6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a06d056dd8649a694765b292265cae6">&#9670;&nbsp;</a></span>formUrlEncode()</h2>
 
@@ -132,7 +204,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::formUrlDe
 <p>The result is printed to the <code>output</code> that implements the <code>Print</code> interface. The <code>output</code> could be the <code>Serial</code> object, but more frequently, it is useful to use an in-memory buffer such as <code>PrintStr</code>. This allows us to avoid using a String object, which decreases the risk of heap fragmentation.</p>
 <p>See <a href="https://en.wikipedia.org/wiki/Percent-encoding">https://en.wikipedia.org/wiki/Percent-encoding</a> and <a href="https://stackoverflow.com/questions/1634271">https://stackoverflow.com/questions/1634271</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="url__encoding_8cpp_source.html#l00047">47</a> of file <a class="el" href="url__encoding_8cpp_source.html">url_encoding.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="url__encoding_8cpp_source.html#l00030">30</a> of file <a class="el" href="url__encoding_8cpp_source.html">url_encoding.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a92ef2624847ded5249c17f94ffe19446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ef2624847ded5249c17f94ffe19446">&#9670;&nbsp;</a></span>hexCharToByte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ace_common::hexCharToByte </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a hex character [0-9a-fA-F] into its integer value. </p>
+<p>For example, 9 returns '9', and 10 returns 'A'. Characters outside of the valid hexadecimal character range return 0. </p>
+
+<p class="definition">Definition at line <a class="el" href="url__encoding_8cpp_source.html#l00083">83</a> of file <a class="el" href="url__encoding_8cpp_source.html">url_encoding.cpp</a>.</p>
 
 </div>
 </div>

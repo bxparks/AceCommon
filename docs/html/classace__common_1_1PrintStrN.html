@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.7</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -149,7 +149,7 @@ Additional Inherited Members</h2></td></tr>
 <p>The name <code><a class="el" href="classace__common_1_1PrintStrN.html" title="An alternate implementation of PrintStr that allocates the character array in the heap,...">PrintStrN</a></code> was the best I could think of that was relatively short, similar to <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a></code>, and conveyed the idea that the memory is allocated on the heap, which allows the <code>size</code> parameter to be a runtime value, instead of a compile-time value.</p>
 <p>If this object is created dynamically at the beginning of a function, the character array buffer will be created on the heap. At the end of the function, the object will be automatically destroyed, and destruuctor will automatically reclaim the character array on the heap. If no other heap allocation is performed, then this object should cause no heap fragmentation, just like the <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a></code> object which uses only the stack. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00264">264</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00269">269</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a53f632161de2f508b7574998e18fe30c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53f632161de2f508b7574998e18fe30c">&#9670;&nbsp;</a></span>~PrintStrN()</h2>
@@ -177,7 +177,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Delete the internal buffer on the heap. </p>
 <p>This object itself should never be created on the heap, so we don't need to make the destructor virtual. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00274">274</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00279">279</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
