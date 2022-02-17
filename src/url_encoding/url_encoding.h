@@ -33,6 +33,10 @@ SOFTWARE.
 #ifndef ACE_COMMON_URL_ENCODING_H
 #define ACE_COMMON_URL_ENCODING_H
 
+#include <stdint.h> // uint8_t
+
+class Print;
+
 namespace ace_common {
 
 /**
@@ -54,6 +58,32 @@ void formUrlEncode(Print& output, const char* str);
  * Decode the str that was encoded using form_url_encode().
  */
 void formUrlDecode(Print& output, const char* str);
+
+/**
+ * Convert a byte into 2-digit, uppercase, hex. For example, 0x9A returns the
+ * '9' and 'A' characters.
+ *
+ * I tried returning the (high, low) pair as a uint16_t type, then breaking
+ * apart the 2 bytes in the calling routine. But that alternative was slower
+ * than using a reference to code0 and code1. I suspect that the compiler is
+ * able to optimize away the reference and possibly inline the entire function
+ * into the calling code.
+ *
+ * @param c the 8-bit unsigned value to be converted into hexadecimal
+ * @param high output parameter of the high character
+ * @param low output parameter of the low character
+ * @param baseChar the base character of the hexadecimal range, default 'A'
+ *   which returns hexadecimal characters using uppercase. Set this to 'a' to
+ *   get lowercase characters.
+ */
+void byteToHexChar(uint8_t c, char* high, char* low, char baseChar = 'A');
+
+/**
+ * Convert a hex character [0-9a-fA-F] into its integer value. For example,
+ * 9 returns '9', and 10 returns 'A'. Characters outside of the valid
+ * hexadecimal character range return 0.
+ */
+uint8_t hexCharToByte(char c);
 
 }
 

@@ -2,16 +2,9 @@
 #include <string.h>
 #include "KString.h"
 
-#if ENABLE_SERIAL_DEBUG
-  #include "../print_utils/printfTo.h"
-#endif
-
 namespace ace_common {
 
 int KString::compareTo(const char* s) {
-  #if ENABLE_SERIAL_DEBUG
-    Serial.println("compareTo(const char*)");
-  #endif
   if (string_ == s) { return 0; }
   if (string_ == nullptr) { return -1; }
   if (s == nullptr) { return 1; }
@@ -32,10 +25,6 @@ int KString::compareTo(const char* s) {
     // this conditional code unimportant.
     uint8_t ca = isCstring ? *a : pgm_read_byte(a);
 
-    #if ENABLE_SERIAL_DEBUG
-      printfTo(Serial, "outer: a=%c b=%c", ca, cb);
-      Serial.println();
-    #endif
     if (ca != cb) {
       // If ca is a keyword reference, then compare against the keyword.
       // Recursive keyword substitution not allowed, because I don't want to
@@ -45,10 +34,6 @@ int KString::compareTo(const char* s) {
         while (true) {
           ca = *k;
           cb = *b;
-          #if ENABLE_SERIAL_DEBUG
-            printfTo(Serial, "inner: a=%c b=%c", ca, cb);
-            Serial.println();
-          #endif
           if (ca == '\0') {
             a++;
             // Terrible goto, but it's the easiest way to bail out of the inner
@@ -72,9 +57,6 @@ int KString::compareTo(const char* s) {
 }
 
 int KString::compareTo(const KString& s) {
-  #if ENABLE_SERIAL_DEBUG
-    Serial.println("compareTo(const KString&)");
-  #endif
   if (this == &s) { return 0; }
   if (string_ == s.string_) { return 0; }
   if (string_ == nullptr) { return -1; }
@@ -83,13 +65,9 @@ int KString::compareTo(const KString& s) {
   KStringIterator aiter(*this);
   KStringIterator biter(s);
   while (true) {
-    #if ENABLE_SERIAL_DEBUG
-      printfTo(Serial, "outer: a=%c b=%c", ca, cb);
-      Serial.println();
-    #endif
-
     char ca = aiter.get();
     char cb = biter.get();
+
     if (ca == cb) {
       if (ca == '\0') {
         return 0;

@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.7</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -133,7 +133,7 @@ Static Public Attributes</h2></td></tr>
 <p>This allows us to treat these 2 strings like a single object.</p>
 <p>I deliberately decided not to inherit from Printable. While it is convenient to be able to call Print::print() with an instance of this class, the cost is 2 (AVR) or 4 (Teensy-ARM or ESP8266) extra bytes of static memory for the v-table pointer for each instance. Instead, use the <code>printTo(Print&amp;)</code> method. </p>
 
-<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00047">47</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00048">48</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa7940ab264d4d1f63b4c91fcb351a9b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa7940ab264d4d1f63b4c91fcb351a9b2">&#9670;&nbsp;</a></span>printTo()</h2>
@@ -182,7 +182,7 @@ Static Public Attributes</h2></td></tr>
 <p>Identifies the object as holding a c-string. </p>
 <p><a class="el" href="classace__common_1_1FCString.html#a01e503eb37d5ddf9d2027fdf6e9dd5d7" title="Get the c-string pointer.">getCString()</a> is valid. </p>
 
-<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00050">50</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00051">51</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +209,7 @@ Static Public Attributes</h2></td></tr>
 <p>Identifies the object as holding an f-string. </p>
 <p><a class="el" href="classace__common_1_1FCString.html#ab5b677b3a2f540d7bccb59cf255d9d31" title="Get the flash string pointer.">getFString()</a> is valid. </p>
 
-<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00053">53</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="FCString_8h_source.html#l00054">54</a> of file <a class="el" href="FCString_8h_source.html">FCString.h</a>.</p>
 
 </div>
 </div>

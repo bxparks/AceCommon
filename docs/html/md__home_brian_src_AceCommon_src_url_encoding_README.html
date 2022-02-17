@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.7</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -78,14 +78,13 @@ $(function() {
 <li>Spaces are converted to <code>+</code>,</li>
 <li>all other characters are percent-encoded (<code>%</code> followed by the 2-digit hexademimal value of the character)</li>
 </ul>
-<p>Two functions are provided:</p>
-<ul>
-<li><code>void formUrlEncode(Print&amp; output, const char* str);</code></li>
-<li><code>void formUrlDecode(Print&amp; output, const char* str);</code></li>
-</ul>
+<p>Two main functions are provided:</p>
+<p>``<code>C++ void formUrlEncode(Print&amp; output, const char* str);</code> void formUrlDecode(Print&amp; output, const char* str);`</p>
+<p>void byteToHexChar(uint8_t c, char* high, char* low, char baseChar = 'A'); uint8_t hexCharToByte(char c); ```</p>
 <p>These functions do <em>not</em> use the <code>String</code> class so that we can avoid heap fragmentation associated with numerous creation and deletion of small <code>String</code> objects. Instead, these functions print to the <code>output</code> parameter implementing the <code>Print</code> interface.</p>
 <p>The most convenient implementation of the <code>Print</code> interface is one of the <a href="../print_str">Print String</a> classes provided in this library. These classes allow the encoded or decoded string to be printed to an in-memory buffer. The <code>PrintStr</code> or <code>PrintStrN</code> object can be converted into a normal c-string (<code>const char*</code>) using the <code>cstr()</code> method.</p>
 <p>You can also pass a <code>Serial</code> object as the <code>output</code> if that is more convenient, since <code>Serial</code> also implements the <code>Print</code> interface.</p>
+<p>The <code>byteToHexChar()</code> and <code>hexCharToByte()</code> functions are helper functions. They used to be internal, but got exposed because they became useful in other parts of AceCommon.</p>
 <h1>Usage</h1>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">#include &lt;Arduino.h&gt;</div>

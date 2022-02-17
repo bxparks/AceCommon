@@ -2,7 +2,7 @@
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.7
+**Version**: AceCommon v1.5.0
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -80,6 +80,16 @@ number of `TimingStats::update()` calls that were made.
 * Upgrade Teensyduino from 1.53 to 1.55.
 * No significant change in CPU times.
 
+**v1.5.0**
+
+* Remove SAMD21 board.
+* Upgrade Arduino IDE from 1.8.16 to 1.8.19.
+* Upgrade Arduino CLI from 0.19.2 to 0.20.2.
+* Upgrade Arduino AVR Core from 1.8.3 to 1.8.4.
+* Upgrade STM32 Core from 2.0.0 to 2.2.0.
+* Upgrade ESP32 Core from 1.0.6 to 2.0.2.
+* Upgrade Teensyduino from 1.55 to 1.56.
+
 ## Results
 
 The following results are given in unit of microseconds for the single function
@@ -90,8 +100,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### Arduino Nano
 
 * 16MHz ATmega328P
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* Arduino AVR Boards 1.8.3
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Arduino AVR Boards 1.8.4
 * `micros()` has a resolution of 4 microseconds
 
 ```
@@ -115,7 +125,7 @@ CPU:
 ### SparkFun Pro Micro
 
 * 16 MHz ATmega32U4
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
 * SparkFun AVR Boards 1.1.13
 * `micros()` has a resolution of 4 microseconds
 
@@ -127,36 +137,12 @@ CPU:
 +---------------------------+-------------------------+---------+
 | AceCommon function        |     min/    avg/    max | loopCnt |
 |---------------------------+-------------------------+---------|
-| /1000                     |  37.592/ 37.605/ 37.624 |    1000 |
-| udiv1000()                |  15.604/ 15.616/ 15.624 |    1000 |
-| decToBcdDivOnly()         |   5.116/  5.126/  5.132 |    1000 |
-| decToBcdDivMod()          |   4.984/  4.993/  5.000 |    1000 |
-| decToBcd()                |   4.984/  4.993/  5.008 |    1000 |
-| bcdToDec()                |   0.172/  0.188/  0.200 |    1000 |
-+---------------------------+-------------------------+---------+
-
-```
-
-### SAMD21 M0 Mini
-
-* 48 MHz ARM Cortex-M0+
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* SparkFun SAMD Core 1.8.5
-
-```
-Sizes of Objects:
-sizeof(TimingStats): 16
-
-CPU:
-+---------------------------+-------------------------+---------+
-| AceCommon function        |     min/    avg/    max | loopCnt |
-|---------------------------+-------------------------+---------|
-| /1000                     |   3.854/  3.855/  3.856 |    5000 |
-| udiv1000()                |   0.104/  0.105/  0.105 |    5000 |
-| decToBcdDivOnly()         |   2.448/  2.448/  2.449 |    5000 |
-| decToBcdDivMod()          |   5.124/  5.126/  5.127 |    5000 |
-| decToBcd()                |   2.491/  2.491/  2.492 |    5000 |
-| bcdToDec()                |   0.145/  0.146/  0.147 |    5000 |
+| /1000                     |  37.596/ 37.608/ 37.632 |    1000 |
+| udiv1000()                |  15.604/ 15.616/ 15.628 |    1000 |
+| decToBcdDivOnly()         |   5.124/  5.127/  5.132 |    1000 |
+| decToBcdDivMod()          |   4.988/  4.990/  4.992 |    1000 |
+| decToBcd()                |   4.980/  4.991/  5.004 |    1000 |
+| bcdToDec()                |   0.180/  0.189/  0.196 |    1000 |
 +---------------------------+-------------------------+---------+
 
 ```
@@ -164,8 +150,8 @@ CPU:
 ### STM32
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* STM32duino 2.0.0
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* STM32duino 2.2.0
 
 ```
 Sizes of Objects:
@@ -177,10 +163,10 @@ CPU:
 |---------------------------+-------------------------+---------|
 | /1000                     |   0.080/  0.081/  0.083 |   10000 |
 | udiv1000()                |   0.055/  0.056/  0.058 |   10000 |
-| decToBcdDivOnly()         |   0.131/  0.132/  0.134 |   10000 |
-| decToBcdDivMod()          |   0.145/  0.145/  0.148 |   10000 |
-| decToBcd()                |   0.131/  0.132/  0.133 |   10000 |
-| bcdToDec()                |   0.097/  0.098/  0.099 |   10000 |
+| decToBcdDivOnly()         |   0.131/  0.132/  0.133 |   10000 |
+| decToBcdDivMod()          |   0.117/  0.118/  0.119 |   10000 |
+| decToBcd()                |   0.131/  0.132/  0.134 |   10000 |
+| bcdToDec()                |   0.097/  0.098/  0.100 |   10000 |
 +---------------------------+-------------------------+---------+
 
 ```
@@ -188,7 +174,7 @@ CPU:
 ### ESP8266
 
 * NodeMCU 1.0 clone, 80MHz ESP8266
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
 * ESP8266 Boards 3.0.2
 
 ```
@@ -212,8 +198,8 @@ CPU:
 ### ESP32
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* ESP32 Boards 1.0.6
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* ESP32 Boards 2.0.2
 
 ```
 Sizes of Objects:
@@ -223,12 +209,12 @@ CPU:
 +---------------------------+-------------------------+---------+
 | AceCommon function        |     min/    avg/    max | loopCnt |
 |---------------------------+-------------------------+---------|
-| /1000                     |   0.000/  0.013/  0.065 | 1000000 |
-| udiv1000()                |   0.016/  0.016/  0.016 | 1000000 |
-| decToBcdDivOnly()         |   0.012/  0.012/  0.012 | 1000000 |
-| decToBcdDivMod()          |   0.025/  0.025/  0.025 | 1000000 |
-| decToBcd()                |   0.012/  0.012/  0.012 | 1000000 |
-| bcdToDec()                |   0.012/  0.012/  0.012 | 1000000 |
+| /1000                     |   0.000/  0.026/  0.065 | 1000000 |
+| udiv1000()                |   0.025/  0.025/  0.025 | 1000000 |
+| decToBcdDivOnly()         |   0.020/  0.020/  0.020 | 1000000 |
+| decToBcdDivMod()          |   0.029/  0.029/  0.029 | 1000000 |
+| decToBcd()                |   0.020/  0.020/  0.020 | 1000000 |
+| bcdToDec()                |   0.020/  0.020/  0.020 | 1000000 |
 +---------------------------+-------------------------+---------+
 
 ```
@@ -236,8 +222,8 @@ CPU:
 ### Teensy 3.2
 
 * 96 MHz ARM Cortex-M4
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* Teensyduino 1.55
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Teensyduino 1.56
 * Compiler options: "Faster"
 
 ```

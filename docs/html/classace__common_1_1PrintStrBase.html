@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.4.7</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -199,7 +199,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00133">133</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00138">138</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
@@ -228,9 +228,10 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return the NUL terminated c-string buffer. </p>
-<p>After the buffer is no longer needed, the <a class="el" href="classace__common_1_1PrintStrBase.html#a57624e0a480498ecc78190bdbbebb39a" title="Clear the internal buffer.">flush()</a> method should be called to reset the internal buffer index to 0. </p>
+<p>After the buffer is no longer needed, the <a class="el" href="classace__common_1_1PrintStrBase.html#a57624e0a480498ecc78190bdbbebb39a" title="Clear the internal buffer.">flush()</a> method should be called to reset the internal buffer index to 0.</p>
+<p>The <code><a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a></code> name was deliberately chosen to be different from the <code>c_str()</code> method in the C++ <code>std::string</code> class or the Arduino <code>String</code> class. When we see an object being called with <code><a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a></code>, we can infer that its type is <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a></code> or <code><a class="el" href="classace__common_1_1PrintStrN.html" title="An alternate implementation of PrintStr that allocates the character array in the heap,...">PrintStrN</a></code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00115">115</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00120">120</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
@@ -290,7 +291,7 @@ Protected Attributes</h2></td></tr>
 <p>Backwards compatible version of <a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a>. </p>
 <p>New code should use <a class="el" href="classace__common_1_1PrintStrBase.html#a1e67c86555f9ec6c1bfe12c245554f10" title="Return the NUL terminated c-string buffer.">cstr()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00121">121</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00126">126</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>
@@ -320,7 +321,7 @@ Protected Attributes</h2></td></tr>
 <p>In the case of <code><a class="el" href="classace__common_1_1PrintStr.html" title="An implementation of Print that writes to an in-memory buffer supporting strings less than 65535 in l...">PrintStr</a></code>, there might be a way to remove this member variable by calculating the pointer to the stack buffer, by extending the pointer from the last element of this object (i.e. &amp;index_), and thereby saving some memory.</p>
 <p>But I am not convinced that I have the knowledge do that properly without triggering UB (undefined behavior) in the C++ language. Do I define buf_[0] here and will it point exactly where actualBuf_[] is allocated? Or do I use [&amp;<a class="el" href="classace__common_1_1PrintStrBase.html" title="Base class for all template instances of the PrintStr&lt;SIZE&gt; class.">PrintStrBase</a> + sizeof(PrintStrBase)] to calculate the pointer to actualBuf_. I just don't know what's actually allowed in the language spec versus something that works by pure luck on a particular microcontroller and compiler. So I'll pay the cost of the 2 extra bytes (8-bit) or 4 extra bytes (32-bit processors) of RAM and store the pointer to actualBuf_ explicitly here in the base class. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00169">169</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrintStr_8h_source.html#l00174">174</a> of file <a class="el" href="PrintStr_8h_source.html">PrintStr.h</a>.</p>
 
 </div>
 </div>

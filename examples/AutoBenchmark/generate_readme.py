@@ -10,8 +10,6 @@ nano_results = check_output(
     "./generate_table.awk < nano.txt", shell=True, text=True)
 micro_results = check_output(
     "./generate_table.awk < micro.txt", shell=True, text=True)
-samd_results = check_output(
-    "./generate_table.awk < samd.txt", shell=True, text=True)
 stm32_results = check_output(
     "./generate_table.awk < stm32.txt", shell=True, text=True)
 esp8266_results = check_output(
@@ -27,7 +25,7 @@ print(f"""\
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.4.7
+**Version**: AceCommon v1.5.0
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -105,6 +103,16 @@ number of `TimingStats::update()` calls that were made.
 * Upgrade Teensyduino from 1.53 to 1.55.
 * No significant change in CPU times.
 
+**v1.5.0**
+
+* Remove SAMD21 board.
+* Upgrade Arduino IDE from 1.8.16 to 1.8.19.
+* Upgrade Arduino CLI from 0.19.2 to 0.20.2.
+* Upgrade Arduino AVR Core from 1.8.3 to 1.8.4.
+* Upgrade STM32 Core from 2.0.0 to 2.2.0.
+* Upgrade ESP32 Core from 1.0.6 to 2.0.2.
+* Upgrade Teensyduino from 1.55 to 1.56.
+
 ## Results
 
 The following results are given in unit of microseconds for the single function
@@ -115,8 +123,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### Arduino Nano
 
 * 16MHz ATmega328P
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* Arduino AVR Boards 1.8.3
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Arduino AVR Boards 1.8.4
 * `micros()` has a resolution of 4 microseconds
 
 ```
@@ -126,7 +134,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### SparkFun Pro Micro
 
 * 16 MHz ATmega32U4
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
 * SparkFun AVR Boards 1.1.13
 * `micros()` has a resolution of 4 microseconds
 
@@ -134,21 +142,11 @@ should be pretty close to the time taken by the function if they were isolated.
 {micro_results}
 ```
 
-### SAMD21 M0 Mini
-
-* 48 MHz ARM Cortex-M0+
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* SparkFun SAMD Core 1.8.5
-
-```
-{samd_results}
-```
-
 ### STM32
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* STM32duino 2.0.0
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* STM32duino 2.2.0
 
 ```
 {stm32_results}
@@ -157,7 +155,7 @@ should be pretty close to the time taken by the function if they were isolated.
 ### ESP8266
 
 * NodeMCU 1.0 clone, 80MHz ESP8266
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
 * ESP8266 Boards 3.0.2
 
 ```
@@ -167,8 +165,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### ESP32
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* ESP32 Boards 1.0.6
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* ESP32 Boards 2.0.2
 
 ```
 {esp32_results}
@@ -177,8 +175,8 @@ should be pretty close to the time taken by the function if they were isolated.
 ### Teensy 3.2
 
 * 96 MHz ARM Cortex-M4
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* Teensyduino 1.55
+* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Teensyduino 1.56
 * Compiler options: "Faster"
 
 ```

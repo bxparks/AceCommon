@@ -31,7 +31,7 @@ test(FCStringTest, compareTo) {
 // ---------------------------------------------------------------------------
 
 void setup() {
-#if defined(ARDUINO)
+#if ! defined(EPOXY_DUINO)
   delay(1000); // some boards reboot twice
 #endif
 

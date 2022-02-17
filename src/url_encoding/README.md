@@ -12,10 +12,15 @@ Quick summary of Form URL encoding:
 * all other characters are percent-encoded (`%` followed by the 2-digit
   hexademimal value of the character)
 
-Two functions are provided:
+Two main functions are provided:
 
-* `void formUrlEncode(Print& output, const char* str);`
-* `void formUrlDecode(Print& output, const char* str);`
+```C++
+void formUrlEncode(Print& output, const char* str);`
+void formUrlDecode(Print& output, const char* str);`
+
+void byteToHexChar(uint8_t c, char* high, char* low, char baseChar = 'A');
+uint8_t hexCharToByte(char c);
+```
 
 These functions do *not* use the `String` class so that we can avoid heap
 fragmentation associated with numerous creation and deletion of small `String`
@@ -30,6 +35,10 @@ using the `cstr()` method.
 
 You can also pass a `Serial` object as the `output` if that is more
 convenient, since `Serial` also implements the `Print` interface.
+
+The `byteToHexChar()` and `hexCharToByte()` functions are helper functions. They
+used to be internal, but got exposed because they became useful in other parts
+of AceCommon.
 
 ## Usage
 

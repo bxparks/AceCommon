@@ -111,6 +111,11 @@ class PrintStrBase: public Print {
      * Return the NUL terminated c-string buffer. After the buffer is no longer
      * needed, the flush() method should be called to reset the internal buffer
      * index to 0.
+     *
+     * The `cstr()` name was deliberately chosen to be different from the
+     * `c_str()` method in the C++ `std::string` class or the Arduino `String`
+     * class. When we see an object being called with `cstr()`, we can infer
+     * that its type is `PrintStr` or `PrintStrN`.
      */
     const char* cstr() const {
       buf_[index_] = '\0';
@@ -179,7 +184,7 @@ class PrintStrBase: public Print {
  * `operator+=()` or the `concat()` method, use the `print()`, `println()` (or
  * sometimes the `printf()` method) of the `Print` class. After the internal
  * string is built, the NUL-terminated c-string representation can be retrieved
- * using `getCstr()`.
+ * using `cstr()`.
  *
  * This object is expected to be created on the stack instead of the heap
  * to avoid heap fragmentation. The `SIZE` parameter is a compile time constant,
@@ -193,7 +198,7 @@ class PrintStrBase: public Print {
  * different calling sites, but this was not the main intended use of this
  * class.
  *
- * Warning: The contents of `getCstr()` are valid only as long as the
+ * Warning: The contents of `cstr()` are valid only as long as the
  * PrintStr object is alive. The pointer should never be passed to another
  * part of the program if the PrintStr object is destroyed before the
  * pointer is used.
@@ -219,12 +224,12 @@ class PrintStrBase: public Print {
  * void someFunction() {
  *   PrintStr<32> message;
  *   fillStringA(message)
- *   const char* cstr = message.getCstr();
+ *   const char* cstr = message.cstr();
  *   // do stuff with cstr
  *
  *   message.flush();
  *   fillStringB(message);
- *   cstr = message.getCstr();
+ *   cstr = message.cstr();
  *   // do more stuff with cstr
  * }
  * @endverbatim

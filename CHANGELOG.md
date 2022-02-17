@@ -1,6 +1,21 @@
 # Changelog
 
 * Unreleased
+* 1.5.0 (2022-02-17)
+    * Expose `byteToHexChar()` and `hexCharToByte()` utility functions from
+      `url_encoding.h`. They became useful in `backslash_x_encoding.h`.
+    * Add [backslash_x_encoding.h](src/backslash_x_encoding) which provides
+      `backslashXEncode()` that encodes non-printable ASCII characters to `\xHH`
+      form and `backslashXDecode()` to decode back.
+    * Upgrade tool chain:
+        * Upgrade Arduino IDE from 1.8.16 to 1.8.19.
+        * Upgrade Arduino CLI from 0.19.2 to 0.20.2.
+        * Upgrade Arduino AVR Core from 1.8.3 to 1.8.4.
+        * Upgrade STM32 Core from 2.0.0 to 2.2.0.
+        * Upgrade ESP32 Core from 1.0.6 to 2.0.2.
+        * Upgrade Teensyduino from 1.55 to 1.56.
+    * Downgrade SAMD21 boards to new "Tier 3: May work but unsupported" since I
+      can no longer upload to my SAMD21 boards with the current tool chain.
 * 1.4.7 (2021-11-04)
     * Add `KString::compareTo(KString&)` using a `KStringIterator`
         * Supports a single level of fragment nesting (i.e. a compression
