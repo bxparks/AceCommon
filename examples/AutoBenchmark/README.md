@@ -137,30 +137,6 @@ CPU:
 
 ```
 
-### SAMD21 M0 Mini
-
-* 48 MHz ARM Cortex-M0+
-* Arduino IDE 1.8.16, Arduino CLI 0.19.2
-* SparkFun SAMD Core 1.8.5
-
-```
-Sizes of Objects:
-sizeof(TimingStats): 16
-
-CPU:
-+---------------------------+-------------------------+---------+
-| AceCommon function        |     min/    avg/    max | loopCnt |
-|---------------------------+-------------------------+---------|
-| /1000                     |   3.854/  3.855/  3.856 |    5000 |
-| udiv1000()                |   0.104/  0.105/  0.105 |    5000 |
-| decToBcdDivOnly()         |   2.448/  2.448/  2.449 |    5000 |
-| decToBcdDivMod()          |   5.124/  5.126/  5.127 |    5000 |
-| decToBcd()                |   2.491/  2.491/  2.492 |    5000 |
-| bcdToDec()                |   0.145/  0.146/  0.147 |    5000 |
-+---------------------------+-------------------------+---------+
-
-```
-
 ### STM32
 
 * STM32 "Blue Pill", STM32F103C8, 72 MHz ARM Cortex-M3
