@@ -26,6 +26,8 @@ BEGIN {
   labels[17] = "reverse()"
   labels[18] = "KString::compareTo(char*)"
   labels[19] = "KString::compareTo(KString&)"
+  labels[20] = "backslashXEncode()"
+  labels[21] = "backslashXDecode()"
   record_index = 0
 }
 {
@@ -61,6 +63,7 @@ END {
         || labels[i] ~ /^udiv1000/ \
         || labels[i] ~ /^isSorted\(\)/ \
         || labels[i] ~ /^KString::compareTo\(char\*\)/ \
+        || labels[i] ~ /^backslashXEncode\(\)/ \
     ) {
       printf(\
         "|----------------------------------------+--------------+-------------|\n")

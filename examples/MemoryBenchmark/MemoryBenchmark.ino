@@ -28,6 +28,8 @@ using namespace ace_common;
 #define FEATURE_REVERSE 17
 #define FEATURE_KSTRING_COMPARE_TO_CSTRING 18
 #define FEATURE_KSTRING_COMPARE_TO_KSTRING 19
+#define FEATURE_BACKSLASH_X_ENCODE 20
+#define FEATURE_BACKSLASH_X_DECODE 21
 
 // Select one of the FEATURE_* parameter and compile. Then look at the flash
 // and RAM usage, compared to FEATURE_BASELINE usage to determine how much
@@ -45,14 +47,20 @@ using namespace ace_common;
 // being tested when it determines that it does nothing.
 volatile uint8_t guard;
 
+// Temporary array used by some functions below, included in Baseline so that
+// it is removed from the actual benchmark.
 const uint8_t ARRAY_SIZE = 100;
-uint16_t array[ARRAY_SIZE];
-
-static void fillArray(uint16_t array[], uint16_t n) {
+uint8_t array[ARRAY_SIZE];
+static void fillArray(uint8_t array[], uint16_t n) {
   for (uint16_t i = 0; i < n; ++i) {
-    array[i] = random(65536);
+    array[i] = random(256);
   }
 }
+
+// Some strings used by encode() and decode() functions below, included in
+// Baseline so that it is removed from actual benchmark.
+const char DECODED_STRING[] = "\n\tab\\";
+const char ENCODED_STRING[] = R"(\x0D\x09ab\)";
 
 void setup() {
   // Setup the Serial, to force inclusion of the Print class in the Baseline, so
@@ -62,9 +70,12 @@ void setup() {
   while (! SERIAL_PORT_MONITOR); // Leonardo/Micro
   SERIAL_PORT_MONITOR.print(guard);
 
+  // Prevent compiler from optimizing away various temp arrays.
   fillArray(array, ARRAY_SIZE);
-  array[ARRAY_SIZE - 1] = '0';
-  guard = array[0];
+  array[ARRAY_SIZE - 1] = '\0';
+  guard = array[array[0]];
+  guard = ENCODED_STRING[3];
+  guard = DECODED_STRING[4];
 
 #if FEATURE == FEATURE_BASELINE
   // nothing
@@ -145,6 +156,20 @@ void setup() {
   KString k2("\x01" "Ceuta", KEYWORDS, NUM_KEYWORDS);
   int cmp = k1.compareTo(k2);
   guard = cmp;
+
+#elif FEATURE == FEATURE_BACKSLASH_X_ENCODE
+  uint8_t status;
+  size_t written = backslashXEncode(
+      (char*) array, sizeof(array), DECODED_STRING, &status);
+  (void) written;
+  guard = array[2];
+
+#elif FEATURE == FEATURE_BACKSLASH_X_DECODE
+  uint8_t status;
+  size_t written = backslashXDecode(
+      (char*) array, sizeof(array), ENCODED_STRING, &status);
+  (void) written;
+  guard = array[2];
 
 #else
   #error Unknown FEATURE
