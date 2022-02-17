@@ -7,6 +7,50 @@ using namespace aunit;
 using namespace ace_common;
 
 //----------------------------------------------------------------------------
+// Test byteToHexChar() and hexCharToByte()
+//----------------------------------------------------------------------------
+
+test(formUrlEncode, byteToHexChar_upperCase) {
+  char high, low;
+
+  byteToHexChar(0x01, &high, &low);
+  assertEqual('0', high);
+  assertEqual('1', low);
+
+  byteToHexChar(0x9a, &high, &low);
+  assertEqual('9', high);
+  assertEqual('A', low);
+
+  byteToHexChar(0xef, &high, &low);
+  assertEqual('E', high);
+  assertEqual('F', low);
+}
+
+test(formUrlEncode, byteToHexChar_lowerCase) {
+  char high, low;
+
+  byteToHexChar(0x01, &high, &low, 'a');
+  assertEqual('0', high);
+  assertEqual('1', low);
+
+  byteToHexChar(0x9a, &high, &low, 'a');
+  assertEqual('9', high);
+  assertEqual('a', low);
+
+  byteToHexChar(0xef, &high, &low, 'a');
+  assertEqual('e', high);
+  assertEqual('f', low);
+}
+
+test(formUrlEncode, hexCharToByte) {
+  assertEqual(0, hexCharToByte('0'));
+  assertEqual(9, hexCharToByte('9'));
+  assertEqual(10, hexCharToByte('a'));
+  assertEqual(15, hexCharToByte('f'));
+  assertEqual(0, hexCharToByte('g'));
+}
+
+//----------------------------------------------------------------------------
 // Test formUrlEncode()
 //----------------------------------------------------------------------------
 
