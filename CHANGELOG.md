@@ -1,6 +1,7 @@
 # Changelog
 
 * Unreleased
+* 1.5.1 (2022-02-25)
     * **Breaking** Change API of
       [backslash_x_encoding.h](src/backslash_x_encoding) slightly so that the
       `status` is returned and the `written` number of bytes is returned through
