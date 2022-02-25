@@ -40,28 +40,32 @@ namespace ace_common {
 
 /**
  * Encode the source 's' to target string 't' with capacity 'tcap'. The target
- * 't' is always NUL-terminated.
+ * 't' is always NUL-terminated. The `written` parameter will be filled in with
+ * the number of actual bytes written. This can be useful for chaining multiple
+ * calls into a single buffer.
  *
  * @param t target c-string
  * @param tcap capacity of t
  * @param s source c-string
- * @param status 0 if successful, non-zero if error
- * @return the number of bytes written to 't'
+ * @param written (nullable) the number of bytes written to 't'
+ * @returns 0 status if successful, non-zero if error
  */
-size_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* status);
+uint8_t backslashXEncode(char* t, size_t tcap, const char* s, size_t* written);
 
 /**
  * Decode the source 's' to target string 't' with capacity 'tcap'. The target
- * 't' is always NUL-terminated.
+ * 't' is always NUL-terminated. The `written` parameter will be filled in with
+ * the number of actual bytes written. This can be useful for chaining multiple
+ * calls into a single buffer.
  *
  * @param t target c-string
  * @param tcap capacity of t
  * @param s source c-string
- * @param status return 0 upon success; 1 if 't' ran out of capacity; 2 if 's'
+ * @param written (nullable) the number of bytes written to 't'
+ * @return return 0 status upon success; 1 if 't' ran out of capacity; 2 if 's'
  *    was ill-formed (e.g. the `\x` was not followed by 2 hex characters
- * @return the number of bytes written to 't'
  */
-size_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* status);
+uint8_t backslashXDecode(char* t, size_t tcap, const char* s, size_t* written);
 
 /** Return true if 'c' is a hex character [0-9a-fA-F]. */
 inline bool isHexChar(char c) {

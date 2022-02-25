@@ -1,6 +1,17 @@
 # Changelog
 
 * Unreleased
+    * **Breaking** Change API of
+      [backslash_x_encoding.h](src/backslash_x_encoding) slightly so that the
+      `status` is returned and the `written` number of bytes is returned through
+      a pointer to an out-parameter.
+        * Turns out the more common case is to check the status, and
+          ignore the `written`, so the `written` pointer can now be `nullptr`
+          if the calling code wishes to ignore it.
+        * This is technically a breaking change, but the `backslashXEncode()`
+          and `backslashXDecode()` methods were *just* added, but I'm going to
+          consider this to be a "quick fix", and increment only the minor
+          version number.
 * 1.5.0 (2022-02-17)
     * Expose `byteToHexChar()` and `hexCharToByte()` utility functions from
       `url_encoding.h`. They became useful in `backslash_x_encoding.h`.
