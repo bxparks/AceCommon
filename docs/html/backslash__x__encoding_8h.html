@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.5.0</span>
+   &#160;<span id="projectnumber">1.5.1</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -100,12 +100,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac61da6a09bb238c519b13d6edee2744f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::backslashXEncode</b> (char *t, size_t tcap, const char *s, uint8_t *status)</td></tr>
-<tr class="memdesc:ac61da6a09bb238c519b13d6edee2744f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode the source 's' to target string 't' with capacity 'tcap'.  <a href="backslash__x__encoding_8cpp.html#ac61da6a09bb238c519b13d6edee2744f">More...</a><br /></td></tr>
-<tr class="separator:ac61da6a09bb238c519b13d6edee2744f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47fbcc1ddb0841d5edbd2b36ec7f1b22"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::backslashXDecode</b> (char *t, size_t tcap, const char *s, uint8_t *status)</td></tr>
-<tr class="memdesc:a47fbcc1ddb0841d5edbd2b36ec7f1b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the source 's' to target string 't' with capacity 'tcap'.  <a href="backslash__x__encoding_8cpp.html#a47fbcc1ddb0841d5edbd2b36ec7f1b22">More...</a><br /></td></tr>
-<tr class="separator:a47fbcc1ddb0841d5edbd2b36ec7f1b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4493247c9c29e2734f2a3830f45ee93"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::backslashXEncode</b> (char *t, size_t tcap, const char *s, size_t *written)</td></tr>
+<tr class="memdesc:ab4493247c9c29e2734f2a3830f45ee93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode the source 's' to target string 't' with capacity 'tcap'.  <a href="backslash__x__encoding_8cpp.html#ab4493247c9c29e2734f2a3830f45ee93">More...</a><br /></td></tr>
+<tr class="separator:ab4493247c9c29e2734f2a3830f45ee93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8daad9cba29f49a00c84c6aab1439d8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>ace_common::backslashXDecode</b> (char *t, size_t tcap, const char *s, size_t *written)</td></tr>
+<tr class="memdesc:ad8daad9cba29f49a00c84c6aab1439d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode the source 's' to target string 't' with capacity 'tcap'.  <a href="backslash__x__encoding_8cpp.html#ad8daad9cba29f49a00c84c6aab1439d8">More...</a><br /></td></tr>
+<tr class="separator:ad8daad9cba29f49a00c84c6aab1439d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d4a1532b7b39c6dae0c466df9320df8"><td class="memItemLeft" align="right" valign="top"><a id="a9d4a1532b7b39c6dae0c466df9320df8"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backslash__x__encoding_8h.html#a9d4a1532b7b39c6dae0c466df9320df8">ace_common::isHexChar</a> (char c)</td></tr>
 <tr class="memdesc:a9d4a1532b7b39c6dae0c466df9320df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if 'c' is a hex character [0-9a-fA-F]. <br /></td></tr>
@@ -116,14 +116,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="back
 
 <p class="definition">Definition in file <a class="el" href="backslash__x__encoding_8h_source.html">backslash_x_encoding.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a47fbcc1ddb0841d5edbd2b36ec7f1b22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47fbcc1ddb0841d5edbd2b36ec7f1b22">&#9670;&nbsp;</a></span>backslashXDecode()</h2>
+<a id="ad8daad9cba29f49a00c84c6aab1439d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8daad9cba29f49a00c84c6aab1439d8">&#9670;&nbsp;</a></span>backslashXDecode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t ace_common::backslashXDecode </td>
+          <td class="memname">uint8_t ace_common::backslashXDecode </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>t</em>, </td>
@@ -143,8 +143,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="back
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>status</em>&#160;</td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>written</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -155,30 +155,30 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="back
 </div><div class="memdoc">
 
 <p>Decode the source 's' to target string 't' with capacity 'tcap'. </p>
-<p>The target 't' is always NUL-terminated.</p>
+<p>The target 't' is always NUL-terminated. The <code>written</code> parameter will be filled in with the number of actual bytes written. This can be useful for chaining multiple calls into a single buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>target c-string </td></tr>
     <tr><td class="paramname">tcap</td><td>capacity of t </td></tr>
     <tr><td class="paramname">s</td><td>source c-string </td></tr>
-    <tr><td class="paramname">status</td><td>return 0 upon success; 1 if 't' ran out of capacity; 2 if 's' was ill-formed (e.g. the <code>\x</code> was not followed by 2 hex characters </td></tr>
+    <tr><td class="paramname">written</td><td>(nullable) the number of bytes written to 't' </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the number of bytes written to 't' </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return 0 status upon success; 1 if 't' ran out of capacity; 2 if 's' was ill-formed (e.g. the <code>\x</code> was not followed by 2 hex characters </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="backslash__x__encoding_8cpp_source.html#l00077">77</a> of file <a class="el" href="backslash__x__encoding_8cpp_source.html">backslash_x_encoding.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="backslash__x__encoding_8cpp_source.html#l00079">79</a> of file <a class="el" href="backslash__x__encoding_8cpp_source.html">backslash_x_encoding.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac61da6a09bb238c519b13d6edee2744f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac61da6a09bb238c519b13d6edee2744f">&#9670;&nbsp;</a></span>backslashXEncode()</h2>
+<a id="ab4493247c9c29e2734f2a3830f45ee93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4493247c9c29e2734f2a3830f45ee93">&#9670;&nbsp;</a></span>backslashXEncode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t ace_common::backslashXEncode </td>
+          <td class="memname">uint8_t ace_common::backslashXEncode </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>t</em>, </td>
@@ -198,8 +198,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="back
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>status</em>&#160;</td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>written</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -210,17 +210,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="back
 </div><div class="memdoc">
 
 <p>Encode the source 's' to target string 't' with capacity 'tcap'. </p>
-<p>The target 't' is always NUL-terminated.</p>
+<p>The target 't' is always NUL-terminated. The <code>written</code> parameter will be filled in with the number of actual bytes written. This can be useful for chaining multiple calls into a single buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>target c-string </td></tr>
     <tr><td class="paramname">tcap</td><td>capacity of t </td></tr>
     <tr><td class="paramname">s</td><td>source c-string </td></tr>
-    <tr><td class="paramname">status</td><td>0 if successful, non-zero if error </td></tr>
+    <tr><td class="paramname">written</td><td>(nullable) the number of bytes written to 't' </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the number of bytes written to 't' </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 status if successful, non-zero if error </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="backslash__x__encoding_8cpp_source.html#l00030">30</a> of file <a class="el" href="backslash__x__encoding_8cpp_source.html">backslash_x_encoding.cpp</a>.</p>
 

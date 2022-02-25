@@ -18,15 +18,18 @@ Quick summary of the encoding:
 Two functions are provided:
 
 ```C++
-size_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* status);
-size_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* status);
+uint8_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* written);
+uint8_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* written);
 ```
 
-* The source `s` and target `t` are both NUL-terminated C-strings.
+* The source `s` and target `t` are both always NUL-terminated C-strings.
 * The `tcap` is the capacity of `t`, including the NUL termination character.
-* The return value is the number of bytes written to `t`.
-* The `status` parameter is a pointer to an output parameter to indicate
-  error condition. 0 means success. Anything else is an error.
+* The `written` parameter is a pointer to an output parameter to indicate
+* The `written` parameter is the number of bytes written to `t`. A `nullptr`
+  can be passed in if you don't care about this. It is intended to be helpful
+  for chaining multiple calls into a single target `t` string.
+* The return value is a status code where 0 means success, and anything else is
+  an error.
 
 These functions do *not* use the `String` class to avoid heap fragmentation.
 
@@ -43,8 +46,12 @@ const char ENCODED_MESSAGE[] = R"(hello\x0A\x0Dthere\\)";
 
 void encode() {
   char t[64];
-  uint8_t status;
-  size_t written = backslashXEncode(t, sizeof(t), ORIGINAL_MESSAGE, &status);
+  size_t written;
+  uint8_t status = backslashXEncode(t, sizeof(t), ORIGINAL_MESSAGE, &written);
+  if (! status) {
+    Serial.println("ERROR");
+    ...
+  }
 
   // Prints "hello\x0A\x0Dthere\\"
   Serial.println(t);
@@ -52,8 +59,12 @@ void encode() {
 
 void decode() {
   char t[64];
-  uint8_t status;
-  size_t written = backslashXDecode(t, sizeof(t), ENCODED_MESSAGE, &status);
+  size_t written;
+  uint8_t status = backslashXDecode(t, sizeof(t), ENCODED_MESSAGE, &written);
+  if (! status) {
+    Serial.println("ERROR");
+    ...
+  }
 
   // Prints "hello" on one line, "there\" on the next line.
   Serial.println(t);

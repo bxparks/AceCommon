@@ -27,18 +27,18 @@ SOFTWARE.
 
 namespace ace_common {
 
-size_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* status) {
+uint8_t backslashXEncode(char* t, size_t tcap, const char* s, size_t* written) {
   char* tt = t;
   char* const tend = t + tcap - 1;
 
   // The code becomes smaller if we assume an error status as the default.
-  uint8_t stat = 1;
+  uint8_t status = 1;
 
   while (true) {
     // Check for end of 's', before checking for 'tend'.
     uint8_t c = *s++;
     if (c == '\0') {
-      stat = 0;
+      status = 0;
       break;
     }
 
@@ -69,22 +69,24 @@ size_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* status) {
     }
   }
 
-  *status = stat;
   *tt = '\0';
-  return tt - t;
+  if (written) {
+    *written = tt - t;
+  }
+  return status;
 }
 
-size_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* status) {
+uint8_t backslashXDecode(char* t, size_t tcap, const char* s, size_t* written) {
   char* tt = t;
   char* const tend = t + tcap - 1;
 
   // The code becomes smaller if we assume an error status as the default.
-  uint8_t stat = 1;
+  uint8_t status = 1;
 
   while (true) {
     uint8_t c = *s++;
     if (c == '\0') {
-      stat = 0;
+      status = 0;
       break;
     }
 
@@ -121,9 +123,11 @@ size_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* status) {
     *tt++ = c;
   }
 
-  *status = stat;
   *tt = '\0';
-  return tt - t;
+  if (written) {
+    *written = tt - t;
+  }
+  return status;
 }
 
 }

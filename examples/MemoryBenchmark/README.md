@@ -5,7 +5,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.5.0
+**Version**: AceCommon v1.5.1
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -203,8 +203,8 @@ ASCII table.
 | KString::compareTo(char*)              |  27644/ 3752 |   168/    0 |
 | KString::compareTo(KString&)           |  27720/ 3752 |   244/    0 |
 |----------------------------------------+--------------+-------------|
-| backslashXEncode()                     |  27684/ 3752 |   208/    0 |
-| backslashXDecode()                     |  27724/ 3752 |   248/    0 |
+| backslashXEncode()                     |  27688/ 3752 |   212/    0 |
+| backslashXDecode()                     |  27720/ 3752 |   244/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -340,7 +340,7 @@ usage by objects.
 | KString::compareTo(KString&)           |  11600/ 4276 |   236/    0 |
 |----------------------------------------+--------------+-------------|
 | backslashXEncode()                     |  11608/ 4276 |   244/    0 |
-| backslashXDecode()                     |  11672/ 4276 |   308/    0 |
+| backslashXDecode()                     |  11628/ 4276 |   264/    0 |
 +---------------------------------------------------------------------+
 
 ```

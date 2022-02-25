@@ -2,7 +2,7 @@
 
 Determine the speed of various AceCommon functions and algorithms.
 
-**Version**: AceCommon v1.5.0
+**Version**: AceCommon v1.5.1
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 

@@ -30,19 +30,24 @@ test(isHexChar) {
 
 test(backslashXEncode, normal) {
   char t[64];
-  uint8_t status;
-
-  size_t written = backslashXEncode(t, sizeof(t), "\nab\\cd\r", &status);
+  size_t written;
+  uint8_t status = backslashXEncode(t, sizeof(t), "\nab\\cd\r", &written);
   assertEqual(written, (size_t) 14);
+  assertEqual(status, 0);
+  assertEqual(R"(\x0Aab\\cd\x0D)", t);
+}
+
+test(backslashXEncode, nullptr) {
+  char t[64];
+  uint8_t status = backslashXEncode(t, sizeof(t), "\nab\\cd\r", nullptr);
   assertEqual(status, 0);
   assertEqual(R"(\x0Aab\\cd\x0D)", t);
 }
 
 test(backslashXEncode, tooLong) {
   char t[8];
-  uint8_t status;
-
-  size_t written = backslashXEncode(t, sizeof(t), "\nab\\cd\r", &status);
+  size_t written;
+  uint8_t status = backslashXEncode(t, sizeof(t), "\nab\\cd\r", &written);
   assertEqual(written, (size_t) 7);
   assertEqual(status, 1);
   assertEqual(R"(\x0Aab\)", t);
@@ -54,51 +59,57 @@ test(backslashXEncode, tooLong) {
 
 test(backslashXDecode, normal) {
   char t[64];
-  uint8_t status;
-
-  size_t written = backslashXDecode(
-      t, sizeof(t), R"(\x0Aab\\cd\x0D\xFF)", &status);
+  size_t written;
+  uint8_t status = backslashXDecode(
+      t, sizeof(t), R"(\x0Aab\\cd\x0D\xFF)", &written);
+  assertEqual(status, 0);
   assertEqual(written, (size_t) 8);
+  assertEqual("\x0A" "ab\\cd" "\x0D" "\xFF", t);
+}
+
+test(backslashXDecode, nullptr) {
+  char t[64];
+  uint8_t status = backslashXDecode(
+      t, sizeof(t), R"(\x0Aab\\cd\x0D\xFF)", nullptr);
   assertEqual(status, 0);
   assertEqual("\x0A" "ab\\cd" "\x0D" "\xFF", t);
 }
 
 test(backslashXDecode, tooLong) {
   char t[6];
-  uint8_t status;
-
-  size_t written = backslashXDecode(t, sizeof(t), R"(\x0Aab\\cd\x0D)", &status);
-  assertEqual(written, (size_t) 5);
+  size_t written;
+  uint8_t status = backslashXDecode(
+      t, sizeof(t), R"(\x0Aab\\cd\x0D)", &written);
   assertEqual(status, 1);
+  assertEqual(written, (size_t) 5);
   assertEqual("\x0A" "ab\\c", t);
 }
 
 test(backslashXDecode, illformed) {
   char t[64];
-  uint8_t status;
-
   // '\' should be followed something
-  size_t written = backslashXDecode(t, sizeof(t), R"(a\)", &status);
-  assertEqual(status, 1);
+  size_t written;
+  uint8_t status = backslashXDecode(t, sizeof(t), R"(a\)", &written);
   assertEqual(written, (size_t) 1);
+  assertEqual(status, 1);
 
   // '\' should be followed by 'x' or another '\'
-  written = backslashXDecode(t, sizeof(t), R"(a\a)", &status);
+  status = backslashXDecode(t, sizeof(t), R"(a\a)", &written);
   assertEqual(status, 1);
   assertEqual(written, (size_t) 1);
 
   // '\xhh' should be followed by 2 digits
-  written = backslashXDecode(t, sizeof(t), R"(a\xA)", &status);
+  status = backslashXDecode(t, sizeof(t), R"(a\xA)", &written);
   assertEqual(status, 1);
   assertEqual(written, (size_t) 1);
 
   // '\xhh' should be followed by 2 hexadecimal digits
-  written = backslashXDecode(t, sizeof(t), R"(a\xAG)", &status);
+  status = backslashXDecode(t, sizeof(t), R"(a\xAG)", &written);
   assertEqual(status, 1);
   assertEqual(written, (size_t) 1);
 
   // input should not contain unprintable characters
-  written = backslashXDecode(t, sizeof(t), "a\r", &status);
+  status = backslashXDecode(t, sizeof(t), "a\r", &written);
   assertEqual(status, 1);
   assertEqual(written, (size_t) 1);
 }

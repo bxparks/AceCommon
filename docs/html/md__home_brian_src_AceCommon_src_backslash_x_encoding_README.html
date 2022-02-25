@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.5.0</span>
+   &#160;<span id="projectnumber">1.5.1</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -79,13 +79,14 @@ $(function() {
 </ul>
 <p>Two functions are provided:</p>
 <div class="fragment"><div class="line"> {C++}</div>
-<div class="line">size_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* status);</div>
-<div class="line">size_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* status);</div>
+<div class="line">uint8_t backslashXEncode(char* t, size_t tcap, const char* s, uint8_t* written);</div>
+<div class="line">uint8_t backslashXDecode(char* t, size_t tcap, const char* s, uint8_t* written);</div>
 </div><!-- fragment --><ul>
-<li>The source <code>s</code> and target <code>t</code> are both NUL-terminated C-strings.</li>
+<li>The source <code>s</code> and target <code>t</code> are both always NUL-terminated C-strings.</li>
 <li>The <code>tcap</code> is the capacity of <code>t</code>, including the NUL termination character.</li>
-<li>The return value is the number of bytes written to <code>t</code>.</li>
-<li>The <code>status</code> parameter is a pointer to an output parameter to indicate error condition. 0 means success. Anything else is an error.</li>
+<li>The <code>written</code> parameter is a pointer to an output parameter to indicate</li>
+<li>The <code>written</code> parameter is the number of bytes written to <code>t</code>. A <code>nullptr</code> can be passed in if you don't care about this. It is intended to be helpful for chaining multiple calls into a single target <code>t</code> string.</li>
+<li>The return value is a status code where 0 means success, and anything else is an error.</li>
 </ul>
 <p>These functions do <em>not</em> use the <code>String</code> class to avoid heap fragmentation.</p>
 <h1>Usage</h1>
@@ -100,8 +101,12 @@ $(function() {
 <div class="line"> </div>
 <div class="line">void encode() {</div>
 <div class="line">  char t[64];</div>
-<div class="line">  uint8_t status;</div>
-<div class="line">  size_t written = backslashXEncode(t, sizeof(t), ORIGINAL_MESSAGE, &amp;status);</div>
+<div class="line">  size_t written;</div>
+<div class="line">  uint8_t status = backslashXEncode(t, sizeof(t), ORIGINAL_MESSAGE, &amp;written);</div>
+<div class="line">  if (! status) {</div>
+<div class="line">    Serial.println(&quot;ERROR&quot;);</div>
+<div class="line">    ...</div>
+<div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  // Prints &quot;hello\x0A\x0Dthere\\&quot;</div>
 <div class="line">  Serial.println(t);</div>
@@ -109,8 +114,12 @@ $(function() {
 <div class="line"> </div>
 <div class="line">void decode() {</div>
 <div class="line">  char t[64];</div>
-<div class="line">  uint8_t status;</div>
-<div class="line">  size_t written = backslashXDecode(t, sizeof(t), ENCODED_MESSAGE, &amp;status);</div>
+<div class="line">  size_t written;</div>
+<div class="line">  uint8_t status = backslashXDecode(t, sizeof(t), ENCODED_MESSAGE, &amp;written);</div>
+<div class="line">  if (! status) {</div>
+<div class="line">    Serial.println(&quot;ERROR&quot;);</div>
+<div class="line">    ...</div>
+<div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  // Prints &quot;hello&quot; on one line, &quot;there\&quot; on the next line.</div>
 <div class="line">  Serial.println(t);</div>
