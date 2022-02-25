@@ -158,17 +158,17 @@ void setup() {
   guard = cmp;
 
 #elif FEATURE == FEATURE_BACKSLASH_X_ENCODE
-  uint8_t status;
-  size_t written = backslashXEncode(
-      (char*) array, sizeof(array), DECODED_STRING, &status);
-  (void) written;
+  size_t written;
+  uint8_t status = backslashXEncode(
+      (char*) array, sizeof(array), DECODED_STRING, &written);
+  (void) status;
   guard = array[2];
 
 #elif FEATURE == FEATURE_BACKSLASH_X_DECODE
-  uint8_t status;
-  size_t written = backslashXDecode(
-      (char*) array, sizeof(array), ENCODED_STRING, &status);
-  (void) written;
+  size_t written;
+  uint8_t status = backslashXDecode(
+      (char*) array, sizeof(array), ENCODED_STRING, &written);
+  (void) status;
   guard = array[2];
 
 #else
