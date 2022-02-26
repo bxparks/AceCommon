@@ -48,7 +48,7 @@ void encode() {
   char t[64];
   size_t written;
   uint8_t status = backslashXEncode(t, sizeof(t), ORIGINAL_MESSAGE, &written);
-  if (! status) {
+  if (status) {
     Serial.println("ERROR");
     ...
   }
@@ -61,7 +61,7 @@ void decode() {
   char t[64];
   size_t written;
   uint8_t status = backslashXDecode(t, sizeof(t), ENCODED_MESSAGE, &written);
-  if (! status) {
+  if (status) {
     Serial.println("ERROR");
     ...
   }
