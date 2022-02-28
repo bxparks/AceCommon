@@ -108,7 +108,7 @@ void setup() {
 #elif FEATURE == FEATURE_PRINT_REPLACE_STRING_TO_FSTRING
   printReplaceStringTo(SERIAL_PORT_MONITOR, F("E%T"), '%', "S");
 #elif FEATURE == FEATURE_HASH_DJB2_CSTRING
-  uint32_t hash = hashDjb2(array);
+  uint32_t hash = hashDjb2("1234");
   guard = hash;
 #elif FEATURE == FEATURE_HASH_DJB2_FSTRING
   uint32_t hash = hashDjb2(F("1234"));
