@@ -125,7 +125,10 @@ class PrintStrBase: public Print {
     /** Backwards compatible version of cstr(). New code should use cstr(). */
     const char* getCstr() const { return cstr(); }
 
-    /** Return the length of the internal c-string buffer. */
+    /**
+     * Return the length of the internal c-string buffer, not including the
+     * NUL terminator.
+     */
     size_t length() const { return index_; }
 
   protected:
