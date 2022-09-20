@@ -89,21 +89,46 @@ class PrintStrBase: public Print {
     /**
      * Clear the internal buffer.
      *
-     * On most platforms, the Print::flush() method is virtual, so this would
-     * normally be tagged with the 'override' keyword. But on other platforms
-     * (e.g. ESP32, ARDUINO_ARCH_STM32 using
-     * https://github.com/stm32duino/Arduino_Core_STM32, ARDUINO_AVR_ATTINYX5
-     * using https://github.com/SpenceKonde/ATTinyCore, and potentially others),
-     * the Print::flush() is not virtual. It is too much work to maintain an
-     * updated list of plaforms where this difference exists. Let's just use the
-     * lowest-common denominator and not use the 'override' keyword. If the
-     * parent class defines as virtual, this will still override the parent due
-     * to the traditional behavior of C++. We just have to make sure that on all
-     * platforms, we always call PrintStr::flush() directly, (i.e.
-     * non-polymorphically), instead of through one of its base classes (either
-     * Print or PrintStrBase).
+     * On most platforms (AVR, SAMD21, ESP8266, Teensy), the Print::flush()
+     * method is virtual, so this would normally be tagged with the 'override'
+     * keyword. But until recently, the ESP32 and STM32 platforms implemented
+     * the `flush()` method as non-virtual methods. So I was forced to avoid
+     * marking this implementation with the `override` keyword, which
+     * unfortunately triggered warning messages when compiled with clang++
+     * compiler on Linux or MacOS using the EpoxyDuino environment.
+     *
+     * The STM32 platform fixed this in v2.0.0 on 2021-04-21, and the ESP32
+     * platform fixed this in v2.0.3 on 2022-05-04. I think we can finally
+     * assume that most platforms implement a virtual flush() and apply the
+     * `override` keyword here, which also fixes the compiler warnings in
+     * EpoxyDuino.
+     *
+     * The only platform that is officially supported by AceCommon where the
+     * `override` will cause problems is the
+     * https://github.com/SpenceKonde/ATTinyCore platform as of the current
+     * v1.5.2. When that platform goes to v2.0, it will include
+     * https://github.com/SpenceKonde/ATTinyCore/pull/680 which fixes the
+     * Print::flush() method to be consistent with all other platforms. Until
+     * then, I have to make an exception for that Core. There does not seem to
+     * be a single macro symbol that identifies the ATTinyCore. I have to
+     * enumerate each microcontroller type supported by that Core. Other
+     * platforms which also implement a non-virtual flush() can be listed in the
+     * exception list.
      */
-    void flush() /*override*/ {
+  #if defined(ARDUINO_AVR_ATTINY1634) \
+      || defined(ARDUINO_AVR_ATTINY828) \
+      || defined(ARDUINO_AVR_ATTINYX313) \
+      || defined(ARDUINO_AVR_ATTINYX4) \
+      || defined(ARDUINO_AVR_ATTINYX41) \
+      || defined(ARDUINO_AVR_ATTINYX43) \
+      || defined(ARDUINO_AVR_ATTINYX5) \
+      || defined(ARDUINO_AVR_ATTINYX61) \
+      || defined(ARDUINO_AVR_ATTINYX7) \
+      || defined(ARDUINO_AVR_ATTINYX8)
+    void flush() {
+  #else
+    void flush() override {
+  #endif
       index_ = 0;
     }
 

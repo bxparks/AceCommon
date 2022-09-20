@@ -6,6 +6,10 @@
       because passing an incorrect array (e.g. `uint16_t[]`) would compile
       without any errors, and probably not what the user intended since the hash
       function expects a NUL-terminated string.
+    * Mark `PrintStr::flush()` as `override` now that the STM32 and ESP32
+      platforms have finally fixed their implementation of `Print::flush()` to
+      be `virtual`, consistent with other Arduino platforms. Make exception for
+      ATTinyCore, which still uses a non-virtual `flush()`.
 * 1.5.1 (2022-02-25)
     * **Breaking** Change API of
       [backslash_x_encoding.h](src/backslash_x_encoding) slightly so that the
