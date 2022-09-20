@@ -105,15 +105,12 @@ class PrintStrBase: public Print {
      *
      * The only platform that is officially supported by AceCommon where the
      * `override` will cause problems is the
-     * https://github.com/SpenceKonde/ATTinyCore platform as of the current
-     * v1.5.2. When that platform goes to v2.0, it will include
-     * https://github.com/SpenceKonde/ATTinyCore/pull/680 which fixes the
-     * Print::flush() method to be consistent with all other platforms. Until
-     * then, I have to make an exception for that Core. There does not seem to
-     * be a single macro symbol that identifies the ATTinyCore. I have to
-     * enumerate each microcontroller type supported by that Core. Other
-     * platforms which also implement a non-virtual flush() can be listed in the
-     * exception list.
+     * https://github.com/SpenceKonde/ATTinyCore platform whose `Print` class
+     * does not implement `flush()` at all. I have to make an exception for that
+     * Core, but there does not seem to be a single macro symbol that identifies
+     * the ATTinyCore. I have to enumerate each microcontroller type supported
+     * by that Core. Other platforms which also implement a non-virtual flush()
+     * can be listed in the exception list.
      */
   #if defined(ARDUINO_AVR_ATTINY1634) \
       || defined(ARDUINO_AVR_ATTINY828) \
