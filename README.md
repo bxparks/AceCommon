@@ -186,7 +186,7 @@ automatically:
     * [src/algorithms/README.md](src/algorithms/README.md)
     * `void reverse(T data[], size_t size)`
 
-**Version**: 1.5.1 (2022-02-25)
+**Version**: 1.5.2 (2022-09-22)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
