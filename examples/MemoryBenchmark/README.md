@@ -5,7 +5,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.5.1
+**Version**: AceCommon v1.5.2
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -77,11 +77,21 @@ ASCII table.
 * Upgrade ESP32 Core from 1.0.6 to 2.0.2.
 * Upgrade Teensyduino from 1.55 to 1.56.
 
+**v1.5.2**
+
+* Upgrade tool chain
+    * Upgrade Arduino CLI from 0.20.2 to 0.27.1.
+    * Upgrade Arduino AVR Core from 1.8.4 to 1.8.5.
+    * Upgrade STM32 Core from 2.2.0 to 2.3.0.
+    * Upgrade ESP32 Core from 2.0.2 to 2.0.5.
+    * Upgrade Teensyduino from 1.56 to 1.57.
+* No significant changes to memory sizes.
+
 ## Arduino Nano
 
 * 16MHz ATmega328P
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
-* Arduino AVR Boards 1.8.4
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* Arduino AVR Boards 1.8.5
 
 ```
 +---------------------------------------------------------------------+
@@ -124,7 +134,7 @@ ASCII table.
 ## Sparkfun Pro Micro
 
 * 16 MHz ATmega32U4
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
 * SparkFun AVR Boards 1.1.13
 
 ```
@@ -168,43 +178,43 @@ ASCII table.
 ## STM32 Blue Pill
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
-* STM32duino 2.2.0
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* STM32duino 2.3.0
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline                               |  27476/ 3752 |     0/    0 |
+| Baseline                               |  27144/ 3776 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| String                                 |  28032/ 3752 |   556/    0 |
-| PrintStr<16>                           |  27636/ 3752 |   160/    0 |
-| PrintStrN(16)                          |  27652/ 3752 |   176/    0 |
+| String                                 |  27696/ 3776 |   552/    0 |
+| PrintStr<16>                           |  27304/ 3776 |   160/    0 |
+| PrintStrN(16)                          |  27320/ 3776 |   176/    0 |
 |----------------------------------------+--------------+-------------|
-| printPad2()                            |  27572/ 3752 |    96/    0 |
-| printPad5()                            |  27596/ 3752 |   120/    0 |
-| printUint16AsFloat3To()                |  27580/ 3752 |   104/    0 |
-| printUint32AsFloat3To()                |  27584/ 3752 |   108/    0 |
+| printPad2()                            |  27240/ 3776 |    96/    0 |
+| printPad5()                            |  27264/ 3776 |   120/    0 |
+| printUint16AsFloat3To()                |  27248/ 3776 |   104/    0 |
+| printUint32AsFloat3To()                |  27252/ 3776 |   108/    0 |
 |----------------------------------------+--------------+-------------|
-| printReplaceCharTo(char*)              |  27508/ 3752 |    32/    0 |
-| printReplaceCharTo(F())                |  27508/ 3752 |    32/    0 |
-| printReplaceStringTo(char*)            |  27528/ 3752 |    52/    0 |
-| printReplaceStringTo(F())              |  27528/ 3752 |    52/    0 |
+| printReplaceCharTo(char*)              |  27180/ 3776 |    36/    0 |
+| printReplaceCharTo(F())                |  27180/ 3776 |    36/    0 |
+| printReplaceStringTo(char*)            |  27200/ 3776 |    56/    0 |
+| printReplaceStringTo(F())              |  27200/ 3776 |    56/    0 |
 |----------------------------------------+--------------+-------------|
-| hashDjb2(char*)                        |  27508/ 3752 |    32/    0 |
-| hashDjb2(F())                          |  27508/ 3752 |    32/    0 |
+| hashDjb2(char*)                        |  27176/ 3776 |    32/    0 |
+| hashDjb2(F())                          |  27176/ 3776 |    32/    0 |
 |----------------------------------------+--------------+-------------|
-| udiv1000()                             |  27516/ 3752 |    40/    0 |
-| /1000                                  |  27508/ 3752 |    32/    0 |
+| udiv1000()                             |  27184/ 3776 |    40/    0 |
+| /1000                                  |  27176/ 3776 |    32/    0 |
 |----------------------------------------+--------------+-------------|
-| isSorted()                             |  27512/ 3752 |    36/    0 |
-| reverse()                              |  27508/ 3752 |    32/    0 |
+| isSorted()                             |  27180/ 3776 |    36/    0 |
+| reverse()                              |  27176/ 3776 |    32/    0 |
 |----------------------------------------+--------------+-------------|
-| KString::compareTo(char*)              |  27644/ 3752 |   168/    0 |
-| KString::compareTo(KString&)           |  27720/ 3752 |   244/    0 |
+| KString::compareTo(char*)              |  27316/ 3776 |   172/    0 |
+| KString::compareTo(KString&)           |  27388/ 3776 |   244/    0 |
 |----------------------------------------+--------------+-------------|
-| backslashXEncode()                     |  27688/ 3752 |   212/    0 |
-| backslashXDecode()                     |  27720/ 3752 |   244/    0 |
+| backslashXEncode()                     |  27356/ 3776 |   212/    0 |
+| backslashXDecode()                     |  27392/ 3776 |   248/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -212,7 +222,7 @@ ASCII table.
 ## ESP8266
 
 * NodeMCU 1.0, 80MHz ESP8266
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
 * ESP8266 Boards 3.0.2
 
 ```
@@ -256,43 +266,43 @@ ASCII table.
 ## ESP32
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
-* ESP32 Boards 2.0.2
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* ESP32 Boards 2.0.5
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline                               | 230913/16332 |     0/    0 |
+| Baseline                               | 241753/16480 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| String                                 | 231269/16332 |   356/    0 |
-| PrintStr<16>                           | 231165/16332 |   252/    0 |
-| PrintStrN(16)                          | 232425/16332 |  1512/    0 |
+| String                                 | 242109/16480 |   356/    0 |
+| PrintStr<16>                           | 242017/16480 |   264/    0 |
+| PrintStrN(16)                          | 242333/16480 |   580/    0 |
 |----------------------------------------+--------------+-------------|
-| printPad2()                            | 230989/16332 |    76/    0 |
-| printPad5()                            | 231009/16332 |    96/    0 |
-| printUint16AsFloat3To()                | 230997/16332 |    84/    0 |
-| printUint32AsFloat3To()                | 231017/16332 |   104/    0 |
+| printPad2()                            | 241849/16480 |    96/    0 |
+| printPad5()                            | 241869/16480 |   116/    0 |
+| printUint16AsFloat3To()                | 241857/16480 |   104/    0 |
+| printUint32AsFloat3To()                | 241877/16480 |   124/    0 |
 |----------------------------------------+--------------+-------------|
-| printReplaceCharTo(char*)              | 230941/16332 |    28/    0 |
-| printReplaceCharTo(F())                | 230941/16332 |    28/    0 |
-| printReplaceStringTo(char*)            | 230977/16332 |    64/    0 |
-| printReplaceStringTo(F())              | 230977/16332 |    64/    0 |
+| printReplaceCharTo(char*)              | 241781/16480 |    28/    0 |
+| printReplaceCharTo(F())                | 241781/16480 |    28/    0 |
+| printReplaceStringTo(char*)            | 241817/16480 |    64/    0 |
+| printReplaceStringTo(F())              | 241817/16480 |    64/    0 |
 |----------------------------------------+--------------+-------------|
-| hashDjb2(char*)                        | 230953/16332 |    40/    0 |
-| hashDjb2(F())                          | 230953/16332 |    40/    0 |
+| hashDjb2(char*)                        | 241789/16480 |    36/    0 |
+| hashDjb2(F())                          | 241789/16480 |    36/    0 |
 |----------------------------------------+--------------+-------------|
-| udiv1000()                             | 230993/16332 |    80/    0 |
-| /1000                                  | 230977/16332 |    64/    0 |
+| udiv1000()                             | 241833/16480 |    80/    0 |
+| /1000                                  | 241817/16480 |    64/    0 |
 |----------------------------------------+--------------+-------------|
-| isSorted()                             | 230945/16332 |    32/    0 |
-| reverse()                              | 230949/16332 |    36/    0 |
+| isSorted()                             | 241785/16480 |    32/    0 |
+| reverse()                              | 241789/16480 |    36/    0 |
 |----------------------------------------+--------------+-------------|
-| KString::compareTo(char*)              | 231093/16332 |   180/    0 |
-| KString::compareTo(KString&)           | 231177/16332 |   264/    0 |
+| KString::compareTo(char*)              | 241917/16480 |   164/    0 |
+| KString::compareTo(KString&)           | 242017/16480 |   264/    0 |
 |----------------------------------------+--------------+-------------|
-| backslashXEncode()                     | 231133/16332 |   220/    0 |
-| backslashXDecode()                     | 231197/16332 |   284/    0 |
+| backslashXEncode()                     | 241973/16480 |   220/    0 |
+| backslashXDecode()                     | 242021/16480 |   268/    0 |
 +---------------------------------------------------------------------+
 
 ```
@@ -304,43 +314,43 @@ usage by objects.
 ## Teensy 3.2
 
 * 96 MHz ARM Cortex-M4
-* Arduino IDE 1.8.19, Arduino CLI 0.20.2
-* Teensyduino 1.56
+* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* Teensyduino 1.57
 
 ```
 +---------------------------------------------------------------------+
 | Functionality                          |  flash/  ram |       delta |
 |----------------------------------------+--------------+-------------|
-| Baseline                               |  11364/ 4276 |     0/    0 |
+| Baseline                               |  11264/ 4276 |     0/    0 |
 |----------------------------------------+--------------+-------------|
-| String                                 |  13836/ 4276 |  2472/    0 |
-| PrintStr<16>                           |  11584/ 4276 |   220/    0 |
-| PrintStrN(16)                          |  11620/ 4276 |   256/    0 |
+| String                                 |  13772/ 4276 |  2508/    0 |
+| PrintStr<16>                           |  11480/ 4276 |   216/    0 |
+| PrintStrN(16)                          |  11516/ 4276 |   252/    0 |
 |----------------------------------------+--------------+-------------|
-| printPad2()                            |  11396/ 4276 |    32/    0 |
-| printPad5()                            |  11416/ 4276 |    52/    0 |
-| printUint16AsFloat3To()                |  11404/ 4276 |    40/    0 |
-| printUint32AsFloat3To()                |  11408/ 4276 |    44/    0 |
+| printPad2()                            |  11292/ 4276 |    28/    0 |
+| printPad5()                            |  11312/ 4276 |    48/    0 |
+| printUint16AsFloat3To()                |  11300/ 4276 |    36/    0 |
+| printUint32AsFloat3To()                |  11304/ 4276 |    40/    0 |
 |----------------------------------------+--------------+-------------|
-| printReplaceCharTo(char*)              |  11396/ 4276 |    32/    0 |
-| printReplaceCharTo(F())                |  11396/ 4276 |    32/    0 |
-| printReplaceStringTo(char*)            |  11420/ 4276 |    56/    0 |
-| printReplaceStringTo(F())              |  11420/ 4276 |    56/    0 |
+| printReplaceCharTo(char*)              |  11296/ 4276 |    32/    0 |
+| printReplaceCharTo(F())                |  11296/ 4276 |    32/    0 |
+| printReplaceStringTo(char*)            |  11316/ 4276 |    52/    0 |
+| printReplaceStringTo(F())              |  11316/ 4276 |    52/    0 |
 |----------------------------------------+--------------+-------------|
-| hashDjb2(char*)                        |  11404/ 4276 |    40/    0 |
-| hashDjb2(F())                          |  11404/ 4276 |    40/    0 |
+| hashDjb2(char*)                        |  11300/ 4276 |    36/    0 |
+| hashDjb2(F())                          |  11300/ 4276 |    36/    0 |
 |----------------------------------------+--------------+-------------|
-| udiv1000()                             |  11408/ 4276 |    44/    0 |
-| /1000                                  |  11400/ 4276 |    36/    0 |
+| udiv1000()                             |  11304/ 4276 |    40/    0 |
+| /1000                                  |  11300/ 4276 |    36/    0 |
 |----------------------------------------+--------------+-------------|
-| isSorted()                             |  11388/ 4276 |    24/    0 |
-| reverse()                              |  11392/ 4276 |    28/    0 |
+| isSorted()                             |  11288/ 4276 |    24/    0 |
+| reverse()                              |  11292/ 4276 |    28/    0 |
 |----------------------------------------+--------------+-------------|
-| KString::compareTo(char*)              |  11556/ 4276 |   192/    0 |
-| KString::compareTo(KString&)           |  11600/ 4276 |   236/    0 |
+| KString::compareTo(char*)              |  11456/ 4276 |   192/    0 |
+| KString::compareTo(KString&)           |  11500/ 4276 |   236/    0 |
 |----------------------------------------+--------------+-------------|
-| backslashXEncode()                     |  11608/ 4276 |   244/    0 |
-| backslashXDecode()                     |  11628/ 4276 |   264/    0 |
+| backslashXEncode()                     |  11508/ 4276 |   244/    0 |
+| backslashXDecode()                     |  11528/ 4276 |   264/    0 |
 +---------------------------------------------------------------------+
 
 ```
