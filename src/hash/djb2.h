@@ -49,7 +49,7 @@ namespace ace_common {
  * @param s NUL terminated string, cannot be nullptr
  */
 template <typename T>
-uint32_t hashDjb2(T s) {
+uint32_t hashDjb2Template(T s) {
   uint32_t hash = 5381;
   uint8_t c;
 
@@ -61,14 +61,21 @@ uint32_t hashDjb2(T s) {
 }
 
 /**
- * Specialization of hashDjb2(T s) for flash strings (const
+ * Type checked version of `hashDjb2Template(T s)` for a regular c-string (const
+ * uint8_t*) terminated by NUL.
+ *
+ * @param s NUL terminated c-string, cannot be nullptr
+ */
+inline uint32_t hashDjb2(const char* s) { return hashDjb2Template(s); }
+
+/**
+ * Type checked version of `hashDjb2Template(T s)` for a flash string (const
  * __FlashStringHelper*).
  *
  * @param fs NUL terminated string stored in Flash memory, cannot be nullptr
  */
-template <>
 inline uint32_t hashDjb2(const __FlashStringHelper* fs) {
-  return hashDjb2<FlashString>(FlashString(fs));
+  return hashDjb2Template<FlashString>(FlashString(fs));
 }
 
 } // ace_common

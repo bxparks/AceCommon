@@ -1,5 +1,5 @@
 <map id="/home/brian/src/AceCommon/src/print_utils/printPadTo.h" name="/home/brian/src/AceCommon/src/print_utils/printPadTo.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,216,47"/>
+<area shape="rect" id="node1" title="Various function that prints a uint16_t integer using N decimal places, padded with a space or 0 char..." alt="" coords="5,5,216,47"/>
 <area shape="rect" id="node2" href="$AceCommon_8h_source.html" title=" " alt="" coords="5,184,216,225"/>
-<area shape="rect" id="node3" href="$printIntAsFloat_8h.html" title=" " alt="" coords="73,95,300,136"/>
+<area shape="rect" id="node3" href="$printIntAsFloat_8h.html" title="Print integers as floating point numbers, without using floatin point operations which are expensive ..." alt="" coords="73,95,300,136"/>
 </map>
