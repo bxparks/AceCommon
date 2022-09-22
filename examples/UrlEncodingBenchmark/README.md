@@ -1,4 +1,4 @@
-# AutoBenchmark
+# UrlEncoding Benchmark
 
 Determine the speed of various URL encoding and decoding routines.
 
