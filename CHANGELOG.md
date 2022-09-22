@@ -3,14 +3,23 @@
 * Unreleased
 * 1.5.2 (2022-09-22)
     * Change `hashDjb2(const char*)` to be an inlined function instead of 
-      simply delegating to the template version. This increases type-safety
-      because passing an incorrect array (e.g. `uint16_t[]`) would compile
-      without any errors, and probably not what the user intended since the hash
-      function expects a NUL-terminated string.
-    * Mark `PrintStr::flush()` as `override` now that the STM32 and ESP32
-      platforms have finally fixed their implementation of `Print::flush()` to
-      be `virtual`, consistent with other Arduino platforms. Make exception for
-      ATTinyCore, which still uses a non-virtual `flush()`.
+      simply delegating to the template version.
+        * Increases type-safety because passing an incorrect array (e.g.
+          `uint16_t[]`) would compile without any errors, and probably not what
+          the user intended since the hash function expects a NUL-terminated
+          string.
+    * Mark `PrintStr::flush()` as `override`.
+        * The STM32 and ESP32 platforms have finally fixed their implementation
+          of `Print::flush()` to be `virtual`, consistent with other Arduino
+          platforms.
+        * Make exception for ATTinyCore, which does not implement a
+          `Print::flush()`.
+    * Upgrade tool chain
+        * Upgrade Arduino CLI from 0.20.2 to 0.27.1.
+        * Upgrade Arduino AVR Core from 1.8.4 to 1.8.5.
+        * Upgrade STM32 Core from 2.2.0 to 2.3.0.
+        * Upgrade ESP32 Core from 2.0.2 to 2.0.5.
+        * Upgrade Teensyduino from 1.56 to 1.57.
 * 1.5.1 (2022-02-25)
     * **Breaking** Change API of
       [backslash_x_encoding.h](src/backslash_x_encoding) slightly so that the
