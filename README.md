@@ -190,6 +190,11 @@ automatically:
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
+**See Also**:
+
+* AceSorting (https://github.com/bxparks/AceSorting)
+* AceCRC (https://github.com/bxparks/AceCRC)
+
 ## Installation
 
 The latest stable release is available in the Arduino IDE Library Manager.
