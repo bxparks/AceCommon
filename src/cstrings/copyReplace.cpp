@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#include <Arduino.h> // pgm_read_byte()
 #include "copyReplace.h"
 
 namespace ace_common {
@@ -44,6 +45,28 @@ void copyReplaceChar(char* dst, size_t dstSize, const char* src,
   *dst = '\0';
 }
 
+void copyReplaceChar(char* dst, size_t dstSize, const __FlashStringHelper* src,
+    char oldChar, char newChar) {
+  char c;
+  const char* s = (const char*) src;
+  while ((c = (char) pgm_read_byte(s++)) != '\0' && dstSize > 0) {
+    if (c == oldChar) {
+      if (newChar == '\0') continue;
+      c = newChar;
+    }
+    *dst++ = c;
+    dstSize--;
+  }
+
+  if (dstSize == 0) {
+    --dst;
+  }
+  *dst = '\0';
+}
+
+// 4 overloaded versions of copyReplaceString() below, from the 2 types of `src`
+// and 2 types of `newString`.
+
 void copyReplaceString(char* dst, size_t dstSize, const char* src,
     char oldChar, const char* newString) {
   char c;
@@ -52,6 +75,75 @@ void copyReplaceString(char* dst, size_t dstSize, const char* src,
       const char* s = newString;
       while (*s != '\0' && dstSize > 0) {
         *dst++ = *s++;
+        dstSize--;
+      }
+    } else {
+      *dst++ = c;
+      dstSize--;
+    }
+  }
+
+  if (dstSize == 0) {
+    --dst;
+  }
+  *dst = '\0';
+}
+
+void copyReplaceString(char* dst, size_t dstSize, const char* src,
+    char oldChar, const __FlashStringHelper* newString) {
+  char c;
+  while ((c = *src++) != '\0' && dstSize > 0) {
+    if (c == oldChar) {
+      const char* s = (const char*) newString;
+      while ((char) pgm_read_byte(s) != '\0' && dstSize > 0) {
+        *dst++ = (char) pgm_read_byte(s++);
+        dstSize--;
+      }
+    } else {
+      *dst++ = c;
+      dstSize--;
+    }
+  }
+
+  if (dstSize == 0) {
+    --dst;
+  }
+  *dst = '\0';
+}
+
+void copyReplaceString(char* dst, size_t dstSize,
+    const __FlashStringHelper* src, char oldChar, const char* newString) {
+  char c;
+  const char* ss = (const char*) src;
+  while ((c = (char) pgm_read_byte(ss++)) != '\0' && dstSize > 0) {
+    if (c == oldChar) {
+      const char* s = (const char*) newString;
+      while (*s != '\0' && dstSize > 0) {
+        *dst++ = *s++;
+        dstSize--;
+      }
+    } else {
+      *dst++ = c;
+      dstSize--;
+    }
+  }
+
+  if (dstSize == 0) {
+    --dst;
+  }
+  *dst = '\0';
+}
+
+void copyReplaceString(char* dst, size_t dstSize,
+    const __FlashStringHelper* src, char oldChar,
+    const __FlashStringHelper* newString) {
+  char c;
+  const char* ss = (const char*) src;
+  while ((c = (char) pgm_read_byte(ss++)) != '\0' && dstSize > 0) {
+    if (c == oldChar) {
+      const char* s = (const char*) newString;
+      while ((char) pgm_read_byte(s) != '\0' && dstSize > 0) {
+        *dst++ = (char) pgm_read_byte(s++);
         dstSize--;
       }
     } else {

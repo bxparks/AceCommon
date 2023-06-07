@@ -58,12 +58,25 @@ automatically:
       using keyword substitution from a dictionary. Up to 31 keywords supported.
     * `class KString`
 * [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
-    * Replace a character with another character or string and copy result to
-      destination.
-    * `void copyReplaceChar(char* dst, size_t dstSize, const char* src,
-      char oldChar, char newChar)`
-    * `void copyReplaceString(char* dst, size_t dstSize, const char* src,
-      char oldChar, const char* newString)`
+    * Replace a character with another character and copy result to destination.
+      There are 2 overloaded versions:
+        * `void copyReplaceChar(char* dst, size_t dstSize, const char* src,
+        char oldChar, char newChar)`
+        * `void copyReplaceChar(char* dst, size_t dstSize,
+            const __FlashStringHelper* src, char oldChar, char newChar)`
+    * Replace a character with another string and copy result to destination.
+      There are 4 overloaded versions:
+        * `void copyReplaceString(char* dst, size_t dstSize,
+          const char* src, char oldChar, const char* newString)`
+        * `void copyReplaceString(char* dst, size_t dstSize,
+          const char* src, char oldChar,
+          const __FlashStringHelper* newString)`
+        * `void copyReplaceString(char* dst, size_t dstSize,
+          const __FlashStringHelper* src, char oldChar,
+          const char* newString)`
+        * `void copyReplaceString(char* dst, size_t dstSize,
+          const __FlashStringHelper* src, char oldChar,
+          const __FlashStringHelper* newString)`
 
 **Print to String Buffer**
 

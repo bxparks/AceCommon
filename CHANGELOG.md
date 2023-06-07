@@ -1,6 +1,9 @@
 # Changelog
 
 * Unreleased
+    * Add overloaded flash string versions of `copyReplaceChar()` and
+      `copyReplaceString()` which accept `__FlashStringHelper*` pointers in the
+      source string parameters.
 * 1.5.2 (2022-09-22)
     * Change `hashDjb2(const char*)` to be an inlined function instead of 
       simply delegating to the template version.
