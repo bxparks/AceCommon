@@ -1,10 +1,10 @@
 var searchData=
 [
   ['genericstats_21',['GenericStats',['../classace__common_1_1GenericStats.html',1,'ace_common::GenericStats&lt; T &gt;'],['../classace__common_1_1GenericStats.html#a9fa705b62c4ac2fc812ddbee14d76ef2',1,'ace_common::GenericStats::GenericStats()'],['../classace__common_1_1GenericStats.html#a88be9645063cb1d3fb9ac3bdfc5d5d5d',1,'ace_common::GenericStats::GenericStats(const GenericStats &amp;)=default']]],
-  ['get_22',['get',['../classace__common_1_1KStringIterator.html#acef6e355fde2ff7390cf8c22735b4c96',1,'ace_common::KStringIterator']]],
+  ['get_22',['get',['../classace__common_1_1KStringIterator.html#acef6e355fde2ff7390cf8c22735b4c96',1,'ace_common::KStringIterator::get()'],['../classace__common_1_1KStringKeywords.html#adadf77c5af75e1240c2b96f8eee2cda9',1,'ace_common::KStringKeywords::get()']]],
   ['getavg_23',['getAvg',['../classace__common_1_1GenericStats.html#ad6333d0cb668c6a3df48ad1afaec2c4b',1,'ace_common::GenericStats::getAvg()'],['../classace__common_1_1TimingStats.html#ad5f51624af98e64f0c816ba1a0273f4d',1,'ace_common::TimingStats::getAvg()']]],
-  ['getcount_24',['getCount',['../classace__common_1_1GenericStats.html#a3cb86980bacb652e46178152854b2387',1,'ace_common::GenericStats::getCount()'],['../classace__common_1_1TimingStats.html#a61e7089209997bf0883898014878945f',1,'ace_common::TimingStats::getCount()']]],
-  ['getcounter_25',['getCounter',['../classace__common_1_1GenericStats.html#a23adbbc0e7196331c53aa153654eb493',1,'ace_common::GenericStats::getCounter()'],['../classace__common_1_1TimingStats.html#aacbd8e5404b7c6572da19348021269d2',1,'ace_common::TimingStats::getCounter()']]],
+  ['getcount_24',['getCount',['../classace__common_1_1GenericStats.html#a3cb86980bacb652e46178152854b2387',1,'ace_common::GenericStats::getCount()'],['../classace__common_1_1TimingStats.html#a61e7089209997bf0883898014878945f',1,'ace_common::TimingStats::getCount() const']]],
+  ['getcounter_25',['getCounter',['../classace__common_1_1TimingStats.html#aacbd8e5404b7c6572da19348021269d2',1,'ace_common::TimingStats::getCounter()'],['../classace__common_1_1GenericStats.html#a23adbbc0e7196331c53aa153654eb493',1,'ace_common::GenericStats::getCounter()']]],
   ['getcstr_26',['getCstr',['../classace__common_1_1PrintStrBase.html#a734e18deab0e6be6657fd387a0890e56',1,'ace_common::PrintStrBase']]],
   ['getcstring_27',['getCString',['../classace__common_1_1FCString.html#a01e503eb37d5ddf9d2027fdf6e9dd5d7',1,'ace_common::FCString']]],
   ['getexpdecayavg_28',['getExpDecayAvg',['../classace__common_1_1GenericStats.html#aa518854c333076a46b98ff6153388dda',1,'ace_common::GenericStats::getExpDecayAvg()'],['../classace__common_1_1TimingStats.html#afed565d761cb1543a34419c2078b3f77',1,'ace_common::TimingStats::getExpDecayAvg()']]],

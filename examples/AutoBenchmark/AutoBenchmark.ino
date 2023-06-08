@@ -62,7 +62,7 @@ static void printSizeOf() {
 
 void setup() {
 #if ! defined(EPOXY_DUINO)
-  delay(1000); // Wait for stability on some boards, otherwise garage on Serial
+  delay(2000); // Wait for stability on some boards, otherwise garage on Serial
 #endif
 
   SERIAL_PORT_MONITOR.begin(115200);

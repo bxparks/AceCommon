@@ -34,23 +34,61 @@ SOFTWARE.
 
 #include <stddef.h> // size_t
 
+class __FlashStringHelper;
+
 namespace ace_common {
 
 /**
-  * Copy at most dstSize characters from src to dst, while replacing all
-  * occurrences of oldChar with newChar. If newChar is '\0', then replace with
-  * nothing. The resulting dst string is always NUL terminated.
-  */
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrences of oldChar with newChar. If newChar is '\0', then replace with
+ * nothing. The resulting dst string is always NUL terminated.
+ */
 void copyReplaceChar(char* dst, size_t dstSize, const char* src,
     char oldChar, char newChar);
 
 /**
-  * Copy at most dstSize characters from src to dst, while replacing all
-  * occurrence of oldChar with newString. If newString is "", then replace
-  * with nothing. The resulting dst string is always NUL terminated.
-  */
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrences of oldChar with newChar. If newChar is '\0', then replace with
+ * nothing. The resulting dst string is always NUL terminated.
+ */
+void copyReplaceChar(char* dst, size_t dstSize, const __FlashStringHelper* src,
+    char oldChar, char newChar);
+
+// 4 overloaded versions of copyReplaceString() below, from the 2 types of `src`
+// and 2 types of `newString`.
+
+/**
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrence of oldChar with newString. If newString is "", then replace
+ * with nothing. The resulting dst string is always NUL terminated.
+ */
 void copyReplaceString(char* dst, size_t dstSize, const char* src,
     char oldChar, const char* newString);
+
+/**
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrence of oldChar with newString. If newString is "", then replace
+ * with nothing. The resulting dst string is always NUL terminated.
+ */
+void copyReplaceString(char* dst, size_t dstSize, const char* src,
+    char oldChar, const __FlashStringHelper* newString);
+
+/**
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrence of oldChar with newString. If newString is "", then replace
+ * with nothing. The resulting dst string is always NUL terminated.
+ */
+void copyReplaceString(char* dst, size_t dstSize,
+    const __FlashStringHelper* src, char oldChar, const char* newString);
+
+/**
+ * Copy at most dstSize characters from src to dst, while replacing all
+ * occurrence of oldChar with newString. If newString is "", then replace
+ * with nothing. The resulting dst string is always NUL terminated.
+ */
+void copyReplaceString(char* dst, size_t dstSize,
+    const __FlashStringHelper* src, char oldChar,
+    const __FlashStringHelper* newString);
 
 } // ace_common
 
