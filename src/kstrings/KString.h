@@ -174,11 +174,22 @@ class KStringIterator {
  */
 class KStringKeywords {
   public:
+    /**
+     * @param type storage type of `keywords`, either KString::kTypeCstring
+     *        or KString::kTypeFstring
+     * @param keywords an array of pointers to strings, either in normal memory
+     *        or flash memory
+     */
     KStringKeywords(uint8_t type, const void* const* keywords) :
       type_(type),
       keywords_(keywords)
     {}
 
+    /**
+     * Return the string pointer of index i. The actual pointer type is either
+     * cstring or an fstring, depending on the `type` passed into the
+     * constructor.
+     */
     const char* get(uint8_t i) const {
       if (type_ == KString::kTypeCstring) {
         auto words = (const char* const*) keywords_;
