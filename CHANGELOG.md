@@ -9,23 +9,22 @@
     * Update supported boards and tiers
         * Add SAMD21 and SAMD51 boards to Tier 1
             * Add 2 SAMD boards from 2 different companies, to test their
-              Arduino Core software:
+              Arduino Board software:
                 * Seeeduino XIAO M0 (SAMD21 48MHz ARM Cortex-M0+)
                 * Adafruit ItsyBitsy M4 (SAMD51 120MHz ARM Cortex-M4)
             * SAMD21 and SAMD51 boards are back in Tier 1, as long as they use
               the traditional Arduino API instead of the new
-              [Arduino-Core](https://github.com/arduino/ArduinoCore-api).
+              [ArduinoCore-api](https://github.com/arduino/ArduinoCore-api).
             * Fortunately most third party SAMD21 and SAMD51 boards continue to
               use the traditional Arduino API.
-        * Move Teensy 3.2 to Tier 2
+        * Move Teensy 3.2 to Tier 2 ("Should work but not tested often")
             * This board is entering end-of-life.
             * As well, the Teensyduino environment integrates with the Arduino
               IDE and CLI in a way that's different than all other third-party
               Arduino boards. Some of my automation scripts do not work with
               Teensyduino, so it becomes very time consuming to test the Teensy
               boards.
-            * All Teensy boards are now in Tier 2 ("Should work but not tested
-              often").
+            * All Teensy boards are now in Tier 2 .
 * 1.5.2 (2022-09-22)
     * Change `hashDjb2(const char*)` to be an inlined function instead of 
       simply delegating to the template version.
