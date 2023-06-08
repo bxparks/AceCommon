@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.5.2</span>
+   &#160;<span id="projectnumber">1.6.0</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -98,16 +98,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div class="textblock"><p>An interator that points to a character inside a <a class="el" href="classace__common_1_1KString.html" title="A wrapper class around a normal c-string or Arduino f-string which is encoded and compressed using ke...">KString</a>. </p>
 <p>This is essentially a stack of 2 pointers. The first pointer points to the current string (either the original string, or inside a fragment string. The second pointer is the previous pointer, usually pointing to the original string. Each component pointer can be either a c-string or an f-string, so there is a type descriminator for each of the component pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00127">127</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00135">135</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acef6e355fde2ff7390cf8c22735b4c96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acef6e355fde2ff7390cf8c22735b4c96">&#9670;&nbsp;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">char ace_common::KStringIterator::get </td>
@@ -116,22 +113,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Return the current character referenced by the iterator. </p>
 <p>If the iterator points to a compression token (i.e. c &lt; 0x20), then the iterator moves into the fragment string, and continues to return each character of the fragment. When iterator hits the end of the fragment string (hits the NUL character), the iterator returns to the original string, and continues just after the compression token. At the end of the entire string, this method returns a NUL to indicate the end of string. </p>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00147">147</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8cpp_source.html#l00109">109</a> of file <a class="el" href="KString_8cpp_source.html">KString.cpp</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/brian/src/AceCommon/src/kstrings/<a class="el" href="KString_8h_source.html">KString.h</a></li>
+<li>/home/brian/src/AceCommon/src/kstrings/<a class="el" href="KString_8cpp_source.html">KString.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
