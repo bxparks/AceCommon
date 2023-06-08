@@ -5,7 +5,7 @@ memory and static RAM sizes were recorded. The `FEATURE_BASELINE` selection is
 the baseline, and its memory usage numbers are subtracted from the subsequent
 `FEATURE_*` memory usage.
 
-**Version**: AceCommon v1.5.2
+**Version**: AceCommon v1.6.0
 
 **DO NOT EDIT**: This file was auto-generated using `make README.md`.
 
@@ -87,11 +87,25 @@ ASCII table.
     * Upgrade Teensyduino from 1.56 to 1.57.
 * No significant changes to memory sizes.
 
+**v1.6.0**
+
+* Upgrade tool chain
+    * Upgrade Arduino CLI to 0.31.0.
+    * Upgrade Arduino AVR Core to 1.8.6.
+    * Add Seeeduino SAMD 1.8.4
+    * Upgrade STM32 Core to 2.5.0.
+    * Add Adafruit SAMD 1.7.11
+    * Upgrade ESP32 Core to 2.0.9.
+    * Remove Teensy 3.2.
+* Add more PROGMEM support in `KString`, `copyReplaceChar()` and
+  `copyReplaceString()`.
+* No significant changes to memory sizes.
+
 ## Arduino Nano
 
 * 16MHz ATmega328P
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
-* Arduino AVR Boards 1.8.5
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
+* Arduino AVR Boards 1.8.6
 
 ```
 +---------------------------------------------------------------------+
@@ -134,7 +148,7 @@ ASCII table.
 ## Sparkfun Pro Micro
 
 * 16 MHz ATmega32U4
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
 * SparkFun AVR Boards 1.1.13
 
 ```
@@ -175,11 +189,55 @@ ASCII table.
 
 ```
 
+## SAMD21 Seeeduino XIAO M0
+
+* SAMD51, 120 MHz ARM Cortex-M4
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
+* Seeeduino SAMD 1.8.4
+
+```
++---------------------------------------------------------------------+
+| Functionality                          |  flash/  ram |       delta |
+|----------------------------------------+--------------+-------------|
+| Baseline                               |  34564/    0 |     0/    0 |
+|----------------------------------------+--------------+-------------|
+| String                                 |  35020/    0 |   456/    0 |
+| PrintStr<16>                           |  34724/    0 |   160/    0 |
+| PrintStrN(16)                          |  34748/    0 |   184/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |  34668/    0 |   104/    0 |
+| printPad5()                            |  34692/    0 |   128/    0 |
+| printUint16AsFloat3To()                |  34676/    0 |   112/    0 |
+| printUint32AsFloat3To()                |  34676/    0 |   112/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |  34604/    0 |    40/    0 |
+| printReplaceCharTo(F())                |  34604/    0 |    40/    0 |
+| printReplaceStringTo(char*)            |  34620/    0 |    56/    0 |
+| printReplaceStringTo(F())              |  34620/    0 |    56/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |  34612/    0 |    48/    0 |
+| hashDjb2(F())                          |  34612/    0 |    48/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |  34612/    0 |    48/    0 |
+| /1000                                  |  34596/    0 |    32/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |  34588/    0 |    24/    0 |
+| reverse()                              |  34588/    0 |    24/    0 |
+|----------------------------------------+--------------+-------------|
+| KString::compareTo(char*)              |  34748/    0 |   184/    0 |
+| KString::compareTo(KString&)           |  34812/    0 |   248/    0 |
+|----------------------------------------+--------------+-------------|
+| backslashXEncode()                     |  34772/    0 |   208/    0 |
+| backslashXDecode()                     |  34820/    0 |   256/    0 |
++---------------------------------------------------------------------+
+
+```
+
 ## STM32 Blue Pill
 
 * STM32F103C8, 72 MHz ARM Cortex-M3
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
-* STM32duino 2.3.0
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
+* STM32duino 2.5.0
 
 ```
 +---------------------------------------------------------------------+
@@ -219,10 +277,54 @@ ASCII table.
 
 ```
 
+## SAMD51 Adafruit ItsyBitsy M4
+
+* SAMD51, 120 MHz ARM Cortex-M4
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
+* Adafruit SAMD 1.7.11
+
+```
++---------------------------------------------------------------------+
+| Functionality                          |  flash/  ram |       delta |
+|----------------------------------------+--------------+-------------|
+| Baseline                               |  10972/    0 |     0/    0 |
+|----------------------------------------+--------------+-------------|
+| String                                 |  11516/    0 |   544/    0 |
+| PrintStr<16>                           |  11120/    0 |   148/    0 |
+| PrintStrN(16)                          |  11136/    0 |   164/    0 |
+|----------------------------------------+--------------+-------------|
+| printPad2()                            |  11068/    0 |    96/    0 |
+| printPad5()                            |  11092/    0 |   120/    0 |
+| printUint16AsFloat3To()                |  11076/    0 |   104/    0 |
+| printUint32AsFloat3To()                |  11080/    0 |   108/    0 |
+|----------------------------------------+--------------+-------------|
+| printReplaceCharTo(char*)              |  11004/    0 |    32/    0 |
+| printReplaceCharTo(F())                |  11004/    0 |    32/    0 |
+| printReplaceStringTo(char*)            |  11028/    0 |    56/    0 |
+| printReplaceStringTo(F())              |  11028/    0 |    56/    0 |
+|----------------------------------------+--------------+-------------|
+| hashDjb2(char*)                        |  11008/    0 |    36/    0 |
+| hashDjb2(F())                          |  11008/    0 |    36/    0 |
+|----------------------------------------+--------------+-------------|
+| udiv1000()                             |  11012/    0 |    40/    0 |
+| /1000                                  |  11004/    0 |    32/    0 |
+|----------------------------------------+--------------+-------------|
+| isSorted()                             |  11008/    0 |    36/    0 |
+| reverse()                              |  11008/    0 |    36/    0 |
+|----------------------------------------+--------------+-------------|
+| KString::compareTo(char*)              |  11156/    0 |   184/    0 |
+| KString::compareTo(KString&)           |  11212/    0 |   240/    0 |
+|----------------------------------------+--------------+-------------|
+| backslashXEncode()                     |  11188/    0 |   216/    0 |
+| backslashXDecode()                     |  11220/    0 |   248/    0 |
++---------------------------------------------------------------------+
+
+```
+
 ## ESP8266
 
 * NodeMCU 1.0, 80MHz ESP8266
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
 * ESP8266 Boards 3.0.2
 
 ```
@@ -266,8 +368,8 @@ ASCII table.
 ## ESP32
 
 * ESP32-01 Dev Board, 240 MHz Tensilica LX6
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
-* ESP32 Boards 2.0.5
+* Arduino IDE 1.8.19, Arduino CLI 0.31.0
+* ESP32 Boards 2.0.9
 
 ```
 +---------------------------------------------------------------------+
@@ -310,48 +412,4 @@ ASCII table.
 RAM usage remains constant as more objects are created, which indicates that an
 initial pool of a certain minimum size is created regardless of the actual RAM
 usage by objects.
-
-## Teensy 3.2
-
-* 96 MHz ARM Cortex-M4
-* Arduino IDE 1.8.19, Arduino CLI 0.27.1
-* Teensyduino 1.57
-
-```
-+---------------------------------------------------------------------+
-| Functionality                          |  flash/  ram |       delta |
-|----------------------------------------+--------------+-------------|
-| Baseline                               |  11264/ 4276 |     0/    0 |
-|----------------------------------------+--------------+-------------|
-| String                                 |  13772/ 4276 |  2508/    0 |
-| PrintStr<16>                           |  11480/ 4276 |   216/    0 |
-| PrintStrN(16)                          |  11516/ 4276 |   252/    0 |
-|----------------------------------------+--------------+-------------|
-| printPad2()                            |  11292/ 4276 |    28/    0 |
-| printPad5()                            |  11312/ 4276 |    48/    0 |
-| printUint16AsFloat3To()                |  11300/ 4276 |    36/    0 |
-| printUint32AsFloat3To()                |  11304/ 4276 |    40/    0 |
-|----------------------------------------+--------------+-------------|
-| printReplaceCharTo(char*)              |  11296/ 4276 |    32/    0 |
-| printReplaceCharTo(F())                |  11296/ 4276 |    32/    0 |
-| printReplaceStringTo(char*)            |  11316/ 4276 |    52/    0 |
-| printReplaceStringTo(F())              |  11316/ 4276 |    52/    0 |
-|----------------------------------------+--------------+-------------|
-| hashDjb2(char*)                        |  11300/ 4276 |    36/    0 |
-| hashDjb2(F())                          |  11300/ 4276 |    36/    0 |
-|----------------------------------------+--------------+-------------|
-| udiv1000()                             |  11304/ 4276 |    40/    0 |
-| /1000                                  |  11300/ 4276 |    36/    0 |
-|----------------------------------------+--------------+-------------|
-| isSorted()                             |  11288/ 4276 |    24/    0 |
-| reverse()                              |  11292/ 4276 |    28/    0 |
-|----------------------------------------+--------------+-------------|
-| KString::compareTo(char*)              |  11444/ 4276 |   180/    0 |
-| KString::compareTo(KString&)           |  11500/ 4276 |   236/    0 |
-|----------------------------------------+--------------+-------------|
-| backslashXEncode()                     |  11508/ 4276 |   244/    0 |
-| backslashXDecode()                     |  11528/ 4276 |   264/    0 |
-+---------------------------------------------------------------------+
-
-```
 
