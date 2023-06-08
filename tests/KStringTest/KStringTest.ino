@@ -9,12 +9,28 @@ using ace_common::KStringIterator;
 using ace_common::PrintStr;
 
 const int NUM_KEYWORDS = 5;
+
+// Keywords in regular memory.
 const char* const KEYWORDS[NUM_KEYWORDS] = {
   nullptr,
   "Africa/", // \x01
   "America/", // \x02
   "Europe/", // \x03
   "Indiana/", // \x04
+};
+
+static const char kFragment1[] PROGMEM = "Africa/";
+static const char kFragment2[] PROGMEM = "America/";
+static const char kFragment3[] PROGMEM = "Europe/";
+static const char kFragment4[] PROGMEM = "Indiana/";
+
+// Keywords in flash memory.
+const __FlashStringHelper* const FLASHWORDS[NUM_KEYWORDS] PROGMEM = {
+  nullptr,
+  (const __FlashStringHelper*) kFragment1,
+  (const __FlashStringHelper*) kFragment2,
+  (const __FlashStringHelper*) kFragment3,
+  (const __FlashStringHelper*) kFragment4,
 };
 
 // ---------------------------------------------------------------------------
@@ -26,9 +42,9 @@ test(KStringTest, compareTo_nullptr) {
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
   KString k3("", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
-  KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), FLASHWORDS, NUM_KEYWORDS);
+  KString k3f(F(""), FLASHWORDS, NUM_KEYWORDS);
 
   assertMore(k1.compareTo((const char*) nullptr), 0);
   assertMore(k2.compareTo((const char*) nullptr), 0);
@@ -41,7 +57,7 @@ test(KStringTest, compareTo_nullptr) {
 
 test(KStringTest, nullptr_compareTo) {
   KString k((const char*) nullptr, KEYWORDS, NUM_KEYWORDS);
-  KString kf((const __FlashStringHelper*) nullptr, KEYWORDS, NUM_KEYWORDS);
+  KString kf((const __FlashStringHelper*) nullptr, FLASHWORDS, NUM_KEYWORDS);
 
   assertLess(k.compareTo(""), 0);
   assertLess(k.compareTo("America"), 0);
@@ -54,7 +70,7 @@ test(KStringTest, nullptr_compareTo) {
 
 test(KStringTest, compareTo_emptyString) {
   KString k("", KEYWORDS, NUM_KEYWORDS);
-  KString kf(F(""), KEYWORDS, NUM_KEYWORDS);
+  KString kf(F(""), FLASHWORDS, NUM_KEYWORDS);
 
   assertMore(k.compareTo((const char*) nullptr), 0);
   assertEqual(k.compareTo(""), 0);
@@ -69,7 +85,7 @@ test(KStringTest, compareTo_outOfBoundsReference) {
   // There are only 4 keywords in the dictionary, but the reference is to 31.
   // The compareTo() will treat the \x1f reference as a normal character.
   KString k("\x01\x1f", KEYWORDS, NUM_KEYWORDS);
-  KString kf(F("\x01\x1f"), KEYWORDS, NUM_KEYWORDS);
+  KString kf(F("\x01\x1f"), FLASHWORDS, NUM_KEYWORDS);
 
   assertEqual(k.compareTo("Africa/\x1f"), 0);
   assertEqual(kf.compareTo("Africa/\x1f"), 0);
@@ -79,8 +95,8 @@ test(KStringTest, compareTo_isolated) {
   KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), FLASHWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("AmericaA"), 0);
   assertLess(k2.compareTo("AmericaA"), 0);
@@ -101,8 +117,8 @@ test(KStringTest, compareTo_prefix) {
   KString k1("America/Los_Angeles", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02Los_Angeles", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/Los_Angeles"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02Los_Angeles"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/Los_Angeles"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02Los_Angeles"), FLASHWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("America~"), 0);
   assertLess(k2.compareTo("America~"), 0);
@@ -123,8 +139,8 @@ test(KStringTest, compareTo_prefix_and_suffix) {
   KString k1("America/Africa/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02\x01", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/Africa/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02\x01"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/Africa/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02\x01"), FLASHWORDS, NUM_KEYWORDS);
 
   assertLess(k1.compareTo("America~"), 0);
   assertLess(k2.compareTo("America~"), 0);
@@ -154,9 +170,9 @@ test(KStringTest, compareTo_KString_nullptr) {
   assertMore(k2.compareTo((const char*) nullptr), 0);
   assertMore(k3.compareTo((const char*) nullptr), 0);
 
-  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
-  KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), FLASHWORDS, NUM_KEYWORDS);
+  KString k3f(F(""), FLASHWORDS, NUM_KEYWORDS);
 
   assertMore(k1f.compareTo((const char*) nullptr), 0);
   assertMore(k2f.compareTo((const char*) nullptr), 0);
@@ -170,9 +186,9 @@ test(KStringTest, compareTo_KString_nullKString) {
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
   KString k3("", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
-  KString k3f(F(""), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), FLASHWORDS, NUM_KEYWORDS);
+  KString k3f(F(""), FLASHWORDS, NUM_KEYWORDS);
 
   assertMore(k1.compareTo(knull), 0);
   assertMore(k2.compareTo(knull), 0);
@@ -187,8 +203,8 @@ test(KStringTest, compareTo_KString_KString) {
   KString k1("America/", KEYWORDS, NUM_KEYWORDS);
   KString k2("\x02", KEYWORDS, NUM_KEYWORDS);
 
-  KString k1f(F("America/"), KEYWORDS, NUM_KEYWORDS);
-  KString k2f(F("\x02"), KEYWORDS, NUM_KEYWORDS);
+  KString k1f(F("America/"), FLASHWORDS, NUM_KEYWORDS);
+  KString k2f(F("\x02"), FLASHWORDS, NUM_KEYWORDS);
 
   assertEqual(k1.compareTo(k1), 0);
   assertEqual(k1.compareTo(k2), 0);
@@ -275,7 +291,7 @@ test(KStringIteratorTest, oneLevelCString) {
 }
 
 test(KStringIteratorTest, oneLevelFString) {
-  KString k(F("Africa"), KEYWORDS, NUM_KEYWORDS);
+  KString k(F("Africa"), FLASHWORDS, NUM_KEYWORDS);
   KStringIterator iter(k);
 
   assertEqual(iter.get(), 'A');
@@ -321,7 +337,7 @@ test(KStringIteratorTest, twoLevelCString) {
 
 test(KStringIteratorTest, twoLevelFString) {
   // Africa/Lagos
-  KString kf(F("\x01Lagos"), KEYWORDS, NUM_KEYWORDS);
+  KString kf(F("\x01Lagos"), FLASHWORDS, NUM_KEYWORDS);
   KStringIterator iter(kf);
 
   assertEqual(iter.get(), 'A');
@@ -360,6 +376,10 @@ void setup() {
 
   Serial.begin(115200);
   while (!Serial); // Leonardo/Micro
+
+#if defined(EPOXY_DUINO)
+  Serial.setLineModeUnix();
+#endif
 }
 
 void loop() {

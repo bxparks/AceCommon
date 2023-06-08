@@ -52,6 +52,7 @@ class KStringIterator;
  */
 class KString {
   friend class KStringIterator;
+  friend class KStringKeywords;
 
   public:
     /**
@@ -69,19 +70,26 @@ class KString {
       uint8_t numKeywords
     ):
       string_(s),
-      keywords_(keywords),
-      type_(KString::kTypeCstring),
+      keywords_((const void* const*) keywords),
+      type_(kTypeCstring),
       numKeywords_(numKeywords > 0x20 ? 0x20 : numKeywords)
     {}
 
-    /** Constructor around an Arduino Flash string. */
+    /**
+     * Constructor around an Arduino Flash string. The Arduino type system
+     * does not have a way to properly represent `keywords`. This parameter
+     * points to a location in flash memory, which contains an array of pointers
+     * to strings also in flash memory. With the current type system, `keywords`
+     * looks like a pointer to normal memory, which contains an array of flash
+     * memory strings.
+     */
     explicit KString(
       const __FlashStringHelper* fs,
-      const char* const* keywords,
+      const __FlashStringHelper* const* keywords,
       uint8_t numKeywords
     ):
       string_(fs),
-      keywords_(keywords),
+      keywords_((const void* const*) keywords),
       type_(kTypeFstring),
       numKeywords_(numKeywords > 0x20 ? 0x20 : numKeywords)
     {}
@@ -111,7 +119,7 @@ class KString {
     // The order of the following fields is deliberate to reduce the memory
     // size of this class on 32-bit processors.
     const void* const string_;
-    const char* const* const keywords_;
+    const void* const* const keywords_;
     uint8_t const type_;
     uint8_t const numKeywords_;
 };
@@ -129,8 +137,6 @@ class KStringIterator {
     /** Constructor. */
     KStringIterator(const KString& ks) :
         ks_(ks),
-        firstType_(ks.type_),
-        secondType_(KString::kTypeCstring),
         firstPtr_((const char*) ks.string_),
         secondPtr_(nullptr)
     {}
@@ -144,33 +150,7 @@ class KStringIterator {
      * just after the compression token. At the end of the entire string, this
      * method returns a NUL to indicate the end of string.
      */
-    char get() {
-      // We don't support recursive compression fragments (i.e. compress tokens
-      // within fragments) so this does NOT need to be a loop.
-      char c = getInternal(firstType_, firstPtr_);
-      if (c == '\0') {
-        if (secondPtr_ != nullptr) {
-          // pop the stack
-          firstType_ = secondType_;
-          firstPtr_ = secondPtr_;
-          secondPtr_ = nullptr;
-
-          // advance one character
-          firstPtr_++;
-          c = getInternal(firstType_, firstPtr_);
-        }
-      }
-
-      if (c != '\0' && c < 0x20) { // fragment keyword string
-        // push the stack
-        secondType_ = firstType_;
-        secondPtr_ = firstPtr_;
-        firstType_ = KString::kTypeCstring;
-        firstPtr_ = ks_.keywords_[(uint8_t) c];
-        c = getInternal(firstType_, firstPtr_);
-      }
-      return c;
-    }
+    char get();
 
     /** Advance the iterator one character, */
     void next() { firstPtr_++; }
@@ -183,10 +163,35 @@ class KStringIterator {
   private:
     // ordering of fields optimized to reduce gaps on 32-bit processors
     const KString& ks_;
-    uint8_t firstType_;
-    uint8_t secondType_;
     const char* firstPtr_;
     const char* secondPtr_;
+};
+
+/**
+ * A thin helper object around an array of `const char*` in regular memory, or
+ * an array of `const __FlashStringHelper*` in flash memory. Simplifies some
+ * code in `KString.cpp`.
+ */
+class KStringKeywords {
+  public:
+    KStringKeywords(uint8_t type, const void* const* keywords) :
+      type_(type),
+      keywords_(keywords)
+    {}
+
+    const char* get(uint8_t i) const {
+      if (type_ == KString::kTypeCstring) {
+        auto words = (const char* const*) keywords_;
+        return words[i];
+      } else {
+        auto words = (const __FlashStringHelper* const*) keywords_;
+        return (const char*) pgm_read_ptr(words + i);
+      }
+    }
+
+  private:
+    uint8_t type_;
+    const void* const* keywords_;
 };
 
 } // ace_common

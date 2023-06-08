@@ -56,6 +56,7 @@ automatically:
 * [src/kstrings/KString.h](src/kstrings/KString.h)
     * Wrapper around a c-string or an f-string which supports compression
       using keyword substitution from a dictionary. Up to 31 keywords supported.
+    * The keywords dictionary itself can be in normal memory or flash memory.
     * `class KString`
 * [src/cstrings/copyReplace.h](src/cstrings/copyReplace.h)
     * Replace a character with another character and copy result to destination.
