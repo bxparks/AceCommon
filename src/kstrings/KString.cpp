@@ -15,24 +15,25 @@ int KString::compareTo(const char* s) {
     uint8_t cb = *b;
 
     Restart:
-    // Extract the current character depending on the 'type_'. Normally doing a
-    // conditional check inside an inner loop is not good for performance.
-    // However, when I pulled this code out into a template function (using a
-    // thin-wrapper CString and FString), the AceTime/AutoBenchmark program
-    // showed that it made no perceptible difference in performance. I think
-    // this is because there is enough overhead in the rest of function to make
-    // this conditional code unimportant.
-    uint8_t ca = (type_ == kTypeCstring) ? *a : pgm_read_byte(a);
+    // Extract the current character depending on the 'stringType_'. Normally
+    // doing a conditional check inside an inner loop is not good for
+    // performance. However, when I pulled this code out into a template
+    // function (using a thin-wrapper CString and FString), the
+    // AceTime/AutoBenchmark program showed that it made no perceptible
+    // difference in performance. I think this is because there is enough
+    // overhead in the rest of function to make this conditional code
+    // unimportant.
+    uint8_t ca = (stringType_ == kTypeCstring) ? *a : pgm_read_byte(a);
 
     if (ca != cb) {
       // If ca is a keyword reference, then compare against the keyword.
       // Recursive keyword substitution not allowed, because I don't want to
       // make this function recursive.
       if (0 < ca && ca < numKeywords_) {
-        KStringKeywords keywords(type_, keywords_);
+        KStringKeywords keywords(keywordType_, keywords_);
         const char* k = keywords.get(ca);
         while (true) {
-          ca = (type_ == kTypeCstring) ? *k : pgm_read_byte(k);
+          ca = (keywordType_ == kTypeCstring) ? *k : pgm_read_byte(k);
           cb = *b;
           if (ca == '\0') {
             a++;
@@ -89,12 +90,12 @@ void KString::printTo(Print& printer) {
     // usually not good for performance. But the templatized version of
     // compareTo() made no difference, and this function which outputs to a
     // Printer is not expected to be in a performance critical section.
-    char c = (type_ == kTypeCstring) ? *s : pgm_read_byte(s);
+    char c = (stringType_ == kTypeCstring) ? *s : pgm_read_byte(s);
 
     s++;
     if (c == 0) break;
     if (c < numKeywords_) {
-      if (type_ == kTypeCstring) {
+      if (keywordType_ == kTypeCstring) {
         printer.print((const char*) keywords_[(uint8_t) c]);
       } else {
         printer.print((const __FlashStringHelper*)
@@ -109,25 +110,30 @@ void KString::printTo(Print& printer) {
 char KStringIterator::get() {
   // We don't support recursive compression fragments (i.e. compress tokens
   // within fragments) so this does NOT need to be a loop.
-  char c = getInternal(ks_.type_, firstPtr_);
+  char c = getInternal(firstType_, firstPtr_);
   if (c == '\0') {
     if (secondPtr_ != nullptr) {
       // pop the stack
       firstPtr_ = secondPtr_;
+      firstType_ = secondType_;
       secondPtr_ = nullptr;
+      secondType_ = KString::kTypeCstring; // not used, can be anything
 
       // advance one character
       firstPtr_++;
-      c = getInternal(ks_.type_, firstPtr_);
+      c = getInternal(firstType_, firstPtr_);
     }
   }
 
   if (c != '\0' && c < 0x20) { // fragment keyword string
     // push the stack
     secondPtr_ = firstPtr_;
-    KStringKeywords keywords(ks_.type_, ks_.keywords_);
+    secondType_ = firstType_;
+
+    KStringKeywords keywords(ks_.keywordType_, ks_.keywords_);
     firstPtr_ = keywords.get((uint8_t) c);
-    c = getInternal(ks_.type_, firstPtr_);
+    firstType_ = ks_.keywordType_;
+    c = getInternal(firstType_, firstPtr_);
   }
 
   return c;

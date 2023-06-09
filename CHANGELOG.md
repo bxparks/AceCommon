@@ -1,6 +1,18 @@
 # Changelog
 
 * Unreleased
+    * Support all combinations of flash-string and c-string in `KString()`
+      constructor. Fixes breakage in AceTime v2.2.3.
+        * v1.5.2 supported:
+            * `KString(cstring, cstring)`
+            * `KString(flash, cstring)`
+        * v1.6.0 changed to:
+            * `KString(cstring, cstring)`
+            * `KString(flash, flash)`
+            * Which breaks AceTime v2.2.3
+        * v1.6.1 adds the remaining combinations:
+            * `KString(flash, cstring)`
+            * `KString(cstring, flash)`
 * 1.6.0 (2023-06-08)
     * Add overloaded flash string versions of `copyReplaceChar()` and
       `copyReplaceString()` which accept `__FlashStringHelper*` pointers in the
