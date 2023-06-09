@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AceCommon
-   &#160;<span id="projectnumber">1.6.0</span>
+   &#160;<span id="projectnumber">1.6.1</span>
    </div>
    <div id="projectbrief">Arduino library for low-level common functions and features with no external dependencies</div>
   </td>
@@ -84,11 +84,17 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ac7be10f8d055edde05aaa1e1067bc4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a1ac7be10f8d055edde05aaa1e1067bc4">KString</a> (const char *s, const char *const *keywords, uint8_t numKeywords)</td></tr>
-<tr class="memdesc:a1ac7be10f8d055edde05aaa1e1067bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around a simple c-string.  <a href="classace__common_1_1KString.html#a1ac7be10f8d055edde05aaa1e1067bc4">More...</a><br /></td></tr>
+<tr class="memdesc:a1ac7be10f8d055edde05aaa1e1067bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around a simple c-string, and an array of keyword strings in normal memory.  <a href="classace__common_1_1KString.html#a1ac7be10f8d055edde05aaa1e1067bc4">More...</a><br /></td></tr>
 <tr class="separator:a1ac7be10f8d055edde05aaa1e1067bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a673a94bac9ef5d32fcbb2efd673c821b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a673a94bac9ef5d32fcbb2efd673c821b">KString</a> (const __FlashStringHelper *fs, const __FlashStringHelper *const *keywords, uint8_t numKeywords)</td></tr>
-<tr class="memdesc:a673a94bac9ef5d32fcbb2efd673c821b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around an Arduino Flash string.  <a href="classace__common_1_1KString.html#a673a94bac9ef5d32fcbb2efd673c821b">More...</a><br /></td></tr>
-<tr class="separator:a673a94bac9ef5d32fcbb2efd673c821b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa84cdb69241556532c9536513c7573d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#aa84cdb69241556532c9536513c7573d0">KString</a> (const __FlashStringHelper *s, const char *const *keywords, uint8_t numKeywords)</td></tr>
+<tr class="memdesc:aa84cdb69241556532c9536513c7573d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around an f-string, and an array of keyword strings in normal memory.  <a href="classace__common_1_1KString.html#aa84cdb69241556532c9536513c7573d0">More...</a><br /></td></tr>
+<tr class="separator:aa84cdb69241556532c9536513c7573d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1742d2ad94593d27b481dac11c8f7ced"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a1742d2ad94593d27b481dac11c8f7ced">KString</a> (const char *s, const __FlashStringHelper *const *keywords, uint8_t numKeywords)</td></tr>
+<tr class="memdesc:a1742d2ad94593d27b481dac11c8f7ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around a c-string, and an array of keyword strings in flash memory.  <a href="classace__common_1_1KString.html#a1742d2ad94593d27b481dac11c8f7ced">More...</a><br /></td></tr>
+<tr class="separator:a1742d2ad94593d27b481dac11c8f7ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a463b9c335eb77749bd6eac5e7a2e8d6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a463b9c335eb77749bd6eac5e7a2e8d6b">KString</a> (const __FlashStringHelper *s, const __FlashStringHelper *const *keywords, uint8_t numKeywords)</td></tr>
+<tr class="memdesc:a463b9c335eb77749bd6eac5e7a2e8d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor around an f-string, and an array of keyword strings in flash memory.  <a href="classace__common_1_1KString.html#a463b9c335eb77749bd6eac5e7a2e8d6b">More...</a><br /></td></tr>
+<tr class="separator:a463b9c335eb77749bd6eac5e7a2e8d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1838535fa2cb7d9310d4094fc9b0d752"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752">compareTo</a> (const char *s)</td></tr>
 <tr class="memdesc:a1838535fa2cb7d9310d4094fc9b0d752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare this string against a c-string <code>s</code> and return <code>&lt;0</code>, <code>0</code> or <code>&gt;0</code> if this string is <code>&lt;</code>, <code>==</code>, or <code>&gt;</code> compared to the target string <code>s</code>.  <a href="classace__common_1_1KString.html#a1838535fa2cb7d9310d4094fc9b0d752">More...</a><br /></td></tr>
 <tr class="separator:a1838535fa2cb7d9310d4094fc9b0d752"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,7 +125,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringKeywords</b><
 <p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00053">53</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1ac7be10f8d055edde05aaa1e1067bc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ac7be10f8d055edde05aaa1e1067bc4">&#9670;&nbsp;</a></span>KString() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ac7be10f8d055edde05aaa1e1067bc4">&#9670;&nbsp;</a></span>KString() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,7 +164,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringKeywords</b><
 </table>
 </div><div class="memdoc">
 
-<p>Constructor around a simple c-string. </p>
+<p>Constructor around a simple c-string, and an array of keyword strings in normal memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>NUL terminated string or nullptr </td></tr>
@@ -168,12 +174,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringKeywords</b><
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00067">67</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00068">68</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
 
 </div>
 </div>
-<a id="a673a94bac9ef5d32fcbb2efd673c821b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a673a94bac9ef5d32fcbb2efd673c821b">&#9670;&nbsp;</a></span>KString() <span class="overload">[2/2]</span></h2>
+<a id="aa84cdb69241556532c9536513c7573d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa84cdb69241556532c9536513c7573d0">&#9670;&nbsp;</a></span>KString() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,7 +191,61 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringKeywords</b><
           <td class="memname">ace_common::KString::KString </td>
           <td>(</td>
           <td class="paramtype">const __FlashStringHelper *&#160;</td>
-          <td class="paramname"><em>fs</em>, </td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *const *&#160;</td>
+          <td class="paramname"><em>keywords</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>numKeywords</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor around an f-string, and an array of keyword strings in normal memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>NUL terminated string or nullptr in flash memory </td></tr>
+    <tr><td class="paramname">keywords</td><td>an array of keywords in normal memory, up to 32 slots. The first slot at index 0 should be <code>nullptr</code> since it cannot be used. </td></tr>
+    <tr><td class="paramname">numKeywords</td><td>number of keywords, including the nullptr in the 0th position. If greater than 32, will be truncated to 32. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00091">91</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+
+</div>
+</div>
+<a id="a1742d2ad94593d27b481dac11c8f7ced"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1742d2ad94593d27b481dac11c8f7ced">&#9670;&nbsp;</a></span>KString() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ace_common::KString::KString </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -212,10 +272,73 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>KStringKeywords</b><
 </table>
 </div><div class="memdoc">
 
-<p>Constructor around an Arduino Flash string. </p>
-<p>The Arduino type system does not have a way to properly represent <code>keywords</code>. This parameter points to a location in flash memory, which contains an array of pointers to strings also in flash memory. With the current type system, <code>keywords</code> looks like a pointer to normal memory, which contains an array of flash memory strings. </p>
+<p>Constructor around a c-string, and an array of keyword strings in flash memory. </p>
+<p>The Arduino type system does not have a way to properly represent <code>keywords</code>. This parameter points to a location in flash memory, which contains an array of pointers to strings also in flash memory. With the current type system, <code>keywords</code> looks like a pointer to normal memory, which contains an array of flash memory strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>NUL terminated string or nullptr in normal memory </td></tr>
+    <tr><td class="paramname">keywords</td><td>an array of keywords in flash memory, up to 32 slots. The first slot at index 0 should be <code>nullptr</code> since it cannot be used. </td></tr>
+    <tr><td class="paramname">numKeywords</td><td>number of keywords, including the nullptr in the 0th position. If greater than 32, will be truncated to 32. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00086">86</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00119">119</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
+
+</div>
+</div>
+<a id="a463b9c335eb77749bd6eac5e7a2e8d6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a463b9c335eb77749bd6eac5e7a2e8d6b">&#9670;&nbsp;</a></span>KString() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ace_common::KString::KString </td>
+          <td>(</td>
+          <td class="paramtype">const __FlashStringHelper *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const __FlashStringHelper *const *&#160;</td>
+          <td class="paramname"><em>keywords</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>numKeywords</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor around an f-string, and an array of keyword strings in flash memory. </p>
+<p>The Arduino type system does not have a way to properly represent <code>keywords</code>. This parameter points to a location in flash memory, which contains an array of pointers to strings also in flash memory. With the current type system, <code>keywords</code> looks like a pointer to normal memory, which contains an array of flash memory strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>NUL terminated string or nullptr in flash memory </td></tr>
+    <tr><td class="paramname">keywords</td><td>an array of keywords, up to 32 slots. The first slot at index 0 should be <code>nullptr</code> since it cannot be used. </td></tr>
+    <tr><td class="paramname">numKeywords</td><td>number of keywords, including the nullptr in the 0th position. If greater than 32, will be truncated to 32. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="KString_8h_source.html#l00147">147</a> of file <a class="el" href="KString_8h_source.html">KString.h</a>.</p>
 
 </div>
 </div>
