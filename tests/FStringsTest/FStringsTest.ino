@@ -37,6 +37,10 @@ void setup() {
 
   Serial.begin(115200);
   while (!Serial); // Leonardo/Micro
+
+#if defined(EPOXY_DUINO)
+  Serial.setLineModeUnix();
+#endif
 }
 
 void loop() {

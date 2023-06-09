@@ -79,6 +79,10 @@ void setup() {
 
   SERIAL_PORT_MONITOR.begin(115200);
   while(!SERIAL_PORT_MONITOR); // Arduino Leonardo/Micro only
+
+#if defined(EPOXY_DUINO)
+  Serial.setLineModeUnix();
+#endif
 }
 
 void loop() {
