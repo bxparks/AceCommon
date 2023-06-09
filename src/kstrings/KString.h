@@ -145,11 +145,11 @@ class KString {
      *        position. If greater than 32, will be truncated to 32.
      */
     explicit KString(
-      const __FlashStringHelper* fs,
+      const __FlashStringHelper* s,
       const __FlashStringHelper* const* keywords,
       uint8_t numKeywords
     ):
-      string_(fs),
+      string_(s),
       keywords_((const void* const*) keywords),
       stringType_(kTypeFstring),
       keywordType_(kTypeFstring),
