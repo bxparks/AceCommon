@@ -49,6 +49,7 @@ SOFTWARE.
 #include "fstrings/FCString.h"
 #include "fstrings/FlashString.h"
 #include "kstrings/KString.h"
+#include "tstrings/tstrings.h"
 #include "cstrings/copyReplace.h"
 
 #include "print_str/PrintStr.h"

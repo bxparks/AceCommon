@@ -42,6 +42,21 @@ automatically:
     * `int strcmp_PP(const char* a, const char* b)`
     * `const char* strchr_P(const char* s, char c)` (ESP8266 and ESP32 only)
     * `const char* strrchr_P(const char* s, char c)` (ESP8266 and ESP32 only)
+* [src/tstrings/tstrings.h](src/tstrings/tstrings.h)
+    * Overloaded functions which provide a thin layer of indirection around a
+      `const char*` or a `const __FlashStringHelper*`.
+    * Allows writing of template code which is agnostic to whether the string
+      is stored in normal memory or flash memory. The compiler will choose the
+      exact implementation at compile-time.
+    * `strcat_T()`
+    * `strchr_T()`
+    * `strcmp_()`
+    * `strcpy_T()`
+    * `strlen_T()`
+    * `strncat_T()`
+    * `strncmp_T()`
+    * `strncpy_T()`
+    * `strrchr_T()`
 * [src/fstrings/FCString.h](src/fstrings/FCString.h)
     * `class FCString`
     * An object that can hold either a C-string (`const char*`) or an
