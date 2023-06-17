@@ -50,7 +50,7 @@ automatically:
       exact implementation at compile-time.
     * `strcat_T()`
     * `strchr_T()`
-    * `strcmp_()`
+    * `strcmp_T()`
     * `strcpy_T()`
     * `strlen_T()`
     * `strncat_T()`
@@ -60,7 +60,8 @@ automatically:
 * [src/fstrings/FCString.h](src/fstrings/FCString.h)
     * `class FCString`
     * An object that can hold either a C-string (`const char*`) or an
-      F-string (`const __FlashStringHelper*`).
+      F-string (`const __FlashStringHelper*`), and a type discrimination tag
+      that allows the client code to determine the type at runtime.
 * [src/fstrings/FlashString.h](src/fstrings/FlashString.h)
     * [src/fstrings/README.md](src/fstrings/README.md)
     * `class FlashString`
@@ -98,16 +99,15 @@ automatically:
 
 * [src/print_str/PrintStr.h](src/print_str/PrintStr.h)
     * [src/print_str/README.md](src/print_str/README.md)
-        * Provides classes that implement the `Print` interface so that
-          values can be printed into in-memory buffers. The string can then
-          be extracted as a normal c-string using `const char*
-          PrintStr::cstr()`.
-        * Alternative to the Arduino `String` class to avoid or reduce heap
-          fragmentation.
+    * Provides classes that implement the `Print` interface so that
+        values can be printed into in-memory buffers. The string can then
+        be extracted as a normal c-string using `const char*
+        PrintStr::cstr()`.
+    * Alternative to the Arduino `String` class to avoid or reduce heap
+        fragmentation.
     * `class PrintStrBase`
     * `class PrintStr<uint16_t SIZE>` (buffer on stack)
     * `class PrintStrN(uint16_t size)` (buffer on heap)
-
 
 **Print Utilities**
 
@@ -128,9 +128,9 @@ automatically:
         * Does not use floating point operations.
 * [src/print_utils/printfTo.h](src/print_utils/printfTo.h)
     * [src/print_utils/README.md](src/print_utils/README.md)
-        * Provides a primitive `printf()` functionality to an instance of
-          `Print` (e.g. `Serial`) for those Arduino boards without a
-          `Print.printf()` function.
+    * Provides a primitive `printf()` functionality to an instance of
+      `Print` (e.g. `Serial`) for those Arduino boards without a
+      `Print.printf()` function.
     * `void printfTo(Print& printer, const char* fmt, ...)`
 * [src/print_utils/printReplaceTo.h](src/print_utils/printReplaceTo.h)
     * Print a string while replacing a character with another character or
@@ -145,7 +145,7 @@ automatically:
     * `void printReplaceStringTo(
       Print& printer, const __FlashStringHelper* src, char oldChar,
       const char* newString)`
-* [src/print_utils/printIntAsFlost.h](src/print_utils/printIntAsFloat.h)
+* [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
     * Print `uint16_t` and `uint32_t` as a floating point number with 3 decimal
       places after conceptually dividing by 1000.
     * No floating point operations are used.
@@ -154,9 +154,8 @@ automatically:
 
 * [src/timing_stats/TimingStats.h](src/timing_stats/TimingStats.h)
     * [src/timing_stats/README.md](src/timing_stats/README.md)
-        * Helper class to collect data (often durations in milliseconds) and
-          then print out various statistics such as min, max, average, and
-          count.
+    * Helper class to collect data (often durations in milliseconds) and
+      then print out various statistics such as min, max, average, and count.
     * `class TimingStats`
 * [src/timing_stats/GenericStats.h](src/timing_stats/GenericStats.h)
     * Same as `TimingStats` but templatized to support generic type `T`
