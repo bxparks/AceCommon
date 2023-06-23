@@ -121,7 +121,8 @@ class PrintStrBase: public Print {
       || defined(ARDUINO_AVR_ATTINYX5) \
       || defined(ARDUINO_AVR_ATTINYX61) \
       || defined(ARDUINO_AVR_ATTINYX7) \
-      || defined(ARDUINO_AVR_ATTINYX8)
+      || defined(ARDUINO_AVR_ATTINYX8) \
+      || defined(ARDUINO_ARCH_ESP32)
     void flush() {
   #else
     void flush() override {
