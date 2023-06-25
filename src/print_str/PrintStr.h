@@ -101,7 +101,9 @@ class PrintStrBase: public Print {
      * platform fixed this in v2.0.3 on 2022-05-04. I think we can finally
      * assume that most platforms implement a virtual flush() and apply the
      * `override` keyword here, which also fixes the compiler warnings in
-     * EpoxyDuino.
+     * EpoxyDuino. Unfortunately, it seems that we must still make an exception
+     * for ESP32 on PLATFORMIO which seems to be stuck using a version of the
+     * ESP32 core before v2.0.3.
      *
      * The only platform that is officially supported by AceCommon where the
      * `override` will cause problems is the
@@ -122,7 +124,7 @@ class PrintStrBase: public Print {
       || defined(ARDUINO_AVR_ATTINYX61) \
       || defined(ARDUINO_AVR_ATTINYX7) \
       || defined(ARDUINO_AVR_ATTINYX8) \
-      || (defined(ARDUINO_ARCH_ESP32) && defined(PLATFORMIO)) // hack because PIO is on espresif32 platform <v2.0.3
+      || (defined(ARDUINO_ARCH_ESP32) && defined(PLATFORMIO))
     void flush() {
   #else
     void flush() override {
@@ -187,7 +189,7 @@ class PrintStrBase: public Print {
      * the pointer from the last element of this object (i.e. &index_), and
      * thereby saving some memory.
      *
-     * But I am not convinced that I have the knowledge do that properly
+     * But I am not convinced that I have the knowledge to do that properly
      * without triggering UB (undefined behavior) in the C++ language. Do I
      * define buf_[0] here and will it point exactly where actualBuf_[] is
      * allocated? Or do I use [&PrintStrBase + sizeof(PrintStrBase)] to
