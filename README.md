@@ -214,7 +214,7 @@ automatically:
     * [src/algorithms/README.md](src/algorithms/README.md)
     * `void reverse(T data[], size_t size)`
 
-**Version**: 1.6.1 (2023-06-09)
+**Version**: 1.6.2 (2023-06-25)
 
 **Changelog**: [CHANGELOG.md](CHANGELOG.md)
 
