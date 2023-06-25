@@ -122,7 +122,7 @@ class PrintStrBase: public Print {
       || defined(ARDUINO_AVR_ATTINYX61) \
       || defined(ARDUINO_AVR_ATTINYX7) \
       || defined(ARDUINO_AVR_ATTINYX8) \
-      || defined(ARDUINO_ARCH_ESP32)
+      || (defined(ARDUINO_ARCH_ESP32) && defined(PLATFORMIO)) // hack because PIO is on espresif32 platform <v2.0.3
     void flush() {
   #else
     void flush() override {
