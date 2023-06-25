@@ -1,6 +1,18 @@
 # Changelog
 
 * Unreleased
+* 1.6.2 (2023-06-25)
+    * Add `tstrings.h` which adds various `strxxx_T()` overloaded functions
+      which take either a `const char*` or a `const __FlashStringHelper*`
+      parameter.
+        * Allows writing C++ template code which is agnostic to whether the
+          string argument is in normal memory or flash memory. The compiler will
+          select the specific implementation automatically at compile-time.
+    * `PrintStr.h`
+        * Add special exception for ESP32 on PlatformIO which seems to be
+          stuck using the ESP32 Core from 1.x, which means that its
+          `Print::flush()` is non-virtual instead of virtual (fixed in v2.0.3).
+        * See [PR#28](https://github.com/bxparks/AceCommon/pull/28).
 * 1.6.1 (2023-06-09)
     * Fix backwards compatibility breakage in `KString()` constructor.
         * v1.5.2 supported only:
