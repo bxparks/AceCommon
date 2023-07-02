@@ -145,10 +145,6 @@ automatically:
     * `void printReplaceStringTo(
       Print& printer, const __FlashStringHelper* src, char oldChar,
       const char* newString)`
-* [src/print_utils/printIntAsFloat.h](src/print_utils/printIntAsFloat.h)
-    * Print `uint16_t` and `uint32_t` as a floating point number with 3 decimal
-      places after conceptually dividing by 1000.
-    * No floating point operations are used.
 
 **Timing Statistics**
 
