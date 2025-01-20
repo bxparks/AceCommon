@@ -310,9 +310,10 @@ compiler errors:
 
 * Any platform using the ArduinoCore-API
   (https://github.com/arduino/ArduinoCore-api), such as:
-    * megaAVR (e.g. Nano Every)
-    * SAMD21 boards w/ `arduino:samd` version >= 1.8.10 (e.g. Nano 33 IoT,
-      MKRZero, etc)
+    * Arduino-branded megaAVR boards (e.g. Nano Every)
+    * Arduino-branded SAMD21 or SAMD51 boards w/ `arduino:samd` version >=
+      1.8.10 (e.g. Nano 33 IoT, MKRZero, etc)
+    * Arduino UNO R4
     * Raspberry Pi Pico RP2040
 
 ### Tool Chain
@@ -321,6 +322,7 @@ This library was developed and tested using:
 
 * [Arduino IDE 1.8.19](https://www.arduino.cc/en/Main/Software)
 * [Arduino CLI 0.31.0](https://arduino.github.io/arduino-cli)
+* [SpenceKonde ATTinyCore 1.5.2](https://github.com/SpenceKonde/ATTinyCore)
 * [Arduino AVR Boards 1.8.6](https://github.com/arduino/ArduinoCore-avr)
 * [SparkFun AVR Boards 1.1.13](https://github.com/sparkfun/Arduino_Boards)
 * [Arduino SAMD Boards 1.8.9](https://github.com/arduino/ArduinoCore-samd)

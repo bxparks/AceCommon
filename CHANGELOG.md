@@ -51,7 +51,7 @@
               boards.
             * All Teensy boards are now in Tier 2 .
 * 1.5.2 (2022-09-22)
-    * Change `hashDjb2(const char*)` to be an inlined function instead of 
+    * Change `hashDjb2(const char*)` to be an inlined function instead of
       simply delegating to the template version.
         * Increases type-safety because passing an incorrect array (e.g.
           `uint16_t[]`) would compile without any errors, and probably not what
