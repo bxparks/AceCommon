@@ -86,6 +86,25 @@ class PrintStrBase: public Print {
       return n;
     }
 
+    /** Write the `buf` string of `size` into the internal buffer. */
+    size_t write(const __FlashStringHelper *bufFSH, size_t size) {
+      if (bufFSH == nullptr) return 0;
+
+      const char* bufAlias = (PGM_P)bufFSH;
+      size_t n = 0;
+      while (size-- > 0) {
+        char ch;
+        {
+          // hopelessly inefficient, but want a VERY safe way to read 'just one byte' from Flash
+          strncpy_P(&ch, bufAlias++, 1);
+        }
+        size_t ret = write(ch);
+        if (ret == 0) break;
+        n++;
+      }
+      return n;
+    }
+
     /**
      * Clear the internal buffer.
      *
@@ -131,7 +150,12 @@ class PrintStrBase: public Print {
   #endif
       index_ = 0;
     }
-
+#if 0
+    /**
+     * Clear the internal buffer, alternative in attempting some compatibility with other options e.g. PrintString
+     */
+    inline void clear() { flush(); }
+#endif
     /**
      * Return the NUL terminated c-string buffer. After the buffer is no longer
      * needed, the flush() method should be called to reset the internal buffer
@@ -146,16 +170,31 @@ class PrintStrBase: public Print {
       buf_[index_] = '\0';
       return buf_;
     }
+#if 0
+    /**
+     * Return the NUL terminated c-string buffer, alternative in attempting some compatibility with other options e.g. PrintString
+     */
+    inline const char* getString() const { return cstr(); }
 
     /** Backwards compatible version of cstr(). New code should use cstr(). */
     const char* getCstr() const { return cstr(); }
-
+#endif
     /**
      * Return the length of the internal c-string buffer, not including the
      * NUL terminator.
      */
     size_t length() const { return index_; }
 
+#if 1
+  private: // add this to refactor 'old' code; comment out to allow 'old' code to work
+    /** Backwards compatible version of flush(). New code should use flush(). */
+    void clear() { flush(); }
+
+    /** Backwards compatible version of cstr(). New code should use cstr(). */
+    const char* getCstr() const { return cstr(); }
+    /** Backwards compatible version of cstr(). New code should use cstr(). */
+    const char* getString() const { return cstr(); }
+#endif
   protected:
     /**
      * Constructor.
@@ -271,6 +310,32 @@ class PrintStr: public PrintStrBase {
   public:
     PrintStr(): PrintStrBase(SIZE, actualBuf_) {}
 
+    /** allow simple assignment of flash string. */
+    // ideal but prohibited // PrintStr<SIZE>& operator = (const __FlashStringHelper *str){
+    const __FlashStringHelper * operator = (const __FlashStringHelper *str){
+      if (str) {
+        flush();
+        write(str, strlen_P((PGM_P)str));
+      } else {
+        // follow write() philosophy and leave existing value as-is
+      }
+      return str;
+      // ideal but prohibited // return *this;
+    }
+
+    /** allow simple assignment of sz/C string. */
+    // ideal but prohibited // PrintStr<SIZE>& operator = (const char *str){
+    const char * operator = (const char *str){
+      if (str) {
+        flush();
+        write((const uint8_t*)str, strlen(str));
+      } else {
+        // follow write() philosophy and leave existing value as-is
+      }
+      return str;
+      // ideal but prohibited // return *this;
+    }
+
   private:
     char actualBuf_[SIZE];
 };
@@ -306,6 +371,32 @@ class PrintStrN: public PrintStrBase {
      */
     ~PrintStrN() {
       delete[] buf_;
+    }
+
+    /** allow simple assignment of flash string. */
+    // ideal but prohibited // PrintStrN& operator = (const __FlashStringHelper *str){
+    const __FlashStringHelper * operator = (const __FlashStringHelper *str){
+      if (str) {
+        flush();
+        write(str, strlen_P((PGM_P)str));
+      } else {
+        // follow write() philosophy and leave existing value as-is
+      }
+      return str;
+      // ideal but prohibited // return *this;
+    }
+
+    /** allow simple assignment of sz/C string. */
+    // ideal but prohibited // PrintStrN& operator = (const char *str){
+    const char * operator = (const char *str){
+      if (str) {
+        flush();
+        write((const uint8_t*)str, strlen(str));
+      } else {
+        // follow write() philosophy and leave existing value as-is
+      }
+      return str;
+      // ideal but prohibited // return *this;
     }
 };
 
